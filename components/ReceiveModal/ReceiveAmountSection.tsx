@@ -1,0 +1,258 @@
+import React, {useMemo, useState} from 'react';
+import {View, StyleSheet} from 'react-native';
+import {TouchableOpacity} from '@gorhom/bottom-sheet';
+import {useThemeStyleSheetProvided} from '@hooks/useThemeStyleSheet';
+import {useAppTheme} from '@hooks/useAppTheme';
+import {AppTheme, rounded, spacing} from '@utils/styles';
+import Text from '@components/Text/Text';
+import {AntDesign, MaterialIcons} from '@expo/vector-icons';
+import BigNumber from 'bignumber.js';
+import {useDisplayCurrency, useDisplayValue} from '@hooks/useDisplayCurrency';
+import {formatValue} from '@utils/helper/numberFormatter';
+import {useNativeCurrency} from '@hooks/useNativeCurrency';
+import {convertNativeCurrencies} from '@utils/helper/nativeCurrency';
+import Separator from '@components/Separator/Separator';
+import Button from '@components/Button/Button';
+
+export interface RequestProps {
+    rawAmount: string;
+    displayAmount: string;
+    displayCurrency: string;
+}
+interface Props {
+    initialAmount: RequestProps;
+    onChangeAmount: (props: RequestProps | null) => void;
+    onCancel: () => void;
+}
+
+const ReceiveAmountSection = (props: Props) => {
+    const {nativeCurrency} = useNativeCurrency();
+    const {displayCurrency} = useDisplayCurrency();
+    const {displayPrice} = useDisplayValue(0);
+
+    const [inputCurrencyIsNative, setInputCurrencyIsNative] = useState(true);
+    const [requestAmount, setRequestAmount] = useState(props.initialAmount.displayAmount);
+
+    const theme = useAppTheme();
+    const styles = useThemeStyleSheetProvided(theme, dynamicStyles);
+
+    const estimateAmount = useMemo(() => {
+        if (displayPrice.isZero()) {
+            return new BigNumber(0);
+        }
+        if (inputCurrencyIsNative) {
+            const valueInNano = convertNativeCurrencies(requestAmount, nativeCurrency, 'XNO');
+            return new BigNumber(valueInNano || 0).times(displayPrice);
+        }
+        const amountInNano = new BigNumber(requestAmount || 0).div(displayPrice).toFixed(8, 1);
+        return new BigNumber(convertNativeCurrencies(amountInNano, 'XNO', nativeCurrency));
+    }, [inputCurrencyIsNative, nativeCurrency, requestAmount]);
+
+    const onSwapCurrencies = () => {
+        const dp = estimateAmount.isGreaterThan(100) ? 0 : estimateAmount.isLessThan(0.01) ? 4 : 2;
+        setRequestAmount(estimateAmount.decimalPlaces(dp).toString());
+        setInputCurrencyIsNative(t => !t);
+    };
+
+    const rawAmount = useMemo(() => {
+        if (inputCurrencyIsNative) {
+            return convertNativeCurrencies(requestAmount, nativeCurrency, 'RAW');
+        }
+        return convertNativeCurrencies(estimateAmount, nativeCurrency, 'RAW');
+    }, [inputCurrencyIsNative, estimateAmount, requestAmount]);
+
+    const {inputCurrency, estimateCurrency} = useMemo(() => {
+        if (inputCurrencyIsNative) return {inputCurrency: nativeCurrency, estimateCurrency: displayCurrency};
+        return {inputCurrency: displayCurrency, estimateCurrency: nativeCurrency};
+    }, [inputCurrencyIsNative, nativeCurrency, displayCurrency]);
+
+    const appendNumber = (t: number | string) => {
+        setRequestAmount(curr => `${curr}${t}`);
+    };
+    const onBackspace = () => {
+        setRequestAmount(p => p.substring(0, p.length - 1));
+    };
+
+    const onRequest = () => {
+        const n = new BigNumber(requestAmount);
+        if (n.isNaN() || n.isZero()) {
+            props.onChangeAmount(null);
+            return;
+        }
+        props.onChangeAmount({
+            rawAmount,
+            displayAmount: requestAmount,
+            displayCurrency: inputCurrency,
+        });
+    };
+
+    const keyboardActions = useMemo(() => {
+        let actions: {render: () => JSX.Element}[] = [];
+        for (let i = 1; i <= 9; i++) {
+            actions.push({
+                render: () => (
+                    <TouchableOpacity
+                        key={i}
+                        style={styles.keyWrap}
+                        onPress={() => {
+                            appendNumber(i);
+                        }}>
+                        <Text style={styles.keyText} weight={'500'}>
+                            {i}
+                        </Text>
+                    </TouchableOpacity>
+                ),
+            });
+        }
+        actions.push({
+            render: () => (
+                <TouchableOpacity
+                    key={'clear'}
+                    style={styles.keyWrap}
+                    onPress={() => {
+                        appendNumber('.');
+                    }}>
+                    <Text style={styles.keyText} weight={'500'}>
+                        .
+                    </Text>
+                </TouchableOpacity>
+            ),
+        });
+
+        actions.push({
+            render: () => (
+                <TouchableOpacity
+                    key={'0'}
+                    style={styles.keyWrap}
+                    onPress={() => {
+                        appendNumber(0);
+                    }}>
+                    <Text style={styles.keyText} weight={'500'}>
+                        {'0'}
+                    </Text>
+                </TouchableOpacity>
+            ),
+        });
+        actions.push({
+            render: () => (
+                <TouchableOpacity key={'backspace'} style={styles.keyWrap} onPress={onBackspace}>
+                    <AntDesign name="arrowleft" style={styles.keyText} />
+                </TouchableOpacity>
+            ),
+        });
+
+        return actions;
+    }, [requestAmount, theme]);
+
+    return (
+        <View style={styles.container}>
+            <Text style={styles.requestHeader}>Enter request amount</Text>
+            <Separator space={spacing.l} />
+
+            <View style={{alignItems: 'center'}}>
+                {requestAmount ? (
+                    <View>
+                        <Text style={styles.requestAmountInput} weight={'800'}>
+                            {requestAmount} {inputCurrency}
+                        </Text>
+                        <TouchableOpacity onPress={onSwapCurrencies}>
+                            <Text style={styles.estimateAmount} weight={'600'}>
+                                {formatValue(estimateAmount)} {estimateCurrency}
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                ) : (
+                    <View style={styles.placeholderWrap}>
+                        <Text style={styles.requestAmountInputHolder} weight={'300'}>
+                            How much {inputCurrency}?
+                        </Text>
+                    </View>
+                )}
+                <TouchableOpacity style={styles.swapIconWrap} onPress={onSwapCurrencies}>
+                    <MaterialIcons name="swap-vert" style={styles.swapIcon} />
+                </TouchableOpacity>
+            </View>
+            <Separator space={spacing.l} />
+            <View style={styles.keyboardContainer}>
+                {keyboardActions.map((action, i) => {
+                    return action.render();
+                })}
+            </View>
+            <View style={styles.buttonsWrap}>
+                <Button
+                    title={'Cancel'}
+                    variant={'secondary'}
+                    onPress={props.onCancel}
+                    containerStyle={styles.actionButton}
+                />
+                <Button title={'Request'} onPress={onRequest} containerStyle={styles.actionButton} />
+            </View>
+        </View>
+    );
+};
+
+const dynamicStyles = (theme: AppTheme) =>
+    StyleSheet.create({
+        container: {
+            marginTop: spacing.m,
+        },
+        keyboardContainer: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            justifyContent: 'space-between',
+            maxWidth: 600,
+            maxHeight: 350,
+            alignSelf: 'center',
+        },
+        keyWrap: {
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '30%',
+            height: '23%',
+        },
+        keyText: {
+            color: theme.colors.textPrimary,
+            fontSize: 25,
+        },
+        requestHeader: {
+            textAlign: 'center',
+        },
+        placeholderWrap: {
+            flexDirection: 'row',
+            alignSelf: 'center',
+            alignItems: 'center',
+        },
+        requestAmountInput: {
+            fontSize: 28,
+            textAlign: 'center',
+        },
+        requestAmountInputHolder: {
+            textAlign: 'center',
+            fontSize: 28,
+            color: theme.colors.textSecondary,
+        },
+        estimateAmount: {
+            color: theme.colors.textSecondary,
+            textAlign: 'center',
+        },
+        swapIconWrap: {
+            position: 'absolute',
+            right: 0,
+        },
+        swapIcon: {
+            color: theme.colors.textSecondary,
+            fontSize: 24,
+        },
+        buttonsWrap: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            marginTop: spacing.m,
+            gap: spacing.m,
+        },
+        actionButton: {
+            flex: 1,
+        },
+    });
+
+export default ReceiveAmountSection;

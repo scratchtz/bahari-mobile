@@ -1,27 +1,84 @@
 {
   "expo": {
-    "name": "bahari",
+    "name": "Bahari",
     "slug": "bahari",
-    "version": "1.0.0",
+    "version": "0.0.10",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#0F172A"
+    },
+    "plugins": [
+      [
+        "expo-media-library",
+        {
+          "photosPermission": "Allow Bahari to access your photos.",
+          "savePhotosPermission": "Allow Bahari to save photos.",
+          "isAccessMediaLocationEnabled": false
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Allow $(PRODUCT_NAME) to access your photos."
+        }
+      ],
+      [
+        "expo-local-authentication",
+        {
+          "faceIDPermission": "Allow $(PRODUCT_NAME) to use Face ID."
+        }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera for QR Code Scanning."
+        }
+      ],
+      ["expo-build-properties",
+        {
+          "android": {
+            "enableProguardInReleaseBuilds": true,
+            "enableShrinkResourcesInReleaseBuilds": true,
+            "extraProguardRules": "-keep class com.shopify.reactnative.skia.** { *; } -keep class com.swmansion.reanimated.** { *; } -keep class com.facebook.react.turbomodule.** { *; } -keep public class com.horcrux.svg.** {*;} "
+          }}]
+    ],
+    "updates": {
+      "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": [
       "**/*"
     ],
+    "jsEngine": "hermes",
     "ios": {
-      "supportsTablet": true
+      "buildNumber": "10",
+      "supportsTablet": true,
+      "bundleIdentifier": "co.tz.scratch.bahari",
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "Allow Bahari to access your photos.",
+        "NSPhotoLibraryAddUsageDescription": "Allow Bahari to save photos.",
+        "NSFaceIDUsageDescription": "Allow $(PRODUCT_NAME) to use Face ID."
+      }
     },
     "android": {
+      "versionCode": 10,
+      "jsEngine": "hermes",
+      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "co.tz.scratch.bahari",
+      "permissions": [
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.USE_BIOMETRIC",
+        "android.permission.USE_FINGERPRINT"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"

@@ -1,0 +1,6 @@
+{
+  "screens.main.wallet.balanceSection.pendingAmountTitle": "보류 중인 금액",
+
+  "screens.main.wallet.historyList.title": "최근 거래",
+  "screens.main.wallet.historyList.listEmptyText": "아직 거래가 없습니다. 거래를 보려면 나노를 보내거나 받으세요."
+}

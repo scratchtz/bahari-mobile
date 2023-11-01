@@ -1,0 +1,10 @@
+{
+  "screens.main.wallet.balanceSection.pendingAmountTitle": "Pending Amount",
+
+  "screens.main.wallet.historyList.title": "Latest Transactions",
+  "screens.main.wallet.historyList.listEmptyText": "No Transactions yet. Send or receive nano to see transactions.",
+
+
+
+
+}
