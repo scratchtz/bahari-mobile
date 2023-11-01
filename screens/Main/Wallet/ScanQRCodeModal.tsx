@@ -1,49 +1,45 @@
-import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
-import {View, StyleSheet, Dimensions, Alert} from 'react-native';
+import React, {useCallback, useMemo, useRef} from 'react';
+import {View, StyleSheet, Dimensions, Linking} from 'react-native';
 import {BottomSheetBackdrop, BottomSheetModal} from '@gorhom/bottom-sheet';
 import {useBottomSheetBackHandler} from '@hooks/hooksbottomsheet/useBottomSheetBackHandler';
 import {palette, rounded, spacing} from '@utils/styles';
 import Text from '@components/Text/Text';
-import {FontAwesome5} from '@expo/vector-icons';
-import {BarCodeEvent, BarCodeScanner, PermissionStatus} from 'expo-barcode-scanner';
+import {Feather, FontAwesome5} from '@expo/vector-icons';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {Canvas, Mask, Group, RoundedRect, Rect} from '@shopify/react-native-skia';
 import {NanoUriParams, parseNanoUri} from '@utils/helper/uri';
-import {ToastController} from '@components/Toast/Toast';
-import {Camera} from 'expo-camera';
+import {Camera, useCameraDevice, useCameraPermission, Code, useCodeScanner} from 'react-native-vision-camera';
 
 interface Props {
     onClose: (params: NanoUriParams | undefined) => void;
 }
 
 export const ScanQRCodeModal = React.forwardRef((props: Props, ref: any) => {
-    const [hasPermission, setHasPermission] = useState<boolean | null>(null);
-    const isScanned = useRef<boolean>(false);
-    const [sheetPosition, setSheetPosition] = useState(-1);
+    const {hasPermission, requestPermission} = useCameraPermission();
+    const device = useCameraDevice('back');
 
-    const getBarCodeScannerPermissions = async () => {
-        const {status} = await BarCodeScanner.requestPermissionsAsync();
-        setHasPermission(status === PermissionStatus.GRANTED);
-    };
-    const handleBarCodeScanned = ({data}: BarCodeEvent) => {
-        console.log(data);
-        if (isScanned.current) return;
-        isScanned.current = true;
-        try {
-            const params = parseNanoUri(data);
-            if (params.kind == 'nano') {
-                onClose(params);
-                return;
-            }
-            //TODO handle other kinds
-            throw 'unknown qr code';
-        } catch (e) {
-            ToastController.show({title: 'Error', content: 'Invalid QR Code! Try again', kind: 'error'});
-            setTimeout(() => {
-                isScanned.current = false;
-            }, 2000);
+    const isScanned = useRef<boolean>(false);
+
+    const scanLock = useRef(false);
+    const handleScannedCodes = (codes: Code[]) => {
+        if (scanLock.current) {
+            return;
         }
+        scanLock.current = true;
+        for (let i = 0; i < codes.length; i++) {
+            try {
+                const curr = codes[i];
+                const params = parseNanoUri(curr.value || '');
+                if (params.kind == 'nano') {
+                    onClose(params);
+                    return;
+                }
+            } catch (e) {}
+        }
+        setTimeout(() => {
+            scanLock.current = false;
+        }, 2000);
     };
 
     const {handleSheetPositionChange} = useBottomSheetBackHandler(ref);
@@ -53,6 +49,11 @@ export const ScanQRCodeModal = React.forwardRef((props: Props, ref: any) => {
         (props: any) => <BottomSheetBackdrop {...props} opacity={0.8} disappearsOnIndex={-1} appearsOnIndex={0} />,
         [],
     );
+
+    const codeScanner = useCodeScanner({
+        codeTypes: ['qr'],
+        onCodeScanned: handleScannedCodes,
+    });
 
     const onClose = (params?: NanoUriParams) => {
         if (params) {
@@ -73,12 +74,12 @@ export const ScanQRCodeModal = React.forwardRef((props: Props, ref: any) => {
     const onSheetPosition = (index: number) => {
         if (index === -1) {
             isScanned.current = false;
+            scanLock.current = false;
         } else {
             if (!hasPermission) {
-                void getBarCodeScannerPermissions();
+                void requestPermission();
             }
         }
-        setSheetPosition(index);
         handleSheetPositionChange(index);
     };
 
@@ -93,26 +94,21 @@ export const ScanQRCodeModal = React.forwardRef((props: Props, ref: any) => {
             backgroundComponent={() => null}
             snapPoints={snapPoints}>
             <View style={styles.container}>
-                {hasPermission && sheetPosition >= 0 && (
-                    <Camera
-                        style={StyleSheet.absoluteFill}
-                        ratio={'16:9'}
-                        barCodeScannerSettings={{
-                            barCodeTypes: [BarCodeScanner.Constants.BarCodeType.qr],
-                        }}
-                        onBarCodeScanned={handleBarCodeScanned}
-                    />
+                {hasPermission && device && (
+                    <Camera style={StyleSheet.absoluteFill} device={device} isActive={true} codeScanner={codeScanner} />
                 )}
-                {hasPermission === false && (
+                {!hasPermission && (
                     <View style={styles.enableCameraContainer}>
-                        <TouchableOpacity onPress={getBarCodeScannerPermissions}>
+                        <TouchableOpacity
+                            onPress={() => {
+                                void Linking.openSettings();
+                            }}>
                             <Text style={styles.enableCamera} weight={'600'}>
                                 Enable Camera to Scan QR code
                             </Text>
                         </TouchableOpacity>
                     </View>
                 )}
-
                 <Canvas style={{width, height}}>
                     <Mask
                         mode="luminance"
@@ -139,14 +135,15 @@ export const ScanQRCodeModal = React.forwardRef((props: Props, ref: any) => {
 
                 <View style={[styles.innerContainer, {paddingTop: insets.top}]}>
                     <View style={styles.headerContainer}>
-                        <Text variant="subheader" style={styles.head} weight={'700'}>
+                        <Text variant="subheader" style={styles.head} weight={'600'}>
                             Scan QR Code
                         </Text>
                         <TouchableOpacity
+                            style={styles.closeWrap}
                             onPress={() => {
                                 onClose();
                             }}>
-                            <FontAwesome5 name="times" size={24} color="white" />
+                            <Feather name="x" size={24} color="white" />
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -180,19 +177,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     head: {
-        fontSize: 24,
         color: 'white',
+        fontSize: 18,
     },
     indicator: {
         position: 'absolute',
         backgroundColor: 'red',
         padding: 0,
         margin: 0,
-    },
-    qrCodeIcon: {
-        marginRight: spacing.s,
-        color: 'white',
-        fontSize: 14,
     },
     actionButtons: {
         marginTop: spacing.xl,
@@ -233,5 +225,13 @@ const styles = StyleSheet.create({
         color: 'white',
         textDecorationLine: 'underline',
         fontSize: 16,
+    },
+    closeWrap: {
+        backgroundColor: '#111111',
+        borderRadius: rounded.full,
+        width: 30,
+        height: 30,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
 });

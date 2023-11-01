@@ -38,13 +38,24 @@
           "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera for QR Code Scanning."
         }
       ],
-      ["expo-build-properties",
+      [
+        "expo-build-properties",
         {
           "android": {
             "enableProguardInReleaseBuilds": true,
             "enableShrinkResourcesInReleaseBuilds": true,
             "extraProguardRules": "-keep class com.shopify.reactnative.skia.** { *; } -keep class com.swmansion.reanimated.** { *; } -keep class com.facebook.react.turbomodule.** { *; } -keep public class com.horcrux.svg.** {*;} "
-          }}]
+          }
+        }
+      ],
+      [
+        "react-native-vision-camera",
+        {
+          "cameraPermissionText": "$(PRODUCT_NAME) needs access to your Camera.",
+          "microphonePermissionText": "$(PRODUCT_NAME) needs access to your Microphone.",
+          "enableCodeScanner": true
+        }
+      ]
     ],
     "updates": {
       "fallbackToCacheTimeout": 0
