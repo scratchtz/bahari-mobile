@@ -343,6 +343,7 @@ const dynamicStyles = (theme: AppTheme) =>
         },
         cardSelected: {
             borderColor: theme.colors.primary,
+            borderWidth: 2,
         },
         cardInner: {
             flex: 1,

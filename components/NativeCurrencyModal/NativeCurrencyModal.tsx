@@ -92,7 +92,7 @@ const dynamicStyles = (theme: AppTheme) =>
             backgroundColor: theme.colors.modalIndicator,
         },
         sectionSelected: {
-            borderWidth: 1,
+            borderWidth: 2,
             borderColor: theme.colors.primary,
         },
         flex: {

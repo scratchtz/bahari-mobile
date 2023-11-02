@@ -96,10 +96,11 @@ const dynamicStyles = (theme: AppTheme) =>
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
-            borderRadius: rounded.m,
+            borderRadius: rounded.l,
         },
         listItemSelected: {
             borderColor: theme.colors.primary,
+            borderWidth: 2,
         },
         checkMark: {
             fontSize: 20,
