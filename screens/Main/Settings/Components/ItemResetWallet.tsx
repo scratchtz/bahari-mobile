@@ -1,7 +1,7 @@
 import {useThemeStyleSheet, useThemeStyleSheetProvided} from '@hooks/useThemeStyleSheet';
 import SettingsItem, {sharedStyles} from '@screens/Main/Settings/Components/SettingsItem';
 import {StyleSheet, View} from 'react-native';
-import {Feather} from '@expo/vector-icons';
+import {AntDesign, Feather} from '@expo/vector-icons';
 import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import {BottomSheetBackdrop, BottomSheetModal} from '@gorhom/bottom-sheet';
 import {AppTheme, palette, spacing} from '@utils/styles';
@@ -64,7 +64,7 @@ const ResetWalletModal = React.forwardRef(({}, ref: any) => {
         }
     };
 
-    const snapPoints = useMemo(() => ['36%', '60%'], []);
+    const snapPoints = useMemo(() => [280, 320], []);
     const renderBackdrop = useCallback(
         (props: any) => <BottomSheetBackdrop {...props} opacity={0.5} disappearsOnIndex={-1} appearsOnIndex={0} />,
         [],
@@ -84,12 +84,12 @@ const ResetWalletModal = React.forwardRef(({}, ref: any) => {
             snapPoints={snapPoints}>
             <ModalHeader title={'Reset Wallet'} onClose={() => ref.current.close()} />
             <View style={styles.innerContainer}>
-                <Text style={styles.info} weight="500">
-                    Are you sure you want to reset your wallet?
-                </Text>
-                <Text style={styles.otherInfo} weight="500">
-                    If you don't have your recovery keys we can't recover the wallet for you.
-                </Text>
+                <View style={styles.warningWrap}>
+                    <AntDesign name="warning" size={24} color={theme.colors.warning} />
+                    <Text style={styles.warning}>
+                        If you don't have your recovery keys we can't recover the wallet for you.
+                    </Text>
+                </View>
                 <View style={styles.buttonsContainer}>
                     <Button
                         title={'Cancel'}
@@ -128,12 +128,11 @@ const deleteStyles = (theme: AppTheme) =>
             marginHorizontal: spacing.th,
         },
         info: {
-            fontSize: 16,
+            textAlign: 'center',
         },
-        otherInfo: {
-            color: theme.colors.warning,
-            marginTop: spacing.l,
-            fontSize: 16,
+        warning: {
+            marginLeft: spacing.m,
+            flex: 1,
         },
         buttonsContainer: {
             flexDirection: 'row',
@@ -141,6 +140,11 @@ const deleteStyles = (theme: AppTheme) =>
         },
         button: {
             flex: 1,
+        },
+        warningWrap: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            marginTop: spacing.l,
         },
     });
 

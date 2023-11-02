@@ -114,7 +114,6 @@ const DecryptPassphraseModal = (props: Props, ref: any) => {
                                 returnKeyType="next"
                                 autoCapitalize="none"
                                 secureTextEntry
-                                value={password}
                                 onChangeText={setPassword}
                             />
                         </View>
@@ -136,7 +135,6 @@ const DecryptPassphraseModal = (props: Props, ref: any) => {
                                 returnKeyType="next"
                                 autoCapitalize="none"
                                 secureTextEntry
-                                value={encryptedText}
                                 onChangeText={setEncryptedText}
                                 textStyle={styles.encryptedTextInput}
                             />
