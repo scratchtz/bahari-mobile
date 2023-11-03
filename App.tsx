@@ -10,10 +10,10 @@ import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
 import Toast from '@components/Toast/Toast';
 import LockScreen from '@screens/LockScreen/LockScreen';
 import {enableLayoutAnimations} from 'react-native-reanimated';
-import {encryptedStorage} from "@storage/mmkv";
+import {encryptedStorage} from '@storage/mmkv';
 import {PersistQueryClientProvider} from '@tanstack/react-query-persist-client';
-import {createSyncStoragePersister} from "@tanstack/query-sync-storage-persister";
-import {QueryClient} from "@tanstack/react-query";
+import {createSyncStoragePersister} from '@tanstack/query-sync-storage-persister';
+import {QueryClient} from '@tanstack/react-query';
 
 //Don't remove this, on Android screens are inconsistent
 enableLayoutAnimations(false);
@@ -22,7 +22,9 @@ void SplashScreen.preventAutoHideAsync().catch(e => console.warn(e));
 
 const queryClient = new QueryClient({
     defaultOptions: {
-        queries: {},
+        queries: {
+            gcTime: 1000 * 60 * 60 * 24 * 7, // 7 days
+        },
     },
 });
 

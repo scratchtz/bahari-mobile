@@ -14,7 +14,6 @@ import {convertNativeCurrencies} from '@utils/helper/nativeCurrency';
 import Separator from '@components/Separator/Separator';
 import Button from '@components/Button/Button';
 import Pressable from '@components/Touchable/Touchable';
-import {th} from 'date-fns/locale';
 
 export interface RequestProps {
     rawAmount: string;
