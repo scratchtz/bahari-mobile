@@ -9,9 +9,6 @@ import Text from '@components/Text/Text';
 import {History} from '@utils/rpc/types';
 import {shortenAddress} from '@utils/helper/address';
 import {formatValue} from '@utils/helper/numberFormatter';
-import {tools} from 'nanocurrency-web';
-import BigNumber from 'bignumber.js';
-import {Image} from 'expo-image';
 import fromUnixTime from 'date-fns/fromUnixTime';
 import {format} from 'date-fns';
 import {Ionicons} from '@expo/vector-icons';
@@ -21,17 +18,16 @@ import Separator from '@components/Separator/Separator';
 import {useNativeCurrency} from '@hooks/useNativeCurrency';
 import {convertRawAmountToNativeCurrency} from '@utils/helper/nativeCurrency';
 import AddressThumbnail from '@components/AddressThumbnail/AddressThumbnail';
-import {getAddressDetails, getContact} from '@hooks/useContacts';
-import {navigate, navigateDispatch} from '@navigation/shared';
+import {getAddressDetails} from '@hooks/useContacts';
+import {navigateDispatch} from '@navigation/shared';
 import {CommonActions} from '@react-navigation/native';
-interface Props {}
 
 const TITLE = {
     receive: 'Received',
     send: 'Sent',
     change: 'Changed Representative',
 };
-const TxDetailedModal = ({type, account, amount, hash, local_timestamp, height, confirmed}: History, ref: any) => {
+const TxDetailedModal = ({type, account, amount, hash, local_timestamp}: History, ref: any) => {
     const {handleSheetPositionChange} = useBottomSheetBackHandler(ref);
 
     const {nativeCurrency} = useNativeCurrency();
@@ -57,10 +53,7 @@ const TxDetailedModal = ({type, account, amount, hash, local_timestamp, height, 
 
     const addressName = useMemo(() => {
         const data = getAddressDetails(account);
-        if (data && data.name) {
-            return data.name;
-        }
-        return '';
+        return data?.name || '';
     }, [account]);
 
     const onAddContact = () => {
@@ -75,7 +68,7 @@ const TxDetailedModal = ({type, account, amount, hash, local_timestamp, height, 
             });
         });
     };
-
+    const amountColor = type === 'receive' ? theme.colors.priceUp : theme.colors.textPrimary;
     return (
         <BottomSheetModal
             enablePanDownToClose
@@ -102,24 +95,12 @@ const TxDetailedModal = ({type, account, amount, hash, local_timestamp, height, 
                             onPress={() => {
                                 void onCopy(hash);
                             }}>
-                            <Text style={{color: theme.colors.secondary}}>{shortenAddress(hash, 6)}</Text>
+                            <Text style={styles.txHash}>{shortenAddress(hash, 6)}</Text>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.section}>
                         <Text style={styles.key}>{TITLE[type]}</Text>
-                        <Text
-                            weight="700"
-                            style={[
-                                styles.amount,
-                                {
-                                    color:
-                                        type === 'receive'
-                                            ? theme.colors.priceUp
-                                            : type === 'send'
-                                            ? theme.colors.priceDown
-                                            : theme.colors.textSecondary,
-                                },
-                            ]}>
+                        <Text style={[styles.amount, {color: amountColor}]}>
                             {type === 'receive' ? '+' : type === 'send' ? '-' : ''}
                             {formatValue(nativeValue)} {nativeCurrency}
                         </Text>
@@ -148,7 +129,12 @@ const TxDetailedModal = ({type, account, amount, hash, local_timestamp, height, 
                             </View>
                         </View>
                     </View>
-                    <Text style={styles.date}>{time}</Text>
+                    <View style={styles.section}>
+                        <Text style={styles.key}>Date</Text>
+                        <Text style={[styles.amount, {color: amountColor}]}>
+                            <Text style={styles.date}>{time}</Text>
+                        </Text>
+                    </View>
                     <TouchableOpacity style={styles.openExplorerButton}>
                         <Text style={styles.openExplorerText}>Open on block explorer</Text>
                     </TouchableOpacity>
@@ -198,11 +184,10 @@ const dynamicStyles = (theme: AppTheme) =>
             alignItems: 'center',
         },
         key: {
-            fontSize: 16,
             color: theme.colors.textSecondary,
         },
         amount: {
-            fontSize: 24,
+            fontSize: 18,
         },
         thumbnail: {
             borderRadius: rounded.full,
@@ -216,6 +201,9 @@ const dynamicStyles = (theme: AppTheme) =>
             color: theme.colors.textSecondary,
             marginLeft: spacing.s,
         },
+        txHash: {
+            textDecorationLine: 'underline',
+        },
         date: {
             marginRight: spacing.s,
             marginTop: spacing.l,
@@ -226,7 +214,6 @@ const dynamicStyles = (theme: AppTheme) =>
             padding: spacing.l,
         },
         openExplorerText: {
-            color: theme.colors.secondary,
             textDecorationLine: 'underline',
             fontSize: 12,
         },
