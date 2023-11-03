@@ -18,6 +18,7 @@ import {beautifulLabel, shortenAddress} from '@utils/helper/address';
 import {useDefaultWallet} from '@hooks/useWallet';
 import Separator from '@components/Separator/Separator';
 import ReceiveAmountSection, {RequestProps} from '@components/ReceiveModal/ReceiveAmountSection';
+import Pressable from '@components/Touchable/Touchable';
 
 interface Props {}
 
@@ -112,14 +113,14 @@ const ReceiveModal = (props: Props, ref: any) => {
                                 <Text style={styles.requestAmountTitle} weight={'600'}>
                                     Request Amount: {requestItems.displayAmount} {requestItems.displayCurrency}
                                 </Text>
-                                <TouchableOpacity
+                                <Pressable
                                     style={styles.requestCancelWrap}
                                     hitSlop={{top: -5, left: -5, right: -5, bottom: -5}}
                                     onPress={() => {
                                         setRequestItems({...initialRequestItems});
                                     }}>
                                     <Feather name="x" style={styles.requestCancelIcon} />
-                                </TouchableOpacity>
+                                </Pressable>
                             </View>
                         )}
                         <Separator space={spacing.l} />

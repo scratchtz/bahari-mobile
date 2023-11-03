@@ -38,7 +38,10 @@ const PriceGraph = () => {
     }
     return (
         <View style={styles.container}>
-            <TouchableOpacity onPress={toggleHide} style={styles.currPriceContainer}>
+            <TouchableOpacity
+                onPress={toggleHide}
+                style={styles.currPriceContainer}
+                hitSlop={{top: -5, left: -5, right: -5, bottom: -5}}>
                 {!hide ? <Feather name="eye" style={styles.eye} /> : <Feather name="eye-off" style={styles.eye} />}
                 <Text style={styles.currPriceTitle}>Current XNO price</Text>
                 <Text style={styles.currPrice} weight="800">

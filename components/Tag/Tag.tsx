@@ -22,7 +22,7 @@ const Tag: React.FC<Props> = ({title, icon, onPress, containerStyle, textStyle})
     return (
         <TouchableOpacity style={[styles.container, containerStyle]} onPress={onPress}>
             {icon}
-            <Text variant="small" style={textStyle}>
+            <Text variant="small" style={[{flex: 1}, textStyle]}>
                 {title}
             </Text>
         </TouchableOpacity>

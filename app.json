@@ -44,7 +44,15 @@
           "android": {
             "enableProguardInReleaseBuilds": true,
             "enableShrinkResourcesInReleaseBuilds": true,
-            "extraProguardRules": "-keep class com.shopify.reactnative.skia.** { *; } -keep class com.swmansion.reanimated.** { *; } -keep class com.facebook.react.turbomodule.** { *; } -keep public class com.horcrux.svg.** {*;} "
+            "extraProguardRules": "-keep class com.shopify.reactnative.skia.** { *; } -keep class com.swmansion.reanimated.** { *; } -keep class com.facebook.react.turbomodule.** { *; } -keep public class com.horcrux.svg.** {*;} ",
+            "packagingOptions": {
+              "pickFirst": [
+                "lib/arm64-v8a/libcrypto.so",
+                "lib/x86/libcrypto.so",
+                "lib/x86_64/libcrypto.so",
+                "lib/armeabi-v7a/libcrypto.so"
+              ]
+            }
           }
         }
       ],

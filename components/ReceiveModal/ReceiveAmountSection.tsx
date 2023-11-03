@@ -1,5 +1,5 @@
 import React, {useMemo, useState} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Dimensions} from 'react-native';
 import {TouchableOpacity} from '@gorhom/bottom-sheet';
 import {useThemeStyleSheetProvided} from '@hooks/useThemeStyleSheet';
 import {useAppTheme} from '@hooks/useAppTheme';
@@ -13,6 +13,8 @@ import {useNativeCurrency} from '@hooks/useNativeCurrency';
 import {convertNativeCurrencies} from '@utils/helper/nativeCurrency';
 import Separator from '@components/Separator/Separator';
 import Button from '@components/Button/Button';
+import Pressable from '@components/Touchable/Touchable';
+import {th} from 'date-fns/locale';
 
 export interface RequestProps {
     rawAmount: string;
@@ -87,7 +89,7 @@ const ReceiveAmountSection = (props: Props) => {
     };
 
     const keyboardActions = useMemo(() => {
-        let actions: {render: () => JSX.Element}[] = [];
+        let actions: {render: () => React.ReactElement}[] = [];
         for (let i = 1; i <= 9; i++) {
             actions.push({
                 render: () => (
@@ -142,14 +144,14 @@ const ReceiveAmountSection = (props: Props) => {
         });
 
         return actions;
-    }, [requestAmount, theme]);
+    }, [requestAmount, theme, styles]);
 
     return (
         <View style={styles.container}>
             <Text style={styles.requestHeader}>Enter request amount</Text>
             <Separator space={spacing.l} />
 
-            <View style={{alignItems: 'center'}}>
+            <View style={{justifyContent: 'center'}}>
                 {requestAmount ? (
                     <View>
                         <Text style={styles.requestAmountInput} weight={'800'}>
@@ -168,9 +170,9 @@ const ReceiveAmountSection = (props: Props) => {
                         </Text>
                     </View>
                 )}
-                <TouchableOpacity style={styles.swapIconWrap} onPress={onSwapCurrencies}>
+                <Pressable style={styles.swapIconWrap} onPress={onSwapCurrencies}>
                     <MaterialIcons name="swap-vert" style={styles.swapIcon} />
-                </TouchableOpacity>
+                </Pressable>
             </View>
             <Separator space={spacing.l} />
             <View style={styles.keyboardContainer}>
@@ -191,6 +193,8 @@ const ReceiveAmountSection = (props: Props) => {
     );
 };
 
+const KEYBOARD_HEIGHT = Dimensions.get('screen').height / 3 - 50;
+const KEYBOARD_WIDTH = 300;
 const dynamicStyles = (theme: AppTheme) =>
     StyleSheet.create({
         container: {
@@ -198,6 +202,8 @@ const dynamicStyles = (theme: AppTheme) =>
         },
         keyboardContainer: {
             flexDirection: 'row',
+            height: KEYBOARD_HEIGHT,
+            width: KEYBOARD_WIDTH,
             alignItems: 'center',
             flexWrap: 'wrap',
             justifyContent: 'space-between',
@@ -208,8 +214,8 @@ const dynamicStyles = (theme: AppTheme) =>
         keyWrap: {
             justifyContent: 'center',
             alignItems: 'center',
-            width: '30%',
-            height: '23%',
+            width: KEYBOARD_WIDTH / 3,
+            height: KEYBOARD_HEIGHT / 4,
         },
         keyText: {
             color: theme.colors.textPrimary,
@@ -237,7 +243,11 @@ const dynamicStyles = (theme: AppTheme) =>
             textAlign: 'center',
         },
         swapIconWrap: {
+            borderColor: theme.colors.border,
+            borderRadius: rounded.full,
             position: 'absolute',
+            padding: spacing.s,
+            borderWidth: 1,
             right: 0,
         },
         swapIcon: {
