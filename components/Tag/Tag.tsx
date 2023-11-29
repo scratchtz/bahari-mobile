@@ -22,7 +22,7 @@ const Tag: React.FC<Props> = ({title, icon, onPress, containerStyle, textStyle})
     return (
         <TouchableOpacity style={[styles.container, containerStyle]} onPress={onPress}>
             {icon}
-            <Text variant="small" style={[{flex: 1}, textStyle]}>
+            <Text variant="small" style={textStyle}>
                 {title}
             </Text>
         </TouchableOpacity>
@@ -35,7 +35,6 @@ const dynamicStyles = (theme: AppTheme) =>
             ...theme.tag,
             flexDirection: 'row',
             alignItems: 'center',
-            marginRight: spacing.m,
             borderColor: theme.colors.borderLight,
             paddingVertical: spacing.m,
             paddingHorizontal: spacing.l,

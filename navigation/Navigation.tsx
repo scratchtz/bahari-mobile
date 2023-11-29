@@ -24,14 +24,15 @@ import Contact from '@screens/Contact/Contact';
 import Network from '@screens/Network/Network';
 import NetworkNew from '@screens/NetworkNew/NetworkNew';
 import TransactionHistory from '@screens/TransactionHistory/TransactionHistory';
-import {MaterialIcons, FontAwesome, Ionicons, Octicons} from '@expo/vector-icons';
+import {MaterialIcons, FontAwesome, Ionicons} from '@expo/vector-icons';
 import * as NavigationBar from 'expo-navigation-bar';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 import {navigationRef} from '@navigation/shared';
 import ImportLedger from '@screens/WalletImport/ImportLedger';
-import useTranslationInit from '@navigation/useTranslationInit';
+import useTranslationInit from '@hooks/useTranslationInit';
 import BuyNano from '@screens/BuyNano/BuyNano';
+import Receive from '@screens/Receive/Receive';
 
 const Navigation = () => {
     useTranslationInit();
@@ -229,6 +230,18 @@ export const CommonStackScreens = (
                     route,
                     theme,
                     title: 'Buy Nano',
+                    headerShown: true,
+                })
+            }
+        />
+        <Stack.Screen
+            name="Receive"
+            component={Receive}
+            options={({route}) =>
+                navigatorScreenOptions({
+                    route,
+                    theme,
+                    title: 'Your Wallet',
                     headerShown: true,
                 })
             }

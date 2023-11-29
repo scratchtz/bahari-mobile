@@ -9,7 +9,7 @@ import {useAppTheme} from '@hooks/useAppTheme';
 import {useThemeStyleSheetProvided} from '@hooks/useThemeStyleSheet';
 import {StyleSheet} from 'react-native';
 import {ModalHeader} from '@components/ModalHeader/ModalHeader';
-import {PickerMode} from '@components/PickAccountModal/types';
+import {PickerMode} from '@components/PickAccountModal/accountItem.types';
 import {generateKeyPairFromMnemonic} from '@utils/helper/wallet';
 import {getWallet, persistAppendKeyPair} from '@storage/wallet';
 import ButtonTiny from '@components/Button/ButtonTiny';

@@ -10,6 +10,7 @@ import CopyTag from '@components/Tag/CopyTag';
 import Tag from '@components/Tag/Tag';
 import {MaterialIcons} from '@expo/vector-icons';
 import EncryptText from '@components/EncryptText/EncryptText';
+import Separator from '@components/Separator/Separator';
 interface Props {
     wallet: Wallet;
 }
@@ -28,12 +29,14 @@ const ShowSecret = ({secret, derivationPath}: {secret: string; derivationPath?: 
                 </View>
                 {derivationPath && (
                     <View style={styles.pathContainer}>
-                        <Text style={styles.pathTitle}>Derivation Path</Text>
-                        <Text style={styles.path} weight="600">
-                            {derivationPath}
-                        </Text>
+                        <Text style={styles.pathTitle}>Derivation Path: {derivationPath}</Text>
                     </View>
                 )}
+                <Separator space={spacing.m} />
+                <Text style={styles.warningTitle} weight={'600'}>
+                    For your eyes only.
+                </Text>
+                <Text>Anyone with this passphrase can transfer all your funds. Do not share with anyone.</Text>
 
                 <View style={styles.actionsContainer}>
                     <CopyTag content={secret || ''} />
@@ -72,6 +75,7 @@ const dynamicStyles = (theme: AppTheme) =>
             alignItems: 'center',
             flexWrap: 'wrap',
             marginTop: spacing.l,
+            gap: spacing.m,
         },
         actionIcon: {
             fontSize: 18,
@@ -91,6 +95,10 @@ const dynamicStyles = (theme: AppTheme) =>
             marginLeft: spacing.s,
             color: theme.colors.textSecondary,
             fontSize: 11,
+        },
+        warningTitle: {
+            fontSize: 18,
+            color: theme.colors.warning,
         },
     });
 

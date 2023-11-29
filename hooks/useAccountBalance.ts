@@ -3,7 +3,7 @@ import {useQuery} from '@tanstack/react-query';
 import BigNumber from 'bignumber.js';
 import {useEffect, useMemo} from 'react';
 import {tools} from 'nanocurrency-web';
-import {saveLatestAddressBalanceAndUpdate} from '@components/PickAccountModal/useAllWalletsBalance';
+import {saveLatestAddressBalanceAndUpdate} from '@components/PickAccountModal/accountItem.hooks';
 
 export const useAccountBalance = (address: string, enabled = false) => {
     const enable = address ? address !== '' && enabled : false;

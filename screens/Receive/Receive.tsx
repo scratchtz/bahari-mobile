@@ -1,12 +1,9 @@
-import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
-import {View, StyleSheet, TextInput, Share} from 'react-native';
-import {BottomSheetBackdrop, BottomSheetModal, BottomSheetScrollView, TouchableOpacity} from '@gorhom/bottom-sheet';
-import {useBottomSheetBackHandler} from '@hooks/hooksbottomsheet/useBottomSheetBackHandler';
+import React, {useMemo, useState} from 'react';
+import {View, StyleSheet, Share} from 'react-native';
 import {useThemeStyleSheetProvided} from '@hooks/useThemeStyleSheet';
 import {useAppTheme} from '@hooks/useAppTheme';
 import {AppTheme, palette, rounded, spacing} from '@utils/styles';
 import Text from '@components/Text/Text';
-import QRCode from 'react-native-qrcode-svg';
 import {Feather, FontAwesome5} from '@expo/vector-icons';
 import Tag from '@components/Tag/Tag';
 import CopyTag from '@components/Tag/CopyTag';
@@ -14,46 +11,28 @@ import {formNanoUri, NanoUriQuery} from '@utils/helper/uri';
 import * as Clipboard from 'expo-clipboard';
 import {ToastController} from '@components/Toast/Toast';
 import {useDefaultKeyPair} from '@hooks/useKeyPair';
-import {beautifulLabel, shortenAddress} from '@utils/helper/address';
+import {shortenAddress} from '@utils/helper/address';
 import {useDefaultWallet} from '@hooks/useWallet';
 import Separator from '@components/Separator/Separator';
-import ReceiveAmountSection, {RequestProps} from '@components/ReceiveModal/ReceiveAmountSection';
+import ReceiveAmountSection, {RequestProps} from '@screens/Receive/ReceiveAmountSection';
 import Pressable from '@components/Touchable/Touchable';
-
-interface Props {}
+import QRCode from 'react-native-qrcode-svg';
+import {CommonStackScreenProps} from '@navigation/types';
+import CurrentAccount from '@components/CurrentAccount/CurrentAccount';
+import {formatValue} from '@utils/helper/numberFormatter';
+import QRCodeStyled from 'react-native-qrcode-styled';
 
 const initialRequestItems = {rawAmount: '', displayAmount: '', displayCurrency: ''};
-const ReceiveModal = (props: Props, ref: any) => {
+const Receive = ({navigation, route}: CommonStackScreenProps<'Receive'>) => {
     const {defaultKeyPair} = useDefaultKeyPair();
     const defaultWallet = useDefaultWallet();
 
     if (!defaultKeyPair || !defaultWallet) return null;
 
     const {address} = defaultKeyPair;
-    const {handleSheetPositionChange} = useBottomSheetBackHandler(ref);
 
     const [showAmount, setShowAmount] = useState(false);
     const [requestItems, setRequestItems] = useState<RequestProps>({...initialRequestItems});
-
-    useEffect(() => {
-        if (showAmount) {
-            ref.current.snapToIndex(1);
-        }
-    }, [showAmount]);
-
-    const onSheetChange = (index: number) => {
-        if (index == -1) {
-            setShowAmount(false);
-            setRequestItems({...initialRequestItems});
-        }
-        handleSheetPositionChange(index);
-    };
-
-    const snapPoints = useMemo(() => [430, '60%', '85%'], []);
-    const renderBackdrop = useCallback(
-        (props: any) => <BottomSheetBackdrop {...props} opacity={0.7} disappearsOnIndex={-1} appearsOnIndex={0} />,
-        [],
-    );
 
     const theme = useAppTheme();
     const styles = useThemeStyleSheetProvided(theme, dynamicStyles);
@@ -79,19 +58,10 @@ const ReceiveModal = (props: Props, ref: any) => {
     };
 
     return (
-        <BottomSheetModal
-            enablePanDownToClose
-            backgroundStyle={styles.container}
-            handleIndicatorStyle={styles.indicator}
-            ref={ref}
-            android_keyboardInputMode={'adjustResize'}
-            onChange={onSheetChange}
-            backdropComponent={renderBackdrop}
-            snapPoints={snapPoints}>
-            <BottomSheetScrollView
-                showsVerticalScrollIndicator={false}
-                contentContainerStyle={styles.scrollView}
-                keyboardDismissMode="interactive">
+        <View style={styles.container}>
+            <CurrentAccount />
+
+            <View style={styles.innerItems}>
                 {showAmount ? (
                     <ReceiveAmountSection
                         onCancel={() => {
@@ -105,13 +75,22 @@ const ReceiveModal = (props: Props, ref: any) => {
                     />
                 ) : (
                     <>
-                        <Text style={styles.label} weight={'600'}>
-                            {beautifulLabel(defaultWallet.label, defaultKeyPair.label)}
-                        </Text>
+                        <View style={styles.qrContainer}>
+                            {qrCodeContent && (
+                                <QRCode
+                                    value={qrCodeContent}
+                                    size={200}
+                                    color={'white'}
+                                    backgroundColor="transparent"
+                                />
+                            )}
+                        </View>
+
                         {requestItems.displayAmount && (
                             <View style={styles.requestAmountWrap}>
-                                <Text style={styles.requestAmountTitle} weight={'600'}>
-                                    Request Amount: {requestItems.displayAmount} {requestItems.displayCurrency}
+                                <Text style={styles.requestAmountTitle}>Request Amount</Text>
+                                <Text weight={'600'}>
+                                    {formatValue(requestItems.displayAmount)} {requestItems.displayCurrency}
                                 </Text>
                                 <Pressable
                                     style={styles.requestCancelWrap}
@@ -123,109 +102,76 @@ const ReceiveModal = (props: Props, ref: any) => {
                                 </Pressable>
                             </View>
                         )}
-                        <Separator space={spacing.l} />
-                        <Text style={styles.scanInfo}>Scan QR code to receive nano</Text>
-                        <Separator space={spacing.s} />
-                        <View style={styles.section}>
-                            <View style={styles.qrContainer}>
-                                {qrCodeContent && (
-                                    <QRCode
-                                        value={qrCodeContent}
-                                        size={180}
-                                        color={'white'}
-                                        backgroundColor="transparent"
-                                    />
-                                )}
-                            </View>
 
-                            <View style={styles.actionButtons}>
-                                <CopyTag content={qrCodeContent} />
+                        <Text style={styles.addressTitle}>Your Nano Address</Text>
+                        <Pressable onPress={onPressAddress}>
+                            <Text style={styles.address} weight={'600'}>
+                                {shortenAddress(address, 12)}
+                            </Text>
+                        </Pressable>
+
+                        <View style={styles.actionButtons}>
+                            <CopyTag content={qrCodeContent} containerStyle={styles.actionButton} />
+                            <Tag
+                                title={'Share'}
+                                containerStyle={styles.actionButton}
+                                icon={<Feather name="share" style={[styles.actionIcon, {color: palette.sky500}]} />}
+                                onPress={onShare}
+                            />
+                            {!showAmount && (
                                 <Tag
-                                    title={'Share'}
-                                    icon={<Feather name="share" style={[styles.actionIcon, {color: palette.sky500}]} />}
-                                    onPress={onShare}
+                                    title={'Request Amount'}
+                                    containerStyle={styles.actionButton}
+                                    icon={
+                                        <FontAwesome5
+                                            name="money-bill-wave"
+                                            style={[styles.actionIcon, {color: palette.violet400}]}
+                                        />
+                                    }
+                                    onPress={() => {
+                                        setShowAmount(true);
+                                    }}
                                 />
-                                {!showAmount && (
-                                    <Tag
-                                        title={'Enter Amount'}
-                                        icon={
-                                            <FontAwesome5
-                                                name="money-bill-wave"
-                                                style={[styles.actionIcon, {color: palette.violet400}]}
-                                            />
-                                        }
-                                        onPress={() => {
-                                            setShowAmount(true);
-                                        }}
-                                    />
-                                )}
-                            </View>
+                            )}
                         </View>
                         <Separator space={spacing.m} />
-                        <TouchableOpacity onPress={onPressAddress}>
-                            <Text style={styles.address}>{shortenAddress(address, 12)}</Text>
-                        </TouchableOpacity>
                     </>
                 )}
-            </BottomSheetScrollView>
-        </BottomSheetModal>
+            </View>
+        </View>
     );
 };
 
 const dynamicStyles = (theme: AppTheme) =>
     StyleSheet.create({
         container: {
-            backgroundColor: theme.colors.modalBackground,
-        },
-        scrollView: {
             marginHorizontal: spacing.th,
+            paddingTop: spacing.l,
+            flex: 1,
         },
-        indicator: {
-            backgroundColor: theme.colors.modalIndicator,
-        },
-        accountContainer: {
-            alignSelf: 'center',
+        innerItems: {
+            justifyContent: 'center',
+            alignItems: 'center',
+            flex: 1,
         },
         flex: {
             flex: 1,
         },
-        section: {
-            flexDirection: 'row',
-            // alignItems: 'center',
-        },
         scanInfo: {
             color: theme.colors.textSecondary,
             marginBottom: spacing.m,
-            textAlign: 'center',
         },
         qrContainer: {
             backgroundColor: !theme.isDark ? palette.dark900 : 'transparent',
-            borderRadius: rounded.l,
-            marginRight: spacing.l,
-            padding: spacing.m,
-        },
-        accountDetailsContainer: {
-            flexDirection: 'row',
             alignItems: 'center',
-            justifyContent: 'center',
+        },
+        addressTitle: {
+            color: theme.colors.textSecondary,
             marginTop: spacing.xl,
-            marginBottom: spacing.m,
-        },
-        accountThumbnail: {
-            width: 0,
-            height: 0,
-            borderRadius: rounded.full,
-            marginRight: spacing.m,
-        },
-        label: {
-            color: theme.colors.secondary,
-            paddingVertical: spacing.m,
-            textAlign: 'center',
         },
         address: {
-            color: theme.colors.textSecondary,
-            paddingVertical: spacing.m,
             textAlign: 'center',
+            padding: spacing.xs,
         },
         info: {
             fontSize: 10,
@@ -234,23 +180,13 @@ const dynamicStyles = (theme: AppTheme) =>
             textAlign: 'center',
         },
         actionButtons: {
-            // flexDirection: 'row',
-            flex: 1,
-            gap: spacing.m,
-            justifyContent: 'flex-end',
+            marginTop: spacing.xl,
+            flexDirection: 'row',
+            gap: spacing.s,
+            justifyContent: 'center',
         },
         actionButton: {
             ...theme.cardVariants.simple,
-            flex: 1,
-            flexDirection: 'row',
-            alignItems: 'center',
-            backgroundColor: theme.colors.cardBackground,
-            marginRight: spacing.m,
-            paddingVertical: spacing.m,
-            paddingHorizontal: spacing.l,
-            borderRadius: rounded.xl,
-            borderWidth: 1,
-            borderColor: theme.colors.border,
         },
         actionIcon: {
             fontSize: 14,
@@ -305,21 +241,25 @@ const dynamicStyles = (theme: AppTheme) =>
             color: theme.colors.textSecondary,
         },
         requestAmountWrap: {
+            backgroundColor: theme.colors.cardBackground,
+            borderRadius: rounded.full,
             flexDirection: 'row',
             alignItems: 'center',
-            justifyContent: 'center',
+            marginTop: spacing.l,
+            padding: spacing.s,
+            paddingLeft: spacing.m,
         },
         requestAmountTitle: {
-            textAlign: 'center',
+            marginRight: spacing.m,
         },
         requestCancelWrap: {
             backgroundColor: theme.colors.cardBackgroundLight,
             borderRadius: rounded.full,
             alignItems: 'center',
             justifyContent: 'center',
-            width: 24,
-            height: 24,
-            marginLeft: spacing.m,
+            width: 28,
+            height: 28,
+            marginLeft: spacing.l,
         },
         requestCancelIcon: {
             color: theme.colors.textSecondary,
@@ -327,4 +267,4 @@ const dynamicStyles = (theme: AppTheme) =>
         },
     });
 
-export default React.forwardRef(ReceiveModal);
+export default Receive;

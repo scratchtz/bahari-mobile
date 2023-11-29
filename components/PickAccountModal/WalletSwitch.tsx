@@ -8,7 +8,7 @@ import Text from '@components/Text/Text';
 import {AppTheme, rounded, spacing} from '@utils/styles';
 import AddressThumbnail from '@components/AddressThumbnail/AddressThumbnail';
 import Separator from '@components/Separator/Separator';
-import {useWalletTotalBalance} from '@components/PickAccountModal/useAllWalletsBalance';
+import {useWalletTotalBalance} from '@components/PickAccountModal/accountItem.hooks';
 import {useNativeCurrency} from '@hooks/useNativeCurrency';
 import {convertRawAmountToNativeCurrency} from '@utils/helper/nativeCurrency';
 import {formatValue} from '@utils/helper/numberFormatter';

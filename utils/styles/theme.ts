@@ -100,7 +100,6 @@ export const lightTheme = {
             },
             shadowRadius: 12,
             shadowOpacity: 0.5,
-            elevation: 5,
         },
         secondary: {
             backgroundColor: 'transparent',
@@ -204,7 +203,7 @@ const COLORS_DARK: AppColors = {
     modalIndicator: palette.dark500,
 
     tag: palette.dark700,
-    warning: palette.rose500,
+    warning: palette.rose400,
 
     priceUp: palette.sky400,
     priceDown: '#F6475D',

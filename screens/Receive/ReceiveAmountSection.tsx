@@ -147,10 +147,7 @@ const ReceiveAmountSection = (props: Props) => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.requestHeader}>Enter request amount</Text>
-            <Separator space={spacing.l} />
-
-            <View style={{justifyContent: 'center'}}>
+            <View style={{justifyContent: 'center', flex: 1}}>
                 {requestAmount ? (
                     <View>
                         <Text style={styles.requestAmountInput} weight={'800'}>
@@ -198,6 +195,7 @@ const dynamicStyles = (theme: AppTheme) =>
     StyleSheet.create({
         container: {
             marginTop: spacing.m,
+            flex: 1,
         },
         keyboardContainer: {
             flexDirection: 'row',
@@ -219,9 +217,6 @@ const dynamicStyles = (theme: AppTheme) =>
         keyText: {
             color: theme.colors.textPrimary,
             fontSize: 25,
-        },
-        requestHeader: {
-            textAlign: 'center',
         },
         placeholderWrap: {
             flexDirection: 'row',

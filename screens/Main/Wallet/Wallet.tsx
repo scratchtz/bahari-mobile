@@ -13,7 +13,6 @@ import Separator from '@components/Separator/Separator';
 import PriceGraph from '@screens/Main/Wallet/PriceGraph';
 import {ScrollView, StyleSheet, View, SafeAreaView} from 'react-native';
 import HistoryList from '@screens/Main/Wallet/HistoryList';
-import ReceiveModal from '@components/ReceiveModal/ReceiveModal';
 import CurrentAccount from '@components/CurrentAccount/CurrentAccount';
 import BalanceSection from '@screens/Main/Wallet/BalanceSection';
 import {useScrollToTop} from '@react-navigation/native';
@@ -31,11 +30,6 @@ const WalletScreen: React.FC<AllScreenProps<'Wallet'>> = ({navigation}) => {
 
     const onScanQrCode = useCallback(() => {
         qrCodeModal.current?.present();
-    }, []);
-
-    const receiveModal = useRef<BottomSheetModal>();
-    const onReceive = useCallback(() => {
-        receiveModal.current?.present();
     }, []);
 
     useScrollToTop(scrollViewRef);
@@ -70,7 +64,9 @@ const WalletScreen: React.FC<AllScreenProps<'Wallet'>> = ({navigation}) => {
                     <ActionButton
                         title="Receive"
                         icon={<MaterialCommunityIcons name="briefcase-download" style={styles.actionButtonIcon} />}
-                        onPress={onReceive}
+                        onPress={() => {
+                            navigation.navigate('Receive');
+                        }}
                     />
                     <ActionButton
                         icon={<FontAwesome5 name="qrcode" style={styles.actionButtonIcon} />}
@@ -94,7 +90,6 @@ const WalletScreen: React.FC<AllScreenProps<'Wallet'>> = ({navigation}) => {
                     }
                 }}
             />
-            <ReceiveModal ref={receiveModal} />
         </SafeAreaView>
     );
 };

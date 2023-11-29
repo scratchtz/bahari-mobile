@@ -8,12 +8,12 @@ import {View, StyleSheet} from 'react-native';
 import PickAccountScreen from '@components/PickAccountModal/PickAccountScreen';
 import EditAccountScreen from '@components/PickAccountModal/EditAccountScreen';
 import EditWalletScreen from '@components/PickAccountModal/EditWalletScreen';
-import type {PickerMode} from '@components/PickAccountModal/types';
+import type {PickerMode} from '@components/PickAccountModal/accountItem.types';
 import {useDefaultWallet, useWalletKVs} from '@hooks/useWallet';
 import {useDefaultKeyPair} from '@hooks/useKeyPair';
 import {ToastController} from '@components/Toast/Toast';
 import {navigate} from '@navigation/shared';
-import {useAllWalletsBalance} from '@components/PickAccountModal/useAllWalletsBalance';
+import {useAllWalletsBalance} from '@components/PickAccountModal/accountItem.hooks';
 
 interface Props {
     mode: PickerMode;
