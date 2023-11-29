@@ -1,27 +1,27 @@
 import React from 'react';
-import {rounded, spacing} from '@utils/styles';
+import {spacing} from '@utils/styles';
 import {AppTheme} from '@utils/styles/theme';
 import {StyleSheet, View} from 'react-native';
-import {useAppTheme} from '@hooks/useAppTheme';
-import {useContacts} from '@hooks/useContacts';
-import ContactItem from '@screens/Send/ContactItem';
-import Separator from '@components/Separator/Separator';
 import useRecentAddresses from '@hooks/useRecentAddresses';
 import RecentAddressItem from '@screens/Send/RecentAddressItem';
 import Lottie from 'lottie-react-native';
 import Text from '@components/Text/Text';
 import {useThemeStyleSheet} from '@hooks/useThemeStyleSheet';
+import {useDefaultKeyPair} from '@hooks/useKeyPair';
 
 interface Props {
     onPress: (address: string) => void;
 }
 //TODO change address
 const RecentAddresses = ({onPress}: Props) => {
+    const {defaultKeyPair} = useDefaultKeyPair();
     const {recentAddresses} = useRecentAddresses();
     const styles = useThemeStyleSheet(dynamicStyles);
     return (
         <>
             {recentAddresses?.map((c, i) => {
+                //ignoring current default address, we don't want to send money to it
+                if (defaultKeyPair?.address === c) return null;
                 return (
                     <View key={c}>
                         <RecentAddressItem
