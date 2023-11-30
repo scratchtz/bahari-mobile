@@ -20,7 +20,6 @@ import QRCode from 'react-native-qrcode-svg';
 import {CommonStackScreenProps} from '@navigation/types';
 import CurrentAccount from '@components/CurrentAccount/CurrentAccount';
 import {formatValue} from '@utils/helper/numberFormatter';
-import QRCodeStyled from 'react-native-qrcode-styled';
 
 const initialRequestItems = {rawAmount: '', displayAmount: '', displayCurrency: ''};
 const Receive = ({navigation, route}: CommonStackScreenProps<'Receive'>) => {
@@ -79,7 +78,7 @@ const Receive = ({navigation, route}: CommonStackScreenProps<'Receive'>) => {
                             {qrCodeContent && (
                                 <QRCode
                                     value={qrCodeContent}
-                                    size={200}
+                                    size={180}
                                     color={'white'}
                                     backgroundColor="transparent"
                                 />
@@ -162,8 +161,10 @@ const dynamicStyles = (theme: AppTheme) =>
             marginBottom: spacing.m,
         },
         qrContainer: {
-            backgroundColor: !theme.isDark ? palette.dark900 : 'transparent',
+            backgroundColor: !theme.isDark ? palette.dark500 : 'transparent',
             alignItems: 'center',
+            padding: spacing.m,
+            borderRadius: rounded.m,
         },
         addressTitle: {
             color: theme.colors.textSecondary,
