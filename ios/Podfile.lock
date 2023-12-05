@@ -104,6 +104,7 @@ PODS:
   - MMKV (1.3.1):
     - MMKVCore (~> 1.3.1)
   - MMKVCore (1.3.1)
+  - MultiplatformBleAdapter (0.2.0)
   - OpenSSL-Universal (1.1.2200)
   - RCT-Folly (2021.07.22.00):
     - boost
@@ -405,6 +406,10 @@ PODS:
   - React-jsinspector (0.72.6)
   - React-logger (0.72.6):
     - glog
+  - react-native-ble-plx (3.1.2-rc.0):
+    - MultiplatformBleAdapter (= 0.2.0)
+    - RCT-Folly (= 2021.07.22.00)
+    - React-Core
   - react-native-encrypted-storage (4.0.3):
     - React-Core
   - react-native-menu (0.9.1):
@@ -653,6 +658,7 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
+  - react-native-ble-plx (from `../node_modules/react-native-ble-plx`)
   - react-native-encrypted-storage (from `../node_modules/react-native-encrypted-storage`)
   - "react-native-menu (from `../node_modules/@react-native-menu/menu`)"
   - react-native-mmkv (from `../node_modules/react-native-mmkv`)
@@ -699,6 +705,7 @@ SPEC REPOS:
     - lottie-ios
     - MMKV
     - MMKVCore
+    - MultiplatformBleAdapter
     - OpenSSL-Universal
     - SDWebImage
     - SDWebImageAVIFCoder
@@ -797,6 +804,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
   React-logger:
     :path: "../node_modules/react-native/ReactCommon/logger"
+  react-native-ble-plx:
+    :path: "../node_modules/react-native-ble-plx"
   react-native-encrypted-storage:
     :path: "../node_modules/react-native-encrypted-storage"
   react-native-menu:
@@ -905,6 +914,7 @@ SPEC CHECKSUMS:
   lottie-react-native: 8f9d4be452e23f6e5ca0fdc11669dc99ab52be81
   MMKV: 5a07930c70c70b86cd87761a42c8f3836fb681d7
   MMKVCore: e50135dbd33235b6ab390635991bab437ab873c0
+  MultiplatformBleAdapter: b1fddd0d499b96b607e00f0faa8e60648343dc1d
   OpenSSL-Universal: 6e1ae0555546e604dbc632a2b9a24a9c46c41ef6
   RCT-Folly: 424b8c9a7a0b9ab2886ffe9c3b041ef628fd4fb1
   RCTRequired: 28469809442eb4eb5528462705f7d852948c8a74
@@ -921,6 +931,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 3bf18ff7cb03cd8dfdce08fbbc0d15058c1d71ae
   React-jsinspector: 194e32c6aab382d88713ad3dd0025c5f5c4ee072
   React-logger: cebf22b6cf43434e471dc561e5911b40ac01d289
+  react-native-ble-plx: 945042789c6b7a1df2470db92c9a6544f7a28b51
   react-native-encrypted-storage: db300a3f2f0aba1e818417c1c0a6be549038deb7
   react-native-menu: 9728f90160c36b9a75481fc76e05354b99d54c59
   react-native-mmkv: 9ae7ca3977e8ef48dbf7f066974eb844c20b5fd7
