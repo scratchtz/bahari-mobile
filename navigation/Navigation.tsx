@@ -156,7 +156,7 @@ export const CommonStackScreens = (
                             onPress={() => {
                                 navigation.navigate('ContactNew');
                             }}>
-                            <Ionicons name="ios-add" size={24} color={theme.colors.textPrimary} />
+                            <Ionicons name="add" size={24} color={theme.colors.textPrimary} />
                         </TouchableOpacity>
                     ),
                 })

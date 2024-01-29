@@ -23,7 +23,7 @@ export const ModalHeader = ({title, onClose}: Props) => {
                 onPress={onClose}
                 style={styles.closeWrap}
                 hitSlop={{top: -5, bottom: -5, left: -5, right: -5}}>
-                <Ionicons name="ios-close" style={styles.closeIcon} />
+                <Ionicons name="close" style={styles.closeIcon} />
             </TouchableOpacity>
         </View>
     );

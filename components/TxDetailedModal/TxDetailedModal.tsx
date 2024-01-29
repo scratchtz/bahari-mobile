@@ -92,7 +92,7 @@ const TxDetailedModal = ({type, account, amount, hash, local_timestamp}: History
                     onPress={() => {
                         ref.current.close();
                     }}>
-                    <Ionicons name="ios-close" style={styles.closeIcon} />
+                    <Ionicons name="close" style={styles.closeIcon} />
                 </TouchableOpacity>
                 <BottomSheetScrollView contentContainerStyle={styles.scrollView}>
                     <Separator space={spacing.m} />

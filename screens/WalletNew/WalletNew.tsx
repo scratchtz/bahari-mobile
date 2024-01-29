@@ -177,7 +177,7 @@ const WalletNew: React.FC<RootStackScreenProps<'WalletNew'>> = ({navigation, rou
                             </TouchableOpacity>
 
                             <TouchableOpacity style={styles.wordListContainer} onPress={openWordListPicker}>
-                                <Ionicons name="ios-language" style={[styles.actionIcon, {color: palette.sky500}]} />
+                                <Entypo name="language" style={[styles.actionIcon, {color: palette.sky500}]} />
                                 <Text variant="small" style={styles.language}>
                                     {wordListPick.label}
                                 </Text>
@@ -322,6 +322,7 @@ const dynamicStyles = (theme: AppTheme) =>
             flexDirection: 'row',
             alignItems: 'center',
             flexWrap: 'wrap',
+            gap: spacing.s,
         },
         actionButton: {
             ...theme.tag,
