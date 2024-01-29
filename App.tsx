@@ -1,3 +1,5 @@
+global.Buffer = require('@craftzdog/react-native-buffer').Buffer;
+
 import React, {useCallback} from 'react';
 import Navigation from '@navigation/Navigation';
 import {SafeAreaProvider} from 'react-native-safe-area-context';

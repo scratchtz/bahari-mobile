@@ -130,22 +130,22 @@ const WalletImport = ({navigation}: RootStackScreenProps<'WalletImport'>) => {
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity
-                    style={styles.card}
-                    onPress={() => {
-                        navigation.navigate('ImportLedger');
-                    }}>
-                    <View style={[styles.iconContainer, {backgroundColor: '#0fb9b1'}]}>
-                        <Entypo name="wallet" style={styles.icon} color={'white'} />
-                    </View>
-                    <View style={styles.cardInner}>
-                        <Text style={styles.cardTitle} weight="700">
-                            Ledger Wallet
-                        </Text>
-                        <Text style={styles.cardInfo}>Import using ledger's hardware wallet.</Text>
-                        <Image source={require('@assets/images/ledger-logo.png')} style={styles.ledgerLogo} />
-                    </View>
-                </TouchableOpacity>
+                {/*<TouchableOpacity*/}
+                {/*    style={styles.card}*/}
+                {/*    onPress={() => {*/}
+                {/*        navigation.navigate('ImportLedger');*/}
+                {/*    }}>*/}
+                {/*    <View style={[styles.iconContainer, {backgroundColor: '#0fb9b1'}]}>*/}
+                {/*        <Entypo name="wallet" style={styles.icon} color={'white'} />*/}
+                {/*    </View>*/}
+                {/*    <View style={styles.cardInner}>*/}
+                {/*        <Text style={styles.cardTitle} weight="700">*/}
+                {/*            Ledger Wallet*/}
+                {/*        </Text>*/}
+                {/*        <Text style={styles.cardInfo}>Import using ledger's hardware wallet.</Text>*/}
+                {/*        <Image source={require('@assets/images/ledger-logo.png')} style={styles.ledgerLogo} />*/}
+                {/*    </View>*/}
+                {/*</TouchableOpacity>*/}
             </ScrollView>
             <DecryptPassphraseModal ref={decryptPassphraseModal} onDecryption={onDecryptedPassphrase} />
         </>

@@ -21,6 +21,7 @@ import AddressThumbnail from '@components/AddressThumbnail/AddressThumbnail';
 import {getAddressDetails} from '@hooks/useContacts';
 import {navigateDispatch} from '@navigation/shared';
 import {CommonActions} from '@react-navigation/native';
+import * as WebBrowser from 'expo-web-browser';
 
 const TITLE = {
     receive: 'Received',
@@ -68,6 +69,12 @@ const TxDetailedModal = ({type, account, amount, hash, local_timestamp}: History
             });
         });
     };
+
+    const openOnBrowser = async () => {
+        ref.current.close();
+        void WebBrowser.openBrowserAsync(`https://nanolooker.com/block/${hash}`);
+    };
+
     const amountColor = type === 'receive' ? theme.colors.priceUp : theme.colors.textPrimary;
     return (
         <BottomSheetModal
@@ -135,7 +142,7 @@ const TxDetailedModal = ({type, account, amount, hash, local_timestamp}: History
                             <Text style={styles.date}>{time}</Text>
                         </Text>
                     </View>
-                    <TouchableOpacity style={styles.openExplorerButton}>
+                    <TouchableOpacity style={styles.openExplorerButton} onPress={openOnBrowser}>
                         <Text style={styles.openExplorerText}>Open on block explorer</Text>
                     </TouchableOpacity>
                 </BottomSheetScrollView>

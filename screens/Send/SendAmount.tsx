@@ -57,14 +57,6 @@ const SendAmount: React.FC<CommonStackScreenProps<'SendAmount'>> = ({navigation,
     const [inputCurrencyIsNative, setInputCurrencyIsNative] = useState(true);
     const sendNanoModal = useRef<BottomSheetModal>(null);
 
-    useEffect(() => {
-        if (defaultKeyPair?.address === address) {
-            ToastController.show({kind: 'error', content: "You can't send to the same address", timeout: 6000});
-            navigation.goBack();
-            return;
-        }
-    }, [defaultKeyPair?.address, address]);
-
     const toName = useMemo(() => {
         const data = getAddressDetails(address);
         if (data) {
