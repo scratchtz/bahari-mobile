@@ -9,16 +9,9 @@ export function useEncryptionStorage() {
 
     useEffect(() => {
         void loadEncryptionKey();
-    },[]);
+    }, []);
 
     async function loadEncryptionKey() {
-        //we clean up because we don't want persist across installs (keychain persists data)
-        const isFirstInstall = permanentStorage.getString('is-first-install');
-        if (isFirstInstall) {
-            await security.reset();
-            permanentStorage.set('is-first-install', 'nope');
-        }
-
         const encryptionKey = await security.getEncryptionKey();
         if (encryptionKey && encryptionKey.length > 0) {
             initEncryptedStorage(encryptionKey);
