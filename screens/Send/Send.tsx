@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
+import React, {useCallback, useRef, useState} from 'react';
 import {rounded, spacing} from '@utils/styles';
 
 import {AppTheme} from '@utils/styles/theme';

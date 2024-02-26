@@ -1,11 +1,11 @@
 import {useAppTheme} from '@hooks/useAppTheme';
 import {useThemeStyleSheetProvided} from '@hooks/useThemeStyleSheet';
-import {useAllCurrenciesValue, useDisplayValue} from '@hooks/useDisplayCurrency';
+import {useDisplayValue} from '@hooks/useDisplayCurrency';
 import {useBlockReceiver} from '@hooks/useBlockReceiver';
 import {useSimplePrice} from '@hooks/useSimplePrice';
 import {useDefaultKeyPair} from '@hooks/useKeyPair';
 import {useDisplayBalance} from '@hooks/useAccountBalance';
-import React, {useMemo} from 'react';
+import React from 'react';
 import BigNumber from 'bignumber.js';
 import Text from '@components/Text/Text';
 import {formatValue} from '@utils/helper/numberFormatter';
@@ -20,10 +20,9 @@ const BalanceSection = () => {
     const styles = useThemeStyleSheetProvided(theme, balanceSectionStyles);
     const {nativeCurrency, rawValueToNative} = useNativeCurrency();
 
-    useAllCurrenciesValue(true);
     useBlockReceiver();
 
-    const {change: priceChange} = useSimplePrice(true); //fetch here only
+    const {change: priceChange} = useSimplePrice(true);
 
     const {defaultKeyPair} = useDefaultKeyPair();
     if (!defaultKeyPair) return null;
@@ -31,19 +30,11 @@ const BalanceSection = () => {
     const {balanceNano, balanceRaw, pendingRaw} = useDisplayBalance(defaultKeyPair.address, true);
     const {displayCurrency, displayValue, displayPrice, digits} = useDisplayValue(balanceNano);
 
-    const changeValue = useMemo(() => {
-        return formatValue(displayValue.times(priceChange).div(100));
-    }, [displayValue, priceChange]);
+    const changeValue = formatValue(displayValue.times(priceChange).div(100));
+    const priceChangePercent = new BigNumber(priceChange).toFormat(2);
 
-    const priceChangePercent = useMemo(() => {
-        return new BigNumber(priceChange).toFormat(2);
-    }, [priceChange]);
-
-    const priceChangeColor = useMemo(
-        () => (priceChange > 0 ? theme.colors.priceUp : theme.colors.priceDown),
-        [theme, priceChange],
-    );
-    const hasPendingAmount = useMemo(() => new BigNumber(pendingRaw).isGreaterThan(0), [pendingRaw]);
+    const priceChangeColor = priceChange > 0 ? theme.colors.priceUp : theme.colors.priceDown;
+    const hasPendingAmount = new BigNumber(pendingRaw).isGreaterThan(0);
 
     return (
         <>

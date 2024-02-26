@@ -15,8 +15,8 @@
       [
         "expo-media-library",
         {
-          "photosPermission": "Allow Bahari to access your photos.",
-          "savePhotosPermission": "Allow Bahari to save photos.",
+          "photosPermission": "Allow $(PRODUCT_NAME) to access your photos.",
+          "savePhotosPermission": "Allow $(PRODUCT_NAME) to save photos.",
           "isAccessMediaLocationEnabled": false
         }
       ],
@@ -78,8 +78,8 @@
       "supportsTablet": true,
       "bundleIdentifier": "co.tz.scratch.bahari",
       "infoPlist": {
-        "NSPhotoLibraryUsageDescription": "Allow Bahari to access your photos.",
-        "NSPhotoLibraryAddUsageDescription": "Allow Bahari to save photos.",
+        "NSPhotoLibraryUsageDescription": "Allow $(PRODUCT_NAME) to access your photos.",
+        "NSPhotoLibraryAddUsageDescription": "Allow $(PRODUCT_NAME) to save photos.",
         "NSFaceIDUsageDescription": "Allow $(PRODUCT_NAME) to use Face ID."
       }
     },

@@ -1,3 +1,5 @@
+import {Initializer} from './Initializer';
+
 global.Buffer = require('@craftzdog/react-native-buffer').Buffer;
 
 import React, {useCallback} from 'react';
@@ -68,6 +70,7 @@ export default function App() {
             <PersistQueryClientProvider client={queryClient} persistOptions={{persister: clientPersister}}>
                 <GestureHandlerRootView style={styles.rootView}>
                     <BottomSheetModalProvider>
+                        <Initializer />
                         <Navigation />
                         <LockScreen />
                     </BottomSheetModalProvider>

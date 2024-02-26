@@ -28,7 +28,7 @@ export const useBlockReceiver = () => {
     const {refetch: refetchTransactionHistory} = useTransactionHistory(false, defaultKeyPair?.address || '', 5);
 
     useEffect(() => {
-        handleBlocks();
+        void handleBlocks();
     }, [data]);
 
     const handleBlocks = async () => {

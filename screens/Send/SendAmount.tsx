@@ -212,7 +212,7 @@ const SendAmount: React.FC<CommonStackScreenProps<'SendAmount'>> = ({navigation,
                 <SendToWrap address={address} />
                 <View style={styles.amountSection}>
                     <TouchableOpacity style={styles.swapIconContainer} onPress={onSwapCurrencies}>
-                        <Ionicons name="md-swap-vertical-sharp" style={styles.swapIcon} />
+                        <Ionicons name="swap-vertical-sharp" style={styles.swapIcon} />
                     </TouchableOpacity>
                     <View style={styles.amountContainer}>
                         <View style={styles.amountInputContainer}>

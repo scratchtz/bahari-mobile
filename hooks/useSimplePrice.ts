@@ -4,6 +4,7 @@ import {apiFetchNanoPrice} from '@utils/api/price';
 export const useSimplePrice = (enabled: boolean = false) => {
     const {data: res} = useQuery({
         enabled: enabled,
+        staleTime: 30000,
         queryKey: ['simpleprice'],
         refetchInterval: 30000,
         queryFn: () => apiFetchNanoPrice(),
