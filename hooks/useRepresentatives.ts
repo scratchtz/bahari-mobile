@@ -6,8 +6,6 @@ export function useRepresentative(account?: string, enabled = true) {
     return useQuery({
         enabled: enabled && !!account,
         queryKey: ['account_representative', account],
-        staleTime: 1000 * 60 * 60 * 3,
-        refetchInterval: 1000 * 60 * 60 * 3,
         queryFn: () => rpcAccountRepresentative(account || ''),
     });
 }

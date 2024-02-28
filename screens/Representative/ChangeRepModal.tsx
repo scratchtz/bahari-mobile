@@ -15,6 +15,7 @@ import {KeyPair} from '@utils/types';
 import {getDefaultKeyPairAddress, getKeyPair, getWallet} from '@storage/wallet';
 import {useDefaultKeyPair} from '@hooks/useKeyPair';
 import {useDefaultWallet} from '@hooks/useWallet';
+import {changeRepresentative} from '@screens/Representative/changeRep';
 
 interface Props {
     newRepAccount: string;
@@ -71,6 +72,12 @@ const ChangeRepModal = ({newRepAccount}: Props, ref: any) => {
 
         for (const account of accounts) {
             console.log(account.address);
+            try {
+                const res = await changeRepresentative(newRepAccount, account);
+                console.log(res);
+            } catch (e) {
+                console.log(e);
+            }
         }
         isChanging.current = false;
     };
@@ -87,6 +94,7 @@ const ChangeRepModal = ({newRepAccount}: Props, ref: any) => {
             snapPoints={snapPoints}>
             <ModalHeader title={'Change Representative'} onClose={onClose} />
             <View style={styles.innerWrap}>
+                <Text>Your new representative</Text>
                 <Separator space={spacing.m} />
                 {newRep && (
                     <Text weight={'700'} style={styles.name}>

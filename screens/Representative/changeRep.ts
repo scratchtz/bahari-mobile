@@ -14,10 +14,11 @@ export const changeRepresentative = async (newRep: string, account: KeyPair): Pr
     if (!accountInfo || !accountInfo.frontier) {
         throw new Error('Account not found');
     }
+    console.log(accountInfo.frontier);
 
-    const work = await mustGetWork(accountInfo.frontier, WorkDifficulty.Lower);
+    const work = await mustGetWork(accountInfo.frontier, WorkDifficulty.Upper);
     if (!work) {
-        return false;
+        throw new Error('Work not found');
     }
 
     const data = {
@@ -35,6 +36,10 @@ export const changeRepresentative = async (newRep: string, account: KeyPair): Pr
         subtype: 'change',
         block: signedBlock,
     });
+
+    if (!!res.error) {
+        throw new Error(res.error);
+    }
 
     return !!res.hash;
 };

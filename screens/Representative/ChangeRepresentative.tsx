@@ -16,6 +16,7 @@ import ChangeRepModal from '@screens/Representative/ChangeRepModal';
 import {BottomSheetModal} from '@gorhom/bottom-sheet';
 import * as Clipboard from 'expo-clipboard';
 import {hitSlop} from '@constants/variables';
+import {ToastController} from '@components/Toast/Toast';
 
 const FILTER_MIN_WEIGHT = 2;
 const FILTER_MIN_UPTIME = 90;
@@ -53,32 +54,38 @@ const ChangeRepresentative = ({navigation}: CommonStackScreenProps<'ChangeRepres
 
     const onPasteAddress = async () => {
         const text = await Clipboard.getStringAsync();
-        if (tools.validateAddress(text)) {
-            setNewRepAccount(text);
+        if (!tools.validateAddress(text)) {
+            ToastController.show({kind: 'error', content: 'Invalid address'});
+            return;
         }
+        setNewRepAccount(text);
     };
 
     return (
         <View style={styles.container}>
-            <Text>Enter representative address</Text>
-            <TextInput
-                rightItem={
-                    newRepAccount ? (
-                        <TouchableOpacity>
-                            <FontAwesome6 name="delete-left" size={24} color="black" />
-                        </TouchableOpacity>
-                    ) : (
-                        <TouchableOpacity hitSlop={hitSlop} onPress={onPasteAddress}>
-                            <FontAwesome6 name="paste" style={styles.pasteIcon} />
-                        </TouchableOpacity>
-                    )
-                }
-            />
-
-            <Separator space={spacing.l} />
-            <Text>Or pick from the list</Text>
             <FlashList
                 estimatedItemSize={200}
+                ListHeaderComponent={
+                    <>
+                        <Text>Enter representative address</Text>
+                        <TextInput
+                            rightItem={
+                                newRepAccount ? (
+                                    <TouchableOpacity>
+                                        <FontAwesome6 name="delete-left" size={24} color="black" />
+                                    </TouchableOpacity>
+                                ) : (
+                                    <TouchableOpacity hitSlop={hitSlop} onPress={onPasteAddress}>
+                                        <FontAwesome6 name="paste" style={styles.pasteIcon} />
+                                    </TouchableOpacity>
+                                )
+                            }
+                        />
+                        <Separator space={spacing.l} />
+                        <Text>Or pick from the list</Text>
+                        <Separator space={spacing.l} />
+                    </>
+                }
                 ItemSeparatorComponent={() => <Separator space={spacing.l} />}
                 data={reps}
                 keyExtractor={item => item.account}

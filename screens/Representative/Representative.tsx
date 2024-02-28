@@ -1,4 +1,4 @@
-import React, {useCallback, useMemo, useState} from 'react';
+import React, {useCallback, useMemo} from 'react';
 import {Linking, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {CommonStackScreenProps} from '@navigation/types';
 import {AppTheme, palette, rounded, spacing} from '@utils/styles';

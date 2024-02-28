@@ -36,14 +36,13 @@ export const useDisplayBalance = (account: string, enabled = false): DisplayBala
     const {data} = useAccountBalance(account, enabled);
 
     return useMemo(() => {
-        if (!data || !data.balance) {
-            return {balanceNano: '0', balanceRaw: '0', pendingNano: '0', pendingRaw: '0'};
-        }
+        const balance = data?.balance || '0';
+        const pending = data?.pending || '0';
         return {
-            balanceRaw: data.balance,
-            pendingRaw: data.pending,
-            balanceNano: tools.convert(data.balance, 'RAW', 'NANO'),
-            pendingNano: tools.convert(data.pending, 'RAW', 'NANO'),
+            balanceRaw: balance,
+            pendingRaw: pending,
+            balanceNano: tools.convert(balance, 'RAW', 'NANO'),
+            pendingNano: tools.convert(pending, 'RAW', 'NANO'),
         };
     }, [data?.balance, data?.pending]);
 };
