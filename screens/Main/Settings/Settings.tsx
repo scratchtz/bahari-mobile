@@ -21,6 +21,7 @@ import ItemNetwork from '@screens/Main/Settings/Components/ItemNetwork';
 import ItemPassword from '@screens/Main/Settings/Components/ItemUnlockMethod';
 import ItemAutolock from '@screens/Main/Settings/Components/ItemAutolock';
 import ItemResetWallet from '@screens/Main/Settings/Components/ItemResetWallet';
+import ItemRepresentative from '@screens/Main/Settings/Components/ItemRepresentative';
 
 const Settings: React.FC<AllScreenProps<'Settings'>> = ({navigation}) => {
     const theme = useAppTheme();
@@ -92,6 +93,7 @@ const Settings: React.FC<AllScreenProps<'Settings'>> = ({navigation}) => {
                     <ItemNativeCurrency />
                     <ItemPushNotifications />
                     <ItemNetwork />
+                    <ItemRepresentative />
                 </View>
 
                 <Separator space={spacing.l} />

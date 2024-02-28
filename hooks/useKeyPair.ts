@@ -12,10 +12,6 @@ export const useGetKeyPair = (address: string) => {
     return keyPair;
 };
 
-export const getKeyPair = (address: string) => {
-    return encryptedGetFromJson(storageKeyKeyPair(address));
-};
-
 export const useDefaultKeyPair = () => {
     const [defaultKeyPairAddress, setDefaultKeyPairAddress] = useMMKVObject<string>(
         StorageKeys.defaultKeyPair,

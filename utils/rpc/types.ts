@@ -76,7 +76,7 @@ export interface ProcessBlockRes {
 export interface ProcessBlock {
     action: 'process';
     json_block: 'true' | 'false';
-    subtype: 'receive' | 'open' | 'send';
+    subtype: 'receive' | 'open' | 'send' | 'change';
     block: BlockToProcess;
 }
 export interface BlockToProcess {

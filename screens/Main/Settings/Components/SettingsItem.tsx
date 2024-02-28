@@ -44,14 +44,14 @@ export const sharedStyles = (theme: AppTheme) =>
         settingIconBack: {
             width: 32,
             height: 32,
-            borderRadius: rounded.m,
+            borderRadius: rounded.l,
             backgroundColor: theme.colors.primary,
             marginRight: spacing.s,
             alignItems: 'center',
             justifyContent: 'center',
         },
         settingIcon: {
-            fontSize: 18,
+            fontSize: 14,
             color: 'white',
         },
     });

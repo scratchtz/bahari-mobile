@@ -7,7 +7,7 @@ import {BlockInfo} from '@utils/rpc/types';
 import {getKeyPair} from '@storage/wallet';
 import {block as blockSigner} from 'nanocurrency-web';
 import {useTransactionHistory} from '@hooks/useTransactionHistory';
-import {rpcGenerateWork, UPPER_WORK_DIFFICULTY, WorkDifficulty} from '@utils/rpc/work';
+import {rpcGenerateWork, WorkDifficulty} from '@utils/rpc/work';
 import {useAccountBalance} from '@hooks/useAccountBalance';
 import {sleep} from '@utils/helper/sleep';
 
@@ -84,18 +84,22 @@ export const useBlockReceiver = () => {
             }
 
             signedBlock.work = work;
-            const res = await rpcProcessBlock({
-                action: 'process',
-                json_block: 'true',
-                subtype: 'receive',
-                block: signedBlock,
-            });
-
-            if (res.hash) {
-                await sleep(1000); //work is expensive, spend at least a second before going to the nest one
+            try {
+                const res = await rpcProcessBlock({
+                    action: 'process',
+                    json_block: 'true',
+                    subtype: 'receive',
+                    block: signedBlock,
+                });
+                if (res.hash) {
+                    await sleep(1000); //work is expensive, spend at least a second before going to the nest one
+                    await refetchAccountBalance({cancelRefetch: true});
+                    await refetchTransactionHistory({cancelRefetch: true});
+                    lastHash = res.hash;
+                }
+            } catch (e) {
                 await refetchAccountBalance({cancelRefetch: true});
-                await refetchTransactionHistory({cancelRefetch: true});
-                lastHash = res.hash;
+                console.log(e);
             }
         }
 
@@ -131,13 +135,12 @@ export const clearWork = (hash: string) => {
 };
 export const mustGetWork = async (
     hash: string,
-    difficulty: WorkDifficulty = UPPER_WORK_DIFFICULTY,
+    difficulty: WorkDifficulty = WorkDifficulty.Upper,
 ): Promise<string | undefined> => {
     hash = hash.toUpperCase();
     let work =
-        permanentStorage.getString('work_' + hash.toUpperCase() + UPPER_WORK_DIFFICULTY) ||
+        permanentStorage.getString('work_' + hash.toUpperCase() + WorkDifficulty.Upper) ||
         permanentStorage.getString('work_' + hash.toUpperCase() + difficulty);
-
     if (work) {
         return work;
     }

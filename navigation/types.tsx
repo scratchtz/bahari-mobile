@@ -25,7 +25,8 @@ export type CommonStackList = {
     NetworkNew: undefined;
     TransactionHistory: undefined;
     Receive: undefined;
-
+    Representative: undefined;
+    ChangeRepresentative: undefined;
     BuyNano: undefined;
 };
 

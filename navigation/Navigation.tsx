@@ -33,6 +33,8 @@ import ImportLedger from '@screens/WalletImport/ImportLedger';
 import useTranslationInit from '@hooks/useTranslationInit';
 import BuyNano from '@screens/BuyNano/BuyNano';
 import Receive from '@screens/Receive/Receive';
+import Representative from '@screens/Representative/Representative';
+import ChangeRepresentative from '@screens/Representative/ChangeRepresentative';
 
 const Navigation = () => {
     useTranslationInit();
@@ -242,6 +244,30 @@ export const CommonStackScreens = (
                     route,
                     theme,
                     title: 'Your Wallet',
+                    headerShown: true,
+                })
+            }
+        />
+        <Stack.Screen
+            name="Representative"
+            component={Representative}
+            options={({route}) =>
+                navigatorScreenOptions({
+                    route,
+                    theme,
+                    title: 'Representative',
+                    headerShown: true,
+                })
+            }
+        />
+        <Stack.Screen
+            name="ChangeRepresentative"
+            component={ChangeRepresentative}
+            options={({route}) =>
+                navigatorScreenOptions({
+                    route,
+                    theme,
+                    title: 'Change Representative',
                     headerShown: true,
                 })
             }

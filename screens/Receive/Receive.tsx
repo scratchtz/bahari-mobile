@@ -11,7 +11,6 @@ import {formNanoUri, NanoUriQuery} from '@utils/helper/uri';
 import * as Clipboard from 'expo-clipboard';
 import {ToastController} from '@components/Toast/Toast';
 import {useDefaultKeyPair} from '@hooks/useKeyPair';
-import {shortenAddress} from '@utils/helper/address';
 import {useDefaultWallet} from '@hooks/useWallet';
 import Separator from '@components/Separator/Separator';
 import ReceiveAmountSection, {RequestProps} from '@screens/Receive/ReceiveAmountSection';
@@ -20,9 +19,10 @@ import QRCode from 'react-native-qrcode-svg';
 import {CommonStackScreenProps} from '@navigation/types';
 import CurrentAccount from '@components/CurrentAccount/CurrentAccount';
 import {formatValue} from '@utils/helper/numberFormatter';
+import {ScrollView} from 'react-native-gesture-handler';
 
 const initialRequestItems = {rawAmount: '', displayAmount: '', displayCurrency: ''};
-const Receive = ({navigation, route}: CommonStackScreenProps<'Receive'>) => {
+const Receive = ({}: CommonStackScreenProps<'Receive'>) => {
     const {defaultKeyPair} = useDefaultKeyPair();
     const defaultWallet = useDefaultWallet();
 
@@ -57,87 +57,90 @@ const Receive = ({navigation, route}: CommonStackScreenProps<'Receive'>) => {
     };
 
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container} contentContainerStyle={styles.scrollView}>
             <CurrentAccount />
 
-            <View style={styles.innerItems}>
-                {showAmount ? (
-                    <ReceiveAmountSection
-                        onCancel={() => {
-                            setShowAmount(false);
-                        }}
-                        onChangeAmount={props => {
-                            setRequestItems(props || {...initialRequestItems});
-                            setShowAmount(false);
-                        }}
-                        initialAmount={requestItems}
-                    />
-                ) : (
-                    <>
-                        <View style={styles.qrContainer}>
-                            {qrCodeContent && (
-                                <QRCode
-                                    value={qrCodeContent}
-                                    size={180}
-                                    color={'white'}
-                                    backgroundColor="transparent"
-                                />
-                            )}
-                        </View>
+            {showAmount && (
+                <ReceiveAmountSection
+                    onCancel={() => {
+                        setShowAmount(false);
+                    }}
+                    onChangeAmount={props => {
+                        setRequestItems(props || {...initialRequestItems});
+                        setShowAmount(false);
+                    }}
+                    initialAmount={requestItems}
+                />
+            )}
 
-                        {requestItems.displayAmount && (
-                            <View style={styles.requestAmountWrap}>
-                                <Text style={styles.requestAmountTitle}>Request Amount</Text>
-                                <Text weight={'600'}>
-                                    {formatValue(requestItems.displayAmount)} {requestItems.displayCurrency}
-                                </Text>
-                                <Pressable
-                                    style={styles.requestCancelWrap}
-                                    hitSlop={{top: -5, left: -5, right: -5, bottom: -5}}
-                                    onPress={() => {
-                                        setRequestItems({...initialRequestItems});
-                                    }}>
-                                    <Feather name="x" style={styles.requestCancelIcon} />
-                                </Pressable>
-                            </View>
-                        )}
-
-                        <Text style={styles.addressTitle}>Your Nano Address</Text>
-                        <Pressable onPress={onPressAddress}>
-                            <Text style={styles.address} weight={'600'}>
-                                {shortenAddress(address, 12)}
-                            </Text>
-                        </Pressable>
-
-                        <View style={styles.actionButtons}>
-                            <CopyTag content={qrCodeContent} containerStyle={styles.actionButton} />
-                            <Tag
-                                title={'Share'}
-                                containerStyle={styles.actionButton}
-                                icon={<Feather name="share" style={[styles.actionIcon, {color: palette.sky500}]} />}
-                                onPress={onShare}
+            {!showAmount && (
+                <>
+                    <View style={styles.qrContainer}>
+                        {qrCodeContent && (
+                            <QRCode
+                                value={qrCodeContent}
+                                size={180}
+                                color={theme.colors.textPrimary}
+                                backgroundColor="transparent"
                             />
-                            {!showAmount && (
-                                <Tag
-                                    title={'Request Amount'}
-                                    containerStyle={styles.actionButton}
-                                    icon={
-                                        <FontAwesome5
-                                            name="money-bill-wave"
-                                            style={[styles.actionIcon, {color: palette.violet400}]}
-                                        />
-                                    }
-                                    onPress={() => {
-                                        setShowAmount(true);
-                                    }}
-                                />
-                            )}
+                        )}
+                    </View>
+
+                    {requestItems.displayAmount && (
+                        <View style={styles.requestAmountWrap}>
+                            <Text style={styles.requestAmountTitle} weight={'600'}>
+                                Request:
+                            </Text>
+                            <Text weight={'600'}>
+                                {formatValue(requestItems.displayAmount)} {requestItems.displayCurrency}
+                            </Text>
+                            <Pressable
+                                style={styles.requestCancelWrap}
+                                hitSlop={{top: -5, left: -5, right: -5, bottom: -5}}
+                                onPress={() => {
+                                    setRequestItems({...initialRequestItems});
+                                }}>
+                                <Feather name="x" style={styles.requestCancelIcon} />
+                            </Pressable>
                         </View>
-                        <Separator space={spacing.m} />
-                    </>
-                )}
-            </View>
-        </View>
+                    )}
+
+                    <Separator space={spacing.m} />
+                    <Text style={styles.addressTitle}>Your Nano Address</Text>
+                    <Pressable onPress={onPressAddress}>
+                        <Text style={styles.address} weight={'800'}>
+                            {address}
+                        </Text>
+                    </Pressable>
+
+                    <View style={styles.actionButtons}>
+                        <CopyTag content={qrCodeContent} containerStyle={styles.actionButton} />
+                        <Tag
+                            title={'Share'}
+                            containerStyle={styles.actionButton}
+                            icon={<Feather name="share" style={[styles.actionIcon, {color: palette.sky500}]} />}
+                            onPress={onShare}
+                        />
+                        {!showAmount && (
+                            <Tag
+                                title={'Request'}
+                                containerStyle={styles.actionButton}
+                                icon={
+                                    <FontAwesome5
+                                        name="money-bill-wave"
+                                        style={[styles.actionIcon, {color: palette.violet400}]}
+                                    />
+                                }
+                                onPress={() => {
+                                    setShowAmount(true);
+                                }}
+                            />
+                        )}
+                    </View>
+                    <Separator space={spacing.m} />
+                </>
+            )}
+        </ScrollView>
     );
 };
 
@@ -148,10 +151,8 @@ const dynamicStyles = (theme: AppTheme) =>
             paddingTop: spacing.l,
             flex: 1,
         },
-        innerItems: {
-            justifyContent: 'center',
+        scrollView: {
             alignItems: 'center',
-            flex: 1,
         },
         flex: {
             flex: 1,
@@ -161,18 +162,17 @@ const dynamicStyles = (theme: AppTheme) =>
             marginBottom: spacing.m,
         },
         qrContainer: {
-            backgroundColor: !theme.isDark ? palette.dark500 : 'transparent',
             alignItems: 'center',
             padding: spacing.m,
-            borderRadius: rounded.m,
         },
         addressTitle: {
             color: theme.colors.textSecondary,
-            marginTop: spacing.xl,
         },
         address: {
             textAlign: 'center',
             padding: spacing.xs,
+            fontSize: 12,
+            paddingHorizontal: spacing.xl,
         },
         info: {
             fontSize: 10,
@@ -188,6 +188,7 @@ const dynamicStyles = (theme: AppTheme) =>
         },
         actionButton: {
             ...theme.cardVariants.simple,
+            flex: 1,
         },
         actionIcon: {
             fontSize: 14,
@@ -263,8 +264,8 @@ const dynamicStyles = (theme: AppTheme) =>
             marginLeft: spacing.l,
         },
         requestCancelIcon: {
-            color: theme.colors.textSecondary,
-            fontSize: 18,
+            color: theme.colors.textPrimary,
+            fontSize: 14,
         },
     });
 

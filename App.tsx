@@ -1,3 +1,14 @@
+import 'text-encoding-polyfill';
+import 'react-native-url-polyfill/auto';
+
+import 'intl';
+import 'intl/locale-data/jsonp/en';
+import 'intl/locale-data/jsonp/ja';
+import 'intl/locale-data/jsonp/ko';
+import 'intl/locale-data/jsonp/zh';
+import 'intl/locale-data/jsonp/sw';
+import 'intl-pluralrules';
+
 import {Initializer} from './Initializer';
 
 global.Buffer = require('@craftzdog/react-native-buffer').Buffer;

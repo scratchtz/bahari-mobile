@@ -1,34 +1,32 @@
 import {useThemeStyleSheet} from '@hooks/useThemeStyleSheet';
 import SettingsItem, {sharedStyles} from '@screens/Main/Settings/Components/SettingsItem';
 import {View} from 'react-native';
-import {FontAwesome5} from '@expo/vector-icons';
+import {MaterialCommunityIcons} from '@expo/vector-icons';
 import Text from '@components/Text/Text';
 import React from 'react';
 import {navigate} from '@navigation/shared';
-import {useNetworks} from '@hooks/useNetworks';
 
-const ItemNetwork = () => {
+const ItemRepresentative = () => {
     const styles = useThemeStyleSheet(sharedStyles);
-    const {currentNetworkLabel} = useNetworks();
 
     return (
         <SettingsItem
             onPress={() => {
-                navigate('Network');
+                navigate('Representative');
             }}
-            title="Network"
+            title="Representative"
             leftItem={
-                <View style={[styles.settingIconBack, {backgroundColor: '#576574'}]}>
-                    <FontAwesome5 name="wifi" style={[styles.settingIcon]} />
+                <View style={[styles.settingIconBack, {backgroundColor: '#54a0ff'}]}>
+                    <MaterialCommunityIcons name="server-security" style={[styles.settingIcon]} />
                 </View>
             }
             rightItem={
                 <Text style={styles.valueText} weight={'500'}>
-                    {currentNetworkLabel}
+                    R
                 </Text>
             }
         />
     );
 };
 
-export default React.memo(ItemNetwork);
+export default React.memo(ItemRepresentative);

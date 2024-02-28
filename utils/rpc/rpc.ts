@@ -58,3 +58,10 @@ export async function rpcAccountInfo(address: string): Promise<AccountInfo> {
 export async function rpcProcessBlock(data: ProcessBlock): Promise<ProcessBlockRes> {
     return apiPost<ProcessBlockRes>(data);
 }
+
+type AccountRepresentativeRes = {
+    representative: string;
+};
+export async function rpcAccountRepresentative(account: string): Promise<AccountRepresentativeRes> {
+    return apiPost<AccountRepresentativeRes>({action: 'account_representative', account});
+}
