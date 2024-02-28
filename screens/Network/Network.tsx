@@ -8,9 +8,11 @@ import {useNetworks} from '@hooks/useNetworks';
 import NetworkItem from '@screens/Network/NetworkItem';
 import Button from '@components/Button/Button';
 import Text from '@components/Text/Text';
+import {UseTorSetting} from '@screens/Network/UseTorSetting';
 
 const Network = ({navigation}: CommonStackScreenProps<'Network'>) => {
     const {allNetworks, currentNetwork} = useNetworks();
+
     const styles = useThemeStyleSheet(dynamicStyles);
 
     return (

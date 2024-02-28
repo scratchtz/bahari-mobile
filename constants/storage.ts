@@ -23,6 +23,7 @@ export const StorageKeys = {
     biometricsOnSend: 'biometrics-on-send',
     latestAddressBalance: 'latest-address-balance',
     hidePriceGraph: 'hide-price-graph',
+    useTor: 'use-tor',
 };
 
 export function storageKeyKeyPair(address: string) {

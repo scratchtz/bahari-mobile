@@ -20,6 +20,7 @@ const NetworkItem = ({label, endpoint, isSelected}: Props) => {
     const styles = useThemeStyleSheetProvided(theme, dynamicStyles);
     const {changeCurrentNetwork, deleteNetwork} = useNetworks();
     const [ping, setPing] = useState<number>(0);
+    const [version, setVersion] = useState<string>('');
 
     const menuActions = useMemo(() => {
         let actions: {id: MenuAction; title: string}[] = [];
@@ -34,7 +35,7 @@ const NetworkItem = ({label, endpoint, isSelected}: Props) => {
 
     useEffect(() => {
         void fakePing();
-        const interval = setInterval(fakePing, 10000);
+        const interval = setInterval(fakePing, 5000);
         return () => {
             clearInterval(interval);
         };
@@ -46,8 +47,12 @@ const NetworkItem = ({label, endpoint, isSelected}: Props) => {
                 action: 'version',
             });
             const start = new Date().getTime();
-            await fetch(endpoint, {method: 'POST', body});
+            const res = await fetch(endpoint, {method: 'POST', body});
             const elapsed = new Date().getTime() - start;
+            const json = await res.json();
+            if (json.node_vendor) {
+                setVersion(json.node_vendor);
+            }
             if (elapsed < ping || !ping) {
                 setPing(elapsed);
             }
@@ -81,6 +86,7 @@ const NetworkItem = ({label, endpoint, isSelected}: Props) => {
             <View style={styles.midContainer}>
                 <Text weight={'600'}>{label}</Text>
                 <Text style={styles.endpoint}>{endpoint}</Text>
+                {version && <Text style={styles.version}>{version}</Text>}
                 <TouchableOpacity style={styles.pingContainer} onPress={fakePing}>
                     <MaterialIcons name="network-check" style={[styles.pingIcon, {color: pingColor}]} />
                     <Text weight="500" style={[styles.ping, {color: pingColor}]}>
@@ -120,11 +126,14 @@ const dynamicStyles = (theme: AppTheme) =>
             flex: 1,
         },
         endpoint: {
+            marginTop: spacing.xs,
+        },
+        version: {
             color: theme.colors.textSecondary,
         },
         checkMark: {
             padding: spacing.m,
-            fontSize: 18,
+            fontSize: 24,
             color: theme.colors.textPrimary,
         },
         menuDots: {
@@ -138,12 +147,12 @@ const dynamicStyles = (theme: AppTheme) =>
             alignSelf: 'flex-end',
         },
         pingIcon: {
-            fontSize: 12,
+            fontSize: 14,
             marginRight: spacing.xs,
             color: theme.colors.textSecondary,
         },
         ping: {
-            fontSize: 12,
+            fontSize: 14,
         },
     });
 

@@ -11,6 +11,7 @@ import {useThemeStyleSheetProvided} from '@hooks/useThemeStyleSheet';
 import {useAppTheme} from '@hooks/useAppTheme';
 import {AppTheme} from '@utils/styles';
 import Text from '@components/Text/Text';
+import {modalOpacity} from '@constants/variables';
 
 interface Props {}
 
@@ -19,7 +20,9 @@ const Modal = (props: Props, ref: any) => {
 
     const snapPoints = useMemo(() => ['60%', '94%'], []);
     const renderBackdrop = useCallback(
-        (props: any) => <BottomSheetBackdrop {...props} opacity={0.5} disappearsOnIndex={-1} appearsOnIndex={0} />,
+        (props: any) => (
+            <BottomSheetBackdrop {...props} opacity={modalOpacity} disappearsOnIndex={-1} appearsOnIndex={0} />
+        ),
         [],
     );
 
