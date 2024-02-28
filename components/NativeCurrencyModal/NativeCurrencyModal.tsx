@@ -9,6 +9,7 @@ import Text from '@components/Text/Text';
 import {ModalHeader} from '@components/ModalHeader/ModalHeader';
 import {Feather} from '@expo/vector-icons';
 import {useNativeCurrency} from '@hooks/useNativeCurrency';
+import {modalOpacity} from '@constants/variables';
 
 interface Props {}
 
@@ -19,7 +20,9 @@ const NativeCurrencyModal = (props: Props, ref: any) => {
 
     const snapPoints = useMemo(() => ['60%', '94%'], []);
     const renderBackdrop = useCallback(
-        (props: any) => <BottomSheetBackdrop {...props} opacity={0.5} disappearsOnIndex={-1} appearsOnIndex={0} />,
+        (props: any) => (
+            <BottomSheetBackdrop {...props} opacity={modalOpacity} disappearsOnIndex={-1} appearsOnIndex={0} />
+        ),
         [],
     );
 

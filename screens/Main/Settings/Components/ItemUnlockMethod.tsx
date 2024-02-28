@@ -21,6 +21,7 @@ import useUnlockMethod from '@hooks/useUnlockMethod';
 import {useMMKVBoolean} from 'react-native-mmkv';
 import {StorageKeys} from '@constants/storage';
 import {encryptedStorage} from '@storage/mmkv';
+import {modalOpacity} from '@constants/variables';
 
 const ItemUnlockMethod = () => {
     const styles = useThemeStyleSheet(sharedStyles);
@@ -75,7 +76,9 @@ const UnlockMethodModal = React.forwardRef((props: any, ref: any) => {
 
     const snapPoints = useMemo(() => ['64%', '85%'], []);
     const renderBackdrop = useCallback(
-        (props: any) => <BottomSheetBackdrop {...props} opacity={0.5} disappearsOnIndex={-1} appearsOnIndex={0} />,
+        (props: any) => (
+            <BottomSheetBackdrop {...props} opacity={modalOpacity} disappearsOnIndex={-1} appearsOnIndex={0} />
+        ),
         [],
     );
     const [requireBiometricsOnSend, setRequireBiometricsOnSend] = useMMKVBoolean(

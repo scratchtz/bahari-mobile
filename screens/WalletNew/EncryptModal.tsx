@@ -13,6 +13,7 @@ import aes256 from '@utils/helper/aes256';
 import CopyTag from '@components/Tag/CopyTag';
 import {ToastController} from '@components/Toast/Toast';
 import BottomSheetTextInput from '@components/TextInput/BottomSheetTextInput';
+import {modalOpacity} from '@constants/variables';
 
 interface Props {
     onSuccess: () => void;
@@ -35,7 +36,9 @@ const EncryptModal = (props: Props, ref: any) => {
 
     const snapPoints = useMemo(() => ['90%', '96%'], []);
     const renderBackdrop = useCallback(
-        (props: any) => <BottomSheetBackdrop {...props} opacity={0.5} disappearsOnIndex={-1} appearsOnIndex={0} />,
+        (props: any) => (
+            <BottomSheetBackdrop {...props} opacity={modalOpacity} disappearsOnIndex={-1} appearsOnIndex={0} />
+        ),
         [],
     );
 

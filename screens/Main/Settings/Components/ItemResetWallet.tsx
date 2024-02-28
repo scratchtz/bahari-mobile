@@ -10,6 +10,7 @@ import {useBottomSheetBackHandler} from '@hooks/hooksbottomsheet/useBottomSheetB
 import {useAppTheme} from '@hooks/useAppTheme';
 import {ModalHeader} from '@components/ModalHeader/ModalHeader';
 import Button from '@components/Button/Button';
+import {modalOpacity} from '@constants/variables';
 
 const ItemResetWallet = () => {
     const styles = useThemeStyleSheet(sharedStyles);
@@ -66,7 +67,9 @@ const ResetWalletModal = React.forwardRef(({}, ref: any) => {
 
     const snapPoints = useMemo(() => [280, 320], []);
     const renderBackdrop = useCallback(
-        (props: any) => <BottomSheetBackdrop {...props} opacity={0.5} disappearsOnIndex={-1} appearsOnIndex={0} />,
+        (props: any) => (
+            <BottomSheetBackdrop {...props} opacity={modalOpacity} disappearsOnIndex={-1} appearsOnIndex={0} />
+        ),
         [],
     );
 

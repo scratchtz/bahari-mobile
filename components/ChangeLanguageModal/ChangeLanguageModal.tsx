@@ -16,13 +16,16 @@ import {Feather} from '@expo/vector-icons';
 import {navigate, navigateDispatch} from '@navigation/shared';
 import {CommonActions} from '@react-navigation/native';
 import {hasAtLeastSingleWallet} from '@storage/wallet';
+import {modalOpacity} from '@constants/variables';
 
 const ChangeLanguageModal = (props: {}, ref: any) => {
     const {handleSheetPositionChange} = useBottomSheetBackHandler(ref);
 
     const snapPoints = useMemo(() => ['60%', '94%'], []);
     const renderBackdrop = useCallback(
-        (props: any) => <BottomSheetBackdrop {...props} opacity={0.5} disappearsOnIndex={-1} appearsOnIndex={0} />,
+        (props: any) => (
+            <BottomSheetBackdrop {...props} opacity={modalOpacity} disappearsOnIndex={-1} appearsOnIndex={0} />
+        ),
         [],
     );
     const [savedLanguage, setLanguage] = useMMKVString(StorageKeys.language, encryptedStorage);

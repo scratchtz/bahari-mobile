@@ -10,6 +10,7 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import {Canvas, Mask, Group, RoundedRect, Rect} from '@shopify/react-native-skia';
 import {NanoUriParams, parseNanoUri} from '@utils/helper/uri';
 import {Camera, useCameraDevice, useCameraPermission, Code, useCodeScanner} from 'react-native-vision-camera';
+import {modalOpacity} from '@constants/variables';
 
 interface Props {
     onClose: (params: NanoUriParams | undefined) => void;
@@ -46,7 +47,9 @@ export const ScanQRCodeModal = React.forwardRef((props: Props, ref: any) => {
 
     const snapPoints = useMemo(() => ['100%'], []);
     const renderBackdrop = useCallback(
-        (props: any) => <BottomSheetBackdrop {...props} opacity={0.8} disappearsOnIndex={-1} appearsOnIndex={0} />,
+        (props: any) => (
+            <BottomSheetBackdrop {...props} opacity={modalOpacity} disappearsOnIndex={-1} appearsOnIndex={0} />
+        ),
         [],
     );
 

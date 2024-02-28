@@ -27,6 +27,7 @@ import {encryptedGetFromJson} from '@storage/mmkv';
 import {storageKeyKeyPair} from '@constants/storage';
 import {persistWallet, setDefaultKeyPairAddress} from '@storage/wallet';
 import SendGlobe from '@components/SendGlobe/SendGlobe';
+import {modalOpacity} from '@constants/variables';
 
 interface GenWallet {
     wallet: Wallet;
@@ -58,7 +59,9 @@ const ImportPassphrase: React.FC<RootStackScreenProps<'ImportPassphrase'>> = ({n
 
     const snapPoints = useMemo(() => ['45%', '94%'], []);
     const renderBackdrop = useCallback(
-        (props: any) => <BottomSheetBackdrop {...props} opacity={0.5} disappearsOnIndex={-1} appearsOnIndex={0} />,
+        (props: any) => (
+            <BottomSheetBackdrop {...props} opacity={modalOpacity} disappearsOnIndex={-1} appearsOnIndex={0} />
+        ),
         [],
     );
 

@@ -10,6 +10,7 @@ import {useAppColorScheme, useAppColorSchemeChanger, useAppColorSettings} from '
 import {DISPLAY_THEMES, DisplayTheme} from '@utils/types';
 import {ModalHeader} from '@components/ModalHeader/ModalHeader';
 import {Entypo, Feather, MaterialCommunityIcons} from '@expo/vector-icons';
+import {modalOpacity} from '@constants/variables';
 
 interface Props {}
 
@@ -18,7 +19,9 @@ const ThemeChangeModal = (props: Props, ref: any) => {
 
     const snapPoints = useMemo(() => ['60%', '94%'], []);
     const renderBackdrop = useCallback(
-        (props: any) => <BottomSheetBackdrop {...props} opacity={0.5} disappearsOnIndex={-1} appearsOnIndex={0} />,
+        (props: any) => (
+            <BottomSheetBackdrop {...props} opacity={modalOpacity} disappearsOnIndex={-1} appearsOnIndex={0} />
+        ),
         [],
     );
 

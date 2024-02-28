@@ -25,6 +25,7 @@ import {KEY_IMPORTED_PRIVATE_KEYS} from '@constants/others';
 import Loading from '@components/Animation/Loading';
 import {useDebounce} from '@hooks/useDebounce';
 import {CommonActions} from '@react-navigation/native';
+import {modalOpacity} from '@constants/variables';
 
 const ImportPrivateKey: React.FC<RootStackScreenProps<'ImportPrivateKey'>> = ({navigation, route}) => {
     const theme = useAppTheme();
@@ -49,7 +50,9 @@ const ImportPrivateKey: React.FC<RootStackScreenProps<'ImportPrivateKey'>> = ({n
 
     const snapPoints = useMemo(() => ['45%', '94%'], []);
     const renderBackdrop = useCallback(
-        (props: any) => <BottomSheetBackdrop {...props} opacity={0.5} disappearsOnIndex={-1} appearsOnIndex={0} />,
+        (props: any) => (
+            <BottomSheetBackdrop {...props} opacity={modalOpacity} disappearsOnIndex={-1} appearsOnIndex={0} />
+        ),
         [],
     );
 

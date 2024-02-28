@@ -11,6 +11,7 @@ import CurrencyItem from '@components/CurrencyModal/CurrencyItem';
 import Separator from '@components/Separator/Separator';
 import {useDisplayCurrency} from '@hooks/useDisplayCurrency';
 import SearchBar from '@components/SearchBar/SearchBar';
+import {modalOpacity} from '@constants/variables';
 
 interface Props {}
 
@@ -20,7 +21,9 @@ const CurrencyModal = (props: Props, ref: any) => {
 
     const snapPoints = useMemo(() => ['90%', '96%'], []);
     const renderBackdrop = useCallback(
-        (props: any) => <BottomSheetBackdrop {...props} opacity={0.5} disappearsOnIndex={-1} appearsOnIndex={0} />,
+        (props: any) => (
+            <BottomSheetBackdrop {...props} opacity={modalOpacity} disappearsOnIndex={-1} appearsOnIndex={0} />
+        ),
         [],
     );
 

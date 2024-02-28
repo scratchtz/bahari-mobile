@@ -10,6 +10,7 @@ import Text from '@components/Text/Text';
 import {Wordlists} from '@dreson4/react-native-quick-bip39';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {collectManifestSchemes} from 'expo-linking';
+import {modalOpacity} from '@constants/variables';
 
 export type SupportedWordList = 'cs' | 'en' | 'es' | 'fr' | 'ja' | 'it' | 'ko' | 'pt' | 'zh';
 export type WordListPick = {label: string; value: SupportedWordList};
@@ -35,7 +36,9 @@ const WordListPickerModal = (props: Props, ref: any) => {
 
     const snapPoints = useMemo(() => ['70%', '94%'], []);
     const renderBackdrop = useCallback(
-        (props: any) => <BottomSheetBackdrop {...props} opacity={0.5} disappearsOnIndex={-1} appearsOnIndex={0} />,
+        (props: any) => (
+            <BottomSheetBackdrop {...props} opacity={modalOpacity} disappearsOnIndex={-1} appearsOnIndex={0} />
+        ),
         [],
     );
 

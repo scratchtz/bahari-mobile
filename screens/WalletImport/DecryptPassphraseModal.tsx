@@ -14,6 +14,7 @@ import * as Clipboard from 'expo-clipboard';
 import ButtonTiny from '@components/Button/ButtonTiny';
 import {FontAwesome} from '@expo/vector-icons';
 import BottomSheetTextInput from '@components/TextInput/BottomSheetTextInput';
+import {modalOpacity} from '@constants/variables';
 
 interface Props {
     onDecryption: (mnemonic: string) => void;
@@ -28,7 +29,9 @@ const DecryptPassphraseModal = (props: Props, ref: any) => {
 
     const snapPoints = useMemo(() => ['80%', '92%'], []);
     const renderBackdrop = useCallback(
-        (props: any) => <BottomSheetBackdrop {...props} opacity={0.5} disappearsOnIndex={-1} appearsOnIndex={0} />,
+        (props: any) => (
+            <BottomSheetBackdrop {...props} opacity={modalOpacity} disappearsOnIndex={-1} appearsOnIndex={0} />
+        ),
         [],
     );
 

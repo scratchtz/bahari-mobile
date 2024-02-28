@@ -33,6 +33,7 @@ import {encryptedStorage} from '@storage/mmkv';
 import * as LocalAuthentication from 'expo-local-authentication';
 import {ToastController} from '@components/Toast/Toast';
 import {ModalHeader} from '@components/ModalHeader/ModalHeader';
+import {modalOpacity} from '@constants/variables';
 
 interface Props {
     toName?: string;
@@ -58,7 +59,9 @@ const SendNanoModal = ({toName, toAddress, rawAmount}: Props, ref: any) => {
 
     const snapPoints = useMemo(() => [480, 550], []);
     const renderBackdrop = useCallback(
-        (props: any) => <BottomSheetBackdrop {...props} opacity={0.6} disappearsOnIndex={-1} appearsOnIndex={0} />,
+        (props: any) => (
+            <BottomSheetBackdrop {...props} opacity={modalOpacity} disappearsOnIndex={-1} appearsOnIndex={0} />
+        ),
         [],
     );
     const {refetch: refetchTransactionHistory} = useTransactionHistory(false, defaultKeyPair?.address || '', 5);

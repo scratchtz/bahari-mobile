@@ -11,6 +11,7 @@ import {Feather} from '@expo/vector-icons';
 import {useMMKVNumber} from 'react-native-mmkv';
 import {StorageKeys} from '@constants/storage';
 import {encryptedStorage} from '@storage/mmkv';
+import {modalOpacity} from '@constants/variables';
 
 interface Props {}
 
@@ -19,7 +20,9 @@ const AutolockModal = (props: Props, ref: any) => {
 
     const snapPoints = useMemo(() => ['70%', '94%'], []);
     const renderBackdrop = useCallback(
-        (props: any) => <BottomSheetBackdrop {...props} opacity={0.5} disappearsOnIndex={-1} appearsOnIndex={0} />,
+        (props: any) => (
+            <BottomSheetBackdrop {...props} opacity={modalOpacity} disappearsOnIndex={-1} appearsOnIndex={0} />
+        ),
         [],
     );
 

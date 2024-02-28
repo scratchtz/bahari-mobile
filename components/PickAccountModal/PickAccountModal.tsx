@@ -14,6 +14,7 @@ import {useDefaultKeyPair} from '@hooks/useKeyPair';
 import {ToastController} from '@components/Toast/Toast';
 import {navigate} from '@navigation/shared';
 import {useAllWalletsBalance} from '@components/PickAccountModal/accountItem.hooks';
+import {modalOpacity} from '@constants/variables';
 
 interface Props {
     mode: PickerMode;
@@ -43,7 +44,9 @@ const PickAccountModal = (props: Props, ref: any) => {
 
     const snapPoints = useMemo(() => ['90%', '94%'], []);
     const renderBackdrop = useCallback(
-        (props: any) => <BottomSheetBackdrop {...props} opacity={0.5} disappearsOnIndex={-1} appearsOnIndex={0} />,
+        (props: any) => (
+            <BottomSheetBackdrop {...props} opacity={modalOpacity} disappearsOnIndex={-1} appearsOnIndex={0} />
+        ),
         [],
     );
 

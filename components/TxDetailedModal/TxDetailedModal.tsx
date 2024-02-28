@@ -22,6 +22,7 @@ import {getAddressDetails} from '@hooks/useContacts';
 import {navigateDispatch} from '@navigation/shared';
 import {CommonActions} from '@react-navigation/native';
 import * as WebBrowser from 'expo-web-browser';
+import {modalOpacity} from '@constants/variables';
 
 const TITLE = {
     receive: 'Received',
@@ -34,7 +35,9 @@ const TxDetailedModal = ({type, account, amount, hash, local_timestamp}: History
     const {nativeCurrency} = useNativeCurrency();
     const snapPoints = useMemo(() => ['45%', '60%', '85%'], []);
     const renderBackdrop = useCallback(
-        (props: any) => <BottomSheetBackdrop {...props} opacity={0.5} disappearsOnIndex={-1} appearsOnIndex={0} />,
+        (props: any) => (
+            <BottomSheetBackdrop {...props} opacity={modalOpacity} disappearsOnIndex={-1} appearsOnIndex={0} />
+        ),
         [],
     );
 
