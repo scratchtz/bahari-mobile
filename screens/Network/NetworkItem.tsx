@@ -33,19 +33,24 @@ const NetworkItem = ({label, endpoint, isSelected}: Props) => {
     }, [isSelected]);
 
     useEffect(() => {
-        fakePing();
+        void fakePing();
+        const interval = setInterval(fakePing, 10000);
+        return () => {
+            clearInterval(interval);
+        };
     }, []);
 
     const fakePing = async () => {
         try {
+            const body = JSON.stringify({
+                action: 'version',
+            });
             const start = new Date().getTime();
-            const body = {
-                action: 'account_balance',
-                account: 'nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000',
-            };
-            await fetch(endpoint, {method: 'POST', body: JSON.stringify(body)});
+            await fetch(endpoint, {method: 'POST', body});
             const elapsed = new Date().getTime() - start;
-            setPing(elapsed);
+            if (elapsed < ping || !ping) {
+                setPing(elapsed);
+            }
         } catch (e) {
             setPing(0);
         }
@@ -65,8 +70,9 @@ const NetworkItem = ({label, endpoint, isSelected}: Props) => {
 
     const pingColor = useMemo(() => {
         if (ping === 0) return theme.colors.textTertiary;
-        if (ping < 100) return palette.blue400;
-        if (ping < 150) return palette.amber500;
+        if (ping < 100) return palette.sky500;
+        if (ping < 200) return palette.blue500;
+        if (ping < 500) return palette.amber500;
         return palette.rose500;
     }, [theme, ping]);
 
@@ -78,7 +84,7 @@ const NetworkItem = ({label, endpoint, isSelected}: Props) => {
                 <TouchableOpacity style={styles.pingContainer} onPress={fakePing}>
                     <MaterialIcons name="network-check" style={[styles.pingIcon, {color: pingColor}]} />
                     <Text weight="500" style={[styles.ping, {color: pingColor}]}>
-                        {ping === 0 ? 'unreachable' : `${ping}ms`}
+                        {ping === 0 ? '?' : `${ping}ms`}
                     </Text>
                 </TouchableOpacity>
             </View>
