@@ -12,7 +12,7 @@ export function useRepresentative(account?: string, enabled = true) {
 
 export function useRepresentatives() {
     return useQuery({
-        queryKey: ['all-representatives'],
+        queryKey: ['/v1/representatives'],
         staleTime: 1000 * 60 * 10,
         refetchInterval: 1000 * 60 * 10,
         queryFn: () => apiFetchRepresentatives(),

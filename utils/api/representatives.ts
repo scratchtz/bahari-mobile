@@ -6,6 +6,7 @@ export type Representative = {
     last_seen: number;
     weight_percent: string;
     uptime_percent: string;
+    version: string;
 };
 export const apiFetchRepresentatives = async () => {
     return apiGet<Representative[]>('/representatives');
