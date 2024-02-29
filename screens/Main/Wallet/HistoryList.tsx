@@ -67,9 +67,9 @@ const HistoryList = () => {
                     </TouchableOpacity>
                 )}
             </View>
-            <View>
+            <View style={{gap: spacing.m}}>
                 {data?.history?.length > 0 ? (
-                    data.history.map(h => <TransactionItem key={h.hash} {...h} />)
+                    data.history.map(h => <TransactionItem key={h.hash} {...h} showFullDate={true} />)
                 ) : (
                     <View style={styles.container}>
                         <Lottie

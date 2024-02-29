@@ -19,7 +19,10 @@ import Loading from '@components/Animation/Loading';
 import {ToastController} from '@components/Toast/Toast';
 import {hitSlop} from '@constants/variables';
 
-const TransactionItem = (item: History) => {
+type Props = {
+    showFullDate?: boolean;
+} & History;
+const TransactionItem = (item: Props) => {
     const theme = useAppTheme();
     const styles = useThemeStyleSheetProvided(theme, dynamicStyles);
 
@@ -33,7 +36,10 @@ const TransactionItem = (item: History) => {
     const message = useMemo(() => (item.type === 'send' ? 'Sent' : 'Received'), [item.type]);
     const time = useMemo(() => {
         const txTime = fromUnixTime(parseInt(item.local_timestamp));
-        return format(txTime, 'yyyy/MM/dd HH:mm');
+        if (item.showFullDate) {
+            return format(txTime, 'yyyy-MM-dd HH:mm');
+        }
+        return format(txTime, 'HH:mm');
     }, [item.local_timestamp]);
 
     const displayAmount = useMemo(
@@ -93,7 +99,6 @@ const dynamicStyles = (theme: AppTheme) =>
             borderRadius: rounded.l,
             flexDirection: 'row',
             alignItems: 'center',
-            marginTop: spacing.m,
         },
         hor: {
             flexDirection: 'row',

@@ -3,7 +3,6 @@ import {SectionList, StyleSheet, View} from 'react-native';
 import {CommonStackScreenProps} from '@navigation/types';
 import {useTransactionHistory} from '@hooks/useTransactionHistory';
 import {useDefaultKeyPair} from '@hooks/useKeyPair';
-import HistoryItem from '@screens/TransactionHistory/HistoryItem';
 import {AppTheme, rounded, spacing} from '@utils/styles';
 import {useThemeStyleSheet} from '@hooks/useThemeStyleSheet';
 import Separator from '@components/Separator/Separator';
@@ -11,6 +10,7 @@ import {format} from 'date-fns';
 import {History} from '@utils/rpc/types';
 import {getDateFromStringUnixTime} from '@utils/helper/date';
 import Text from '@components/Text/Text';
+import TransactionItem from '@screens/Main/Wallet/TransactionItem';
 
 const TransactionHistory = ({navigation}: CommonStackScreenProps<'TransactionHistory'>) => {
     const {defaultKeyPair} = useDefaultKeyPair();
@@ -26,7 +26,7 @@ const TransactionHistory = ({navigation}: CommonStackScreenProps<'TransactionHis
             windowSize={20}
             sections={sectionData}
             keyExtractor={item => item.hash}
-            ItemSeparatorComponent={() => <Separator space={spacing.xs} />}
+            ItemSeparatorComponent={() => <Separator space={spacing.m} />}
             contentContainerStyle={styles.container}
             renderSectionHeader={item => (
                 <View style={styles.dateWrap}>
@@ -35,7 +35,7 @@ const TransactionHistory = ({navigation}: CommonStackScreenProps<'TransactionHis
                     </Text>
                 </View>
             )}
-            renderItem={({item}) => <HistoryItem {...item} />}
+            renderItem={({item}) => <TransactionItem {...item} />}
         />
     );
 };
