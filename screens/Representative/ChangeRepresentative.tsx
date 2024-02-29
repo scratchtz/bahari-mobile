@@ -62,8 +62,9 @@ const ChangeRepresentative = ({navigation}: CommonStackScreenProps<'ChangeRepres
     };
 
     return (
-        <View style={styles.container}>
+        <>
             <FlashList
+                contentContainerStyle={styles.container}
                 estimatedItemSize={200}
                 ListHeaderComponent={
                     <>
@@ -99,16 +100,14 @@ const ChangeRepresentative = ({navigation}: CommonStackScreenProps<'ChangeRepres
                 )}
             />
             <ChangeRepModal newRepAccount={newRepAccount} ref={changeRepModal} />
-        </View>
+        </>
     );
 };
 
 const dynamicStyles = (theme: AppTheme) =>
     StyleSheet.create({
         container: {
-            marginHorizontal: spacing.th,
-            marginTop: spacing.l,
-            flex: 1,
+            padding: spacing.th,
         },
         pasteIcon: {
             fontSize: 20,

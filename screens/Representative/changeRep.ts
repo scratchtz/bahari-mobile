@@ -14,7 +14,6 @@ export const changeRepresentative = async (newRep: string, account: KeyPair): Pr
     if (!accountInfo || !accountInfo.frontier) {
         throw new Error('Account not found');
     }
-    console.log(accountInfo.frontier);
 
     const work = await mustGetWork(accountInfo.frontier, WorkDifficulty.Upper);
     if (!work) {

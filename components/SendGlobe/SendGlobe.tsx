@@ -42,7 +42,7 @@ const SendGlobe = ({color, containerStyle, size = 120}: Props) => {
                     {keypath: 'Layer 3/lottie_radio Outlines', color: keyColorLighter},
                     {keypath: `Avatar "Border"`, color: keyColorLighter},
                 ]}
-                resizeMode="cover"
+                resizeMode="contain"
                 source={require('@assets/animation/loading-slow.json')}
                 autoPlay
                 loop

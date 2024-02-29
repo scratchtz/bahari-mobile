@@ -3,6 +3,7 @@ import BigNumber from 'bignumber.js';
 import {rpcAccountInfo, rpcProcessBlock} from '@utils/rpc/rpc';
 import {block as blockSigner} from 'nanocurrency-web';
 import {clearWork, mustGetWork} from '@hooks/useBlockReceiver';
+import {DEFAULT_REPRESENTATIVE} from '@constants/others';
 export const SendError = {
     keyPairNotFound: 'key pair not found',
     overdrawn: 'overdrawn',
@@ -28,10 +29,7 @@ export async function sendNano(fromAddress: string, toAddress: string, rawAmount
     if (!balance.minus(rawAmount).isGreaterThanOrEqualTo(0)) {
         throw SendError.overdrawn;
     }
-
-    //TODO change representative
-    const representative =
-        accountInfo.representative || 'nano_3jwrszth46rk1mu7rmb4rhm54us8yg1gw3ipodftqtikf5yqdyr7471nsg1k';
+    const representative = accountInfo.representative || DEFAULT_REPRESENTATIVE;
 
     const data = {
         walletBalanceRaw: accountInfo.balance,
@@ -56,9 +54,9 @@ export async function sendNano(fromAddress: string, toAddress: string, rawAmount
         block: signedBlock,
     });
 
-    if (res.error && res.error.includes('work is insufficient')) {
+    if (res.error) {
         clearWork(accountInfo.frontier);
-        return sendNano(fromAddress, toAddress, rawAmount);
+        throw new Error(res.error);
     }
     if (res.hash) {
         void mustGetWork(res.hash);

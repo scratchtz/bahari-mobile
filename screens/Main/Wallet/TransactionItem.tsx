@@ -1,9 +1,8 @@
 import {useAppTheme} from '@hooks/useAppTheme';
 import {useThemeStyleSheetProvided} from '@hooks/useThemeStyleSheet';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 import {Pressable, StyleSheet, View} from 'react-native';
 import Text from '@components/Text/Text';
-import React, {useMemo, useRef} from 'react';
+import React, {useCallback, useMemo, useRef} from 'react';
 import {AppTheme, rounded, spacing} from '@utils/styles';
 import {History} from '@utils/rpc/types';
 import {shortenAddress} from '@utils/helper/address';
@@ -16,6 +15,9 @@ import {useNativeCurrency} from '@hooks/useNativeCurrency';
 import {convertRawAmountToNativeCurrency} from '@utils/helper/nativeCurrency';
 import AddressThumbnail from '@components/AddressThumbnail/AddressThumbnail';
 import Touchable from '@components/Touchable/Touchable';
+import Loading from '@components/Animation/Loading';
+import {ToastController} from '@components/Toast/Toast';
+import {hitSlop} from '@constants/variables';
 
 const TransactionItem = (item: History) => {
     const theme = useAppTheme();
@@ -40,22 +42,42 @@ const TransactionItem = (item: History) => {
     );
     const actionColor = item.type === 'send' ? theme.colors.textPrimary : theme.colors.priceUp;
 
+    const showToastNotConfirmed = useCallback(() => {
+        const elapsedMinutesAfterTx = (Date.now() - parseInt(item.local_timestamp) * 1000) / 1000 / 60;
+        if (elapsedMinutesAfterTx > 1) {
+            ToastController.show({
+                kind: 'info',
+                content: `Transaction is not confirmed yet!\nNetwork could be congested.`,
+                timeout: 5000,
+            });
+            return;
+        }
+        ToastController.show({kind: 'info', content: 'Transaction is not confirmed yet'});
+    }, []);
+
     return (
         <>
-            <Touchable containerStyle={styles.container} onPress={onPress}>
-                <AddressThumbnail size={50} address={item.account} containerStyle={styles.thumbnail} />
-                <View style={styles.midContainer}>
-                    <Text style={styles.action} weight="700">
-                        {message}
-                    </Text>
-                    <Text style={styles.address}>{shortenAddress(item.account)}</Text>
-                </View>
-                <View style={styles.rightContainer}>
-                    <Text weight="600" style={[styles.amount, {color: actionColor}]}>
-                        {item.type === 'send' ? '-' : '+'}
-                        {displayAmount} {nativeCurrency}
-                    </Text>
-                    <Text style={styles.time}>{time}</Text>
+            <Touchable onPress={onPress}>
+                <View style={styles.container}>
+                    <AddressThumbnail size={50} address={item.account} containerStyle={styles.thumbnail} />
+                    <View style={styles.midContainer}>
+                        <Text style={styles.action} weight="700">
+                            {message}
+                        </Text>
+                        <Text style={styles.address}>{shortenAddress(item.account)}</Text>
+                    </View>
+                    <View style={styles.rightContainer}>
+                        <Text weight="600" style={[styles.amount, {color: actionColor}]}>
+                            {item.type === 'send' ? '-' : '+'}
+                            {displayAmount} {nativeCurrency}
+                        </Text>
+                        <Text style={styles.time}>{time}</Text>
+                    </View>
+                    {item.confirmed === 'false' && (
+                        <Pressable style={styles.notConfirmedWrap} onPress={showToastNotConfirmed} hitSlop={hitSlop}>
+                            <Loading color={theme.colors.textTertiary} size={20} />
+                        </Pressable>
+                    )}
                 </View>
             </Touchable>
             <TxDetailedModal ref={txDetailedModal} {...item} />
@@ -67,7 +89,6 @@ const dynamicStyles = (theme: AppTheme) =>
     StyleSheet.create({
         container: {
             ...theme.cardVariants.simple,
-            // paddingVertical: spacing.xs,
             padding: spacing.m,
             borderRadius: rounded.l,
             flexDirection: 'row',
@@ -103,6 +124,11 @@ const dynamicStyles = (theme: AppTheme) =>
         },
         amount: {
             fontSize: 16,
+        },
+        notConfirmedWrap: {
+            position: 'absolute',
+            left: spacing.xs,
+            top: spacing.xs,
         },
     });
 

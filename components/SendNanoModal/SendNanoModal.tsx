@@ -75,10 +75,15 @@ const SendNanoModal = ({toName, toAddress, rawAmount}: Props, ref: any) => {
         ref.current.close();
     };
 
+    const isSending = useRef(false);
     const onSend = async () => {
+        if (isSending.current) return;
+        isSending.current = true;
+
         if (requireBiometricsOnSend) {
             const res = await LocalAuthentication.authenticateAsync({requireConfirmation: true});
             if (!res.success) {
+                isSending.current = false;
                 return;
             }
         }
@@ -92,8 +97,11 @@ const SendNanoModal = ({toName, toAddress, rawAmount}: Props, ref: any) => {
                 void refetchBalance({cancelRefetch: true});
             }, 2000);
         } catch (e) {
+            console.log(e);
             setScreenState('preview');
             ToastController.show({kind: 'error', title: 'Error', content: 'There was an error!'});
+        } finally {
+            isSending.current = false;
         }
     };
 
@@ -171,12 +179,7 @@ const SendNanoModal = ({toName, toAddress, rawAmount}: Props, ref: any) => {
                                 </View>
                             </View>
                             <Separator space={spacing.l} />
-                            <Button
-                                title={`Send`}
-                                onPress={() => {
-                                    debounce(onSend);
-                                }}
-                            />
+                            <Button title={`Send`} onPress={onSend} />
                         </View>
                     </>
                 )}

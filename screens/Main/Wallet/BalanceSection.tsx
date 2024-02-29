@@ -16,11 +16,11 @@ import {useNativeCurrency} from '@hooks/useNativeCurrency';
 import Loading from '@components/Animation/Loading';
 
 const BalanceSection = () => {
+    useBlockReceiver();
+
     const theme = useAppTheme();
     const styles = useThemeStyleSheetProvided(theme, balanceSectionStyles);
     const {nativeCurrency, rawValueToNative} = useNativeCurrency();
-
-    useBlockReceiver();
 
     const {change: priceChange} = useSimplePrice(true);
 

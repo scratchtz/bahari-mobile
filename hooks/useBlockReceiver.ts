@@ -132,6 +132,8 @@ export const saveWork = (hash: string, difficulty: string, work: string) => {
 
 export const clearWork = (hash: string) => {
     permanentStorage.delete('work_' + hash.toUpperCase());
+    permanentStorage.delete('work_' + hash.toUpperCase() + WorkDifficulty.Upper);
+    permanentStorage.delete('work_' + hash.toUpperCase() + WorkDifficulty.Lower);
 };
 export const mustGetWork = async (
     hash: string,
