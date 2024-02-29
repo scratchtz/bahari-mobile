@@ -29,11 +29,11 @@ const TITLE = {
     send: 'Sent',
     change: 'Changed Representative',
 };
-const TxDetailedModal = ({type, account, amount, hash, local_timestamp}: History, ref: any) => {
+const TxDetailedModal = ({type, account, confirmed, amount, hash, local_timestamp}: History, ref: any) => {
     const {handleSheetPositionChange} = useBottomSheetBackHandler(ref);
 
     const {nativeCurrency} = useNativeCurrency();
-    const snapPoints = useMemo(() => ['45%', '60%', '85%'], []);
+    const snapPoints = useMemo(() => [410, 600, '90%'], []);
     const renderBackdrop = useCallback(
         (props: any) => (
             <BottomSheetBackdrop {...props} opacity={modalOpacity} disappearsOnIndex={-1} appearsOnIndex={0} />
@@ -145,6 +145,12 @@ const TxDetailedModal = ({type, account, amount, hash, local_timestamp}: History
                             <Text style={styles.date}>{time}</Text>
                         </Text>
                     </View>
+                    <View style={styles.section}>
+                        <Text style={styles.key}>Status</Text>
+                        <Text style={[styles.amount, {color: amountColor}]}>
+                            <Text style={styles.date}>{confirmed === 'true' ? 'Confirmed' : 'Pending'}</Text>
+                        </Text>
+                    </View>
                     <TouchableOpacity style={styles.openExplorerButton} onPress={openOnBrowser}>
                         <Text style={styles.openExplorerText}>Open on block explorer</Text>
                     </TouchableOpacity>
@@ -187,7 +193,7 @@ const dynamicStyles = (theme: AppTheme) =>
             alignItems: 'center',
             justifyContent: 'space-between',
             borderRadius: rounded.l,
-            marginTop: spacing.l,
+            marginTop: spacing.s,
         },
         hor: {
             flexDirection: 'row',

@@ -14,6 +14,7 @@ import Loading from '@components/Animation/Loading';
 import {useAppTheme} from '@hooks/useAppTheme';
 import BigNumber from 'bignumber.js';
 import {shortenAddress} from '@utils/helper/address';
+import * as WebBrowser from 'expo-web-browser';
 
 const REP_EXPLAIN_URL = 'https://nano.org/en/blog/how-to-choose-your-nano-representative--74f4c8c4';
 const Representative = ({navigation}: CommonStackScreenProps<'Representative'>) => {
@@ -32,12 +33,7 @@ const Representative = ({navigation}: CommonStackScreenProps<'Representative'>) 
     }, [representatives, data?.representative]);
 
     const onReadMore = useCallback(async () => {
-        try {
-            const canOpen = await Linking.canOpenURL(REP_EXPLAIN_URL);
-            if (canOpen) {
-                void Linking.openURL(REP_EXPLAIN_URL);
-            }
-        } catch (e) {}
+        void WebBrowser.openBrowserAsync(REP_EXPLAIN_URL);
     }, []);
 
     const onChangeRep = useCallback(() => {
