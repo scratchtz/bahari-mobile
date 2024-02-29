@@ -57,8 +57,9 @@ const Receive = ({}: CommonStackScreenProps<'Receive'>) => {
     };
 
     return (
-        <ScrollView style={styles.container} contentContainerStyle={styles.scrollView}>
+        <View style={styles.container}>
             <CurrentAccount />
+            <View style={{flex: 1}} />
 
             {showAmount && (
                 <ReceiveAmountSection
@@ -140,7 +141,8 @@ const Receive = ({}: CommonStackScreenProps<'Receive'>) => {
                     <Separator space={spacing.m} />
                 </>
             )}
-        </ScrollView>
+            <View style={{flex: 1}} />
+        </View>
     );
 };
 
@@ -149,6 +151,8 @@ const dynamicStyles = (theme: AppTheme) =>
         container: {
             marginHorizontal: spacing.th,
             paddingTop: spacing.l,
+            alignItems: 'center',
+            justifyContent: 'center',
             flex: 1,
         },
         scrollView: {

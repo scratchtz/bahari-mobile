@@ -13,6 +13,7 @@ import {useRepresentative, useRepresentatives} from '@hooks/useRepresentatives';
 import Loading from '@components/Animation/Loading';
 import {useAppTheme} from '@hooks/useAppTheme';
 import BigNumber from 'bignumber.js';
+import {shortenAddress} from '@utils/helper/address';
 
 const REP_EXPLAIN_URL = 'https://nano.org/en/blog/how-to-choose-your-nano-representative--74f4c8c4';
 const Representative = ({navigation}: CommonStackScreenProps<'Representative'>) => {
@@ -65,7 +66,7 @@ const Representative = ({navigation}: CommonStackScreenProps<'Representative'>) 
                                 <Separator space={spacing.s} />
                             </View>
                         )}
-                        <Text style={styles.representative}>{representative}</Text>
+                        <Text style={styles.representative}>{shortenAddress(representative)}</Text>
                     </View>
                     <Button title={'Change'} variant={'secondary'} onPress={onChangeRep} />
                 </View>
