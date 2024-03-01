@@ -23,6 +23,7 @@ import Tag from '@components/Tag/Tag';
 import CopyTag from '@components/Tag/CopyTag';
 import {persistWallet, setDefaultKeyPairAddress} from '@storage/wallet';
 import {CommonActions} from '@react-navigation/native';
+import {hitSlop} from '@constants/variables';
 export type WalletNewMode = 'onboard' | 'passphrase';
 
 const WalletNew: React.FC<RootStackScreenProps<'WalletNew'>> = ({navigation, route}) => {
@@ -176,7 +177,10 @@ const WalletNew: React.FC<RootStackScreenProps<'WalletNew'>> = ({navigation, rou
                                 </Text>
                             </TouchableOpacity>
 
-                            <TouchableOpacity style={styles.wordListContainer} onPress={openWordListPicker}>
+                            <TouchableOpacity
+                                style={styles.wordListContainer}
+                                onPress={openWordListPicker}
+                                hitSlop={hitSlop}>
                                 <Entypo name="language" style={[styles.actionIcon, {color: palette.sky500}]} />
                                 <Text variant="small" style={styles.language}>
                                     {wordListPick.label}

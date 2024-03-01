@@ -98,6 +98,7 @@ const EncryptModal = (props: Props, ref: any) => {
             enablePanDownToClose
             backgroundStyle={styles.modal}
             handleIndicatorStyle={styles.indicator}
+            android_keyboardInputMode={'adjustResize'}
             ref={ref}
             onChange={handleSheetPositionChange}
             backdropComponent={renderBackdrop}
