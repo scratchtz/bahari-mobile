@@ -1,5 +1,5 @@
 import React, {useCallback, useMemo, useState} from 'react';
-import {View, StyleSheet, Keyboard} from 'react-native';
+import {View, StyleSheet, Keyboard, Platform} from 'react-native';
 import {useBottomSheetBackHandler} from '@hooks/hooksbottomsheet/useBottomSheetBackHandler';
 import {useThemeStyleSheetProvided} from '@hooks/useThemeStyleSheet';
 import {useAppTheme} from '@hooks/useAppTheme';
@@ -78,6 +78,7 @@ const DecryptPassphraseModal = (props: Props, ref: any) => {
     return (
         <BottomSheetModal
             enablePanDownToClose
+            android_keyboardInputMode={'adjustResize'}
             backgroundStyle={styles.modal}
             handleIndicatorStyle={styles.indicator}
             ref={ref}
@@ -86,7 +87,7 @@ const DecryptPassphraseModal = (props: Props, ref: any) => {
             snapPoints={snapPoints}>
             <BottomSheetScrollView
                 keyboardDismissMode="on-drag"
-                // automaticallyAdjustKeyboardInsets
+                automaticallyAdjustKeyboardInsets
                 style={styles.flex}
                 contentContainerStyle={styles.container}>
                 <Separator space={spacing.l} />
@@ -214,13 +215,7 @@ const dynamicStyles = (theme: AppTheme) =>
             fontSize: 14,
             color: theme.colors.textSecondary,
         },
-        textInputContainer: {
-            ...theme.cardVariants.simple,
-            borderRadius: rounded.l,
-            marginTop: spacing.xs,
-            borderWidth: 1,
-            borderColor: theme.colors.border,
-        },
+        textInputContainer: {},
         textInput: {
             ...theme.textVariants.body,
             padding: spacing.l,
@@ -232,6 +227,7 @@ const dynamicStyles = (theme: AppTheme) =>
             marginTop: spacing.m,
             borderWidth: 0.5,
             borderColor: theme.colors.border,
+            paddingVertical: Platform.select({ios: spacing.m, android: 0}),
         },
         encryptedText: {
             color: theme.colors.textSecondary,
@@ -239,8 +235,8 @@ const dynamicStyles = (theme: AppTheme) =>
         encryptedTextInput: {
             ...theme.textVariants.body,
             color: theme.colors.textPrimary,
-            padding: spacing.l,
-            height: 120,
+            textAlignVertical: 'top',
+            minHeight: 120,
         },
         actionButton: {
             flexDirection: 'row',

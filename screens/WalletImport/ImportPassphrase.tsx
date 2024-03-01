@@ -141,7 +141,7 @@ const ImportPassphrase: React.FC<RootStackScreenProps<'ImportPassphrase'>> = ({n
 
     return (
         <>
-            <ScrollView contentContainerStyle={styles.container}>
+            <ScrollView keyboardDismissMode={'interactive'} contentContainerStyle={styles.container}>
                 <Text style={styles.label}>Label</Text>
                 <Separator space={spacing.s} />
                 <TextInput ref={labelInputRef} placeholder={'Label'} value={label} onChangeText={setLabel} />
@@ -254,7 +254,7 @@ const dynamicStyles = (theme: AppTheme) =>
             ...theme.textVariants.body,
             padding: spacing.l,
             minHeight: 120,
-            textAlign: 'left',
+            textAlignVertical: 'top',
         },
         importButton: {
             marginTop: spacing.xl,

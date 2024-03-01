@@ -15,7 +15,7 @@ import {ToastController} from '@components/Toast/Toast';
 import {newKeyPairFromHexSecretKey} from '@utils/helper/wallet';
 import {getKeyPair, getWallet, persistAppendKeyPair, persistWallet, setDefaultKeyPairAddress} from '@storage/wallet';
 import {checkAddressValidity} from '@utils/helper/address';
-import {StyleSheet, View, TextInput as NativeTextInput, Keyboard} from 'react-native';
+import {StyleSheet, View, TextInput as NativeTextInput, Keyboard, Platform} from 'react-native';
 import TextInput from '@components/TextInput/TextInput';
 import Separator from '@components/Separator/Separator';
 import {BottomSheetBackdrop, BottomSheetModal} from '@gorhom/bottom-sheet';
@@ -248,12 +248,13 @@ const dynamicStyles = (theme: AppTheme) =>
         inputContainer: {
             ...theme.cardVariants.simple,
             borderRadius: rounded.l,
-            paddingVertical: spacing.m,
+            paddingVertical: Platform.select({android: 0, ios: spacing.s}),
         },
         textInput: {
             ...theme.textVariants.body,
-            padding: spacing.l,
             minHeight: 120,
+            // padding: spacing.l,
+            textAlignVertical: 'top',
         },
         importButton: {
             marginTop: spacing.xl,
