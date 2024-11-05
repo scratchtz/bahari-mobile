@@ -19,7 +19,6 @@ import QRCode from 'react-native-qrcode-svg';
 import {CommonStackScreenProps} from '@navigation/types';
 import CurrentAccount from '@components/CurrentAccount/CurrentAccount';
 import {formatValue} from '@utils/helper/numberFormatter';
-import {ScrollView} from 'react-native-gesture-handler';
 
 const initialRequestItems = {rawAmount: '', displayAmount: '', displayCurrency: ''};
 const Receive = ({}: CommonStackScreenProps<'Receive'>) => {

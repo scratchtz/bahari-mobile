@@ -24,10 +24,8 @@ import Contact from '@screens/Contact/Contact';
 import Network from '@screens/Network/Network';
 import NetworkNew from '@screens/NetworkNew/NetworkNew';
 import TransactionHistory from '@screens/TransactionHistory/TransactionHistory';
-import {MaterialIcons, FontAwesome, Ionicons} from '@expo/vector-icons';
+import {MaterialIcons, FontAwesome, Ionicons, Octicons} from '@expo/vector-icons';
 import * as NavigationBar from 'expo-navigation-bar';
-
-const Stack = createNativeStackNavigator<RootStackParamList>();
 import {navigationRef} from '@navigation/shared';
 import ImportLedger from '@screens/WalletImport/ImportLedger';
 import useTranslationInit from '@hooks/useTranslationInit';
@@ -36,6 +34,7 @@ import Receive from '@screens/Receive/Receive';
 import Representative from '@screens/Representative/Representative';
 import ChangeRepresentative from '@screens/Representative/ChangeRepresentative';
 
+const Stack = createNativeStackNavigator<RootStackParamList>();
 const Navigation = () => {
     useTranslationInit();
     const theme = useAppTheme();

@@ -83,6 +83,7 @@ export const useBlockReceiver = () => {
                     return;
                 }
 
+
                 signedBlock.work = work;
                 const res = await rpcProcessBlock({
                     action: 'process',

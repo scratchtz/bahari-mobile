@@ -2,7 +2,7 @@
   "expo": {
     "name": "Bahari",
     "slug": "bahari",
-    "version": "0.0.14",
+    "version": "0.0.16",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
@@ -74,7 +74,7 @@
     ],
     "jsEngine": "hermes",
     "ios": {
-      "buildNumber": "3",
+      "buildNumber": "1",
       "supportsTablet": true,
       "bundleIdentifier": "co.tz.scratch.bahari",
       "infoPlist": {
@@ -84,7 +84,7 @@
       }
     },
     "android": {
-      "versionCode": 2,
+      "versionCode": 16,
       "jsEngine": "hermes",
       "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {

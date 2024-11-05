@@ -29,7 +29,12 @@ yarn-error.*
 *.pem
 
 # local env files
-.env*.local
+.env
+*.local
+*.env
 
 # typescript
 *.tsbuildinfo
+
+android/app/release/
+*.der
