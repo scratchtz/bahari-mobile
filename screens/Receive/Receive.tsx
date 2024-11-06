@@ -19,11 +19,14 @@ import QRCode from 'react-native-qrcode-svg';
 import {CommonStackScreenProps} from '@navigation/types';
 import CurrentAccount from '@components/CurrentAccount/CurrentAccount';
 import {formatValue} from '@utils/helper/numberFormatter';
+import {useTranslation} from 'react-i18next';
 
 const initialRequestItems = {rawAmount: '', displayAmount: '', displayCurrency: ''};
 const Receive = ({}: CommonStackScreenProps<'Receive'>) => {
     const {defaultKeyPair} = useDefaultKeyPair();
     const defaultWallet = useDefaultWallet();
+
+    const {t} = useTranslation();
 
     if (!defaultKeyPair || !defaultWallet) return null;
 
@@ -52,7 +55,7 @@ const Receive = ({}: CommonStackScreenProps<'Receive'>) => {
     };
     const onPressAddress = async () => {
         await Clipboard.setStringAsync(address);
-        ToastController.show({content: 'Copied to clipboard', kind: 'success'});
+        ToastController.show({content: `${t('wallet.receive.copied')}`, kind: 'success'});
     };
 
     return (
@@ -106,7 +109,7 @@ const Receive = ({}: CommonStackScreenProps<'Receive'>) => {
                     )}
 
                     <Separator space={spacing.m} />
-                    <Text style={styles.addressTitle}>Your Nano Address</Text>
+                    <Text style={styles.addressTitle}>{t('wallet.receive.your_address')}</Text>
                     <Pressable onPress={onPressAddress}>
                         <Text style={styles.address} weight={'800'}>
                             {address}
@@ -116,14 +119,14 @@ const Receive = ({}: CommonStackScreenProps<'Receive'>) => {
                     <View style={styles.actionButtons}>
                         <CopyTag content={qrCodeContent} containerStyle={styles.actionButton} />
                         <Tag
-                            title={'Share'}
+                            title={t('wallet.receive.share')}
                             containerStyle={styles.actionButton}
                             icon={<Feather name="share" style={[styles.actionIcon, {color: palette.sky500}]} />}
                             onPress={onShare}
                         />
                         {!showAmount && (
                             <Tag
-                                title={'Request'}
+                                title={t('wallet.receive.request.label')}
                                 containerStyle={styles.actionButton}
                                 icon={
                                     <FontAwesome5

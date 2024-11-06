@@ -14,8 +14,10 @@ import {tools} from 'nanocurrency-web';
 import * as Clipboard from 'expo-clipboard';
 import AddressThumbnail from '@components/AddressThumbnail/AddressThumbnail';
 import ThumbnailSelector from '@components/ThumbnailSelector/ThumbnailSelector';
+import {useTranslation} from 'react-i18next';
 
 const Contact = ({navigation, route}: CommonStackScreenProps<'Contact'>) => {
+    const {t} = useTranslation();
     const {contact} = route.params;
     const [thumbnail, setThumbnail] = useState(contact.thumbnail || '');
     const [name, setName] = useState(contact.name);
@@ -24,15 +26,15 @@ const Contact = ({navigation, route}: CommonStackScreenProps<'Contact'>) => {
 
     const onAdd = () => {
         if (!address) {
-            ToastController.show({kind: 'error', content: 'Address is required'});
+            ToastController.show({kind: 'error', content: `${t('settings.wallet.contacts.contact.error.no_address')}`});
             return;
         }
         if (!name) {
-            ToastController.show({kind: 'error', content: 'Name is required'});
+            ToastController.show({kind: 'error', content: `${t('settings.wallet.contacts.contact.error.no_name')}`});
             return;
         }
         if (!tools.validateAddress(address)) {
-            ToastController.show({kind: 'error', content: 'Address is invalid'});
+            ToastController.show({kind: 'error', content: `${t('settings.wallet.contacts.contact.error.invalid_address')}`});
             return;
         }
 
@@ -56,12 +58,12 @@ const Contact = ({navigation, route}: CommonStackScreenProps<'Contact'>) => {
     }, [navigation]);
 
     const onDelete = () => {
-        Alert.alert(`Delete contact`, `Are you sure you want to delete ${contact.name}`, [
+        Alert.alert(`${t('settings.wallet.contacts.contact.alert.title')}`, `${t('settings.wallet.contacts.contact.alert.description')} ${contact.name}`, [
             {
-                text: 'Cancel',
+                text: `${t('settings.wallet.contacts.contact.alert.cancel')}`,
                 style: 'cancel',
             },
-            {text: 'Delete', style: 'destructive', onPress: () => handleDeleteConfirmed()},
+            {text: `${t('settings.wallet.contacts.contact.alert.delete')}`, style: 'destructive', onPress: () => handleDeleteConfirmed()},
         ]);
     };
 
@@ -81,7 +83,7 @@ const Contact = ({navigation, route}: CommonStackScreenProps<'Contact'>) => {
             <TouchableOpacity style={styles.deleteButton} onPress={onDelete}>
                 <AntDesign name="deleteuser" style={styles.deleteIcon} />
                 <Text style={styles.deleteText} weight="500">
-                    Delete Contact
+                    {t('settings.wallet.contacts.contact.delete')}
                 </Text>
             </TouchableOpacity>
 
@@ -95,9 +97,9 @@ const Contact = ({navigation, route}: CommonStackScreenProps<'Contact'>) => {
             </ThumbnailSelector>
 
             <Separator space={spacing.xl} />
-            <Text style={styles.label}>Name</Text>
+            <Text style={styles.label}>{t('settings.wallet.contacts.contact.name')}</Text>
             <TextInput
-                placeholder={'Name'}
+                placeholder={t('settings.wallet.contacts.contact.name_placeholder')}
                 value={name}
                 onChangeText={setName}
                 returnKeyType="done"
@@ -106,14 +108,14 @@ const Contact = ({navigation, route}: CommonStackScreenProps<'Contact'>) => {
 
             <Separator space={spacing.xl} />
             <View style={styles.labelContainer}>
-                <Text style={styles.label}>Address</Text>
+                <Text style={styles.label}>{t('settings.wallet.contacts.contact.address')}</Text>
                 <TouchableOpacity onPress={onPaste} style={styles.pasteContainer}>
                     <FontAwesome name="paste" style={styles.pasteIcon} />
-                    <Text style={styles.paste}>Paste</Text>
+                    <Text style={styles.paste}>{t('settings.wallet.contacts.contact.paste')}</Text>
                 </TouchableOpacity>
             </View>
             <TextInput
-                placeholder={'Address'}
+                placeholder={t('settings.wallet.contacts.contact.address_placeholder')}
                 value={address}
                 onChangeText={setAddress}
                 returnKeyType="done"
@@ -123,13 +125,13 @@ const Contact = ({navigation, route}: CommonStackScreenProps<'Contact'>) => {
             <Separator space={spacing.xl} />
             <View style={styles.actionsContainer}>
                 <Button
-                    title={'Cancel'}
+                    title={t('settings.wallet.contacts.contact.button.cancel')}
                     variant="secondary"
                     onPress={onCancel}
                     containerStyle={[styles.actionButton, {marginRight: spacing.m}]}
                 />
                 <Button
-                    title={'Save'}
+                    title={t('settings.wallet.contacts.contact.button.save')}
                     onPress={onAdd}
                     disabled={!name || !address}
                     containerStyle={styles.actionButton}

@@ -8,6 +8,7 @@ import Lottie from 'lottie-react-native';
 import Text from '@components/Text/Text';
 import {useThemeStyleSheet} from '@hooks/useThemeStyleSheet';
 import {useDefaultKeyPair} from '@hooks/useKeyPair';
+import {useTranslation} from 'react-i18next';
 
 interface Props {
     onPress: (address: string) => void;
@@ -17,6 +18,7 @@ const RecentAddresses = ({onPress}: Props) => {
     const {defaultKeyPair} = useDefaultKeyPair();
     const {recentAddresses} = useRecentAddresses();
     const styles = useThemeStyleSheet(dynamicStyles);
+    const {t} = useTranslation();
     return (
         <>
             {recentAddresses?.map((c, i) => {
@@ -44,7 +46,7 @@ const RecentAddresses = ({onPress}: Props) => {
                         loop={true}
                     />
                     <Text color={'tertiary'} style={styles.noAddresses}>
-                        No Recent Addresses.{'\n'}All sent recent addresses will appear here
+                        {t('wallet.send.address.recents.not_available')}
                     </Text>
                 </View>
             )}

@@ -15,6 +15,7 @@ import {useWallet} from '@hooks/useWallet';
 import {ToastController} from '@components/Toast/Toast';
 import ButtonTiny from '@components/Button/ButtonTiny';
 import {deleteWallet} from '@storage/wallet';
+import {useTranslation} from 'react-i18next';
 interface Props {
     walletID: string;
     onDone: () => void;
@@ -27,13 +28,15 @@ const EditWalletScreen = ({walletID, onDone, onClose}: Props) => {
     const theme = useAppTheme();
     const styles = useThemeStyleSheetProvided(theme, dynamicStyles);
 
+    const {t} = useTranslation();
+
     const [label, setLabel] = useState(wallet?.label);
     const [showPassphrase, setShowPassphrase] = useState(false);
 
     if (!wallet) return null;
     const handleDone = () => {
         if (!label) {
-            ToastController.show({kind: 'error', content: 'Name is required'});
+            ToastController.show({kind: 'error', content: `${t('current_account.edit_wallet.name_required')}`});
             return;
         }
         setWallet({...wallet, label});
@@ -46,15 +49,15 @@ const EditWalletScreen = ({walletID, onDone, onClose}: Props) => {
 
     const handleDeleteWallet = () => {
         Alert.alert(
-            'Delete Wallet',
-            'Are you sure you want to delete? This action is irreversible. You will need your passphrase to recover your wallet in the future',
+            `${t('current_account.edit_wallet.alert.delete')}`,
+            `${t('current_account.edit_wallet.alert.delete_desc')}`,
             [
                 {
-                    text: 'Cancel',
+                    text: `${t('current_account.edit_wallet.alert.cancel')}`,
                     style: 'cancel',
                 },
                 {
-                    text: 'Delete',
+                    text: `${t('current_account.edit_wallet.alert.delete_confirm')}`,
                     onPress: handleDeleteConfirm,
                     style: 'destructive',
                 },
@@ -69,14 +72,14 @@ const EditWalletScreen = ({walletID, onDone, onClose}: Props) => {
 
     return (
         <>
-            <ModalHeader title={'Edit Wallet'} onClose={onClose} />
+            <ModalHeader title={t('current_account.edit_wallet.title')} onClose={onClose} />
             <View style={styles.container}>
                 {wallet.mnemonic && showPassphrase && <ShowSecret secret={wallet.mnemonic} />}
 
                 {!showPassphrase && (
                     <>
                         <Text style={styles.label} weight="500">
-                            Wallet Name
+                            {t('current_account.edit_wallet.wallet_name')}
                         </Text>
                         <View style={styles.nameInputContainer}>
                             <BottomSheetTextInput
@@ -95,7 +98,7 @@ const EditWalletScreen = ({walletID, onDone, onClose}: Props) => {
                                 <ButtonTiny
                                     containerStyle={[styles.tinyButton, {marginRight: spacing.s}]}
                                     icon={<Entypo name="eye-with-line" style={[styles.actionButtonIcon]} />}
-                                    title={'Show Passphrase'}
+                                    title={t('current_account.edit_wallet.show_passphrase')}
                                     onPress={() => {
                                         setShowPassphrase(true);
                                     }}
@@ -110,7 +113,7 @@ const EditWalletScreen = ({walletID, onDone, onClose}: Props) => {
                                         style={[styles.actionButtonIcon, {color: palette.rose400}]}
                                     />
                                 }
-                                title={'Delete Wallet'}
+                                title={t('current_account.edit_wallet.delete_wallet')}
                                 onPress={handleDeleteWallet}
                             />
                         </View>
@@ -121,13 +124,13 @@ const EditWalletScreen = ({walletID, onDone, onClose}: Props) => {
                 <View style={styles.buttonsContainer}>
                     {!showPassphrase && (
                         <Button
-                            title={'Cancel'}
+                            title={t('current_account.edit_wallet.button.cancel')}
                             variant={'secondary'}
                             onPress={onCancel}
                             containerStyle={[styles.flex, {marginRight: spacing.s}]}
                         />
                     )}
-                    <Button title={'Done'} onPress={handleDone} containerStyle={styles.flex} />
+                    <Button title={t('current_account.edit_wallet.button.done')} onPress={handleDone} containerStyle={styles.flex} />
                 </View>
             </View>
         </>

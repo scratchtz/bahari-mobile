@@ -6,17 +6,19 @@ import Text from '@components/Text/Text';
 import React from 'react';
 import {navigate} from '@navigation/shared';
 import {useNetworks} from '@hooks/useNetworks';
+import {useTranslation} from 'react-i18next';
 
 const ItemNetwork = () => {
     const styles = useThemeStyleSheet(sharedStyles);
     const {currentNetworkLabel} = useNetworks();
+    const {t} = useTranslation();
 
     return (
         <SettingsItem
             onPress={() => {
                 navigate('Network');
             }}
-            title="Network"
+            title={t('settings.general.network.title')}
             leftItem={
                 <View style={[styles.settingIconBack, {backgroundColor: '#576574'}]}>
                     <FontAwesome5 name="wifi" style={[styles.settingIcon]} />

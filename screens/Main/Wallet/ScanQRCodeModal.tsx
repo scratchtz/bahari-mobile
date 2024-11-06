@@ -11,6 +11,7 @@ import {Canvas, Mask, Group, RoundedRect, Rect} from '@shopify/react-native-skia
 import {NanoUriParams, parseNanoUri} from '@utils/helper/uri';
 import {Camera, useCameraDevice, useCameraPermission, Code, useCodeScanner} from 'react-native-vision-camera';
 import {modalOpacity} from '@constants/variables';
+import {useTranslation} from 'react-i18next';
 
 interface Props {
     onClose: (params: NanoUriParams | undefined) => void;
@@ -19,6 +20,8 @@ interface Props {
 export const ScanQRCodeModal = React.forwardRef((props: Props, ref: any) => {
     const {hasPermission, requestPermission} = useCameraPermission();
     const device = useCameraDevice('back');
+
+    const {t} = useTranslation();
 
     const isScanned = useRef<boolean>(false);
 
@@ -107,7 +110,7 @@ export const ScanQRCodeModal = React.forwardRef((props: Props, ref: any) => {
                                 void Linking.openSettings();
                             }}>
                             <Text style={styles.enableCamera} weight={'600'}>
-                                Enable Camera to Scan QR code
+                                {t('wallet.qr_code.enable')}
                             </Text>
                         </TouchableOpacity>
                     </View>
@@ -139,7 +142,7 @@ export const ScanQRCodeModal = React.forwardRef((props: Props, ref: any) => {
                 <View style={[styles.innerContainer, {paddingTop: insets.top}]}>
                     <View style={styles.headerContainer}>
                         <Text variant="subheader" style={styles.head} weight={'600'}>
-                            Scan QR Code
+                            {t('wallet.qr_code.title')}
                         </Text>
                         <TouchableOpacity
                             style={styles.closeWrap}

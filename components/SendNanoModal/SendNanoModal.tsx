@@ -34,6 +34,7 @@ import * as LocalAuthentication from 'expo-local-authentication';
 import {ToastController} from '@components/Toast/Toast';
 import {ModalHeader} from '@components/ModalHeader/ModalHeader';
 import {modalOpacity} from '@constants/variables';
+import {useTranslation} from 'react-i18next';
 
 interface Props {
     toName?: string;
@@ -48,6 +49,8 @@ const SendNanoModal = ({toName, toAddress, rawAmount}: Props, ref: any) => {
     const {defaultKeyPair} = useDefaultKeyPair();
     const {nativeCurrency} = useNativeCurrency();
     const {debounce} = useDebounce();
+
+    const {t} = useTranslation()
 
     const {decimalSeparator} = RNLocalize.getNumberFormatSettings();
     const [requireBiometricsOnSend] = useMMKVBoolean(StorageKeys.biometricsOnSend, encryptedStorage);
@@ -99,7 +102,7 @@ const SendNanoModal = ({toName, toAddress, rawAmount}: Props, ref: any) => {
         } catch (e) {
             console.log(e);
             setScreenState('preview');
-            ToastController.show({kind: 'error', title: 'Error', content: 'There was an error!'});
+            ToastController.show({kind: 'error', title: 'Error', content: `${t('wallet.send.sending.error')}`});
         } finally {
             isSending.current = false;
         }
@@ -141,19 +144,22 @@ const SendNanoModal = ({toName, toAddress, rawAmount}: Props, ref: any) => {
             onChange={handleSheetPositionChange}
             backdropComponent={renderBackdrop}
             snapPoints={snapPoints}>
-            <ModalHeader title={'Send Confirm'} onClose={onClose} />
+            <ModalHeader title={t('wallet.send.amount.preview.label')} onClose={onClose} />
             <View style={{flex: 1}}>
                 {screenState === 'preview' && (
                     <>
                         <View style={styles.innerContainer}>
                             <View style={styles.sectionItem}>
-                                <Text style={styles.horKey}>Amount</Text>
+                                <Text style={styles.horKey}>{t('wallet.send.amount.preview.amount_label')}</Text>
                                 <Text style={styles.amount} weight="500">
-                                    {formattedAmount} {nativeCurrency}
+                                    {t('wallet.send.amount.preview.balance', {
+                                        amount: formattedAmount,
+                                        currency: nativeCurrency,
+                                    })}
                                 </Text>
                             </View>
                             <View style={styles.sectionItem}>
-                                <Text style={styles.horKey}>From</Text>
+                                <Text style={styles.horKey}>{t('wallet.send.amount.preview.from')}</Text>
                                 <View style={styles.hor}>
                                     <AddressThumbnail
                                         address={defaultKeyPair.address}
@@ -169,7 +175,7 @@ const SendNanoModal = ({toName, toAddress, rawAmount}: Props, ref: any) => {
                                 </View>
                             </View>
                             <View style={styles.sectionItem}>
-                                <Text style={styles.horKey}>To</Text>
+                                <Text style={styles.horKey}>{t('wallet.send.amount.preview.to')}</Text>
                                 <View style={styles.hor}>
                                     <AddressThumbnail address={toAddress} size={36} containerStyle={styles.thumbnail} />
                                     <View>
@@ -179,7 +185,7 @@ const SendNanoModal = ({toName, toAddress, rawAmount}: Props, ref: any) => {
                                 </View>
                             </View>
                             <Separator space={spacing.l} />
-                            <Button title={`Send`} onPress={onSend} />
+                            <Button title={t('wallet.send.amount.preview.button')} onPress={onSend} />
                         </View>
                     </>
                 )}
@@ -187,9 +193,9 @@ const SendNanoModal = ({toName, toAddress, rawAmount}: Props, ref: any) => {
                     <>
                         <View style={styles.sendingContainer}>
                             <Text weight="600" style={styles.sendingText}>
-                                Sending
+                                {t('wallet.send.sending.label')}
                             </Text>
-                            <Text style={styles.dontCloseInfo}>Please wait....</Text>
+                            <Text style={styles.dontCloseInfo}>{t('wallet.send.sending.wait')}</Text>
                             <SendGlobe size={180} color={theme.colors.secondary} />
                         </View>
                     </>
@@ -199,10 +205,10 @@ const SendNanoModal = ({toName, toAddress, rawAmount}: Props, ref: any) => {
                         <View style={styles.sendingContainer}>
                             <Success size={120} />
                             <Text style={styles.amount} weight="500">
-                                {formattedAmount} {nativeCurrency}
+                                {t('wallet.send.success.balance',{balance:formattedAmount,currency:nativeCurrency})}
                             </Text>
                             <Separator space={spacing.m} />
-                            <Text weight="500">Sent to</Text>
+                            <Text weight="500">{t('wallet.send.success.sent_to')}</Text>
 
                             <Separator space={spacing.s} />
                             <View style={styles.hor}>
@@ -219,13 +225,13 @@ const SendNanoModal = ({toName, toAddress, rawAmount}: Props, ref: any) => {
                             {!toName && (
                                 <ButtonTiny
                                     icon={<Feather name="plus-circle" style={styles.addContactIcon} />}
-                                    title={'Add New Contact'}
+                                    title={t('wallet.send.success.add_contact')}
                                     onPress={onAddContact}
                                     containerStyle={styles.addContactButton}
                                 />
                             )}
                         </View>
-                        <Button title={'Done'} onPress={onDone} containerStyle={styles.doneButton} />
+                        <Button title={t('wallet.send.success.button')} onPress={onDone} containerStyle={styles.doneButton} />
                     </>
                 )}
             </View>

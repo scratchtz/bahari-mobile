@@ -10,6 +10,7 @@ import {Contact} from '@utils/types';
 import {Feather} from '@expo/vector-icons';
 import Separator from '@components/Separator/Separator';
 import Text from '@components/Text/Text';
+import {useTranslation} from 'react-i18next';
 
 interface Props {
     onPress: (c: Contact) => void;
@@ -17,6 +18,8 @@ interface Props {
 const ContactList = ({onPress}: Props) => {
     const theme = useAppTheme();
     const styles = useThemeStyleSheetProvided(theme, dynamicStyles);
+
+    const {t} = useTranslation();
 
     const {contacts: allContacts} = useContacts();
     const [searchText, setSearchText] = useState('');
@@ -40,7 +43,7 @@ const ContactList = ({onPress}: Props) => {
                 <TextInput
                     onFocus={() => setIsSearchFocused(true)}
                     onBlur={() => setIsSearchFocused(false)}
-                    placeholder="Search Contact"
+                    placeholder={t('wallet.send.contact.search')}
                     placeholderTextColor={theme.colors.textSecondary}
                     autoCapitalize={'none'}
                     onChangeText={setSearchText}
@@ -53,7 +56,7 @@ const ContactList = ({onPress}: Props) => {
                 data={contacts}
                 ListHeaderComponent={
                     <Text variant="subheader" style={styles.subHeader}>
-                        Contacts
+                        {t('wallet.send.contact.header')}
                     </Text>
                 }
                 renderItem={({item}) => {

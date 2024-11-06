@@ -11,6 +11,7 @@ import {DISPLAY_THEMES, DisplayTheme} from '@utils/types';
 import {ModalHeader} from '@components/ModalHeader/ModalHeader';
 import {Entypo, Feather, MaterialCommunityIcons} from '@expo/vector-icons';
 import {modalOpacity} from '@constants/variables';
+import {useTranslation} from 'react-i18next';
 
 interface Props {}
 
@@ -24,6 +25,8 @@ const ThemeChangeModal = (props: Props, ref: any) => {
         ),
         [],
     );
+
+    const {t} = useTranslation();
 
     const theme = useAppTheme();
     const styles = useThemeStyleSheetProvided(theme, dynamicStyles);
@@ -47,7 +50,7 @@ const ThemeChangeModal = (props: Props, ref: any) => {
             onChange={handleSheetPositionChange}
             backdropComponent={renderBackdrop}
             snapPoints={snapPoints}>
-            <ModalHeader title={'Theme'} onClose={onClose} />
+            <ModalHeader title={t('settings.general.theme.modal_title')} onClose={onClose} />
             <View style={styles.innerContainer}>
                 {DISPLAY_THEMES.map(t => {
                     return (
@@ -83,6 +86,7 @@ const ThemeItem = React.memo(
         const currentScheme = useAppColorSettings();
         const theme = useAppTheme();
         const styles = useThemeStyleSheetProvided(theme, themeItemStyle);
+        const {t} = useTranslation();
 
         const icon = useMemo(() => {
             switch (name) {
@@ -101,7 +105,7 @@ const ThemeItem = React.memo(
         return (
             <TouchableOpacity style={[styles.container, isSelected && styles.containerSelected]} onPress={onPress}>
                 {icon}
-                <Text style={styles.name}>{name}</Text>
+                <Text style={styles.name}>{t(`settings.general.theme.${name}`)}</Text>
                 {isSelected && <Feather name="check" style={styles.checkMark} />}
             </TouchableOpacity>
         );

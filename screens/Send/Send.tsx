@@ -21,12 +21,15 @@ import {tools} from 'nanocurrency-web';
 import Button from '@components/Button/Button';
 import {ToastController} from '@components/Toast/Toast';
 import RecentAddresses from '@screens/Send/RecentAddresses';
+import {useTranslation} from 'react-i18next';
 
 const TAB_PADDING = 2;
 
 const Send: React.FC<CommonStackScreenProps<'Send'>> = ({navigation}) => {
     const theme = useAppTheme();
     const styles = useThemeStyleSheetProvided(theme, dynamicStyles);
+
+    const {t} = useTranslation();
 
     const width = Dimensions.get('window').width;
     const scrollViewRef = useRef<ScrollView>() as React.MutableRefObject<ScrollView>;
@@ -39,7 +42,7 @@ const Send: React.FC<CommonStackScreenProps<'Send'>> = ({navigation}) => {
     const onNext = () => {
         const isValid = tools.validateAddress(address);
         if (!isValid) {
-            ToastController.show({kind: 'error', title: 'Error', content: 'invalid address'});
+            ToastController.show({kind: 'error', title: 'Error', content: `${t('wallet.send.invalid_address')}`});
             return;
         }
         openSendAmount(address);
@@ -90,7 +93,7 @@ const Send: React.FC<CommonStackScreenProps<'Send'>> = ({navigation}) => {
         <View style={styles.container}>
             <View style={styles.upperContainer}>
                 <Text style={styles.head} weight="600">
-                    Send nano to?
+                    {t('wallet.send.label')}
                 </Text>
 
                 <View style={styles.tabContainer}>
@@ -101,7 +104,7 @@ const Send: React.FC<CommonStackScreenProps<'Send'>> = ({navigation}) => {
                             scrollViewRef.current?.scrollTo({x: 0, animated: true});
                         }}>
                         <Animated.Text style={[styles.tabText, {color: colorInterpolationInverse}]}>
-                            Address
+                            {t('wallet.send.address.label')}
                         </Animated.Text>
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -109,7 +112,7 @@ const Send: React.FC<CommonStackScreenProps<'Send'>> = ({navigation}) => {
                         onPress={() => {
                             scrollViewRef.current?.scrollTo({x: width, animated: true});
                         }}>
-                        <Animated.Text style={[styles.tabText, {color: colorInterpolation}]}>Contact</Animated.Text>
+                        <Animated.Text style={[styles.tabText, {color: colorInterpolation}]}>{t('wallet.send.contact.label')}</Animated.Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -142,7 +145,7 @@ const Send: React.FC<CommonStackScreenProps<'Send'>> = ({navigation}) => {
                             onChangeText={setAddress}
                             style={styles.textInput}
                             placeholderTextColor={theme.colors.textSecondary}
-                            placeholder="Address"
+                            placeholder={t('wallet.send.address.placeholder')}
                             returnKeyType={'done'}
                             autoCapitalize={'none'}
                         />
@@ -155,19 +158,19 @@ const Send: React.FC<CommonStackScreenProps<'Send'>> = ({navigation}) => {
                         <View style={styles.flex} />
                         <ButtonTiny
                             icon={<FontAwesome name="qrcode" style={styles.scanIcon} />}
-                            title={'Scan Code'}
+                            title={t('wallet.send.address.scan_code')}
                             onPress={openScanQrCodeModal}
                         />
                         <Separator space={spacing.s} horizontal={true} />
                         <ButtonTiny
                             icon={<FontAwesome name="paste" style={styles.scanIcon} />}
-                            title={'Paste'}
+                            title={t('wallet.send.address.paste')}
                             onPress={onPasteAddress}
                         />
                     </View>
 
                     <Text variant="subheader" style={styles.recentHeader}>
-                        Recent Addresses
+                        {t('wallet.send.address.recents.label')}
                     </Text>
                     <Separator space={spacing.l} />
                     <RecentAddresses onPress={onRecentAddress} />
@@ -185,7 +188,7 @@ const Send: React.FC<CommonStackScreenProps<'Send'>> = ({navigation}) => {
             </ScrollView>
 
             <View style={styles.nextButton}>
-                <Button title={'Next'} onPress={onNext} />
+                <Button title={t('wallet.send.button')} onPress={onNext} />
             </View>
             <ScanQRCodeModal ref={scanQrCodeModalRef} onClose={onCloseScanQrCodeModal} />
         </View>

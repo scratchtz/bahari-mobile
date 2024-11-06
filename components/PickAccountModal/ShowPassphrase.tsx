@@ -11,6 +11,7 @@ import Tag from '@components/Tag/Tag';
 import {MaterialIcons} from '@expo/vector-icons';
 import EncryptText from '@components/EncryptText/EncryptText';
 import Separator from '@components/Separator/Separator';
+import {useTranslation} from 'react-i18next';
 interface Props {
     wallet: Wallet;
 }
@@ -18,6 +19,7 @@ const ShowSecret = ({secret, derivationPath}: {secret: string; derivationPath?: 
     const theme = useAppTheme();
     const [showEncrypt, setShowEncrypt] = useState(false);
     const styles = useThemeStyleSheetProvided(theme, dynamicStyles);
+    const {t} = useTranslation();
 
     return (
         <>
@@ -29,14 +31,14 @@ const ShowSecret = ({secret, derivationPath}: {secret: string; derivationPath?: 
                 </View>
                 {derivationPath && (
                     <View style={styles.pathContainer}>
-                        <Text style={styles.pathTitle}>Derivation Path: {derivationPath}</Text>
+                        <Text style={styles.pathTitle}>{t('current_account.show_passphrase.derivation')} {derivationPath}</Text>
                     </View>
                 )}
                 <Separator space={spacing.m} />
                 <Text style={styles.warningTitle} weight={'600'}>
-                    For your eyes only.
+                    {t('current_account.show_passphrase.title')}
                 </Text>
-                <Text>Anyone with this passphrase can transfer all your funds. Do not share with anyone.</Text>
+                <Text>{t('current_account.show_passphrase.description')}</Text>
 
                 <View style={styles.actionsContainer}>
                     <CopyTag content={secret || ''} />
@@ -50,7 +52,7 @@ const ShowSecret = ({secret, derivationPath}: {secret: string; derivationPath?: 
                         onPress={() => {
                             setShowEncrypt(true);
                         }}
-                        title="Encrypt"
+                        title={t('current_account.show_passphrase.encrypt')}
                     />
                 </View>
                 {showEncrypt && <EncryptText passphrase={secret} />}

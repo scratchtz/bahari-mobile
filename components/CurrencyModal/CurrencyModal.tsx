@@ -12,12 +12,15 @@ import Separator from '@components/Separator/Separator';
 import {useDisplayCurrency} from '@hooks/useDisplayCurrency';
 import SearchBar from '@components/SearchBar/SearchBar';
 import {modalOpacity} from '@constants/variables';
+import {useTranslation} from 'react-i18next';
 
 interface Props {}
 
 const CurrencyModal = (props: Props, ref: any) => {
     const {handleSheetPositionChange} = useBottomSheetBackHandler(ref);
     const {displayCurrency, setDisplayCurrency} = useDisplayCurrency();
+
+    const {t} = useTranslation();
 
     const snapPoints = useMemo(() => ['90%', '96%'], []);
     const renderBackdrop = useCallback(
@@ -69,9 +72,9 @@ const CurrencyModal = (props: Props, ref: any) => {
             onChange={handleSheetPositionChange}
             backdropComponent={renderBackdrop}
             snapPoints={snapPoints}>
-            <ModalHeader title={'Display Currency'} onClose={onClose} />
+            <ModalHeader title={t('settings.general.display_currency.display')} onClose={onClose} />
             <SearchBar
-                placeholder="Search Currency"
+                placeholder={t('settings.general.display_currency.search')}
                 value={searchText}
                 onChangeText={setSearchText}
                 containerStyle={styles.searchBar}

@@ -14,6 +14,7 @@ import {convertNativeCurrencies} from '@utils/helper/nativeCurrency';
 import Separator from '@components/Separator/Separator';
 import Button from '@components/Button/Button';
 import Pressable from '@components/Touchable/Touchable';
+import {useTranslation} from 'react-i18next';
 
 export interface RequestProps {
     rawAmount: string;
@@ -33,6 +34,8 @@ const ReceiveAmountSection = (props: Props) => {
 
     const [inputCurrencyIsNative, setInputCurrencyIsNative] = useState(true);
     const [requestAmount, setRequestAmount] = useState(props.initialAmount.displayAmount);
+
+    const {t} = useTranslation();
 
     const theme = useAppTheme();
     const styles = useThemeStyleSheetProvided(theme, dynamicStyles);
@@ -151,18 +154,18 @@ const ReceiveAmountSection = (props: Props) => {
                 {requestAmount ? (
                     <View>
                         <Text style={styles.requestAmountInput} weight={'800'}>
-                            {requestAmount} {inputCurrency}
+                            {t('wallet.receive.request.amount',{amount:requestAmount,currency:inputCurrency})}
                         </Text>
                         <TouchableOpacity onPress={onSwapCurrencies}>
                             <Text style={styles.estimateAmount} weight={'600'}>
-                                {formatValue(estimateAmount)} {estimateCurrency}
+                                {t('wallet.receive.request.estimate_amount',{amount:formatValue(estimateAmount),currency:estimateCurrency})}
                             </Text>
                         </TouchableOpacity>
                     </View>
                 ) : (
                     <View style={styles.placeholderWrap}>
                         <Text style={styles.requestAmountInputHolder} weight={'300'}>
-                            How much {inputCurrency}?
+                            {t('wallet.receive.request.how_much',{currency:inputCurrency})}
                         </Text>
                     </View>
                 )}
@@ -178,12 +181,12 @@ const ReceiveAmountSection = (props: Props) => {
             </View>
             <View style={styles.buttonsWrap}>
                 <Button
-                    title={'Cancel'}
+                    title={t('wallet.receive.request.cancel')}
                     variant={'secondary'}
                     onPress={props.onCancel}
                     containerStyle={styles.actionButton}
                 />
-                <Button title={'Request'} onPress={onRequest} containerStyle={styles.actionButton} />
+                <Button title={t('wallet.receive.request.confirm')} onPress={onRequest} containerStyle={styles.actionButton} />
             </View>
         </View>
     );

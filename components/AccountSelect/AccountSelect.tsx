@@ -10,6 +10,7 @@ import {Ionicons} from '@expo/vector-icons';
 import PickAccountModal from '@components/PickAccountModal/PickAccountModal';
 import {BottomSheetModal} from '@gorhom/bottom-sheet';
 import ButtonTiny from '@components/Button/ButtonTiny';
+import {useTranslation} from 'react-i18next';
 
 interface Props {
     containerStyle?: StyleProp<ViewStyle>;
@@ -19,6 +20,8 @@ const AccountSelect = ({containerStyle, onSelectAccount}: Props) => {
     const pickAccountModal = useRef<BottomSheetModal>();
 
     const theme = useAppTheme();
+    const {t } = useTranslation();
+
     const styles = useThemeStyleSheetProvided(theme, dynamicStyles);
 
     const onPress = () => {
@@ -33,7 +36,7 @@ const AccountSelect = ({containerStyle, onSelectAccount}: Props) => {
         <>
             <ButtonTiny
                 icon={<Ionicons name="wallet" style={styles.walletIcon} />}
-                title="My Wallets"
+                title={t('wallet.send.address.my_wallets')}
                 containerStyle={containerStyle}
                 onPress={onPress}
             />

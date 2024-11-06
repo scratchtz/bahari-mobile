@@ -29,12 +29,15 @@ import {
 import * as RNLocalize from 'react-native-localize';
 import {SendToWrap} from '@screens/Send/SendToWrap';
 import {tools} from 'nanocurrency-web';
+import {useTranslation} from 'react-i18next';
 
 const SendAmount: React.FC<CommonStackScreenProps<'SendAmount'>> = ({navigation, route}) => {
     const {defaultKeyPair} = useDefaultKeyPair();
     const {address, rawAmount: routeRawAmount} = route.params;
     const theme = useAppTheme();
     const styles = useThemeStyleSheetProvided(theme, dynamicStyles);
+
+    const {t} = useTranslation();
 
     const {decimalSeparator, groupingSeparator: groupSeparator} = RNLocalize.getNumberFormatSettings();
 
@@ -67,7 +70,7 @@ const SendAmount: React.FC<CommonStackScreenProps<'SendAmount'>> = ({navigation,
 
     const handleNext = () => {
         if (!inputAmount) {
-            ToastController.show({kind: 'error', title: 'Error', content: 'Amount is required'});
+            ToastController.show({kind: 'error', title: 'Error', content: `${t('wallet.send.amount.error_no_amount')}`});
             amountInputRef.current?.focus();
             return;
         }
@@ -239,14 +242,14 @@ const SendAmount: React.FC<CommonStackScreenProps<'SendAmount'>> = ({navigation,
                     </View>
                     <TouchableOpacity style={styles.maxContainer} onPress={onMaxBalance}>
                         <Text style={styles.maxText} weight="600">
-                            MAX
+                            {t('wallet.send.amount.max')}
                         </Text>
                     </TouchableOpacity>
                 </View>
 
                 <View style={styles.hor}>
                     <SimpleLineIcons name="wallet" style={styles.tinyIcon} />
-                    <Text style={styles.tinyText}>Your Balance</Text>
+                    <Text style={styles.tinyText}>{t('wallet.send.amount.your_balance')}</Text>
                     <Text style={styles.tinyValue}>
                         {formatValue(rawValueToNative(accountBalance?.balance), 0, 4)} {nativeCurrency}
                     </Text>
@@ -254,17 +257,17 @@ const SendAmount: React.FC<CommonStackScreenProps<'SendAmount'>> = ({navigation,
                 <Separator space={spacing.l} />
                 <View style={styles.hor}>
                     <MaterialCommunityIcons name="wallet-plus-outline" style={styles.tinyIcon} />
-                    <Text style={styles.tinyText}>Balance After</Text>
+                    <Text style={styles.tinyText}>{t('wallet.send.amount.balance_after')}</Text>
                     <Text style={[styles.tinyValue, isBalanceInsufficient && {color: theme.colors.warning}]}>
                         {formatValue(convertRawAmountToNativeCurrency(balanceAfter(inputAmount)), 0, 4)}{' '}
                         {nativeCurrency}
                     </Text>
                 </View>
-                {isBalanceInsufficient && <Text style={styles.insufficientBalance}>Insufficient Balance</Text>}
+                {isBalanceInsufficient && <Text style={styles.insufficientBalance}>{t('wallet.send.amount.insufficient_balance')}</Text>}
                 <Separator space={spacing.xl} />
             </View>
             <Button
-                title={'Preview'}
+                title={t('wallet.send.amount.button')}
                 onPress={handleNext}
                 disabled={!canProceed}
                 containerStyle={styles.previewButton}

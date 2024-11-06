@@ -14,23 +14,26 @@ import {tools} from 'nanocurrency-web';
 import * as Clipboard from 'expo-clipboard';
 import AddressThumbnail from '@components/AddressThumbnail/AddressThumbnail';
 import ThumbnailSelector from '@components/ThumbnailSelector/ThumbnailSelector';
+import {useTranslation} from 'react-i18next';
 
 const ContactNew = ({navigation, route}: CommonStackScreenProps<'ContactNew'>) => {
     const [name, setName] = useState('');
     const [address, setAddress] = useState(route && route.params && route.params.address ? route.params.address : '');
     const [thumbnail, setThumbnail] = useState('');
 
+    const {t} = useTranslation();
+
     const onAdd = () => {
         if (!name) {
-            ToastController.show({kind: 'error', content: 'Name is required'});
+            ToastController.show({kind: 'error', content: `${t('settings.wallet.contacts.new.error.no_name')}`});
             return;
         }
         if (!address) {
-            ToastController.show({kind: 'error', content: 'Address is required'});
+            ToastController.show({kind: 'error', content: `${t('settings.wallet.contacts.new.error.no_address')}`});
             return;
         }
         if (!tools.validateAddress(address)) {
-            ToastController.show({kind: 'error', content: 'Address is invalid'});
+            ToastController.show({kind: 'error', content: `${t('settings.wallet.contacts.new.error.invalid_address')}`});
             return;
         }
 
@@ -67,9 +70,9 @@ const ContactNew = ({navigation, route}: CommonStackScreenProps<'ContactNew'>) =
             </ThumbnailSelector>
 
             <Separator space={spacing.xl} />
-            <Text style={styles.label}>Name</Text>
+            <Text style={styles.label}>{t('settings.wallet.contacts.new.name')}</Text>
             <TextInput
-                placeholder={'Name'}
+                placeholder={t('settings.wallet.contacts.new.name_placeholder')}
                 value={name}
                 onChangeText={setName}
                 returnKeyType="done"
@@ -78,14 +81,14 @@ const ContactNew = ({navigation, route}: CommonStackScreenProps<'ContactNew'>) =
 
             <Separator space={spacing.xl} />
             <View style={styles.labelContainer}>
-                <Text style={styles.label}>Address</Text>
+                <Text style={styles.label}>{t("settings.wallet.contacts.new.address")}</Text>
                 <TouchableOpacity onPress={onPaste} style={styles.pasteContainer}>
                     <FontAwesome name="paste" style={styles.pasteIcon} />
-                    <Text style={styles.paste}>Paste</Text>
+                    <Text style={styles.paste}>{t('settings.wallet.contacts.new.paste')}</Text>
                 </TouchableOpacity>
             </View>
             <TextInput
-                placeholder={'Address'}
+                placeholder={t('settings.wallet.contacts.new.address_placeholder')}
                 value={address}
                 onChangeText={setAddress}
                 returnKeyType="done"
@@ -93,7 +96,7 @@ const ContactNew = ({navigation, route}: CommonStackScreenProps<'ContactNew'>) =
             />
 
             <Separator space={spacing.xl} />
-            <Button title={'Add'} onPress={onAdd} disabled={!name || !address} />
+            <Button title={t('settings.wallet.contacts.new.button')} onPress={onAdd} disabled={!name || !address} />
             <View style={{height: 300}} />
         </ScrollView>
     );

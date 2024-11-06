@@ -15,6 +15,7 @@ import {ToastController} from '@components/Toast/Toast';
 import {navigate} from '@navigation/shared';
 import {useAllWalletsBalance} from '@components/PickAccountModal/accountItem.hooks';
 import {modalOpacity} from '@constants/variables';
+import {useTranslation} from 'react-i18next';
 
 interface Props {
     mode: PickerMode;
@@ -29,6 +30,7 @@ const PickAccountModal = (props: Props, ref: any) => {
     const defaultWallet = useDefaultWallet();
     const {defaultKeyPair, setDefaultKeyPairAddress} = useDefaultKeyPair();
     const walletKvs = useWalletKVs();
+    const  {t} = useTranslation();
 
     if (!walletKvs || !defaultWallet || !defaultKeyPair) return null;
 
@@ -60,7 +62,7 @@ const PickAccountModal = (props: Props, ref: any) => {
     const onPressAccount = (keyPairAddress: string) => {
         if (props.mode === 'change') {
             setDefaultKeyPairAddress(keyPairAddress);
-            ToastController.show({kind: 'info', content: 'Account changed', timeout: 1000});
+            ToastController.show({kind: 'info', content: `${t('current_account.pick_account.account_changed')}`, timeout: 1000});
         }
         if (props.mode === 'select') {
             props.onSelectKeyPair && props.onSelectKeyPair(keyPairAddress);

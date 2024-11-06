@@ -12,9 +12,11 @@ import {useMMKVNumber} from 'react-native-mmkv';
 import {StorageKeys} from '@constants/storage';
 import {encryptedStorage} from '@storage/mmkv';
 import {modalOpacity} from '@constants/variables';
+import {useTranslation} from 'react-i18next';
 
 interface Props {}
 
+const AUTOLOCK_OPTIONS=[1,5,30,60,300,1800,3600,-1]
 const AutolockModal = (props: Props, ref: any) => {
     const {handleSheetPositionChange} = useBottomSheetBackHandler(ref);
 
@@ -25,23 +27,13 @@ const AutolockModal = (props: Props, ref: any) => {
         ),
         [],
     );
+    const {t} = useTranslation();
 
     const [autolockTime, setAutolockTime] = useMMKVNumber(StorageKeys.autolockSeconds, encryptedStorage);
 
     const theme = useAppTheme();
     const styles = useThemeStyleSheetProvided(theme, dynamicStyles);
 
-    const AUTOLOCK_OPTIONS = useMemo(() => {
-        return [
-            {label: '5s', value: 5},
-            {label: '30s', value: 30},
-            {label: '1min', value: 60},
-            {label: '5min', value: 300},
-            {label: '30min', value: 1800},
-            {label: '1hr', value: 3600},
-            {label: 'Never', value: -1},
-        ];
-    }, []);
 
     return (
         <BottomSheetModal
@@ -54,23 +46,23 @@ const AutolockModal = (props: Props, ref: any) => {
             snapPoints={snapPoints}>
             <>
                 <ModalHeader
-                    title={'Autolock'}
+                    title={t('settings.security.auto_lock.modal.label')}
                     onClose={() => {
                         ref.current.close();
                     }}
                 />
                 <View style={styles.innerContainer}>
-                    <Text>Automatically lock your phone when the app goes in the background after</Text>
+                    <Text>{t('settings.security.auto_lock.modal.description')}</Text>
                     {AUTOLOCK_OPTIONS.map(option => {
-                        const isSelected = option.value === autolockTime;
+                        const isSelected = option === autolockTime;
                         return (
                             <TouchableOpacity
-                                key={option.label}
+                                key={option}
                                 style={[styles.listItem, isSelected && styles.listItemSelected]}
                                 onPress={() => {
-                                    setAutolockTime(option.value);
+                                    setAutolockTime(option);
                                 }}>
-                                <Text>{option.label}</Text>
+                                <Text>{t(`settings.security.auto_lock.interval.${option}`)}</Text>
                                 {isSelected && <Feather name="check" style={styles.checkMark} />}
                             </TouchableOpacity>
                         );

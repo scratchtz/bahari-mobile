@@ -14,6 +14,7 @@ import {useLatestAddressBalance} from '@components/PickAccountModal/accountItem.
 import {useNativeCurrency} from '@hooks/useNativeCurrency';
 import {formatValue} from '@utils/helper/numberFormatter';
 import {convertRawAmountToNativeCurrency} from '@utils/helper/nativeCurrency';
+import {useTranslation} from 'react-i18next';
 
 interface Props {
     address: string;
@@ -30,6 +31,7 @@ const AccountItem = ({address, onPress, isSelected, onMenu, mode}: Props) => {
     const keyPair = useGetKeyPair(address);
     const [rawBalance] = useLatestAddressBalance(address);
     const {nativeCurrency} = useNativeCurrency();
+    const {t} = useTranslation();
 
     const nativeBalance = useMemo(() => {
         return formatValue(convertRawAmountToNativeCurrency(rawBalance));
@@ -46,7 +48,7 @@ const AccountItem = ({address, onPress, isSelected, onMenu, mode}: Props) => {
                 <Text style={styles.address}>{shortenAddress(address, 8)}</Text>
             </View>
             <Text variant="small" color="tertiary">
-                {nativeBalance} {nativeCurrency}
+                {t('current_account.account_item',{balance:nativeBalance,currency:nativeCurrency})}
             </Text>
             {mode === 'change' && (
                 <TouchableOpacity onPress={onMenu}>

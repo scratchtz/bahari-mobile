@@ -15,6 +15,7 @@ import {useAppTheme} from '@hooks/useAppTheme';
 import BigNumber from 'bignumber.js';
 import {shortenAddress} from '@utils/helper/address';
 import * as WebBrowser from 'expo-web-browser';
+import {useTranslation} from 'react-i18next';
 
 const REP_EXPLAIN_URL = 'https://nano.org/en/blog/how-to-choose-your-nano-representative--74f4c8c4';
 const Representative = ({navigation}: CommonStackScreenProps<'Representative'>) => {
@@ -25,6 +26,8 @@ const Representative = ({navigation}: CommonStackScreenProps<'Representative'>) 
     const representative = data?.representative || '';
 
     const {data: representatives} = useRepresentatives();
+
+    const {t} = useTranslation();
 
     const myRep = useMemo(() => {
         const reps = representatives?.data;
@@ -44,7 +47,7 @@ const Representative = ({navigation}: CommonStackScreenProps<'Representative'>) 
         <ScrollView contentContainerStyle={styles.container}>
             <CurrentAccount />
             <Separator space={spacing.l} />
-            <Text weight={'500'}>Representative for your account</Text>
+            <Text weight={'500'}>{t('settings.general.representative.account')}</Text>
             <Separator space={spacing.s} />
 
             {isLoading ? (
@@ -57,26 +60,25 @@ const Representative = ({navigation}: CommonStackScreenProps<'Representative'>) 
                         {myRep && (
                             <View>
                                 <Text weight={'600'}>{myRep.alias}</Text>
-                                <Text>Voting weight: {new BigNumber(myRep.weight_percent).toFormat(2)}%</Text>
-                                <Text>Last week uptime: {new BigNumber(myRep.uptime_percent).toFormat(2)}%</Text>
+                                <Text>{t('settings.general.representative.voting_weight',{number:new BigNumber(myRep.weight_percent).toFormat(2)})}</Text>
+                                <Text>{t('settings.general.representative.last_uptime',{number:new BigNumber(myRep.uptime_percent).toFormat(2)})}</Text>
                                 <Separator space={spacing.s} />
                             </View>
                         )}
                         <Text style={styles.representative}>{shortenAddress(representative)}</Text>
                     </View>
-                    <Button title={'Change'} variant={'secondary'} onPress={onChangeRep} />
+                    <Button title={t('settings.general.representative.button')} variant={'secondary'} onPress={onChangeRep} />
                 </View>
             )}
 
             <Separator space={spacing.xl} />
 
             <Text style={styles.explain}>
-                It's recommended to select a representative with high uptime and low voting weight to improve
-                decentralisation
+                {t('settings.general.representative.recommendation')}
             </Text>
 
             <TouchableOpacity onPress={onReadMore}>
-                <Text style={styles.readMore}>Read More...</Text>
+                <Text style={styles.readMore}>{t('settings.general.representative.read_more')}</Text>
             </TouchableOpacity>
         </ScrollView>
     );

@@ -10,11 +10,14 @@ import {StorageKeys} from '@constants/storage';
 import {encryptedStorage} from '@storage/mmkv';
 import {BottomSheetModal} from '@gorhom/bottom-sheet';
 import ChangeLanguageModal from '@components/ChangeLanguageModal/ChangeLanguageModal';
+import {useTranslation} from 'react-i18next';
 
 const ItemLanguage = () => {
     const styles = useThemeStyleSheet(sharedStyles);
     const [savedLanguage] = useMMKVString(StorageKeys.language, encryptedStorage);
     const language = (savedLanguage || 'en') as SupportedLanguage;
+
+    const {t} = useTranslation();
 
     const languageModal = useRef<BottomSheetModal>();
     const openLanguageModal = useCallback(() => {
@@ -25,7 +28,7 @@ const ItemLanguage = () => {
         <>
             <SettingsItem
                 onPress={openLanguageModal}
-                title="Language"
+                title={t('settings.general.language_title')}
                 leftItem={
                     <View style={[styles.settingIconBack, {backgroundColor: '#ff9ff3'}]}>
                         <FontAwesome6 name="language" style={[styles.settingIcon]} />

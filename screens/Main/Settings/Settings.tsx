@@ -22,12 +22,14 @@ import ItemPassword from '@screens/Main/Settings/Components/ItemUnlockMethod';
 import ItemAutolock from '@screens/Main/Settings/Components/ItemAutolock';
 import ItemResetWallet from '@screens/Main/Settings/Components/ItemResetWallet';
 import ItemRepresentative from '@screens/Main/Settings/Components/ItemRepresentative';
+import {useTranslation} from 'react-i18next';
 
 const Settings: React.FC<AllScreenProps<'Settings'>> = ({navigation}) => {
     const theme = useAppTheme();
     const styles = useThemeStyleSheetProvided(theme, dynamicStyles);
     const settingItemStyle = useThemeStyleSheetProvided(theme, sharedStyles);
 
+    const {t} = useTranslation();
     const scrollViewRef = useRef(null);
 
     useScrollToTop(scrollViewRef);
@@ -41,7 +43,7 @@ const Settings: React.FC<AllScreenProps<'Settings'>> = ({navigation}) => {
                 <CurrentAccount />
                 <Separator space={spacing.m} />
                 <Text variant="subheader" style={styles.subheader}>
-                    Wallet
+                    {t('settings.wallet.title')}
                 </Text>
                 <View style={styles.section}>
                     <SettingsItem
@@ -56,7 +58,7 @@ const Settings: React.FC<AllScreenProps<'Settings'>> = ({navigation}) => {
                                 />
                             </View>
                         }
-                        title="New Wallet"
+                        title={t('settings.wallet.new_wallet.title')}
                     />
 
                     <SettingsItem
@@ -68,7 +70,7 @@ const Settings: React.FC<AllScreenProps<'Settings'>> = ({navigation}) => {
                                 <FontAwesome5 name="search-plus" style={[settingItemStyle.settingIcon]} />
                             </View>
                         }
-                        title="Import Wallet"
+                        title={t('settings.wallet.import_wallet.title')}
                     />
                     <SettingsItem
                         onPress={() => {
@@ -79,12 +81,12 @@ const Settings: React.FC<AllScreenProps<'Settings'>> = ({navigation}) => {
                                 <Ionicons name="people" style={[settingItemStyle.settingIcon]} />
                             </View>
                         }
-                        title="Contacts"
+                        title={t('settings.wallet.contacts.title')}
                     />
                 </View>
                 <Separator space={spacing.l} />
                 <Text variant="subheader" style={styles.subheader}>
-                    General
+                    {t('settings.general.title')}
                 </Text>
                 <View style={styles.section}>
                     <ItemLanguage />
@@ -98,7 +100,7 @@ const Settings: React.FC<AllScreenProps<'Settings'>> = ({navigation}) => {
 
                 <Separator space={spacing.l} />
                 <Text variant="subheader" style={styles.subheader}>
-                    Security
+                    {t('settings.security.title')}
                 </Text>
                 <View style={styles.section}>
                     <ItemPassword />

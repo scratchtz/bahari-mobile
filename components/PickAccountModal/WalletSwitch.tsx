@@ -12,6 +12,7 @@ import {useWalletTotalBalance} from '@components/PickAccountModal/accountItem.ho
 import {useNativeCurrency} from '@hooks/useNativeCurrency';
 import {convertRawAmountToNativeCurrency} from '@utils/helper/nativeCurrency';
 import {formatValue} from '@utils/helper/numberFormatter';
+import {useTranslation} from 'react-i18next';
 
 interface WalletSwitchProps {
     currentWalletID: string;
@@ -24,6 +25,7 @@ export const WalletSwitch = React.memo(
         const theme = useAppTheme();
         const styles = useThemeStyleSheetProvided(theme, walletSwitchStyles);
         const [showWallets, setShowWallets] = useState(false);
+        const {t} = useTranslation();
 
         const currentWallet = useGetWallet(currentWalletID);
         const wallets = useWalletKVs();
@@ -48,11 +50,13 @@ export const WalletSwitch = React.memo(
                         <Text style={styles.label} weight="600">
                             {currentWallet?.label}
                         </Text>
-                        <Text style={styles.accounts}>{currentWallet.keyPairsAddresses.length} accounts</Text>
+                        <Text style={styles.accounts}>
+                            {currentWallet.keyPairsAddresses.length} {t('current_account.wallet_switch.accounts')}
+                        </Text>
                     </View>
 
                     <Text variant="small" color="tertiary">
-                        {formatValue(totalBalanceInXno)} {nativeCurrency}
+                        {t('current_account.wallet_switch.balance',{balance:formatValue(totalBalanceInXno),currency:nativeCurrency})}
                     </Text>
                     <Entypo name="chevron-right" style={styles.chevron} />
                 </TouchableOpacity>

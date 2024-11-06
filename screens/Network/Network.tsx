@@ -9,10 +9,12 @@ import NetworkItem from '@screens/Network/NetworkItem';
 import Button from '@components/Button/Button';
 import Text from '@components/Text/Text';
 import {UseTorSetting} from '@screens/Network/UseTorSetting';
+import {useTranslation} from 'react-i18next';
 
 const Network = ({navigation}: CommonStackScreenProps<'Network'>) => {
     const {allNetworks, currentNetwork} = useNetworks();
 
+    const {t} = useTranslation();
     const styles = useThemeStyleSheet(dynamicStyles);
 
     return (
@@ -24,13 +26,12 @@ const Network = ({navigation}: CommonStackScreenProps<'Network'>) => {
                 ListFooterComponent={
                     <>
                         <Text style={styles.recommend}>
-                            We recommend you add your own node for better speed, reduced load to our nodes and increased
-                            the security of the network.
+                            {t('settings.general.network.description')}
                         </Text>
                         <Button
                             containerStyle={styles.addButton}
                             variant="primary"
-                            title={'Add Node'}
+                            title={t('settings.general.network.button')}
                             onPress={() => {
                                 navigation.navigate('NetworkNew');
                             }}

@@ -10,6 +10,7 @@ import {BottomSheetModal} from '@gorhom/bottom-sheet';
 import {useMMKVNumber} from 'react-native-mmkv';
 import {StorageKeys} from '@constants/storage';
 import {encryptedStorage} from '@storage/mmkv';
+import {useTranslation} from 'react-i18next';
 
 const ItemAutolock = () => {
     const styles = useThemeStyleSheet(sharedStyles);
@@ -18,6 +19,8 @@ const ItemAutolock = () => {
         autolockModal.current?.present();
     }, []);
     const [autolockSeconds, setAutolockSeconds] = useMMKVNumber(StorageKeys.autolockSeconds, encryptedStorage);
+
+    const {t} = useTranslation();
 
     useEffect(() => {
         if (!autolockSeconds) {
@@ -28,19 +31,19 @@ const ItemAutolock = () => {
     const autoLockLabel = useCallback((value: number) => {
         switch (value) {
             case 1:
-                return 'Immediately';
+                return `${t('settings.security.auto_lock.interval.1')}`;
             case 30:
-                return '30s';
+                return `${t('settings.security.auto_lock.interval.30')}`;
             case 60:
-                return '1min';
+                return `${t('settings.security.auto_lock.interval.60')}`;
             case 300:
-                return '5min';
+                return `${t('settings.security.auto_lock.interval.300')}`;
             case 1800:
-                return '30min';
+                return `${t('settings.security.auto_lock.interval.1800')}`;
             case 3600:
-                return '1hr';
+                return `${t('settings.security.auto_lock.interval.3600')}`;
             case -1:
-                return 'Never';
+                return `${t('settings.security.auto_lock.interval.-1')}`;
         }
         return '';
     }, []);
@@ -49,7 +52,7 @@ const ItemAutolock = () => {
         <>
             <SettingsItem
                 onPress={openAutolockModal}
-                title="Autolock"
+                title={t('settings.security.auto_lock.title')}
                 leftItem={
                     <View style={[styles.settingIconBack, {backgroundColor: palette.fuschia400}]}>
                         <MaterialIcons name="lock-clock" style={[styles.settingIcon]} />

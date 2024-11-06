@@ -10,6 +10,7 @@ import {ModalHeader} from '@components/ModalHeader/ModalHeader';
 import {Feather} from '@expo/vector-icons';
 import {useNativeCurrency} from '@hooks/useNativeCurrency';
 import {modalOpacity} from '@constants/variables';
+import {useTranslation} from 'react-i18next';
 
 interface Props {}
 
@@ -17,6 +18,8 @@ const NativeCurrencyModal = (props: Props, ref: any) => {
     const {handleSheetPositionChange} = useBottomSheetBackHandler(ref);
 
     const {nativeCurrency, setNativeCurrency} = useNativeCurrency();
+
+    const {t} = useTranslation();
 
     const snapPoints = useMemo(() => ['60%', '94%'], []);
     const renderBackdrop = useCallback(
@@ -40,14 +43,14 @@ const NativeCurrencyModal = (props: Props, ref: any) => {
             backdropComponent={renderBackdrop}
             snapPoints={snapPoints}>
             <ModalHeader
-                title={'Native Currency'}
+                title={t('settings.general.native_currency.display_modal')}
                 onClose={() => {
                     ref.current.close();
                 }}
             />
 
             <View style={styles.flex}>
-                <Text style={styles.pick}>Pick a currency used to display native values</Text>
+                <Text style={styles.pick}>{t('settings.general.native_currency.pick')}</Text>
 
                 {/*TODO don't be lazy array and map*/}
                 <TouchableOpacity
@@ -60,7 +63,7 @@ const NativeCurrencyModal = (props: Props, ref: any) => {
                             XNO
                         </Text>
                         <Text style={styles.explainer}>
-                            XNO also known as Nano, is the default currency on Nano blockchain.
+                            {t('settings.general.native_currency.nano')}
                         </Text>
                     </View>
                     {nativeCurrency === 'XNO' && <Feather name="check" style={styles.checkMark} />}
@@ -76,7 +79,7 @@ const NativeCurrencyModal = (props: Props, ref: any) => {
                             NYANO
                         </Text>
                         <Text style={styles.explainer}>
-                            1,000,000 NYANO = 1 XNO{'\n'}NYANO isn't a separate token. It's just a conversion
+                            {t('settings.general.native_currency.nyano')}
                         </Text>
                     </View>
                     {nativeCurrency === 'NYANO' && <Feather name="check" style={styles.checkMark} />}

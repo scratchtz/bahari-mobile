@@ -6,6 +6,7 @@ import {useAppTheme} from '@hooks/useAppTheme';
 import {AppTheme, palette, rounded, spacing} from '@utils/styles';
 import {useThemeStyleSheetProvided} from '@hooks/useThemeStyleSheet';
 import BigNumber from 'bignumber.js';
+import {useTranslation} from 'react-i18next';
 
 type Props = {
     onPress: () => void;
@@ -15,6 +16,8 @@ export const RepItem = React.memo(
     ({alias, uptime_percent, account, version, weight_percent, last_seen, onPress}: Props) => {
         const theme = useAppTheme();
         const styles = useThemeStyleSheetProvided(theme, dynamicStyles);
+
+        const {t} = useTranslation();
 
         const voteWeight = new BigNumber(weight_percent).toFormat();
         const uptime = new BigNumber(uptime_percent);
@@ -27,9 +30,9 @@ export const RepItem = React.memo(
                     <Text weight={'600'} style={styles.name}>
                         {alias}
                     </Text>
-                    <Text>Vote weight: {voteWeight}%</Text>
-                    <Text>Last week uptime: {uptime.toFormat(2)}%</Text>
-                    <Text>Node Version: {version}</Text>
+                    <Text>{t('settings.general.representative.change.list.voting_weight',{number:voteWeight})}</Text>
+                    <Text>{t('settings.general.representative.change.list.last_uptime',{number:uptime.toFormat(2)})}</Text>
+                    <Text>{t('settings.general.representative.change.list.node_version',{version:version})}</Text>
                 </View>
                 <View style={[styles.uptimeWrap, {backgroundColor: uptimeColor}]}>
                     <Text weight={'800'} style={styles.uptime}>

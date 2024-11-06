@@ -11,9 +11,12 @@ import {FontAwesome6} from '@expo/vector-icons';
 import {hitSlop, modalOpacity} from '@constants/variables';
 import {ModalHeader} from '@components/ModalHeader/ModalHeader';
 import {encryptedStorage} from '@storage/mmkv';
+import {useTranslation} from 'react-i18next';
 export const UseTorSetting = React.memo(() => {
     const theme = useAppTheme();
     const styles = useThemeStyleSheetProvided(theme, dynamicStyles);
+
+    const {t} = useTranslation();
 
     const [useTor, setUseTor] = useMMKVBoolean(StorageKeys.useTor, encryptedStorage);
 
@@ -34,7 +37,7 @@ export const UseTorSetting = React.memo(() => {
     return (
         <View style={styles.container}>
             <View style={styles.textWrap}>
-                <Text style={styles.text}>Use Tor</Text>
+                <Text style={styles.text}>{'main.settings.general.network.tor.title'}</Text>
                 <TouchableOpacity onPress={openBottomSheet} hitSlop={hitSlop} style={styles.questionWrap}>
                     <FontAwesome6 name="circle-question" style={styles.question} />
                 </TouchableOpacity>
@@ -46,14 +49,13 @@ export const UseTorSetting = React.memo(() => {
                 ref={bottomSheetModalRef}
                 backdropComponent={renderBackdrop}
                 snapPoints={[300]}>
-                <ModalHeader title={'Tor'} onClose={closeBottomSheet} />
+                <ModalHeader title={t('main.settings.general.network.tor.modal_title')} onClose={closeBottomSheet} />
                 <View style={styles.bottomSheetInner}>
                     <Text>
-                        Tor protects your privacy by hiding your IP address, your requests are routed via the Tor
-                        network.
+                        {t('main.settings.general.network.tor.hide_ip')}
                     </Text>
-                    <Text>Most of the times it can be a bit slower than a direct connection to the node.</Text>
-                    <Text color={'secondary'}>Also note Bahari servers do not log user's IP addresses</Text>
+                    <Text>{t('main.settings.general.network.tor.slow')}</Text>
+                    <Text color={'secondary'}>{t('main.settings.general.network.tor.note')}</Text>
                 </View>
             </BottomSheetModal>
         </View>

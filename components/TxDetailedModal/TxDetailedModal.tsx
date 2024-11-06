@@ -23,16 +23,15 @@ import {navigateDispatch} from '@navigation/shared';
 import {CommonActions} from '@react-navigation/native';
 import * as WebBrowser from 'expo-web-browser';
 import {modalOpacity} from '@constants/variables';
+import {useTranslation} from 'react-i18next';
 
-const TITLE = {
-    receive: 'Received',
-    send: 'Sent',
-    change: 'Changed Representative',
-};
 const TxDetailedModal = ({type, account, confirmed, amount, hash, local_timestamp}: History, ref: any) => {
     const {handleSheetPositionChange} = useBottomSheetBackHandler(ref);
 
     const {nativeCurrency} = useNativeCurrency();
+
+    const {t} = useTranslation();
+
     const snapPoints = useMemo(() => [410, 600, '90%'], []);
     const renderBackdrop = useCallback(
         (props: any) => (
@@ -109,15 +108,15 @@ const TxDetailedModal = ({type, account, confirmed, amount, hash, local_timestam
                         </TouchableOpacity>
                     </View>
                     <View style={styles.section}>
-                        <Text style={styles.key}>{TITLE[type]}</Text>
+                        <Text style={styles.key}>{t(`wallet.transaction_item.modal.title.${type}`)}</Text>
                         <Text style={[styles.amount, {color: amountColor}]}>
                             {type === 'receive' ? '+' : type === 'send' ? '-' : ''}
-                            {formatValue(nativeValue)} {nativeCurrency}
+                            {t('wallet.transaction_item.modal.amount',{amount:formatValue(nativeValue),currency:nativeCurrency})}
                         </Text>
                     </View>
                     <View style={styles.section}>
                         <Text style={styles.key}>
-                            {type === 'receive' ? 'From' : type === 'send' ? 'To' : 'Account'}
+                            {type === 'receive' ? `${t('wallet.transaction_item.modal.type.from')}` : type === 'send' ? `${t('wallet.transaction_item.modal.type.to')}` : `${t('wallet.transaction_item.modal.type.account')}`}
                         </Text>
                         <View style={styles.hor}>
                             <AddressThumbnail address={account} size={30} containerStyle={styles.thumbnail} />
@@ -133,26 +132,26 @@ const TxDetailedModal = ({type, account, confirmed, amount, hash, local_timestam
                                 </TouchableOpacity>
                                 {!addressName && (
                                     <TouchableOpacity onPress={onAddContact}>
-                                        <Text style={styles.addContact}>Add Contact</Text>
+                                        <Text style={styles.addContact}>{t('wallet.transaction_item.modal.add_contact')}</Text>
                                     </TouchableOpacity>
                                 )}
                             </View>
                         </View>
                     </View>
                     <View style={styles.section}>
-                        <Text style={styles.key}>Date</Text>
+                        <Text style={styles.key}>{t('wallet.transaction_item.modal.date')}</Text>
                         <Text style={[styles.amount, {color: amountColor}]}>
                             <Text style={styles.date}>{time}</Text>
                         </Text>
                     </View>
                     <View style={styles.section}>
-                        <Text style={styles.key}>Status</Text>
+                        <Text style={styles.key}>{t('wallet.transaction_item.modal.status.label')}</Text>
                         <Text style={[styles.amount, {color: amountColor}]}>
-                            <Text style={styles.date}>{confirmed === 'true' ? 'Confirmed' : 'Pending'}</Text>
+                            <Text style={styles.date}>{confirmed === 'true' ? `${t('wallet.transaction_item.modal.status.confirmed')}` : `${t('wallet.transaction_item.modal.status.pending')}`}</Text>
                         </Text>
                     </View>
                     <TouchableOpacity style={styles.openExplorerButton} onPress={openOnBrowser}>
-                        <Text style={styles.openExplorerText}>Open on block explorer</Text>
+                        <Text style={styles.openExplorerText}>{t('wallet.transaction_item.modal.block_explorer')}</Text>
                     </TouchableOpacity>
                 </BottomSheetScrollView>
             </View>

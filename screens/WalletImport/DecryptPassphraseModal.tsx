@@ -15,6 +15,7 @@ import ButtonTiny from '@components/Button/ButtonTiny';
 import {FontAwesome} from '@expo/vector-icons';
 import BottomSheetTextInput from '@components/TextInput/BottomSheetTextInput';
 import {modalOpacity} from '@constants/variables';
+import {useTranslation} from 'react-i18next';
 
 interface Props {
     onDecryption: (mnemonic: string) => void;
@@ -26,6 +27,8 @@ const DecryptPassphraseModal = (props: Props, ref: any) => {
     const [password, setPassword] = useState('');
     const [encryptedText, setEncryptedText] = useState('');
     const [decryptedText, setDecryptedText] = useState('');
+
+    const {t} = useTranslation();
 
     const snapPoints = useMemo(() => ['80%', '92%'], []);
     const renderBackdrop = useCallback(
@@ -46,11 +49,11 @@ const DecryptPassphraseModal = (props: Props, ref: any) => {
     };
     const onDecrypt = () => {
         if (!password) {
-            ToastController.show({kind: 'error', title: 'Error', content: 'Enter password to decrypt text'});
+            ToastController.show({kind: 'error', title: 'Error', content: `${t('settings.wallet.import_wallet.decrypt_passphrase.errors.no_password')}`});
             return;
         }
         if (!encryptedText) {
-            ToastController.show({kind: 'error', title: 'Error', content: 'Enter encrypted text'});
+            ToastController.show({kind: 'error', title: 'Error', content: `${t('settings.wallet.import_wallet.decrypt_passphrase.errors.no_encrypted_text')}`});
             return;
         }
         try {
@@ -59,7 +62,7 @@ const DecryptPassphraseModal = (props: Props, ref: any) => {
             if (words.length < 12) {
                 ToastController.show({
                     title: 'Error',
-                    content: 'Failed to decrypt! Verify your password and encrypted text',
+                    content: `${t('settings.wallet.import_wallet.decrypt_passphrase.errors.failed')}`,
                     timeout: 6000,
                     kind: 'error',
                 });
@@ -93,7 +96,7 @@ const DecryptPassphraseModal = (props: Props, ref: any) => {
                 <Separator space={spacing.l} />
                 {decryptedText ? (
                     <>
-                        <Text variant="subheader">Your Passphrase</Text>
+                        <Text variant="subheader">{t('settings.wallet.import_wallet.decrypt_passphrase.your_passphrase')}</Text>
                         <View style={styles.encryptedTextContainer}>
                             <Text selectable style={styles.encryptedText}>
                                 {decryptedText}
@@ -105,14 +108,14 @@ const DecryptPassphraseModal = (props: Props, ref: any) => {
                     </>
                 ) : (
                     <>
-                        <Text variant="subheader">Import Encrypted Passphrase</Text>
+                        <Text variant="subheader">{t('settings.wallet.import_wallet.decrypt_passphrase.import')}</Text>
                         <Separator space={spacing.l} />
                         <View style={styles.labelContainer}>
-                            <Text style={styles.label}>Password</Text>
+                            <Text style={styles.label}>{t('settings.wallet.import_wallet.decrypt_passphrase.password')}</Text>
                         </View>
                         <View style={[styles.textInputContainer]}>
                             <BottomSheetTextInput
-                                placeholder="Password"
+                                placeholder={t('settings.wallet.import_wallet.decrypt_passphrase.password_placeholder')}
                                 placeholderTextColor={theme.colors.textTertiary}
                                 style={styles.textInput}
                                 returnKeyType="next"
@@ -123,17 +126,17 @@ const DecryptPassphraseModal = (props: Props, ref: any) => {
                         </View>
                         <Separator space={spacing.l} />
                         <View style={styles.hor}>
-                            <Text style={styles.label}>Encrypted Text</Text>
+                            <Text style={styles.label}>{t('settings.wallet.import_wallet.decrypt_passphrase.encrypted_text')}</Text>
                             <ButtonTiny
                                 icon={<FontAwesome name="paste" style={styles.pasteIcon} />}
-                                title={'Paste'}
+                                title={t('settings.wallet.import_wallet.decrypt_passphrase.paste')}
                                 onPress={onPaste}
                             />
                         </View>
                         <Separator space={spacing.s} />
                         <View style={[styles.textInputContainer]}>
                             <BottomSheetTextInput
-                                placeholder="Encrypted Text"
+                                placeholder={t('settings.wallet.import_wallet.decrypt_passphrase.encrypted_text_placeholder')}
                                 multiline={true}
                                 placeholderTextColor={theme.colors.textTertiary}
                                 returnKeyType="next"
@@ -146,7 +149,7 @@ const DecryptPassphraseModal = (props: Props, ref: any) => {
 
                         <Separator space={spacing.l} />
                         <Button
-                            title="Decrypt"
+                            title={t('settings.wallet.import_wallet.decrypt_passphrase.button')}
                             onPress={onDecrypt}
                             disabled={password.length === 0 || encryptedText.length === 0}
                         />

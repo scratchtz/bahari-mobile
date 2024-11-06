@@ -28,16 +28,19 @@ import {MaterialIcons, FontAwesome, Ionicons, Octicons} from '@expo/vector-icons
 import * as NavigationBar from 'expo-navigation-bar';
 import {navigationRef} from '@navigation/shared';
 import ImportLedger from '@screens/WalletImport/ImportLedger';
-import useTranslationInit from '@hooks/useTranslationInit';
 import BuyNano from '@screens/BuyNano/BuyNano';
 import Receive from '@screens/Receive/Receive';
 import Representative from '@screens/Representative/Representative';
 import ChangeRepresentative from '@screens/Representative/ChangeRepresentative';
+import useTranslationInit from '@hooks/useTranslationInit';
+import {TFunction} from 'i18next';
+import {useTranslation} from 'react-i18next';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const Navigation = () => {
-    useTranslationInit();
+    useTranslationInit()
     const theme = useAppTheme();
+    const {t} = useTranslation();
 
     const navigationTheme = useMemo(() => {
         return {
@@ -117,6 +120,7 @@ const Navigation = () => {
 export const CommonStackScreens = (
     Stack: ReturnType<typeof createNativeStackNavigator<CommonStackList>>,
     theme: AppTheme,
+    t: TFunction<'translation', undefined>,
 ) => (
     <>
         <Stack.Screen
@@ -126,7 +130,7 @@ export const CommonStackScreens = (
                 navigatorScreenOptions({
                     route,
                     theme,
-                    title: '',
+                    title: `${t('wallet.send.title')}`,
                     headerShown: true,
                 })
             }
@@ -138,7 +142,7 @@ export const CommonStackScreens = (
                 navigatorScreenOptions({
                     route,
                     theme,
-                    title: 'Enter Amount',
+                    title: `${t('wallet.send.amount.title')}`,
                     headerShown: true,
                 })
             }
@@ -150,7 +154,7 @@ export const CommonStackScreens = (
                 navigatorScreenOptions({
                     route,
                     theme,
-                    title: 'Contacts',
+                    title: `${t('settings.wallet.contacts.title')}`,
                     headerShown: true,
                     headerRight: () => (
                         <TouchableOpacity
@@ -170,7 +174,7 @@ export const CommonStackScreens = (
                 navigatorScreenOptions({
                     route,
                     theme,
-                    title: 'New Contact',
+                    title: `${t('settings.wallet.contacts.new.title')}`,
                     headerShown: true,
                 })
             }
@@ -182,7 +186,7 @@ export const CommonStackScreens = (
                 navigatorScreenOptions({
                     route,
                     theme,
-                    title: '',
+                    title: `${t('settings.wallet.contacts.contact.title')}`,
                     headerShown: true,
                 })
             }
@@ -194,7 +198,7 @@ export const CommonStackScreens = (
                 navigatorScreenOptions({
                     route,
                     theme,
-                    title: 'Networks',
+                    title: `${t('settings.general.network.nav_title')}`,
                     headerShown: true,
                 })
             }
@@ -206,7 +210,7 @@ export const CommonStackScreens = (
                 navigatorScreenOptions({
                     route,
                     theme,
-                    title: 'Add Network',
+                    title: `${t('settings.general.network.new.title')}`,
                     headerShown: true,
                 })
             }
@@ -218,7 +222,7 @@ export const CommonStackScreens = (
                 navigatorScreenOptions({
                     route,
                     theme,
-                    title: 'Transactions',
+                    title: `${t('wallet.history_list.title')}`,
                     headerShown: true,
                 })
             }
@@ -230,7 +234,7 @@ export const CommonStackScreens = (
                 navigatorScreenOptions({
                     route,
                     theme,
-                    title: 'Buy Nano',
+                    title: `${t('wallet.buy.title')}`,
                     headerShown: true,
                 })
             }
@@ -242,7 +246,7 @@ export const CommonStackScreens = (
                 navigatorScreenOptions({
                     route,
                     theme,
-                    title: 'Your Wallet',
+                    title: `${t('wallet.receive.title')}`,
                     headerShown: true,
                 })
             }
@@ -254,7 +258,7 @@ export const CommonStackScreens = (
                 navigatorScreenOptions({
                     route,
                     theme,
-                    title: 'Representative',
+                    title: `${t('settings.general.representative.title')}`,
                     headerShown: true,
                 })
             }
@@ -266,7 +270,7 @@ export const CommonStackScreens = (
                 navigatorScreenOptions({
                     route,
                     theme,
-                    title: 'Change Representative',
+                    title: `${t('settings.general.representative.change.title')}`,
                     headerShown: true,
                 })
             }
@@ -277,6 +281,7 @@ export const CommonStackScreens = (
 const WalletStack = createNativeStackNavigator<CommonStackList>();
 const WalletStackNavigation: React.FC = () => {
     const theme = useAppTheme();
+    const {t} = useTranslation();
     return (
         <WalletStack.Navigator>
             <WalletStack.Group>
@@ -285,7 +290,7 @@ const WalletStackNavigation: React.FC = () => {
                     component={Wallet}
                     options={({route}) => navigatorScreenOptions({route, theme, headerShown: false})}
                 />
-                {CommonStackScreens(WalletStack, theme)}
+                {CommonStackScreens(WalletStack, theme,t)}
             </WalletStack.Group>
         </WalletStack.Navigator>
     );
@@ -294,6 +299,7 @@ const WalletStackNavigation: React.FC = () => {
 const SettingsStack = createNativeStackNavigator<CommonStackList>();
 const SettingsStackNavigation: React.FC = () => {
     const theme = useAppTheme();
+    const {t} = useTranslation();
     return (
         <SettingsStack.Navigator>
             <SettingsStack.Group>
@@ -302,7 +308,7 @@ const SettingsStackNavigation: React.FC = () => {
                     component={Settings}
                     options={({route}) => navigatorScreenOptions({route, theme, headerShown: false})}
                 />
-                {CommonStackScreens(SettingsStack, theme)}
+                {CommonStackScreens(SettingsStack, theme,t)}
             </SettingsStack.Group>
         </SettingsStack.Navigator>
     );
@@ -311,6 +317,7 @@ const SettingsStackNavigation: React.FC = () => {
 const DiscoverStack = createNativeStackNavigator<CommonStackList>();
 const DiscoverStackStackNavigation: React.FC = () => {
     const theme = useAppTheme();
+    const {t} = useTranslation();
     return (
         <DiscoverStack.Navigator>
             <DiscoverStack.Group>
@@ -319,7 +326,7 @@ const DiscoverStackStackNavigation: React.FC = () => {
                     component={Discover}
                     options={({route}) => navigatorScreenOptions({route, theme, headerShown: false})}
                 />
-                {CommonStackScreens(DiscoverStack, theme)}
+                {CommonStackScreens(DiscoverStack, theme,t)}
             </DiscoverStack.Group>
         </DiscoverStack.Navigator>
     );

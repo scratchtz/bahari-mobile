@@ -8,10 +8,13 @@ import {View} from 'react-native';
 import {palette} from '@utils/styles';
 import {Fontisto} from '@expo/vector-icons';
 import {useDisplayCurrency} from '@hooks/useDisplayCurrency';
+import {useTranslation} from 'react-i18next';
 
 const ItemDisplayCurrency = () => {
     const styles = useThemeStyleSheet(sharedStyles);
     const {displayCurrency} = useDisplayCurrency();
+
+    const {t} = useTranslation();
 
     const currencyModal = useRef<BottomSheetModal>();
     const openCurrencyModal = useCallback(() => {
@@ -22,7 +25,7 @@ const ItemDisplayCurrency = () => {
         <>
             <SettingsItem
                 onPress={openCurrencyModal}
-                title="Display Currency"
+                title={t('settings.general.display_currency.title')}
                 leftItem={
                     <View style={[styles.settingIconBack, {backgroundColor: palette.amber400}]}>
                         <Fontisto name="money-symbol" style={[styles.settingIcon]} />

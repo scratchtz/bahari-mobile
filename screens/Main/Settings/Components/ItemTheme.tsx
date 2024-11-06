@@ -8,6 +8,7 @@ import ThemeChangeModal from '@screens/Main/Settings/ThemeChangeModal';
 import {BottomSheetModal} from '@gorhom/bottom-sheet';
 import {useAppColorSettings} from '@hooks/useAppColorScheme';
 import {palette} from '@utils/styles';
+import {useTranslation} from 'react-i18next';
 
 const ItemTheme = () => {
     const styles = useThemeStyleSheet(sharedStyles);
@@ -16,13 +17,15 @@ const ItemTheme = () => {
         themeChangeModal.current?.present();
     }, []);
 
+    const {t} = useTranslation();
+
     const currentScheme = useAppColorSettings();
 
     return (
         <>
             <SettingsItem
                 onPress={openThemeChangeModal}
-                title="Theme"
+                title={t('settings.general.theme.title')}
                 leftItem={
                     <View style={[styles.settingIconBack, {backgroundColor: palette.sky500}]}>
                         <MaterialCommunityIcons name="theme-light-dark" style={[styles.settingIcon]} />
@@ -30,7 +33,7 @@ const ItemTheme = () => {
                 }
                 rightItem={
                     <Text style={styles.valueText} weight={'500'}>
-                        {currentScheme}
+                        {t(`settings.general.theme.${currentScheme}`)}
                     </Text>
                 }
             />

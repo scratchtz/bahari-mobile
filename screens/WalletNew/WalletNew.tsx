@@ -24,11 +24,14 @@ import CopyTag from '@components/Tag/CopyTag';
 import {persistWallet, setDefaultKeyPairAddress} from '@storage/wallet';
 import {CommonActions} from '@react-navigation/native';
 import {hitSlop} from '@constants/variables';
+import {useTranslation} from 'react-i18next';
 export type WalletNewMode = 'onboard' | 'passphrase';
 
 const WalletNew: React.FC<RootStackScreenProps<'WalletNew'>> = ({navigation, route}) => {
     const theme = useAppTheme();
     const styles = useThemeStyleSheetProvided(theme, dynamicStyles);
+
+    const {t} = useTranslation();
 
     const [mode, setMode] = useState<WalletNewMode>(
         route && route.params.walletMode ? route.params.walletMode : 'onboard',
@@ -107,27 +110,27 @@ const WalletNew: React.FC<RootStackScreenProps<'WalletNew'>> = ({navigation, rou
             <ScrollView contentContainerStyle={[styles.container, isTablet() && styles.containerTablet]}>
                 {mode === 'onboard' && (
                     <>
-                        <Text variant="header">Let's get started!</Text>
-                        <Text>We'll generate a passphrase (12 words recovery phrase) for you.</Text>
+                        <Text variant="header">{t('settings.wallet.new_wallet.onboard.title')}</Text>
+                        <Text>{t('settings.wallet.new_wallet.onboard.generate')}</Text>
                         <Separator space={spacing.l} />
 
-                        <Text variant="subheader">Important to remember</Text>
+                        <Text variant="subheader">{t('settings.wallet.new_wallet.onboard.remember')}</Text>
 
                         <View style={styles.noteContainer}>
-                            <Text style={styles.note}>Anyone who knows your passphrase can access your funds.</Text>
+                            <Text style={styles.note}>{t('settings.wallet.new_wallet.onboard.funds_access')}</Text>
                             <View style={[styles.noteIconContainer]}>
                                 <Fontisto name="persons" style={styles.noteIcon} />
                             </View>
                         </View>
                         <View style={styles.noteContainer}>
-                            <Text style={styles.note}>Keep it safe where no one except you can find it.</Text>
+                            <Text style={styles.note}>{t('settings.wallet.new_wallet.onboard.keep_safe')}</Text>
                             <View style={[styles.noteIconContainer]}>
                                 <Entypo name="shield" style={styles.noteIcon} />
                             </View>
                         </View>
                         <View style={styles.noteContainer}>
                             <Text style={styles.note}>
-                                We'll never ask for your passphrase, anyone who asks is probably trying to scam you.
+                                {t('settings.wallet.new_wallet.onboard.never_ask')}
                             </Text>
                             <View style={[styles.noteIconContainer]}>
                                 <MaterialCommunityIcons name="message-lock" style={styles.noteIcon} />
@@ -135,7 +138,7 @@ const WalletNew: React.FC<RootStackScreenProps<'WalletNew'>> = ({navigation, rou
                         </View>
                         <View style={styles.noteContainer}>
                             <Text style={styles.note}>
-                                If you lose your passphrase and your device we can't recover your wallet for you.
+                                {t('settings.wallet.new_wallet.onboard.passphrase_lost')}
                             </Text>
                             <View style={[styles.noteIconContainer]}>
                                 <MaterialCommunityIcons name="briefcase-search" style={styles.noteIcon} />
@@ -143,18 +146,18 @@ const WalletNew: React.FC<RootStackScreenProps<'WalletNew'>> = ({navigation, rou
                         </View>
                         <TouchableOpacity style={styles.learnMoreButton}>
                             <Text weight="500" style={styles.learnMore}>
-                                Learn more about how passphrases work
+                                {t('settings.wallet.new_wallet.onboard.learn_more')}
                             </Text>
                         </TouchableOpacity>
                         <Separator space={spacing.xl} />
-                        <Button variant="secondary" title="I understand" onPress={onUnderstand} />
+                        <Button variant="secondary" title={t('settings.wallet.new_wallet.onboard.button')} onPress={onUnderstand} />
                     </>
                 )}
 
                 {mode === 'passphrase' && (
                     <>
-                        <Text variant="subheader">Your Passphrase</Text>
-                        <Text variant="small">For your eyes only</Text>
+                        <Text variant="subheader">{t('settings.wallet.new_wallet.passphrase.title')}</Text>
+                        <Text variant="small">{t('settings.wallet.new_wallet.passphrase.for_you')}</Text>
 
                         <View style={styles.topBar}>
                             <TouchableOpacity
@@ -199,7 +202,7 @@ const WalletNew: React.FC<RootStackScreenProps<'WalletNew'>> = ({navigation, rou
                                         loop
                                     />
                                     <Text variant="small" style={styles.generatingText}>
-                                        Generating passphrase.
+                                        {t('settings.wallet.new_wallet.passphrase.generating')}
                                     </Text>
                                 </>
                             ) : (
@@ -220,7 +223,7 @@ const WalletNew: React.FC<RootStackScreenProps<'WalletNew'>> = ({navigation, rou
                                     />
                                 }
                                 onPress={openEncryptModal}
-                                title="Encrypt"
+                                title={t('settings.wallet.new_wallet.passphrase.encrypt')}
                             />
                             <Tag
                                 icon={
@@ -229,7 +232,7 @@ const WalletNew: React.FC<RootStackScreenProps<'WalletNew'>> = ({navigation, rou
                                         style={[styles.actionIcon, {color: palette.purple600}]}
                                     />
                                 }
-                                title="Regenerate"
+                                title={t('settings.wallet.new_wallet.passphrase.regenerate')}
                                 onPress={onRegenerate}
                             />
 
@@ -243,7 +246,7 @@ const WalletNew: React.FC<RootStackScreenProps<'WalletNew'>> = ({navigation, rou
                         </View>
 
                         <Separator space={spacing.xl} />
-                        <Button variant="primary" title="Done" onPress={onDone} />
+                        <Button variant="primary" title={t('settings.wallet.new_wallet.passphrase.button')} onPress={onDone} />
                     </>
                 )}
             </ScrollView>

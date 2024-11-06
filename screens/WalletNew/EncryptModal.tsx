@@ -14,6 +14,7 @@ import CopyTag from '@components/Tag/CopyTag';
 import {ToastController} from '@components/Toast/Toast';
 import BottomSheetTextInput from '@components/TextInput/BottomSheetTextInput';
 import {modalOpacity} from '@constants/variables';
+import {useTranslation} from 'react-i18next';
 
 interface Props {
     onSuccess: () => void;
@@ -24,6 +25,8 @@ const MINIMUM_LENGTH = 8;
 
 const EncryptModal = (props: Props, ref: any) => {
     const {handleSheetPositionChange} = useBottomSheetBackHandler(ref);
+
+    const {t} = useTranslation();
 
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -46,27 +49,27 @@ const EncryptModal = (props: Props, ref: any) => {
     const passwordStrengthText = useMemo(() => {
         switch (passwordStrength) {
             case 0:
-                return 'too weak';
+                return `${t('settings.wallet.new_wallet.encrypt_wallet.unencrypted.strength.too_weak')}`;
             case 1:
-                return 'weak';
+                return `${t('settings.wallet.new_wallet.encrypt_wallet.unencrypted.strength.weak')}`;
             case 2:
-                return 'medium';
+                return `${t('settings.wallet.new_wallet.encrypt_wallet.unencrypted.strength.medium')}`;
             case 3:
-                return 'strong';
+                return `${t('settings.wallet.new_wallet.encrypt_wallet.unencrypted.strength.strong')}`;
         }
     }, [passwordStrength]);
 
     const onEncrypt = () => {
         if (password.length < MINIMUM_LENGTH) {
-            ToastController.show({kind: 'error', content: 'Password should be 8 characters or more'});
+            ToastController.show({kind: 'error', content: `${t('settings.wallet.new_wallet.encrypt_wallet.errors.short_password')}`});
             return;
         }
         if (password !== confirmPassword) {
-            ToastController.show({kind: 'error', content: "Passwords don't match"});
+            ToastController.show({kind: 'error', content: `${t('settings.wallet.new_wallet.encrypt_wallet.errors.unmatched_password')}`});
             return;
         }
         if (!props.passphrase) {
-            ToastController.show({kind: 'error', title: 'Error', content: 'Passphrase not available'});
+            ToastController.show({kind: 'error', title: 'Error', content: `${t('settings.wallet.new_wallet.encrypt_wallet.errors.passphrase_unavailable')}`});
             return;
         }
 
@@ -106,10 +109,10 @@ const EncryptModal = (props: Props, ref: any) => {
             <BottomSheetScrollView style={styles.flex} contentContainerStyle={styles.container}>
                 {encryptedText ? (
                     <>
-                        <Text variant="subheader">Your Encrypted Passphrase</Text>
-                        <Text style={styles.info}>Store in a safe place.</Text>
+                        <Text variant="subheader">{t('settings.wallet.new_wallet.encrypt_wallet.unencrypted.title')}</Text>
+                        <Text style={styles.info}>{t('settings.wallet.new_wallet.encrypt_wallet.encrypted.store')}</Text>
                         <Text style={styles.warning} weight="500">
-                            If you forget your password we can't decrypt this text for you.
+                            {t('settings.wallet.new_wallet.encrypt_wallet.encrypted.reminder')}
                         </Text>
                         <View style={styles.encryptedTextContainer}>
                             <Text selectable style={styles.encryptedText}>
@@ -122,13 +125,12 @@ const EncryptModal = (props: Props, ref: any) => {
                     </>
                 ) : (
                     <>
-                        <Text variant="subheader">Encrypt your Passphrase</Text>
+                        <Text variant="subheader">{t('settings.wallet.new_wallet.encrypt_wallet.unencrypted.title')}</Text>
                         <Text variant="small" style={styles.info}>
-                            Use AES256 to encrypt your passphrase with a password before you copy it. Stronger passwords
-                            are more secure.
+                            {t('settings.wallet.new_wallet.encrypt_wallet.unencrypted.reminder')}
                         </Text>
                         <TouchableOpacity>
-                            <Text style={styles.learnMore}>Learn More</Text>
+                            <Text style={styles.learnMore}>{t('settings.wallet.new_wallet.encrypt_wallet.unencrypted.learn_more')}</Text>
                         </TouchableOpacity>
                         <View style={styles.mnemonicContainer}>
                             <Text variant="small" style={styles.mnemonic}>
@@ -138,7 +140,7 @@ const EncryptModal = (props: Props, ref: any) => {
 
                         <Separator space={spacing.l} />
                         <View style={styles.labelContainer}>
-                            <Text style={styles.label}>Password</Text>
+                            <Text style={styles.label}>{t('settings.wallet.new_wallet.encrypt_wallet.unencrypted.password')}</Text>
                             {password.length > 0 && (
                                 <Text style={[styles.strength, {color: PASSWORD_STRENGTH_COLORS[passwordStrength]}]}>
                                     {passwordStrengthText}
@@ -152,7 +154,7 @@ const EncryptModal = (props: Props, ref: any) => {
                                 passwordsCorrect && {borderColor: theme.colors.success},
                             ]}>
                             <BottomSheetTextInput
-                                placeholder="Password"
+                                placeholder={t('settings.wallet.new_wallet.encrypt_wallet.unencrypted.password_placeholder')}
                                 placeholderTextColor={theme.colors.textTertiary}
                                 style={styles.textInput}
                                 returnKeyType="next"
@@ -162,7 +164,7 @@ const EncryptModal = (props: Props, ref: any) => {
                             />
                         </View>
                         <Separator space={spacing.m} />
-                        <Text style={styles.label}>Confirm Password</Text>
+                        <Text style={styles.label}>{t('settings.wallet.new_wallet.encrypt_wallet.unencrypted.confirm_password')}</Text>
                         <View
                             style={[
                                 styles.textInputContainer,
@@ -170,7 +172,7 @@ const EncryptModal = (props: Props, ref: any) => {
                                 passwordsCorrect && {borderColor: theme.colors.success},
                             ]}>
                             <BottomSheetTextInput
-                                placeholder="Password"
+                                placeholder={t('settings.wallet.new_wallet.encrypt_wallet.unencrypted.confirm_password_placeholder')}
                                 placeholderTextColor={theme.colors.textTertiary}
                                 style={styles.textInput}
                                 returnKeyType="done"
@@ -181,7 +183,7 @@ const EncryptModal = (props: Props, ref: any) => {
                         </View>
 
                         <Separator space={spacing.l} />
-                        <Button title="Encrypt" onPress={onEncrypt} disabled={!passwordsCorrect} />
+                        <Button title={t('settings.wallet.new_wallet.encrypt_wallet.unencrypted.button')} onPress={onEncrypt} disabled={!passwordsCorrect} />
                     </>
                 )}
             </BottomSheetScrollView>

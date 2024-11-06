@@ -11,9 +11,13 @@ import {useAppTheme} from '@hooks/useAppTheme';
 import {ModalHeader} from '@components/ModalHeader/ModalHeader';
 import Button from '@components/Button/Button';
 import {modalOpacity} from '@constants/variables';
+import {useTranslation} from 'react-i18next';
 
 const ItemResetWallet = () => {
-    const styles = useThemeStyleSheet(sharedStyles);
+    const styles = useThemeStyleSheet(sharedStyles)
+
+    const {t} = useTranslation();
+
     const resetWalletModal = useRef<BottomSheetModal>(null);
     const openResetWalletModal = useCallback(() => {
         resetWalletModal.current?.present();
@@ -23,7 +27,7 @@ const ItemResetWallet = () => {
         <>
             <SettingsItem
                 onPress={openResetWalletModal}
-                title="Reset Wallet"
+                title={t('settings.security.reset_wallet.title')}
                 leftItem={
                     <View style={[styles.settingIconBack, {backgroundColor: palette.rose500}]}>
                         <Feather name="delete" style={[styles.settingIcon]} />
@@ -38,6 +42,8 @@ const ItemResetWallet = () => {
 const LOCK_TIMEOUT = 4;
 const ResetWalletModal = React.forwardRef(({}, ref: any) => {
     const {handleSheetPositionChange} = useBottomSheetBackHandler(ref);
+
+    const {t} = useTranslation();
 
     const countdownStarted = useRef(false);
     const [timeout, setTimeLeft] = useState(LOCK_TIMEOUT);
@@ -85,17 +91,17 @@ const ResetWalletModal = React.forwardRef(({}, ref: any) => {
             onChange={handlePositionChange}
             backdropComponent={renderBackdrop}
             snapPoints={snapPoints}>
-            <ModalHeader title={'Reset Wallet'} onClose={() => ref.current.close()} />
+            <ModalHeader title={t('settings.security.reset_wallet.modal_label')} onClose={() => ref.current.close()} />
             <View style={styles.innerContainer}>
                 <View style={styles.warningWrap}>
                     <AntDesign name="warning" size={24} color={theme.colors.warning} />
                     <Text style={styles.warning}>
-                        If you don't have your recovery keys we can't recover the wallet for you.
+                        {t('settings.security.reset_wallet.warning')}
                     </Text>
                 </View>
                 <View style={styles.buttonsContainer}>
                     <Button
-                        title={'Cancel'}
+                        title={t('settings.security.reset_wallet.cancel')}
                         onPress={() => {
                             ref.current.close();
                         }}
@@ -103,7 +109,7 @@ const ResetWalletModal = React.forwardRef(({}, ref: any) => {
                         containerStyle={styles.button}
                     />
                     <Button
-                        title={timeout > 0 ? `Reset (${timeout})` : 'Reset'}
+                        title={timeout > 0 ? `${t('settings.security.reset_wallet.confirm')} (${timeout})` : `${t('settings.security.reset_wallet.confirm')}`}
                         variant="primary"
                         disabled={timeout > 0}
                         onPress={() => {}}

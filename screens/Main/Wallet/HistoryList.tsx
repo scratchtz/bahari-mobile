@@ -16,6 +16,7 @@ import {ToastController} from '@components/Toast/Toast';
 import {apiFaucet} from '@utils/api/faucet';
 import {useAccountBalance} from '@hooks/useAccountBalance';
 import Loading from '@components/Animation/Loading';
+import {useTranslation} from 'react-i18next';
 
 const HistoryList = () => {
     const {defaultKeyPair} = useDefaultKeyPair();
@@ -26,6 +27,8 @@ const HistoryList = () => {
 
     const {refetch} = useAccountBalance(defaultKeyPair?.address || '', true);
 
+    const {t} = useTranslation()
+
     const [isGettingFreeNano, setIsGettingFreeNano] = useState(false);
 
     const onGetFreeNano = async () => {
@@ -35,7 +38,7 @@ const HistoryList = () => {
             await apiFaucet(defaultKeyPair.address);
             setTimeout(() => {
                 void refetch({cancelRefetch: true});
-                ToastController.show({kind: 'success', content: 'Nano has been sent to this address'});
+                ToastController.show({kind: 'success', content:  `${t('wallet.history_list.toast.success')}`});
                 setIsGettingFreeNano(false);
             }, 2000);
         } catch (e: any) {
@@ -52,7 +55,7 @@ const HistoryList = () => {
         <>
             <View style={styles.headerContainer}>
                 <Text variant="subheader" style={{flex: 1}}>
-                    {intl.get('screens.main.wallet.historyList.title')}
+                    {t('wallet.history_list.label')}
                 </Text>
                 {data?.history?.length >= 5 && (
                     <TouchableOpacity
@@ -61,7 +64,7 @@ const HistoryList = () => {
                             navigation.navigate('TransactionHistory');
                         }}>
                         <Text style={styles.seeAll} weight="600">
-                            See All
+                            {t('wallet.history_list.see_all')}
                         </Text>
                         <Entypo name="chevron-right" style={styles.seeAllChevron} />
                     </TouchableOpacity>
@@ -80,7 +83,7 @@ const HistoryList = () => {
                             loop={true}
                         />
                         <Text color={'tertiary'} style={styles.noTxText}>
-                            No Transactions history yet.
+                            {t('wallet.history_list.no_transactions')}
                         </Text>
                         <Separator space={spacing.m} />
 
@@ -88,9 +91,9 @@ const HistoryList = () => {
                             <Loading size={32} />
                         ) : (
                             <>
-                                <Text variant="small">Curious to try nano?</Text>
+                                <Text variant="small">{t('wallet.history_list.try_nano')}</Text>
                                 <TouchableOpacity onPress={onGetFreeNano}>
-                                    <Text style={styles.getFreeText}>Get Free Nano</Text>
+                                    <Text style={styles.getFreeText}>{t('wallet.history_list.get_free')}</Text>
                                 </TouchableOpacity>
                             </>
                         )}

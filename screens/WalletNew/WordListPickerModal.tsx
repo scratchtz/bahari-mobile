@@ -11,6 +11,7 @@ import {Wordlists} from '@dreson4/react-native-quick-bip39';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {collectManifestSchemes} from 'expo-linking';
 import {modalOpacity} from '@constants/variables';
+import {useTranslation} from 'react-i18next';
 
 export type SupportedWordList = 'cs' | 'en' | 'es' | 'fr' | 'ja' | 'it' | 'ko' | 'pt' | 'zh';
 export type WordListPick = {label: string; value: SupportedWordList};
@@ -41,6 +42,7 @@ const WordListPickerModal = (props: Props, ref: any) => {
         ),
         [],
     );
+    const {t} = useTranslation();
 
     const theme = useAppTheme();
     const styles = useThemeStyleSheetProvided(theme, dynamicStyles);
@@ -55,9 +57,9 @@ const WordListPickerModal = (props: Props, ref: any) => {
             backdropComponent={renderBackdrop}
             snapPoints={snapPoints}>
             <View style={styles.container}>
-                <Text variant="subheader">Change Passphrase Language</Text>
+                <Text variant="subheader">{t('settings.wallet.new_wallet.passphrase.word_picker.title')}</Text>
                 <Text style={styles.warning}>
-                    Some other wallet applications might not support importing any passphrase that's not in English
+                    {t('settings.wallet.new_wallet.passphrase.word_picker.warning')}
                 </Text>
 
                 <BottomSheetScrollView>

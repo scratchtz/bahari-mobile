@@ -18,12 +18,15 @@ import BalanceSection from '@screens/Main/Wallet/BalanceSection';
 import {useScrollToTop} from '@react-navigation/native';
 import usePushNotifications from '@hooks/usePushNotifications';
 import TouchableScale from 'react-native-touchable-scale';
+import {useTranslation} from 'react-i18next';
 
 const WalletScreen: React.FC<AllScreenProps<'Wallet'>> = ({navigation}) => {
     usePushNotifications(); //initial load of push notifications
 
     const theme = useAppTheme();
     const styles = useThemeStyleSheetProvided(theme, dynamicStyles);
+
+    const {t} = useTranslation();
 
     const qrCodeModal = useRef<BottomSheetModal>();
     const scrollViewRef = useRef(null);
@@ -41,28 +44,27 @@ const WalletScreen: React.FC<AllScreenProps<'Wallet'>> = ({navigation}) => {
                 showsVerticalScrollIndicator={false}
                 ref={scrollViewRef}>
                 <CurrentAccount />
-
                 <Separator space={spacing.xl} />
                 <BalanceSection />
                 <PriceGraph />
                 <Separator space={spacing.xl} />
                 <View style={styles.actionButtons}>
                     <ActionButton
-                        title="Buy"
+                        title={t('wallet.actions.buy')}
                         icon={<MaterialIcons name="payments" style={styles.actionButtonIcon} />}
                         onPress={() => {
                             navigation.navigate('BuyNano');
                         }}
                     />
                     <ActionButton
-                        title="Send"
+                        title={t('wallet.actions.send')}
                         icon={<FontAwesome name="send" style={styles.actionButtonIcon} />}
                         onPress={() => {
                             navigation.navigate('Send');
                         }}
                     />
                     <ActionButton
-                        title="Receive"
+                        title={t('wallet.actions.receive')}
                         icon={<MaterialCommunityIcons name="briefcase-download" style={styles.actionButtonIcon} />}
                         onPress={() => {
                             navigation.navigate('Receive');
@@ -70,7 +72,7 @@ const WalletScreen: React.FC<AllScreenProps<'Wallet'>> = ({navigation}) => {
                     />
                     <ActionButton
                         icon={<FontAwesome5 name="qrcode" style={styles.actionButtonIcon} />}
-                        title={'Scan Code'}
+                        title={t('wallet.actions.scan_code')}
                         onPress={onScanQrCode}
                     />
                 </View>

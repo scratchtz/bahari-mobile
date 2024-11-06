@@ -17,12 +17,15 @@ import {BottomSheetModal} from '@gorhom/bottom-sheet';
 import * as Clipboard from 'expo-clipboard';
 import {hitSlop} from '@constants/variables';
 import {ToastController} from '@components/Toast/Toast';
+import {useTranslation} from 'react-i18next';
 
 const FILTER_MIN_WEIGHT = 2;
 const FILTER_MIN_UPTIME = 90;
 const ChangeRepresentative = ({navigation}: CommonStackScreenProps<'ChangeRepresentative'>) => {
     const theme = useAppTheme();
     const styles = useThemeStyleSheetProvided(theme, dynamicStyles);
+
+    const {t} = useTranslation();
 
     const changeRepModal = useRef<BottomSheetModal>(null);
     const [newRepAccount, setNewRepAccount] = useState('');
@@ -55,7 +58,7 @@ const ChangeRepresentative = ({navigation}: CommonStackScreenProps<'ChangeRepres
     const onPasteAddress = async () => {
         const text = await Clipboard.getStringAsync();
         if (!tools.validateAddress(text)) {
-            ToastController.show({kind: 'error', content: 'Invalid address'});
+            ToastController.show({kind: 'error', content: `${t('settings.general.representative.change.invalid_address')}`});
             return;
         }
         setNewRepAccount(text);
@@ -68,7 +71,7 @@ const ChangeRepresentative = ({navigation}: CommonStackScreenProps<'ChangeRepres
                 estimatedItemSize={200}
                 ListHeaderComponent={
                     <>
-                        <Text>Enter representative address</Text>
+                        <Text>{t('settings.general.representative.change.representative_address')}</Text>
                         <TextInput
                             rightItem={
                                 newRepAccount ? (
@@ -83,7 +86,7 @@ const ChangeRepresentative = ({navigation}: CommonStackScreenProps<'ChangeRepres
                             }
                         />
                         <Separator space={spacing.l} />
-                        <Text>Or pick from the list</Text>
+                        <Text>{t('settings.general.representative.change.pick')}</Text>
                         <Separator space={spacing.l} />
                     </>
                 }

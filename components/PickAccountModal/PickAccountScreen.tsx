@@ -18,6 +18,7 @@ import {ToastController} from '@components/Toast/Toast';
 import {useDebounce} from '@hooks/useDebounce';
 import {WalletSwitch} from '@components/PickAccountModal/WalletSwitch';
 import {apiSendPushToken} from '@utils/api/pushToken';
+import {useTranslation} from 'react-i18next';
 
 interface Props {
     onPressWallet: (walletID: string) => void;
@@ -48,6 +49,7 @@ const PickAccountScreen = ({
 }: Props) => {
     const theme = useAppTheme();
     const styles = useThemeStyleSheetProvided(theme, dynamicStyles);
+    const {t} = useTranslation();
 
     const currentWallet = useGetWallet(currentWalletID);
     const wallets = useWalletKVs();
@@ -58,7 +60,7 @@ const PickAccountScreen = ({
     const onNewAccount = (walletKV: WalletKV) => {
         const wallet = getWallet(walletKV.id);
         if (!wallet) {
-            ToastController.show({kind: 'error', content: 'There was an error! try again'});
+            ToastController.show({kind: 'error', content: `${t('current_account.pick_account.error_pick')}`});
             return;
         }
         if (!wallet.mnemonic) return;
@@ -71,13 +73,13 @@ const PickAccountScreen = ({
             wallet.pathKind,
         );
         persistAppendKeyPair(kp);
-        ToastController.show({kind: 'success', content: `${kp.label} created`});
+        ToastController.show({kind: 'success', content: `${kp.label} ${t('current_account.pick_account.created')}`});
         void apiSendPushToken();
     };
 
     return (
         <View style={styles.flex}>
-            <ModalHeader title={'Pick Account'} onClose={onClose} />
+            <ModalHeader title={t('current_account.pick_account.title')} onClose={onClose} />
             <WalletSwitch
                 containerStyle={{marginTop: spacing.xxl}}
                 currentWalletID={currentWalletID}
@@ -97,7 +99,7 @@ const PickAccountScreen = ({
                         {currentWallet?.kind === 'mnemonic' && (
                             <ButtonTiny
                                 icon={<MaterialCommunityIcons name="wallet-plus" style={styles.addButtonIcon} />}
-                                title={'New Account'}
+                                title={t('current_account.pick_account.new_account')}
                                 onPress={() => {
                                     debounce(() => onNewAccount(currentWallet));
                                 }}
@@ -107,14 +109,14 @@ const PickAccountScreen = ({
                         {currentWallet?.kind === 'key-only' && (
                             <ButtonTiny
                                 icon={<MaterialCommunityIcons name="wallet-plus" style={styles.addButtonIcon} />}
-                                title={'Import Private Key'}
+                                title={t('current_account.pick_account.import_key')}
                                 onPress={onImportWallet}
                                 containerStyle={styles.addButton}
                             />
                         )}
                         <ButtonTiny
                             icon={<AntDesign name="edit" style={styles.addButtonIcon} />}
-                            title={'Edit Wallet'}
+                            title={t('current_account.pick_account.edit_wallet')}
                             onPress={() => {
                                 onEditWallet(currentWalletID);
                             }}

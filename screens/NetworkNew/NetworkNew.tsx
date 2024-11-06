@@ -9,19 +9,21 @@ import Button from '@components/Button/Button';
 import Separator from '@components/Separator/Separator';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import {useNetworks} from '@hooks/useNetworks';
+import {useTranslation} from 'react-i18next';
 
 const NetworkNew = ({navigation}: CommonStackScreenProps<'NetworkNew'>) => {
     const [label, setLabel] = useState('');
     const [endpoint, setEndpoint] = useState('');
     const {appendNetwork} = useNetworks();
+    const {t} = useTranslation();
 
     const onAdd = () => {
         if (!label) {
-            ToastController.show({kind: 'error', content: 'Label is required'});
+            ToastController.show({kind: 'error', content: `${t('settings.general.network.new.error.no_label')}`});
             return;
         }
         if (!endpoint) {
-            ToastController.show({kind: 'error', content: 'Endpoint is required'});
+            ToastController.show({kind: 'error', content: `${t('settings.general.network.new.error.no_endpoint')}`});
             return;
         }
 
@@ -36,10 +38,10 @@ const NetworkNew = ({navigation}: CommonStackScreenProps<'NetworkNew'>) => {
     return (
         <ScrollView style={{flex: 1}} contentContainerStyle={styles.container} keyboardDismissMode="interactive">
             <Separator space={spacing.xl} />
-            <Text style={styles.label}>Label</Text>
+            <Text style={styles.label}>{t('settings.general.network.new.label')}</Text>
             <TextInput
                 autoCapitalize="none"
-                placeholder={'Label'}
+                placeholder={t('settings.general.network.new.label_placeholder')}
                 value={label}
                 onChangeText={setLabel}
                 autoCorrect={false}
@@ -48,10 +50,10 @@ const NetworkNew = ({navigation}: CommonStackScreenProps<'NetworkNew'>) => {
             />
 
             <Separator space={spacing.xl} />
-            <Text style={styles.label}>Endpoint URL</Text>
+            <Text style={styles.label}>{t('settings.general.network.new.url')}</Text>
             <TextInput
                 autoCapitalize="none"
-                placeholder={'Address'}
+                placeholder={t('settings.general.network.new.url_placeholder')}
                 value={endpoint}
                 textContentType={'URL'}
                 autoCorrect={false}
@@ -61,7 +63,7 @@ const NetworkNew = ({navigation}: CommonStackScreenProps<'NetworkNew'>) => {
             />
 
             <Separator space={spacing.xl} />
-            <Button title={'Add'} onPress={onAdd} disabled={!label || !endpoint} />
+            <Button title={t('settings.general.network.new.button')} onPress={onAdd} disabled={!label || !endpoint} />
             <View style={{height: 300}} />
         </ScrollView>
     );

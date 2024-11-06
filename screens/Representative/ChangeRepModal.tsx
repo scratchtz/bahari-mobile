@@ -20,6 +20,7 @@ import {CommonActions, useNavigation} from '@react-navigation/native';
 import Success from '@components/Animation/Success';
 import {FontAwesome} from '@expo/vector-icons';
 import {changeRepresentative} from '@screens/Representative/changeRep';
+import {useTranslation} from 'react-i18next';
 
 interface Props {
     newRepAccount: string;
@@ -30,6 +31,8 @@ type Screen = 'confirm' | 'changing' | 'done';
 const ChangeRepModal = ({newRepAccount}: Props, ref: any) => {
     const {handleSheetPositionChange} = useBottomSheetBackHandler(ref);
     const navigation = useNavigation();
+
+    const {t} = useTranslation();
 
     const [isAllAccounts, setIsAllAccounts] = useState(false);
     const [screen, setScreen] = useState<Screen>('confirm');
@@ -139,10 +142,10 @@ const ChangeRepModal = ({newRepAccount}: Props, ref: any) => {
             backdropComponent={renderBackdrop}
             snapPoints={snapPoints}>
             <View style={{flex: 1}}>
-                <ModalHeader title={'Change Representative'} onClose={onClose} />
+                <ModalHeader title={t('settings.general.representative.change.modal.title')} onClose={onClose} />
                 {screen === 'confirm' && (
                     <View style={styles.innerWrap}>
-                        <Text>Your new representative</Text>
+                        <Text>{t('settings.general.representative.change.modal.new_representative')}</Text>
                         <Separator space={spacing.m} />
                         {newRep && (
                             <Text weight={'700'} style={styles.name}>
@@ -152,7 +155,7 @@ const ChangeRepModal = ({newRepAccount}: Props, ref: any) => {
                         <Text style={styles.repAddress}>{newRepAccount}</Text>
 
                         <Separator space={spacing.xl} color={theme.colors.textSecondary} />
-                        <Text weight={'600'}>Change for</Text>
+                        <Text weight={'600'}>{t('settings.general.representative.change.modal.change_for')}</Text>
 
                         <TouchableOpacity
                             style={styles.radioItem}
@@ -162,7 +165,7 @@ const ChangeRepModal = ({newRepAccount}: Props, ref: any) => {
                             <View style={[styles.radioWrap, !isAllAccounts && styles.radioWrapSelected]}>
                                 {!isAllAccounts && <View style={styles.radio} />}
                             </View>
-                            <Text>Current Account</Text>
+                            <Text>{t('settings.general.representative.change.modal.current_account')}</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.radioItem}
@@ -172,17 +175,17 @@ const ChangeRepModal = ({newRepAccount}: Props, ref: any) => {
                             <View style={[styles.radioWrap, isAllAccounts && styles.radioWrapSelected]}>
                                 {isAllAccounts && <View style={styles.radio} />}
                             </View>
-                            <Text>This wallet ({defaultWallet.keyPairsAddresses.length} accounts)</Text>
+                            <Text>{t('settings.general.representative.change.modal.this_wallet')} ({defaultWallet.keyPairsAddresses.length} accounts)</Text>
                         </TouchableOpacity>
 
                         <Separator space={spacing.l} />
-                        <Button title={'Change Representative'} onPress={onChange} />
+                        <Button title={t('settings.general.representative.change.modal.button')} onPress={onChange} />
                     </View>
                 )}
                 {screen === 'changing' && (
                     <View style={styles.innerWrap}>
-                        <Text>Changing representative...</Text>
-                        <Text>Please wait</Text>
+                        <Text>{t('settings.general.representative.change.changing.title')}</Text>
+                        <Text>{t('settings.general.representative.change.changing.wait')}</Text>
                         <Separator space={spacing.m} />
                         <View style={styles.accountsWrap}>
                             {changingAccounts.map(acc => {
@@ -193,12 +196,12 @@ const ChangeRepModal = ({newRepAccount}: Props, ref: any) => {
                 )}
                 {screen === 'done' && (
                     <View style={styles.innerWrap}>
-                        <Text>Finished changing representative</Text>
+                        <Text>{t('settings.general.representative.change.done.title')}</Text>
                         <Separator space={spacing.m} />
                         <View style={styles.statusWrap}>
                             <Success />
                             <Text style={styles.success} weight={'500'}>
-                                {success} accounts success
+                                {success} {t('settings.general.representative.change.done.success')}
                             </Text>
                         </View>
 
@@ -206,14 +209,14 @@ const ChangeRepModal = ({newRepAccount}: Props, ref: any) => {
                             <View style={styles.statusWrap}>
                                 <FontAwesome name="warning" style={styles.failedIcon} />
                                 <Text style={styles.failed} weight={'500'}>
-                                    {failed} accounts failed
+                                    {failed} {t('settings.general.representative.change.failed')}
                                 </Text>
                             </View>
                         )}
 
                         <Separator space={spacing.l} />
 
-                        <Button title={'Done'} onPress={onDone} />
+                        <Button title={t('settings.general.representative.change.button')} onPress={onDone} />
                     </View>
                 )}
             </View>

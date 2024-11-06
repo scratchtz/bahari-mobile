@@ -14,6 +14,7 @@ import {AntDesign} from '@expo/vector-icons';
 import {AppTheme, rounded, spacing} from '@utils/styles';
 import {useNativeCurrency} from '@hooks/useNativeCurrency';
 import Loading from '@components/Animation/Loading';
+import {useTranslation} from 'react-i18next';
 
 const BalanceSection = () => {
     useBlockReceiver();
@@ -23,6 +24,8 @@ const BalanceSection = () => {
     const {nativeCurrency, rawValueToNative} = useNativeCurrency();
 
     const {change: priceChange} = useSimplePrice(true);
+
+    const {t} = useTranslation();
 
     const {defaultKeyPair} = useDefaultKeyPair();
     if (!defaultKeyPair) return null;
@@ -35,15 +38,16 @@ const BalanceSection = () => {
 
     const priceChangeColor = priceChange > 0 ? theme.colors.priceUp : theme.colors.priceDown;
     const hasPendingAmount = new BigNumber(pendingRaw).isGreaterThan(0);
+    const balance = formatValue(rawValueToNative(balanceRaw), displayPrice, 4)
 
     return (
         <>
             <Text style={styles.balance} weight="700">
-                {formatValue(rawValueToNative(balanceRaw), displayPrice, 4)}
+                {t('wallet.balance_section.balance',{balance:balance})}
                 <Text style={styles.nativeCurrency}> {nativeCurrency}</Text>
             </Text>
             <Text style={styles.balanceInBase}>
-                {displayValue.toFormat(digits)} {displayCurrency}
+                {t('wallet.balance_section.balance_base',{balance:displayValue.toFormat(digits),currency:displayCurrency})}
             </Text>
 
             <View style={styles.priceChangeContainer}>
@@ -57,16 +61,16 @@ const BalanceSection = () => {
                 </View>
                 <Text style={[styles.priceUpTime, {color: priceChangeColor}]} weight="600">
                     {priceChange > 0 ? '+' : ''}
-                    {changeValue} {displayCurrency}
+                    {t('wallet.balance_section.price_change',{price:changeValue,currency:displayCurrency})}
                 </Text>
             </View>
 
             {hasPendingAmount && (
                 <View style={styles.pendingAmountContainer}>
                     <View style={styles.pendingAmountInner}>
-                        <Text style={styles.pendingAmountTitle}>Pending Amount</Text>
+                        <Text style={styles.pendingAmountTitle}>{t('wallet.balance_section.pending_amount')}</Text>
                         <Text style={styles.pendingAmount} weight="500">
-                            {formatValue(rawValueToNative(pendingRaw))} {nativeCurrency}
+                            {t('wallet.balance_section.pending',{balance:formatValue(rawValueToNative(pendingRaw)),currency:nativeCurrency})}
                         </Text>
                     </View>
                     <Loading />

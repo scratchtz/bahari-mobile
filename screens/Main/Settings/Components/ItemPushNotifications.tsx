@@ -6,15 +6,17 @@ import React from 'react';
 import {useMMKVBoolean} from 'react-native-mmkv';
 import {StorageKeys} from '@constants/storage';
 import {encryptedStorage} from '@storage/mmkv';
+import {useTranslation} from 'react-i18next';
 
 const ItemPushNotifications = () => {
     const styles = useThemeStyleSheet(sharedStyles);
+    const {t} = useTranslation()
     const [allowPush, setAllowPush] = useMMKVBoolean(StorageKeys.usePushNotifications, encryptedStorage);
 
     return (
         <SettingsItem
             onPress={() => {}}
-            title="Push Notifications"
+            title={t('settings.general.notification')}
             leftItem={
                 <View style={[styles.settingIconBack, {backgroundColor: '#e84118'}]}>
                     <FontAwesome5 name="bell" style={[styles.settingIcon]} />

@@ -12,10 +12,14 @@ import Separator from '@components/Separator/Separator';
 import Lottie from 'lottie-react-native';
 import Button from '@components/Button/Button';
 import Text from '@components/Text/Text';
+import {useTranslation} from 'react-i18next';
 
 const Contacts = ({navigation}: CommonStackScreenProps<'Contacts'>) => {
     const [searchText, setSearchText] = useState('');
     const {contacts: allContacts} = useContacts();
+
+    const {t} = useTranslation();
+
     const contacts = useMemo(() => {
         if (!allContacts) return [];
         if (searchText) {
@@ -40,7 +44,7 @@ const Contacts = ({navigation}: CommonStackScreenProps<'Contacts'>) => {
 
     return (
         <View style={styles.container}>
-            <SearchBar placeholder={'Search contacts'} value={searchText} onChangeText={setSearchText} />
+            <SearchBar placeholder={t('settings.wallet.contacts.search')} value={searchText} onChangeText={setSearchText} />
             <FlatList
                 style={styles.flatList}
                 data={contacts}
@@ -56,7 +60,7 @@ const Contacts = ({navigation}: CommonStackScreenProps<'Contacts'>) => {
                             loop
                         />
                         <Text style={styles.noContactText}>
-                            You don't have anyone in your contact list.{'\n'}Click the button below to add someone
+                            {t('settings.wallet.contacts.no_contact')}
                         </Text>
                     </View>
                 }
@@ -64,7 +68,7 @@ const Contacts = ({navigation}: CommonStackScreenProps<'Contacts'>) => {
                 ListFooterComponent={
                     <Button
                         containerStyle={styles.contactAddButton}
-                        title={'New Contact'}
+                        title={t('settings.wallet.contacts.new.title')}
                         onPress={onNewContact}
                         leftChild={<Ionicons name="person-add" style={styles.contactAddIcon} />}
                     />

@@ -18,6 +18,7 @@ import Touchable from '@components/Touchable/Touchable';
 import Loading from '@components/Animation/Loading';
 import {ToastController} from '@components/Toast/Toast';
 import {hitSlop} from '@constants/variables';
+import {useTranslation} from 'react-i18next';
 
 type Props = {
     showFullDate?: boolean;
@@ -26,6 +27,8 @@ const TransactionItem = (item: Props) => {
     const theme = useAppTheme();
     const styles = useThemeStyleSheetProvided(theme, dynamicStyles);
 
+    const {t} = useTranslation();
+
     const {nativeCurrency} = useNativeCurrency();
     const txDetailedModal = useRef<BottomSheetModal>();
 
@@ -33,7 +36,7 @@ const TransactionItem = (item: Props) => {
         txDetailedModal.current?.present();
     };
 
-    const message = useMemo(() => (item.type === 'send' ? 'Sent' : 'Received'), [item.type]);
+    const message = useMemo(() => (item.type === 'send' ? `${t('wallet.transaction_item.message.sent')}` : `${t('wallet.transaction_item.message.received')}`), [item.type]);
     const time = useMemo(() => {
         const txTime = fromUnixTime(parseInt(item.local_timestamp));
         if (item.showFullDate) {
@@ -53,12 +56,12 @@ const TransactionItem = (item: Props) => {
         if (elapsedMinutesAfterTx > 1) {
             ToastController.show({
                 kind: 'info',
-                content: `Transaction is not confirmed yet!\nNetwork could be congested.`,
+                content: `${t('wallet.transaction_item.not_confirmed')}`,
                 timeout: 5000,
             });
             return;
         }
-        ToastController.show({kind: 'info', content: 'Transaction is not confirmed yet'});
+        ToastController.show({kind: 'info', content: `${t('wallet.transaction_item.not_confirmed_info')}`});
     }, []);
 
     return (
@@ -75,7 +78,7 @@ const TransactionItem = (item: Props) => {
                     <View style={styles.rightContainer}>
                         <Text weight="600" style={[styles.amount, {color: actionColor}]}>
                             {item.type === 'send' ? '-' : '+'}
-                            {displayAmount} {nativeCurrency}
+                            {t('wallet.transaction_item.amount',{amount:displayAmount,currency:nativeCurrency})}
                         </Text>
                         <Text style={styles.time}>{time}</Text>
                     </View>

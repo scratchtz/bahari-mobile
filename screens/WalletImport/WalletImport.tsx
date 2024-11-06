@@ -15,6 +15,7 @@ import MaskedView from '@react-native-masked-view/masked-view';
 import {isTablet} from 'react-native-device-info';
 import DecryptPassphraseModal from './DecryptPassphraseModal';
 import {Image} from 'expo-image';
+import {useTranslation} from 'react-i18next';
 
 const SAMPLE_WORDS = [
     'abandon',
@@ -34,6 +35,7 @@ const SAMPLE_WORDS = [
 const WalletImport = ({navigation}: RootStackScreenProps<'WalletImport'>) => {
     const theme = useAppTheme();
     const styles = useThemeStyleSheetProvided(theme, dynamicStyles);
+    const {t} = useTranslation();
 
     const decryptPassphraseModal = useRef<BottomSheetModal>(null);
 
@@ -60,7 +62,7 @@ const WalletImport = ({navigation}: RootStackScreenProps<'WalletImport'>) => {
             <ScrollView
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={[styles.container, isTablet() && styles.containerTablet]}>
-                <Text style={styles.methodPick}>Which method would you like to import your wallet?</Text>
+                <Text style={styles.methodPick}>{t('settings.wallet.import_wallet.main.title')}</Text>
 
                 <TouchableOpacity
                     style={styles.card}
@@ -72,9 +74,9 @@ const WalletImport = ({navigation}: RootStackScreenProps<'WalletImport'>) => {
                     </View>
                     <View style={styles.cardInner}>
                         <Text style={styles.cardTitle} weight="700">
-                            Passphrase
+                            {t('settings.wallet.import_wallet.main.passphrase')}
                         </Text>
-                        <Text style={styles.cardInfo}>Import using 12, 15 or 24 word passphrase</Text>
+                        <Text style={styles.cardInfo}>{t('settings.wallet.import_wallet.main.passphrase_desc')}</Text>
 
                         <MaskedView
                             maskElement={
@@ -103,11 +105,10 @@ const WalletImport = ({navigation}: RootStackScreenProps<'WalletImport'>) => {
                     </View>
                     <View style={styles.cardInner}>
                         <Text style={styles.cardTitle} weight="700">
-                            Encrypted Passphrase
+                            {t('settings.wallet.import_wallet.main.encrypted_passphrase')}
                         </Text>
                         <Text style={styles.cardInfo}>
-                            Import using your encrypted passphrase. Usually a long string of characters which needs your
-                            password to decrypt first
+                            {t('settings.wallet.import_wallet.main.encrypted_passphrase_desc')}
                         </Text>
                     </View>
                 </TouchableOpacity>
@@ -122,10 +123,10 @@ const WalletImport = ({navigation}: RootStackScreenProps<'WalletImport'>) => {
                     </View>
                     <View style={styles.cardInner}>
                         <Text style={styles.cardTitle} weight="700">
-                            Private key
+                            {t('settings.wallet.import_wallet.main.private_key')}
                         </Text>
                         <Text style={styles.cardInfo}>
-                            Import by entering a single private key{'\n'}Usually in text format.
+                            {t('settings.wallet.import_wallet.main.private_key_desc')}
                         </Text>
                     </View>
                 </TouchableOpacity>

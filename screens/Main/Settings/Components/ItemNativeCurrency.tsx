@@ -8,10 +8,13 @@ import Text from '@components/Text/Text';
 import React, {useCallback, useRef} from 'react';
 import {BottomSheetModal} from '@gorhom/bottom-sheet';
 import NativeCurrencyModal from '@components/NativeCurrencyModal/NativeCurrencyModal';
+import {useTranslation} from 'react-i18next';
 
 const ItemNativeCurrency = () => {
     const styles = useThemeStyleSheet(sharedStyles);
     const {nativeCurrency} = useNativeCurrency();
+    const {t} = useTranslation();
+
     const nativeCurrencyModal = useRef<BottomSheetModal>();
     const openNativeCurrencyModal = useCallback(() => {
         nativeCurrencyModal.current?.present();
@@ -21,7 +24,7 @@ const ItemNativeCurrency = () => {
         <>
             <SettingsItem
                 onPress={openNativeCurrencyModal}
-                title="Native Currency"
+                title={t('settings.general.native_currency.title')}
                 leftItem={
                     <View style={[styles.settingIconBack, {backgroundColor: '#82589F'}]}>
                         <FontAwesome name="chain" style={[styles.settingIcon]} />

@@ -13,6 +13,7 @@ import {useMMKVBoolean} from 'react-native-mmkv';
 import {encryptedStorage} from '@storage/mmkv';
 import {StorageKeys} from '@constants/storage';
 import {Feather} from '@expo/vector-icons';
+import {useTranslation} from 'react-i18next';
 
 const width = Dimensions.get('window').width;
 const PriceGraph = () => {
@@ -21,6 +22,8 @@ const PriceGraph = () => {
     const {lineData} = usePriceHistory(true);
     const {change: priceChange} = useSimplePrice(false);
     const {displayCurrency, displayPrice} = useDisplayValue('0');
+
+    const {t} = useTranslation()
 
     const [hide, setHide] = useMMKVBoolean(StorageKeys.hidePriceGraph);
 
@@ -43,9 +46,9 @@ const PriceGraph = () => {
                 style={styles.currPriceContainer}
                 hitSlop={{top: -5, left: -5, right: -5, bottom: -5}}>
                 {!hide ? <Feather name="eye" style={styles.eye} /> : <Feather name="eye-off" style={styles.eye} />}
-                <Text style={styles.currPriceTitle}>Current XNO price</Text>
+                <Text style={styles.currPriceTitle}>{t("wallet.price_graph.current_nano_price")}</Text>
                 <Text style={styles.currPrice} weight="800">
-                    {formatPrice(displayPrice)} {displayCurrency}
+                    {t('wallet.price_graph.price',{price:formatPrice(displayPrice),currency:displayCurrency})}
                 </Text>
             </TouchableOpacity>
             {!hide && (

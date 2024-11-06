@@ -29,6 +29,8 @@ import {encryptedStorage} from '@storage/mmkv';
 import {PersistQueryClientProvider} from '@tanstack/react-query-persist-client';
 import {createSyncStoragePersister} from '@tanstack/query-sync-storage-persister';
 import {QueryClient} from '@tanstack/react-query';
+import 'intl-pluralrules';
+import './i18n'
 
 //Don't remove this, on Android screens are inconsistent
 enableLayoutAnimations(false);
