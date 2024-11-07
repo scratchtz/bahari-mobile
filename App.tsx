@@ -7,6 +7,7 @@ import 'intl/locale-data/jsonp/ja';
 import 'intl/locale-data/jsonp/ko';
 import 'intl/locale-data/jsonp/zh';
 import 'intl/locale-data/jsonp/sw';
+import 'intl/locale-data/jsonp/de';
 import 'intl-pluralrules';
 
 import {Initializer} from './Initializer';
