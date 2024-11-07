@@ -46,7 +46,7 @@ const RecentAddresses = ({onPress}: Props) => {
                         loop={true}
                     />
                     <Text color={'tertiary'} style={styles.noAddresses}>
-                        {t('wallet.send.address.recents.not_available')}
+                        {t('send.address.recents_not_available')}
                     </Text>
                 </View>
             )}

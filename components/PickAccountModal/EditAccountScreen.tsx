@@ -43,7 +43,7 @@ const EditAccount = ({keyPairAddress, onClose, onDone}: Props) => {
 
     const handleDone = () => {
         if (!label) {
-            ToastController.show({kind: 'error', content: `${t('current_account.edit.toast.error_name_required')}`});
+            ToastController.show({kind: 'error', content: `${t('pick_account_modal.edit_account.error_name_required')}`});
             return;
         }
         if (!account) return;
@@ -57,12 +57,12 @@ const EditAccount = ({keyPairAddress, onClose, onDone}: Props) => {
 
     const onAddressPress = async () => {
         await Clipboard.setStringAsync(account.address);
-        ToastController.show({content: `${t('current_account.edit_account.toast.copied')}`, kind: 'success'});
+        ToastController.show({content: `${t('pick_account_modal.edit_account.info_copied')}`, kind: 'success'});
     };
 
     return (
         <>
-            <ModalHeader title={t('current_account.edit_account.title')} onClose={onClose} />
+            <ModalHeader title={t('pick_account_modal.edit_account.label')} onClose={onClose} />
             <View style={styles.container}>
                 {account.privateKey && showPrivateKey && (
                     <ShowSecret secret={account.privateKey} derivationPath={account.path} />
@@ -79,7 +79,7 @@ const EditAccount = ({keyPairAddress, onClose, onDone}: Props) => {
                         <Separator space={spacing.xl} />
                         <View style={styles.accountHeader}>
                             <Text style={styles.walletLabelTitle} weight="500">
-                                {t('current_account.edit_account.wallet')}:{' '}
+                                {t('pick_account_modal.edit_account.wallet')}:{' '}
                             </Text>
                             <Text style={styles.walletLabel} weight="500">
                                 {wallet.label}
@@ -88,7 +88,7 @@ const EditAccount = ({keyPairAddress, onClose, onDone}: Props) => {
 
                         <Separator space={spacing.l} />
                         <Text style={styles.label} weight="600">
-                            {t('current_account.edit_account.name')}
+                            {t('pick_account_modal.edit_account.name')}
                         </Text>
                         <BottomSheetTextInput
                             returnKeyType={'done'}
@@ -99,7 +99,7 @@ const EditAccount = ({keyPairAddress, onClose, onDone}: Props) => {
 
                         <Separator space={spacing.l} />
                         <Text style={styles.label} weight="600">
-                            {t('current_account.edit_account.public_address')}
+                            {t('pick_account_modal.edit_account.public_address')}
                         </Text>
                         <TouchableOpacity onPress={onAddressPress}>
                             <Text weight="500" style={styles.address}>
@@ -110,7 +110,7 @@ const EditAccount = ({keyPairAddress, onClose, onDone}: Props) => {
                         <ButtonTiny
                             icon={<Entypo name="eye-with-line" style={[styles.actionButtonIcon]} />}
                             containerStyle={{alignSelf: 'flex-start'}}
-                            title={t('current_account.edit_account.show_private_key')}
+                            title={t('pick_account_modal.edit_account.show_private_key')}
                             onPress={() => setShowPrivateKey(true)}
                         />
                     </>
@@ -120,13 +120,13 @@ const EditAccount = ({keyPairAddress, onClose, onDone}: Props) => {
                 <View style={styles.buttonsContainer}>
                     {!showPrivateKey && (
                         <Button
-                            title={t('current_account.edit_account.button.cancel')}
+                            title={t('pick_account_modal.edit_account.button_cancel')}
                             variant={'secondary'}
                             onPress={onCancel}
                             containerStyle={[styles.flex, {marginRight: spacing.s}]}
                         />
                     )}
-                    <Button title={t('current_account.edit_account.button.done')} onPress={handleDone} containerStyle={styles.flex} />
+                    <Button title={t('pick_account_modal.edit_account.button_done')} onPress={handleDone} containerStyle={styles.flex} />
                 </View>
             </View>
         </>

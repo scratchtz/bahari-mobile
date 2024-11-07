@@ -110,27 +110,27 @@ const WalletNew: React.FC<RootStackScreenProps<'WalletNew'>> = ({navigation, rou
             <ScrollView contentContainerStyle={[styles.container, isTablet() && styles.containerTablet]}>
                 {mode === 'onboard' && (
                     <>
-                        <Text variant="header">{t('settings.wallet.new_wallet.onboard.title')}</Text>
-                        <Text>{t('settings.wallet.new_wallet.onboard.generate')}</Text>
+                        <Text variant="header">{t('new_wallet.onboard.title')}</Text>
+                        <Text>{t('new_wallet.onboard.generate')}</Text>
                         <Separator space={spacing.l} />
 
-                        <Text variant="subheader">{t('settings.wallet.new_wallet.onboard.remember')}</Text>
+                        <Text variant="subheader">{t('new_wallet.onboard.remember')}</Text>
 
                         <View style={styles.noteContainer}>
-                            <Text style={styles.note}>{t('settings.wallet.new_wallet.onboard.funds_access')}</Text>
+                            <Text style={styles.note}>{t('new_wallet.onboard.funds_access')}</Text>
                             <View style={[styles.noteIconContainer]}>
                                 <Fontisto name="persons" style={styles.noteIcon} />
                             </View>
                         </View>
                         <View style={styles.noteContainer}>
-                            <Text style={styles.note}>{t('settings.wallet.new_wallet.onboard.keep_safe')}</Text>
+                            <Text style={styles.note}>{t('new_wallet.onboard.keep_safe')}</Text>
                             <View style={[styles.noteIconContainer]}>
                                 <Entypo name="shield" style={styles.noteIcon} />
                             </View>
                         </View>
                         <View style={styles.noteContainer}>
                             <Text style={styles.note}>
-                                {t('settings.wallet.new_wallet.onboard.never_ask')}
+                                {t('new_wallet.onboard.never_ask')}
                             </Text>
                             <View style={[styles.noteIconContainer]}>
                                 <MaterialCommunityIcons name="message-lock" style={styles.noteIcon} />
@@ -138,7 +138,7 @@ const WalletNew: React.FC<RootStackScreenProps<'WalletNew'>> = ({navigation, rou
                         </View>
                         <View style={styles.noteContainer}>
                             <Text style={styles.note}>
-                                {t('settings.wallet.new_wallet.onboard.passphrase_lost')}
+                                {t('new_wallet.onboard.passphrase_lost')}
                             </Text>
                             <View style={[styles.noteIconContainer]}>
                                 <MaterialCommunityIcons name="briefcase-search" style={styles.noteIcon} />
@@ -146,18 +146,18 @@ const WalletNew: React.FC<RootStackScreenProps<'WalletNew'>> = ({navigation, rou
                         </View>
                         <TouchableOpacity style={styles.learnMoreButton}>
                             <Text weight="500" style={styles.learnMore}>
-                                {t('settings.wallet.new_wallet.onboard.learn_more')}
+                                {t('new_wallet.onboard.learn_more')}
                             </Text>
                         </TouchableOpacity>
                         <Separator space={spacing.xl} />
-                        <Button variant="secondary" title={t('settings.wallet.new_wallet.onboard.button')} onPress={onUnderstand} />
+                        <Button variant="secondary" title={t('new_wallet.onboard.button')} onPress={onUnderstand} />
                     </>
                 )}
 
                 {mode === 'passphrase' && (
                     <>
-                        <Text variant="subheader">{t('settings.wallet.new_wallet.passphrase.title')}</Text>
-                        <Text variant="small">{t('settings.wallet.new_wallet.passphrase.for_you')}</Text>
+                        <Text variant="subheader">{t('new_wallet.passphrase.title')}</Text>
+                        <Text variant="small">{t('new_wallet.passphrase.for_you')}</Text>
 
                         <View style={styles.topBar}>
                             <TouchableOpacity
@@ -202,7 +202,7 @@ const WalletNew: React.FC<RootStackScreenProps<'WalletNew'>> = ({navigation, rou
                                         loop
                                     />
                                     <Text variant="small" style={styles.generatingText}>
-                                        {t('settings.wallet.new_wallet.passphrase.generating')}
+                                        {t('new_wallet.passphrase.generating')}
                                     </Text>
                                 </>
                             ) : (
@@ -223,7 +223,7 @@ const WalletNew: React.FC<RootStackScreenProps<'WalletNew'>> = ({navigation, rou
                                     />
                                 }
                                 onPress={openEncryptModal}
-                                title={t('settings.wallet.new_wallet.passphrase.encrypt')}
+                                title={t('new_wallet.passphrase.encrypt')}
                             />
                             <Tag
                                 icon={
@@ -232,7 +232,7 @@ const WalletNew: React.FC<RootStackScreenProps<'WalletNew'>> = ({navigation, rou
                                         style={[styles.actionIcon, {color: palette.purple600}]}
                                     />
                                 }
-                                title={t('settings.wallet.new_wallet.passphrase.regenerate')}
+                                title={t('new_wallet.passphrase.regenerate')}
                                 onPress={onRegenerate}
                             />
 
@@ -246,7 +246,7 @@ const WalletNew: React.FC<RootStackScreenProps<'WalletNew'>> = ({navigation, rou
                         </View>
 
                         <Separator space={spacing.xl} />
-                        <Button variant="primary" title={t('settings.wallet.new_wallet.passphrase.button')} onPress={onDone} />
+                        <Button variant="primary" title={t('new_wallet.passphrase.button')} onPress={onDone} />
                     </>
                 )}
             </ScrollView>

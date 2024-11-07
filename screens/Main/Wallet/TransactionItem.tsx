@@ -36,7 +36,7 @@ const TransactionItem = (item: Props) => {
         txDetailedModal.current?.present();
     };
 
-    const message = useMemo(() => (item.type === 'send' ? `${t('wallet.transaction_item.message.sent')}` : `${t('wallet.transaction_item.message.received')}`), [item.type]);
+    const message = useMemo(() => (item.type === 'send' ? `${t('wallet.transaction_item.message_sent')}` : `${t('wallet.transaction_item.message_received')}`), [item.type]);
     const time = useMemo(() => {
         const txTime = fromUnixTime(parseInt(item.local_timestamp));
         if (item.showFullDate) {

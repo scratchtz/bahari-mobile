@@ -16,7 +16,7 @@ const ItemPushNotifications = () => {
     return (
         <SettingsItem
             onPress={() => {}}
-            title={t('settings.general.notification')}
+            title={t('settings.notification_label')}
             leftItem={
                 <View style={[styles.settingIconBack, {backgroundColor: '#e84118'}]}>
                     <FontAwesome5 name="bell" style={[styles.settingIcon]} />

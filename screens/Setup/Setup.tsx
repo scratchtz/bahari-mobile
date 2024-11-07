@@ -17,10 +17,14 @@ import SupportedLanguages, {SupportedLanguage} from '@constants/languages';
 import {useMMKVString} from 'react-native-mmkv';
 import {StorageKeys} from '@constants/storage';
 import {encryptedStorage} from '@storage/mmkv';
+import {useTranslation} from 'react-i18next';
 
 const Setup: React.FC<RootStackScreenProps<'Setup'>> = ({navigation}) => {
     const theme = useAppTheme();
     const styles = useThemeStyleSheetProvided(theme, dynamicStyles);
+
+    const {t} = useTranslation();
+
     const [savedLanguage] = useMMKVString(StorageKeys.language, encryptedStorage);
     const language = (savedLanguage || 'en') as SupportedLanguage;
 
@@ -34,15 +38,15 @@ const Setup: React.FC<RootStackScreenProps<'Setup'>> = ({navigation}) => {
             <View style={styles.container}>
                 <Image source={require('@assets/logoclear.png')} style={styles.logo} />
                 <Text variant="header" style={styles.head}>
-                    Bahari
+                    {t('setup.app_name')}
                 </Text>
                 <Text variant="small" color="secondary" style={styles.motto}>
-                    Send and receive Nano at light speed{'\n'}Zero Fees
+                    {t('setup.about')}
                 </Text>
 
                 <Separator space={spacing.xl} />
                 <Button
-                    title="Create New Wallet"
+                    title={t('setup.create_new_wallet')}
                     variant="primary"
                     containerStyle={styles.button}
                     onPress={() => {
@@ -51,7 +55,7 @@ const Setup: React.FC<RootStackScreenProps<'Setup'>> = ({navigation}) => {
                 />
                 <Button
                     containerStyle={styles.button}
-                    title="Import Wallet"
+                    title={t('setup.import_wallet')}
                     variant="secondary"
                     onPress={() => {
                         navigation.navigate('WalletImport');

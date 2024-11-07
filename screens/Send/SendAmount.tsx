@@ -70,7 +70,7 @@ const SendAmount: React.FC<CommonStackScreenProps<'SendAmount'>> = ({navigation,
 
     const handleNext = () => {
         if (!inputAmount) {
-            ToastController.show({kind: 'error', title: 'Error', content: `${t('wallet.send.amount.error_no_amount')}`});
+            ToastController.show({kind: 'error', title: 'Error', content: `${t('send.amount.error_no_amount')}`});
             amountInputRef.current?.focus();
             return;
         }
@@ -242,14 +242,14 @@ const SendAmount: React.FC<CommonStackScreenProps<'SendAmount'>> = ({navigation,
                     </View>
                     <TouchableOpacity style={styles.maxContainer} onPress={onMaxBalance}>
                         <Text style={styles.maxText} weight="600">
-                            {t('wallet.send.amount.max')}
+                            {t('send.amount.max')}
                         </Text>
                     </TouchableOpacity>
                 </View>
 
                 <View style={styles.hor}>
                     <SimpleLineIcons name="wallet" style={styles.tinyIcon} />
-                    <Text style={styles.tinyText}>{t('wallet.send.amount.your_balance')}</Text>
+                    <Text style={styles.tinyText}>{t('send.amount.your_balance')}</Text>
                     <Text style={styles.tinyValue}>
                         {formatValue(rawValueToNative(accountBalance?.balance), 0, 4)} {nativeCurrency}
                     </Text>
@@ -257,17 +257,17 @@ const SendAmount: React.FC<CommonStackScreenProps<'SendAmount'>> = ({navigation,
                 <Separator space={spacing.l} />
                 <View style={styles.hor}>
                     <MaterialCommunityIcons name="wallet-plus-outline" style={styles.tinyIcon} />
-                    <Text style={styles.tinyText}>{t('wallet.send.amount.balance_after')}</Text>
+                    <Text style={styles.tinyText}>{t('send.amount.balance_after')}</Text>
                     <Text style={[styles.tinyValue, isBalanceInsufficient && {color: theme.colors.warning}]}>
                         {formatValue(convertRawAmountToNativeCurrency(balanceAfter(inputAmount)), 0, 4)}{' '}
                         {nativeCurrency}
                     </Text>
                 </View>
-                {isBalanceInsufficient && <Text style={styles.insufficientBalance}>{t('wallet.send.amount.insufficient_balance')}</Text>}
+                {isBalanceInsufficient && <Text style={styles.insufficientBalance}>{t('send.amount.insufficient')}</Text>}
                 <Separator space={spacing.xl} />
             </View>
             <Button
-                title={t('wallet.send.amount.button')}
+                title={t('send.amount.button_preview')}
                 onPress={handleNext}
                 disabled={!canProceed}
                 containerStyle={styles.previewButton}

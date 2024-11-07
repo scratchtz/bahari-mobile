@@ -112,7 +112,7 @@ const Contact = ({navigation, route}: CommonStackScreenProps<'Contact'>) => {
 
             <Separator space={spacing.xl} />
             <View style={styles.labelContainer}>
-                <Text style={styles.label}>{t('screens.contact.address_label')}</Text>
+                <Text style={styles.label}>{t('contact.address_label')}</Text>
                 <TouchableOpacity onPress={onPaste} style={styles.pasteContainer}>
                     <FontAwesome name="paste" style={styles.pasteIcon} />
                     <Text style={styles.paste}>{t('contact.paste_action')}</Text>

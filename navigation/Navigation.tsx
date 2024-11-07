@@ -40,7 +40,6 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 const Navigation = () => {
     useTranslationInit()
     const theme = useAppTheme();
-    const {t} = useTranslation();
 
     const navigationTheme = useMemo(() => {
         return {
@@ -130,7 +129,7 @@ export const CommonStackScreens = (
                 navigatorScreenOptions({
                     route,
                     theme,
-                    title: `${t('wallet.send.title')}`,
+                    title: `${t('navigation.send')}`,
                     headerShown: true,
                 })
             }
@@ -142,7 +141,7 @@ export const CommonStackScreens = (
                 navigatorScreenOptions({
                     route,
                     theme,
-                    title: `${t('wallet.send.amount.title')}`,
+                    title: `${t('navigation.send_amount')}`,
                     headerShown: true,
                 })
             }
@@ -154,7 +153,7 @@ export const CommonStackScreens = (
                 navigatorScreenOptions({
                     route,
                     theme,
-                    title: `${t('settings.wallet.contacts.title')}`,
+                    title: `${t('navigation.contacts')}`,
                     headerShown: true,
                     headerRight: () => (
                         <TouchableOpacity
@@ -174,7 +173,7 @@ export const CommonStackScreens = (
                 navigatorScreenOptions({
                     route,
                     theme,
-                    title: `${t('settings.wallet.contacts.new.title')}`,
+                    title: `${t('navigation.new_contact')}`,
                     headerShown: true,
                 })
             }
@@ -186,7 +185,7 @@ export const CommonStackScreens = (
                 navigatorScreenOptions({
                     route,
                     theme,
-                    title: `${t('settings.wallet.contacts.contact.title')}`,
+                    title: `${t('navigation.contact')}`,
                     headerShown: true,
                 })
             }
@@ -198,7 +197,7 @@ export const CommonStackScreens = (
                 navigatorScreenOptions({
                     route,
                     theme,
-                    title: `${t('settings.general.network.nav_title')}`,
+                    title: `${t('navigation.network')}`,
                     headerShown: true,
                 })
             }
@@ -210,7 +209,7 @@ export const CommonStackScreens = (
                 navigatorScreenOptions({
                     route,
                     theme,
-                    title: `${t('settings.general.network.new.title')}`,
+                    title: `${t('navigation.network_new')}`,
                     headerShown: true,
                 })
             }
@@ -222,7 +221,7 @@ export const CommonStackScreens = (
                 navigatorScreenOptions({
                     route,
                     theme,
-                    title: `${t('wallet.history_list.title')}`,
+                    title: `${t('navigation.transaction_history')}`,
                     headerShown: true,
                 })
             }
@@ -234,7 +233,7 @@ export const CommonStackScreens = (
                 navigatorScreenOptions({
                     route,
                     theme,
-                    title: `${t('wallet.buy.title')}`,
+                    title: `${t('navigation.buy_nano')}`,
                     headerShown: true,
                 })
             }
@@ -246,7 +245,7 @@ export const CommonStackScreens = (
                 navigatorScreenOptions({
                     route,
                     theme,
-                    title: `${t('wallet.receive.title')}`,
+                    title: `${t('navigation.receive')}`,
                     headerShown: true,
                 })
             }
@@ -258,7 +257,7 @@ export const CommonStackScreens = (
                 navigatorScreenOptions({
                     route,
                     theme,
-                    title: `${t('settings.general.representative.title')}`,
+                    title: `${t('navigation.representative')}`,
                     headerShown: true,
                 })
             }
@@ -270,7 +269,7 @@ export const CommonStackScreens = (
                 navigatorScreenOptions({
                     route,
                     theme,
-                    title: `${t('settings.general.representative.change.title')}`,
+                    title: `${t('navigation.representative_change')}`,
                     headerShown: true,
                 })
             }

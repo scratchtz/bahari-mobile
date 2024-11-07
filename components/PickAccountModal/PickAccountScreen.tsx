@@ -60,7 +60,7 @@ const PickAccountScreen = ({
     const onNewAccount = (walletKV: WalletKV) => {
         const wallet = getWallet(walletKV.id);
         if (!wallet) {
-            ToastController.show({kind: 'error', content: `${t('current_account.pick_account.error_pick')}`});
+            ToastController.show({kind: 'error', content: `${t('pick_account_modal.error_pick')}`});
             return;
         }
         if (!wallet.mnemonic) return;
@@ -73,13 +73,13 @@ const PickAccountScreen = ({
             wallet.pathKind,
         );
         persistAppendKeyPair(kp);
-        ToastController.show({kind: 'success', content: `${kp.label} ${t('current_account.pick_account.created')}`});
+        ToastController.show({kind: 'success', content: `${kp.label} ${t('pick_account_modal.created')}`});
         void apiSendPushToken();
     };
 
     return (
         <View style={styles.flex}>
-            <ModalHeader title={t('current_account.pick_account.title')} onClose={onClose} />
+            <ModalHeader title={t('pick_account_modal.label')} onClose={onClose} />
             <WalletSwitch
                 containerStyle={{marginTop: spacing.xxl}}
                 currentWalletID={currentWalletID}
@@ -99,7 +99,7 @@ const PickAccountScreen = ({
                         {currentWallet?.kind === 'mnemonic' && (
                             <ButtonTiny
                                 icon={<MaterialCommunityIcons name="wallet-plus" style={styles.addButtonIcon} />}
-                                title={t('current_account.pick_account.new_account')}
+                                title={t('pick_account_modal.new_account')}
                                 onPress={() => {
                                     debounce(() => onNewAccount(currentWallet));
                                 }}
@@ -109,14 +109,14 @@ const PickAccountScreen = ({
                         {currentWallet?.kind === 'key-only' && (
                             <ButtonTiny
                                 icon={<MaterialCommunityIcons name="wallet-plus" style={styles.addButtonIcon} />}
-                                title={t('current_account.pick_account.import_key')}
+                                title={t('pick_account_modal.import_key')}
                                 onPress={onImportWallet}
                                 containerStyle={styles.addButton}
                             />
                         )}
                         <ButtonTiny
                             icon={<AntDesign name="edit" style={styles.addButtonIcon} />}
-                            title={t('current_account.pick_account.edit_wallet')}
+                            title={t('pick_account_modal.edit_wallet_label')}
                             onPress={() => {
                                 onEditWallet(currentWalletID);
                             }}

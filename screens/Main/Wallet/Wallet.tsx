@@ -50,21 +50,21 @@ const WalletScreen: React.FC<AllScreenProps<'Wallet'>> = ({navigation}) => {
                 <Separator space={spacing.xl} />
                 <View style={styles.actionButtons}>
                     <ActionButton
-                        title={t('wallet.actions.buy')}
+                        title={t('wallet.action_buy')}
                         icon={<MaterialIcons name="payments" style={styles.actionButtonIcon} />}
                         onPress={() => {
                             navigation.navigate('BuyNano');
                         }}
                     />
                     <ActionButton
-                        title={t('wallet.actions.send')}
+                        title={t('wallet.action_send')}
                         icon={<FontAwesome name="send" style={styles.actionButtonIcon} />}
                         onPress={() => {
                             navigation.navigate('Send');
                         }}
                     />
                     <ActionButton
-                        title={t('wallet.actions.receive')}
+                        title={t('wallet.action_receive')}
                         icon={<MaterialCommunityIcons name="briefcase-download" style={styles.actionButtonIcon} />}
                         onPress={() => {
                             navigation.navigate('Receive');
@@ -72,7 +72,7 @@ const WalletScreen: React.FC<AllScreenProps<'Wallet'>> = ({navigation}) => {
                     />
                     <ActionButton
                         icon={<FontAwesome5 name="qrcode" style={styles.actionButtonIcon} />}
-                        title={t('wallet.actions.scan_code')}
+                        title={t('wallet.action_scan_code')}
                         onPress={onScanQrCode}
                     />
                 </View>

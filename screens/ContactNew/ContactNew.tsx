@@ -25,15 +25,15 @@ const ContactNew = ({navigation, route}: CommonStackScreenProps<'ContactNew'>) =
 
     const onAdd = () => {
         if (!name) {
-            ToastController.show({kind: 'error', content: `${t('settings.wallet.contacts.new.error.no_name')}`});
+            ToastController.show({kind: 'error', content: `${t('contact_new.error_no_name')}`});
             return;
         }
         if (!address) {
-            ToastController.show({kind: 'error', content: `${t('settings.wallet.contacts.new.error.no_address')}`});
+            ToastController.show({kind: 'error', content: `${t('contact_new.error_no_address')}`});
             return;
         }
         if (!tools.validateAddress(address)) {
-            ToastController.show({kind: 'error', content: `${t('settings.wallet.contacts.new.error.invalid_address')}`});
+            ToastController.show({kind: 'error', content: `${t('contact_new.error_invalid_address')}`});
             return;
         }
 
@@ -70,9 +70,9 @@ const ContactNew = ({navigation, route}: CommonStackScreenProps<'ContactNew'>) =
             </ThumbnailSelector>
 
             <Separator space={spacing.xl} />
-            <Text style={styles.label}>{t('settings.wallet.contacts.new.name')}</Text>
+            <Text style={styles.label}>{t('contact_new.name_label')}</Text>
             <TextInput
-                placeholder={t('settings.wallet.contacts.new.name_placeholder')}
+                placeholder={t('contact_new.name_placeholder')}
                 value={name}
                 onChangeText={setName}
                 returnKeyType="done"
@@ -81,14 +81,14 @@ const ContactNew = ({navigation, route}: CommonStackScreenProps<'ContactNew'>) =
 
             <Separator space={spacing.xl} />
             <View style={styles.labelContainer}>
-                <Text style={styles.label}>{t("settings.wallet.contacts.new.address")}</Text>
+                <Text style={styles.label}>{t("contact_new.address_label")}</Text>
                 <TouchableOpacity onPress={onPaste} style={styles.pasteContainer}>
                     <FontAwesome name="paste" style={styles.pasteIcon} />
-                    <Text style={styles.paste}>{t('settings.wallet.contacts.new.paste')}</Text>
+                    <Text style={styles.paste}>{t('contact_new.paste')}</Text>
                 </TouchableOpacity>
             </View>
             <TextInput
-                placeholder={t('settings.wallet.contacts.new.address_placeholder')}
+                placeholder={t('contact_new.address_placeholder')}
                 value={address}
                 onChangeText={setAddress}
                 returnKeyType="done"
@@ -96,7 +96,7 @@ const ContactNew = ({navigation, route}: CommonStackScreenProps<'ContactNew'>) =
             />
 
             <Separator space={spacing.xl} />
-            <Button title={t('settings.wallet.contacts.new.button')} onPress={onAdd} disabled={!name || !address} />
+            <Button title={t('contact_new.button')} onPress={onAdd} disabled={!name || !address} />
             <View style={{height: 300}} />
         </ScrollView>
     );

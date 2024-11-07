@@ -17,11 +17,14 @@ import * as LocalAuthentication from 'expo-local-authentication';
 import security from '@storage/security';
 import {Image} from 'expo-image';
 import {hasAtLeastSingleWallet} from '@storage/wallet';
+import {useTranslation} from 'react-i18next';
 
 const LockScreen = () => {
     const hasWallet = hasAtLeastSingleWallet();
     const {unlockMethod} = useUnlockMethod();
     const [autolockSeconds] = useMMKVNumber(StorageKeys.autolockSeconds, encryptedStorage);
+
+    const {t} = useTranslation();
 
     const lockedState = !!(hasWallet && unlockMethod && (autolockSeconds || 0) > 0);
     const [isLocked, setIsLocked] = useState(lockedState);
@@ -120,13 +123,13 @@ const LockScreen = () => {
                         <Image source={require('@assets/logoclear.png')} style={styles.logo} />
 
                         <Text variant="subheader" style={styles.unlockHeader}>
-                            Unlock your wallet
+                            {t('lock_screen.unlock')}
                         </Text>
                         <Separator space={spacing.l} />
 
                         {unlockMethod === 'biometrics' && (
                             <>
-                                <Text style={styles.biometricsText}>Unlock with your biometrics</Text>
+                                <Text style={styles.biometricsText}>{t('lock_screen.unlock_with_biometrics')}</Text>
                                 <TouchableOpacity style={styles.biometricsButton} onPress={tryBiometrics}>
                                     <FontAwesome5 name="fingerprint" style={styles.biometricsIcon} />
                                 </TouchableOpacity>
@@ -135,14 +138,14 @@ const LockScreen = () => {
 
                         {unlockMethod === 'password' && (
                             <>
-                                <Text>Enter your password to continue</Text>
+                                <Text>{t('lock_screen.enter_password')}</Text>
                                 {showWrongPassword && (
-                                    <Text style={styles.wrongPassword}>*Wrong Password! Try again</Text>
+                                    <Text style={styles.wrongPassword}>{t('lock_screen.error_wrong_password')}</Text>
                                 )}
-                                {showInputPassword && <Text style={styles.inputPasswordWarning}>* Input password</Text>}
+                                {showInputPassword && <Text style={styles.inputPasswordWarning}>{t('lock_screen.input_password_warning')}</Text>}
                                 <TextInput
                                     ref={passwordInputRef}
-                                    placeholder={'Password'}
+                                    placeholder={t('lock_screen.password_placeholder')}
                                     returnKeyType={'done'}
                                     autoCorrect={false}
                                     autoCapitalize={'none'}
@@ -152,16 +155,16 @@ const LockScreen = () => {
                                     value={password}
                                     onChangeText={setPassword}
                                 />
-                                <Button title={'Unlock'} onPress={onUnlock} containerStyle={styles.unlockButton} />
+                                <Button title={t('lock_screen.unlock_button')} onPress={onUnlock} containerStyle={styles.unlockButton} />
                             </>
                         )}
 
                         {failedCount >= 3 && (
                             <View style={styles.resetContainer}>
-                                <Text>Can't unlock?</Text>
+                                <Text>{t('lock_screen.failed')}</Text>
                                 <TouchableOpacity style={styles.resetButton} onPress={onResetWallet}>
                                     <Text style={styles.resetText} weight={'500'}>
-                                        Reset wallet
+                                        {t('lock_screen.reset')}
                                     </Text>
                                 </TouchableOpacity>
                             </View>

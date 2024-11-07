@@ -48,7 +48,7 @@ const AccountItem = ({address, onPress, isSelected, onMenu, mode}: Props) => {
                 <Text style={styles.address}>{shortenAddress(address, 8)}</Text>
             </View>
             <Text variant="small" color="tertiary">
-                {t('current_account.account_item',{balance:nativeBalance,currency:nativeCurrency})}
+                {t('pick_account_modal.account_item',{balance:nativeBalance,currency:nativeCurrency})}
             </Text>
             {mode === 'change' && (
                 <TouchableOpacity onPress={onMenu}>

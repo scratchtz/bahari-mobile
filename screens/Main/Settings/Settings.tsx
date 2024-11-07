@@ -43,7 +43,7 @@ const Settings: React.FC<AllScreenProps<'Settings'>> = ({navigation}) => {
                 <CurrentAccount />
                 <Separator space={spacing.m} />
                 <Text variant="subheader" style={styles.subheader}>
-                    {t('settings.wallet.title')}
+                    {t('settings.wallet_title')}
                 </Text>
                 <View style={styles.section}>
                     <SettingsItem
@@ -58,7 +58,7 @@ const Settings: React.FC<AllScreenProps<'Settings'>> = ({navigation}) => {
                                 />
                             </View>
                         }
-                        title={t('settings.wallet.new_wallet.title')}
+                        title={t('new_wallet.title')}
                     />
 
                     <SettingsItem
@@ -70,7 +70,7 @@ const Settings: React.FC<AllScreenProps<'Settings'>> = ({navigation}) => {
                                 <FontAwesome5 name="search-plus" style={[settingItemStyle.settingIcon]} />
                             </View>
                         }
-                        title={t('settings.wallet.import_wallet.title')}
+                        title={t('import_wallet.title')}
                     />
                     <SettingsItem
                         onPress={() => {
@@ -81,12 +81,12 @@ const Settings: React.FC<AllScreenProps<'Settings'>> = ({navigation}) => {
                                 <Ionicons name="people" style={[settingItemStyle.settingIcon]} />
                             </View>
                         }
-                        title={t('settings.wallet.contacts.title')}
+                        title={t('contacts.title')}
                     />
                 </View>
                 <Separator space={spacing.l} />
                 <Text variant="subheader" style={styles.subheader}>
-                    {t('settings.general.title')}
+                    {t('settings.general_title')}
                 </Text>
                 <View style={styles.section}>
                     <ItemLanguage />
@@ -100,7 +100,7 @@ const Settings: React.FC<AllScreenProps<'Settings'>> = ({navigation}) => {
 
                 <Separator space={spacing.l} />
                 <Text variant="subheader" style={styles.subheader}>
-                    {t('settings.security.title')}
+                    {t('settings.security_title')}
                 </Text>
                 <View style={styles.section}>
                     <ItemPassword />

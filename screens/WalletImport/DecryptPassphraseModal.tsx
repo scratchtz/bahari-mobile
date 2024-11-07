@@ -49,11 +49,11 @@ const DecryptPassphraseModal = (props: Props, ref: any) => {
     };
     const onDecrypt = () => {
         if (!password) {
-            ToastController.show({kind: 'error', title: 'Error', content: `${t('settings.wallet.import_wallet.decrypt_passphrase.errors.no_password')}`});
+            ToastController.show({kind: 'error', title: 'Error', content: `${t('import_wallet.decrypt_passphrase.errors.no_password')}`});
             return;
         }
         if (!encryptedText) {
-            ToastController.show({kind: 'error', title: 'Error', content: `${t('settings.wallet.import_wallet.decrypt_passphrase.errors.no_encrypted_text')}`});
+            ToastController.show({kind: 'error', title: 'Error', content: `${t('import_wallet.decrypt_passphrase.errors.no_encrypted_text')}`});
             return;
         }
         try {
@@ -62,7 +62,7 @@ const DecryptPassphraseModal = (props: Props, ref: any) => {
             if (words.length < 12) {
                 ToastController.show({
                     title: 'Error',
-                    content: `${t('settings.wallet.import_wallet.decrypt_passphrase.errors.failed')}`,
+                    content: `${t('import_wallet.decrypt_passphrase.errors.failed')}`,
                     timeout: 6000,
                     kind: 'error',
                 });
@@ -96,7 +96,7 @@ const DecryptPassphraseModal = (props: Props, ref: any) => {
                 <Separator space={spacing.l} />
                 {decryptedText ? (
                     <>
-                        <Text variant="subheader">{t('settings.wallet.import_wallet.decrypt_passphrase.your_passphrase')}</Text>
+                        <Text variant="subheader">{t('import_wallet.decrypt_passphrase.your_passphrase')}</Text>
                         <View style={styles.encryptedTextContainer}>
                             <Text selectable style={styles.encryptedText}>
                                 {decryptedText}
@@ -108,14 +108,14 @@ const DecryptPassphraseModal = (props: Props, ref: any) => {
                     </>
                 ) : (
                     <>
-                        <Text variant="subheader">{t('settings.wallet.import_wallet.decrypt_passphrase.import')}</Text>
+                        <Text variant="subheader">{t('import_wallet.decrypt_passphrase.import')}</Text>
                         <Separator space={spacing.l} />
                         <View style={styles.labelContainer}>
-                            <Text style={styles.label}>{t('settings.wallet.import_wallet.decrypt_passphrase.password')}</Text>
+                            <Text style={styles.label}>{t('import_wallet.decrypt_passphrase.password')}</Text>
                         </View>
                         <View style={[styles.textInputContainer]}>
                             <BottomSheetTextInput
-                                placeholder={t('settings.wallet.import_wallet.decrypt_passphrase.password_placeholder')}
+                                placeholder={t('import_wallet.decrypt_passphrase.password_placeholder')}
                                 placeholderTextColor={theme.colors.textTertiary}
                                 style={styles.textInput}
                                 returnKeyType="next"
@@ -126,17 +126,17 @@ const DecryptPassphraseModal = (props: Props, ref: any) => {
                         </View>
                         <Separator space={spacing.l} />
                         <View style={styles.hor}>
-                            <Text style={styles.label}>{t('settings.wallet.import_wallet.decrypt_passphrase.encrypted_text')}</Text>
+                            <Text style={styles.label}>{t('import_wallet.decrypt_passphrase.encrypted_text')}</Text>
                             <ButtonTiny
                                 icon={<FontAwesome name="paste" style={styles.pasteIcon} />}
-                                title={t('settings.wallet.import_wallet.decrypt_passphrase.paste')}
+                                title={t('import_wallet.decrypt_passphrase.paste')}
                                 onPress={onPaste}
                             />
                         </View>
                         <Separator space={spacing.s} />
                         <View style={[styles.textInputContainer]}>
                             <BottomSheetTextInput
-                                placeholder={t('settings.wallet.import_wallet.decrypt_passphrase.encrypted_text_placeholder')}
+                                placeholder={t('import_wallet.decrypt_passphrase.encrypted_text_placeholder')}
                                 multiline={true}
                                 placeholderTextColor={theme.colors.textTertiary}
                                 returnKeyType="next"
@@ -149,7 +149,7 @@ const DecryptPassphraseModal = (props: Props, ref: any) => {
 
                         <Separator space={spacing.l} />
                         <Button
-                            title={t('settings.wallet.import_wallet.decrypt_passphrase.button')}
+                            title={t('import_wallet.decrypt_passphrase.button')}
                             onPress={onDecrypt}
                             disabled={password.length === 0 || encryptedText.length === 0}
                         />

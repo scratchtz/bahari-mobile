@@ -51,12 +51,12 @@ export const WalletSwitch = React.memo(
                             {currentWallet?.label}
                         </Text>
                         <Text style={styles.accounts}>
-                            {currentWallet.keyPairsAddresses.length} {t('current_account.wallet_switch.accounts')}
+                            {currentWallet.keyPairsAddresses.length} {t('pick_account_modal.wallet_switch.accounts')}
                         </Text>
                     </View>
 
                     <Text variant="small" color="tertiary">
-                        {t('current_account.wallet_switch.balance',{balance:formatValue(totalBalanceInXno),currency:nativeCurrency})}
+                        {t('pick_account_modal.wallet_switch.balance',{balance:formatValue(totalBalanceInXno),currency:nativeCurrency})}
                     </Text>
                     <Entypo name="chevron-right" style={styles.chevron} />
                 </TouchableOpacity>

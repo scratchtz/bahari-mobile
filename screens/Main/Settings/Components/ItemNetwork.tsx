@@ -18,7 +18,7 @@ const ItemNetwork = () => {
             onPress={() => {
                 navigate('Network');
             }}
-            title={t('settings.general.network.title')}
+            title={t('settings.network_label')}
             leftItem={
                 <View style={[styles.settingIconBack, {backgroundColor: '#576574'}]}>
                     <FontAwesome5 name="wifi" style={[styles.settingIcon]} />

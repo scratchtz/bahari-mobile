@@ -37,7 +37,7 @@ export const UseTorSetting = React.memo(() => {
     return (
         <View style={styles.container}>
             <View style={styles.textWrap}>
-                <Text style={styles.text}>{'main.settings.general.network.tor.title'}</Text>
+                <Text style={styles.text}>{'network.tor.title'}</Text>
                 <TouchableOpacity onPress={openBottomSheet} hitSlop={hitSlop} style={styles.questionWrap}>
                     <FontAwesome6 name="circle-question" style={styles.question} />
                 </TouchableOpacity>
@@ -49,13 +49,13 @@ export const UseTorSetting = React.memo(() => {
                 ref={bottomSheetModalRef}
                 backdropComponent={renderBackdrop}
                 snapPoints={[300]}>
-                <ModalHeader title={t('main.settings.general.network.tor.modal_title')} onClose={closeBottomSheet} />
+                <ModalHeader title={t('network.tor.modal_title')} onClose={closeBottomSheet} />
                 <View style={styles.bottomSheetInner}>
                     <Text>
-                        {t('main.settings.general.network.tor.hide_ip')}
+                        {t('network.tor.hide_ip')}
                     </Text>
-                    <Text>{t('main.settings.general.network.tor.slow')}</Text>
-                    <Text color={'secondary'}>{t('main.settings.general.network.tor.note')}</Text>
+                    <Text>{t('network.tor.slow')}</Text>
+                    <Text color={'secondary'}>{t('network.tor.note')}</Text>
                 </View>
             </BottomSheetModal>
         </View>

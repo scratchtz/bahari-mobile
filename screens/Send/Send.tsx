@@ -42,7 +42,7 @@ const Send: React.FC<CommonStackScreenProps<'Send'>> = ({navigation}) => {
     const onNext = () => {
         const isValid = tools.validateAddress(address);
         if (!isValid) {
-            ToastController.show({kind: 'error', title: 'Error', content: `${t('wallet.send.invalid_address')}`});
+            ToastController.show({kind: 'error', title: 'Error', content: `${t('send.invalid_address')}`});
             return;
         }
         openSendAmount(address);
@@ -93,7 +93,7 @@ const Send: React.FC<CommonStackScreenProps<'Send'>> = ({navigation}) => {
         <View style={styles.container}>
             <View style={styles.upperContainer}>
                 <Text style={styles.head} weight="600">
-                    {t('wallet.send.label')}
+                    {t('send.label')}
                 </Text>
 
                 <View style={styles.tabContainer}>
@@ -104,7 +104,7 @@ const Send: React.FC<CommonStackScreenProps<'Send'>> = ({navigation}) => {
                             scrollViewRef.current?.scrollTo({x: 0, animated: true});
                         }}>
                         <Animated.Text style={[styles.tabText, {color: colorInterpolationInverse}]}>
-                            {t('wallet.send.address.label')}
+                            {t('send.address.label')}
                         </Animated.Text>
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -112,7 +112,7 @@ const Send: React.FC<CommonStackScreenProps<'Send'>> = ({navigation}) => {
                         onPress={() => {
                             scrollViewRef.current?.scrollTo({x: width, animated: true});
                         }}>
-                        <Animated.Text style={[styles.tabText, {color: colorInterpolation}]}>{t('wallet.send.contact.label')}</Animated.Text>
+                        <Animated.Text style={[styles.tabText, {color: colorInterpolation}]}>{t('send.contact_label')}</Animated.Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -145,7 +145,7 @@ const Send: React.FC<CommonStackScreenProps<'Send'>> = ({navigation}) => {
                             onChangeText={setAddress}
                             style={styles.textInput}
                             placeholderTextColor={theme.colors.textSecondary}
-                            placeholder={t('wallet.send.address.placeholder')}
+                            placeholder={t('send.address.placeholder')}
                             returnKeyType={'done'}
                             autoCapitalize={'none'}
                         />
@@ -158,19 +158,19 @@ const Send: React.FC<CommonStackScreenProps<'Send'>> = ({navigation}) => {
                         <View style={styles.flex} />
                         <ButtonTiny
                             icon={<FontAwesome name="qrcode" style={styles.scanIcon} />}
-                            title={t('wallet.send.address.scan_code')}
+                            title={t('send.address.scan_code')}
                             onPress={openScanQrCodeModal}
                         />
                         <Separator space={spacing.s} horizontal={true} />
                         <ButtonTiny
                             icon={<FontAwesome name="paste" style={styles.scanIcon} />}
-                            title={t('wallet.send.address.paste')}
+                            title={t('send.address.paste')}
                             onPress={onPasteAddress}
                         />
                     </View>
 
                     <Text variant="subheader" style={styles.recentHeader}>
-                        {t('wallet.send.address.recents.label')}
+                        {t('send.address.recents_label')}
                     </Text>
                     <Separator space={spacing.l} />
                     <RecentAddresses onPress={onRecentAddress} />
@@ -188,7 +188,7 @@ const Send: React.FC<CommonStackScreenProps<'Send'>> = ({navigation}) => {
             </ScrollView>
 
             <View style={styles.nextButton}>
-                <Button title={t('wallet.send.button')} onPress={onNext} />
+                <Button title={t('send.button_next')} onPress={onNext} />
             </View>
             <ScanQRCodeModal ref={scanQrCodeModalRef} onClose={onCloseScanQrCodeModal} />
         </View>

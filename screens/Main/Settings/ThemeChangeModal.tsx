@@ -50,7 +50,7 @@ const ThemeChangeModal = (props: Props, ref: any) => {
             onChange={handleSheetPositionChange}
             backdropComponent={renderBackdrop}
             snapPoints={snapPoints}>
-            <ModalHeader title={t('settings.general.theme.modal_title')} onClose={onClose} />
+            <ModalHeader title={t('settings.theme_change_label')} onClose={onClose} />
             <View style={styles.innerContainer}>
                 {DISPLAY_THEMES.map(t => {
                     return (
@@ -105,7 +105,7 @@ const ThemeItem = React.memo(
         return (
             <TouchableOpacity style={[styles.container, isSelected && styles.containerSelected]} onPress={onPress}>
                 {icon}
-                <Text style={styles.name}>{t(`settings.general.theme.${name}`)}</Text>
+                <Text style={styles.name}>{t(`constants.themes.${name}`)}</Text>
                 {isSelected && <Feather name="check" style={styles.checkMark} />}
             </TouchableOpacity>
         );

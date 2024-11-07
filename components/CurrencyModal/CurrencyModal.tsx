@@ -72,9 +72,9 @@ const CurrencyModal = (props: Props, ref: any) => {
             onChange={handleSheetPositionChange}
             backdropComponent={renderBackdrop}
             snapPoints={snapPoints}>
-            <ModalHeader title={t('settings.general.display_currency.display')} onClose={onClose} />
+            <ModalHeader title={t('currency_modal.label')} onClose={onClose} />
             <SearchBar
-                placeholder={t('settings.general.display_currency.search')}
+                placeholder={t('currency_modal.search')}
                 value={searchText}
                 onChangeText={setSearchText}
                 containerStyle={styles.searchBar}

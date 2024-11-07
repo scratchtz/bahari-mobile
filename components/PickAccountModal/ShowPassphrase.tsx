@@ -31,14 +31,14 @@ const ShowSecret = ({secret, derivationPath}: {secret: string; derivationPath?: 
                 </View>
                 {derivationPath && (
                     <View style={styles.pathContainer}>
-                        <Text style={styles.pathTitle}>{t('current_account.show_passphrase.derivation')} {derivationPath}</Text>
+                        <Text style={styles.pathTitle}>{t('pick_account_modal.show_passphrase.derivation')} {derivationPath}</Text>
                     </View>
                 )}
                 <Separator space={spacing.m} />
                 <Text style={styles.warningTitle} weight={'600'}>
-                    {t('current_account.show_passphrase.title')}
+                    {t('pick_account_modal.show_passphrase.title')}
                 </Text>
-                <Text>{t('current_account.show_passphrase.description')}</Text>
+                <Text>{t('pick_account_modal.show_passphrase.description')}</Text>
 
                 <View style={styles.actionsContainer}>
                     <CopyTag content={secret || ''} />
@@ -52,7 +52,7 @@ const ShowSecret = ({secret, derivationPath}: {secret: string; derivationPath?: 
                         onPress={() => {
                             setShowEncrypt(true);
                         }}
-                        title={t('current_account.show_passphrase.encrypt')}
+                        title={t('pick_account_modal.show_passphrase.encrypt')}
                     />
                 </View>
                 {showEncrypt && <EncryptText passphrase={secret} />}

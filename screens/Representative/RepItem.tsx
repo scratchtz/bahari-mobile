@@ -30,9 +30,9 @@ export const RepItem = React.memo(
                     <Text weight={'600'} style={styles.name}>
                         {alias}
                     </Text>
-                    <Text>{t('settings.general.representative.change.list.voting_weight',{number:voteWeight})}</Text>
-                    <Text>{t('settings.general.representative.change.list.last_uptime',{number:uptime.toFormat(2)})}</Text>
-                    <Text>{t('settings.general.representative.change.list.node_version',{version:version})}</Text>
+                    <Text>{t('representative.change.list.voting_weight',{number:voteWeight})}</Text>
+                    <Text>{t('representative.change.list.last_uptime',{number:uptime.toFormat(2)})}</Text>
+                    <Text>{t('representative.change.list.node_version',{version:version})}</Text>
                 </View>
                 <View style={[styles.uptimeWrap, {backgroundColor: uptimeColor}]}>
                     <Text weight={'800'} style={styles.uptime}>

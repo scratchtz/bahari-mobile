@@ -51,7 +51,7 @@ const TxDetailedModal = ({type, account, confirmed, amount, hash, local_timestam
 
     const onCopy = async (value: string) => {
         await Clipboard.setStringAsync(value);
-        ToastController.show({kind: 'info', content: 'Copied to clipboard'});
+        ToastController.show({kind: 'info', content: `${t('wallet.transaction_item.modal.info_copied')}`});
     };
 
     const addressName = useMemo(() => {
@@ -116,7 +116,7 @@ const TxDetailedModal = ({type, account, confirmed, amount, hash, local_timestam
                     </View>
                     <View style={styles.section}>
                         <Text style={styles.key}>
-                            {type === 'receive' ? `${t('wallet.transaction_item.modal.type.from')}` : type === 'send' ? `${t('wallet.transaction_item.modal.type.to')}` : `${t('wallet.transaction_item.modal.type.account')}`}
+                            {type === 'receive' ? `${t('wallet.transaction_item.modal.type_from')}` : type === 'send' ? `${t('wallet.transaction_item.modal.type_to')}` : `${t('wallet.transaction_item.modal.type_account')}`}
                         </Text>
                         <View style={styles.hor}>
                             <AddressThumbnail address={account} size={30} containerStyle={styles.thumbnail} />
@@ -145,9 +145,9 @@ const TxDetailedModal = ({type, account, confirmed, amount, hash, local_timestam
                         </Text>
                     </View>
                     <View style={styles.section}>
-                        <Text style={styles.key}>{t('wallet.transaction_item.modal.status.label')}</Text>
+                        <Text style={styles.key}>{t('wallet.transaction_item.modal.status_label')}</Text>
                         <Text style={[styles.amount, {color: amountColor}]}>
-                            <Text style={styles.date}>{confirmed === 'true' ? `${t('wallet.transaction_item.modal.status.confirmed')}` : `${t('wallet.transaction_item.modal.status.pending')}`}</Text>
+                            <Text style={styles.date}>{confirmed === 'true' ? `${t('wallet.transaction_item.modal.status_confirmed')}` : `${t('wallet.transaction_item.modal.status_pending')}`}</Text>
                         </Text>
                     </View>
                     <TouchableOpacity style={styles.openExplorerButton} onPress={openOnBrowser}>

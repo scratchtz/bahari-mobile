@@ -47,7 +47,7 @@ const Representative = ({navigation}: CommonStackScreenProps<'Representative'>) 
         <ScrollView contentContainerStyle={styles.container}>
             <CurrentAccount />
             <Separator space={spacing.l} />
-            <Text weight={'500'}>{t('settings.general.representative.account')}</Text>
+            <Text weight={'500'}>{t('representative.account')}</Text>
             <Separator space={spacing.s} />
 
             {isLoading ? (
@@ -60,25 +60,25 @@ const Representative = ({navigation}: CommonStackScreenProps<'Representative'>) 
                         {myRep && (
                             <View>
                                 <Text weight={'600'}>{myRep.alias}</Text>
-                                <Text>{t('settings.general.representative.voting_weight',{number:new BigNumber(myRep.weight_percent).toFormat(2)})}</Text>
-                                <Text>{t('settings.general.representative.last_uptime',{number:new BigNumber(myRep.uptime_percent).toFormat(2)})}</Text>
+                                <Text>{t('representative.voting_weight',{number:new BigNumber(myRep.weight_percent).toFormat(2)})}</Text>
+                                <Text>{t('representative.last_uptime',{number:new BigNumber(myRep.uptime_percent).toFormat(2)})}</Text>
                                 <Separator space={spacing.s} />
                             </View>
                         )}
                         <Text style={styles.representative}>{shortenAddress(representative)}</Text>
                     </View>
-                    <Button title={t('settings.general.representative.button')} variant={'secondary'} onPress={onChangeRep} />
+                    <Button title={t('representative.button')} variant={'secondary'} onPress={onChangeRep} />
                 </View>
             )}
 
             <Separator space={spacing.xl} />
 
             <Text style={styles.explain}>
-                {t('settings.general.representative.recommendation')}
+                {t('representative.recommendation')}
             </Text>
 
             <TouchableOpacity onPress={onReadMore}>
-                <Text style={styles.readMore}>{t('settings.general.representative.read_more')}</Text>
+                <Text style={styles.readMore}>{t('representative.read_more')}</Text>
             </TouchableOpacity>
         </ScrollView>
     );

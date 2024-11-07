@@ -55,7 +55,7 @@ const Receive = ({}: CommonStackScreenProps<'Receive'>) => {
     };
     const onPressAddress = async () => {
         await Clipboard.setStringAsync(address);
-        ToastController.show({content: `${t('wallet.receive.copied')}`, kind: 'success'});
+        ToastController.show({content: `${t('receive.copied')}`, kind: 'success'});
     };
 
     return (
@@ -109,7 +109,7 @@ const Receive = ({}: CommonStackScreenProps<'Receive'>) => {
                     )}
 
                     <Separator space={spacing.m} />
-                    <Text style={styles.addressTitle}>{t('wallet.receive.your_address')}</Text>
+                    <Text style={styles.addressTitle}>{t('receive.your_nano_address')}</Text>
                     <Pressable onPress={onPressAddress}>
                         <Text style={styles.address} weight={'800'}>
                             {address}
@@ -119,14 +119,14 @@ const Receive = ({}: CommonStackScreenProps<'Receive'>) => {
                     <View style={styles.actionButtons}>
                         <CopyTag content={qrCodeContent} containerStyle={styles.actionButton} />
                         <Tag
-                            title={t('wallet.receive.share')}
+                            title={t('receive.share')}
                             containerStyle={styles.actionButton}
                             icon={<Feather name="share" style={[styles.actionIcon, {color: palette.sky500}]} />}
                             onPress={onShare}
                         />
                         {!showAmount && (
                             <Tag
-                                title={t('wallet.receive.request.label')}
+                                title={t('receive.request.label')}
                                 containerStyle={styles.actionButton}
                                 icon={
                                     <FontAwesome5

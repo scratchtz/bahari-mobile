@@ -154,18 +154,18 @@ const ReceiveAmountSection = (props: Props) => {
                 {requestAmount ? (
                     <View>
                         <Text style={styles.requestAmountInput} weight={'800'}>
-                            {t('wallet.receive.request.amount',{amount:requestAmount,currency:inputCurrency})}
+                            {t('receive.request.amount',{amount:requestAmount,currency:inputCurrency})}
                         </Text>
                         <TouchableOpacity onPress={onSwapCurrencies}>
                             <Text style={styles.estimateAmount} weight={'600'}>
-                                {t('wallet.receive.request.estimate_amount',{amount:formatValue(estimateAmount),currency:estimateCurrency})}
+                                {t('receive.request.estimate_amount',{amount:formatValue(estimateAmount),currency:estimateCurrency})}
                             </Text>
                         </TouchableOpacity>
                     </View>
                 ) : (
                     <View style={styles.placeholderWrap}>
                         <Text style={styles.requestAmountInputHolder} weight={'300'}>
-                            {t('wallet.receive.request.how_much',{currency:inputCurrency})}
+                            {t('receive.request.how_much',{currency:inputCurrency})}
                         </Text>
                     </View>
                 )}
@@ -181,12 +181,12 @@ const ReceiveAmountSection = (props: Props) => {
             </View>
             <View style={styles.buttonsWrap}>
                 <Button
-                    title={t('wallet.receive.request.cancel')}
+                    title={t('receive.request.button_cancel')}
                     variant={'secondary'}
                     onPress={props.onCancel}
                     containerStyle={styles.actionButton}
                 />
-                <Button title={t('wallet.receive.request.confirm')} onPress={onRequest} containerStyle={styles.actionButton} />
+                <Button title={t('receive.request.button_confirm')} onPress={onRequest} containerStyle={styles.actionButton} />
             </View>
         </View>
     );

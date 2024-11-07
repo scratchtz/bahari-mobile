@@ -24,7 +24,7 @@ const ItemNativeCurrency = () => {
         <>
             <SettingsItem
                 onPress={openNativeCurrencyModal}
-                title={t('settings.general.native_currency.title')}
+                title={t('settings.native_currency_label')}
                 leftItem={
                     <View style={[styles.settingIconBack, {backgroundColor: '#82589F'}]}>
                         <FontAwesome name="chain" style={[styles.settingIcon]} />

@@ -36,7 +36,7 @@ const AccountSelect = ({containerStyle, onSelectAccount}: Props) => {
         <>
             <ButtonTiny
                 icon={<Ionicons name="wallet" style={styles.walletIcon} />}
-                title={t('wallet.send.address.my_wallets')}
+                title={t('send.address.my_wallets')}
                 containerStyle={containerStyle}
                 onPress={onPress}
             />

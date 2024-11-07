@@ -36,7 +36,7 @@ const EditWalletScreen = ({walletID, onDone, onClose}: Props) => {
     if (!wallet) return null;
     const handleDone = () => {
         if (!label) {
-            ToastController.show({kind: 'error', content: `${t('current_account.edit_wallet.name_required')}`});
+            ToastController.show({kind: 'error', content: `${t('pick_account_modal.edit_wallet.name_required')}`});
             return;
         }
         setWallet({...wallet, label});
@@ -49,15 +49,15 @@ const EditWalletScreen = ({walletID, onDone, onClose}: Props) => {
 
     const handleDeleteWallet = () => {
         Alert.alert(
-            `${t('current_account.edit_wallet.alert.delete')}`,
-            `${t('current_account.edit_wallet.alert.delete_desc')}`,
+            `${t('pick_account_modal.edit_wallet.alert_delete')}`,
+            `${t('pick_account_modal.edit_wallet.alert_delete_desc')}`,
             [
                 {
-                    text: `${t('current_account.edit_wallet.alert.cancel')}`,
+                    text: `${t('pick_account_modal.edit_wallet.alert_button_cancel')}`,
                     style: 'cancel',
                 },
                 {
-                    text: `${t('current_account.edit_wallet.alert.delete_confirm')}`,
+                    text: `${t('pick_account_modal.edit_wallet.alert_button_delete')}`,
                     onPress: handleDeleteConfirm,
                     style: 'destructive',
                 },
@@ -72,14 +72,14 @@ const EditWalletScreen = ({walletID, onDone, onClose}: Props) => {
 
     return (
         <>
-            <ModalHeader title={t('current_account.edit_wallet.title')} onClose={onClose} />
+            <ModalHeader title={t('pick_account_modal.edit_wallet.label')} onClose={onClose} />
             <View style={styles.container}>
                 {wallet.mnemonic && showPassphrase && <ShowSecret secret={wallet.mnemonic} />}
 
                 {!showPassphrase && (
                     <>
                         <Text style={styles.label} weight="500">
-                            {t('current_account.edit_wallet.wallet_name')}
+                            {t('pick_account_modal.edit_wallet.name')}
                         </Text>
                         <View style={styles.nameInputContainer}>
                             <BottomSheetTextInput
@@ -98,7 +98,7 @@ const EditWalletScreen = ({walletID, onDone, onClose}: Props) => {
                                 <ButtonTiny
                                     containerStyle={[styles.tinyButton, {marginRight: spacing.s}]}
                                     icon={<Entypo name="eye-with-line" style={[styles.actionButtonIcon]} />}
-                                    title={t('current_account.edit_wallet.show_passphrase')}
+                                    title={t('pick_account_modal.edit_wallet.show_passphrase')}
                                     onPress={() => {
                                         setShowPassphrase(true);
                                     }}
@@ -113,7 +113,7 @@ const EditWalletScreen = ({walletID, onDone, onClose}: Props) => {
                                         style={[styles.actionButtonIcon, {color: palette.rose400}]}
                                     />
                                 }
-                                title={t('current_account.edit_wallet.delete_wallet')}
+                                title={t('pick_account_modal.edit_wallet.delete_wallet')}
                                 onPress={handleDeleteWallet}
                             />
                         </View>
@@ -124,13 +124,13 @@ const EditWalletScreen = ({walletID, onDone, onClose}: Props) => {
                 <View style={styles.buttonsContainer}>
                     {!showPassphrase && (
                         <Button
-                            title={t('current_account.edit_wallet.button.cancel')}
+                            title={t('pick_account_modal.edit_wallet.button_cancel')}
                             variant={'secondary'}
                             onPress={onCancel}
                             containerStyle={[styles.flex, {marginRight: spacing.s}]}
                         />
                     )}
-                    <Button title={t('current_account.edit_wallet.button.done')} onPress={handleDone} containerStyle={styles.flex} />
+                    <Button title={t('pick_account_modal.edit_wallet.button_done')} onPress={handleDone} containerStyle={styles.flex} />
                 </View>
             </View>
         </>

@@ -19,11 +19,11 @@ const NetworkNew = ({navigation}: CommonStackScreenProps<'NetworkNew'>) => {
 
     const onAdd = () => {
         if (!label) {
-            ToastController.show({kind: 'error', content: `${t('settings.general.network.new.error.no_label')}`});
+            ToastController.show({kind: 'error', content: `${t('network_new.error_no_label')}`});
             return;
         }
         if (!endpoint) {
-            ToastController.show({kind: 'error', content: `${t('settings.general.network.new.error.no_endpoint')}`});
+            ToastController.show({kind: 'error', content: `${t('network_new.error_no_endpoint')}`});
             return;
         }
 
@@ -38,10 +38,10 @@ const NetworkNew = ({navigation}: CommonStackScreenProps<'NetworkNew'>) => {
     return (
         <ScrollView style={{flex: 1}} contentContainerStyle={styles.container} keyboardDismissMode="interactive">
             <Separator space={spacing.xl} />
-            <Text style={styles.label}>{t('settings.general.network.new.label')}</Text>
+            <Text style={styles.label}>{t('network_new.label')}</Text>
             <TextInput
                 autoCapitalize="none"
-                placeholder={t('settings.general.network.new.label_placeholder')}
+                placeholder={t('network_new.label_placeholder')}
                 value={label}
                 onChangeText={setLabel}
                 autoCorrect={false}
@@ -50,10 +50,10 @@ const NetworkNew = ({navigation}: CommonStackScreenProps<'NetworkNew'>) => {
             />
 
             <Separator space={spacing.xl} />
-            <Text style={styles.label}>{t('settings.general.network.new.url')}</Text>
+            <Text style={styles.label}>{t('network_new.url')}</Text>
             <TextInput
                 autoCapitalize="none"
-                placeholder={t('settings.general.network.new.url_placeholder')}
+                placeholder={t('network_new.url_placeholder')}
                 value={endpoint}
                 textContentType={'URL'}
                 autoCorrect={false}
@@ -63,7 +63,7 @@ const NetworkNew = ({navigation}: CommonStackScreenProps<'NetworkNew'>) => {
             />
 
             <Separator space={spacing.xl} />
-            <Button title={t('settings.general.network.new.button')} onPress={onAdd} disabled={!label || !endpoint} />
+            <Button title={t('network_new.button')} onPress={onAdd} disabled={!label || !endpoint} />
             <View style={{height: 300}} />
         </ScrollView>
     );

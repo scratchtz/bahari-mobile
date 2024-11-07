@@ -25,7 +25,7 @@ const ItemDisplayCurrency = () => {
         <>
             <SettingsItem
                 onPress={openCurrencyModal}
-                title={t('settings.general.display_currency.title')}
+                title={t('settings.display_currency_label')}
                 leftItem={
                     <View style={[styles.settingIconBack, {backgroundColor: palette.amber400}]}>
                         <Fontisto name="money-symbol" style={[styles.settingIcon]} />

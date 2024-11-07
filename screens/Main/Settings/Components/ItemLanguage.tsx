@@ -28,7 +28,7 @@ const ItemLanguage = () => {
         <>
             <SettingsItem
                 onPress={openLanguageModal}
-                title={t('settings.general.language_title')}
+                title={t('settings.language_label')}
                 leftItem={
                     <View style={[styles.settingIconBack, {backgroundColor: '#ff9ff3'}]}>
                         <FontAwesome6 name="language" style={[styles.settingIcon]} />

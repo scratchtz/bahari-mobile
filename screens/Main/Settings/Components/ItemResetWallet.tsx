@@ -27,7 +27,7 @@ const ItemResetWallet = () => {
         <>
             <SettingsItem
                 onPress={openResetWalletModal}
-                title={t('settings.security.reset_wallet.title')}
+                title={t('settings.reset_wallet.label')}
                 leftItem={
                     <View style={[styles.settingIconBack, {backgroundColor: palette.rose500}]}>
                         <Feather name="delete" style={[styles.settingIcon]} />
@@ -91,17 +91,17 @@ const ResetWalletModal = React.forwardRef(({}, ref: any) => {
             onChange={handlePositionChange}
             backdropComponent={renderBackdrop}
             snapPoints={snapPoints}>
-            <ModalHeader title={t('settings.security.reset_wallet.modal_label')} onClose={() => ref.current.close()} />
+            <ModalHeader title={t('settings.reset_wallet.modal_label')} onClose={() => ref.current.close()} />
             <View style={styles.innerContainer}>
                 <View style={styles.warningWrap}>
                     <AntDesign name="warning" size={24} color={theme.colors.warning} />
                     <Text style={styles.warning}>
-                        {t('settings.security.reset_wallet.warning')}
+                        {t('settings.reset_wallet.warning')}
                     </Text>
                 </View>
                 <View style={styles.buttonsContainer}>
                     <Button
-                        title={t('settings.security.reset_wallet.cancel')}
+                        title={t('settings.reset_wallet.button_cancel')}
                         onPress={() => {
                             ref.current.close();
                         }}
@@ -109,7 +109,7 @@ const ResetWalletModal = React.forwardRef(({}, ref: any) => {
                         containerStyle={styles.button}
                     />
                     <Button
-                        title={timeout > 0 ? `${t('settings.security.reset_wallet.confirm')} (${timeout})` : `${t('settings.security.reset_wallet.confirm')}`}
+                        title={timeout > 0 ? `${t('settings.reset_wallet.button_confirm')} (${timeout})` : `${t('settings.reset_wallet.button_confirm')}`}
                         variant="primary"
                         disabled={timeout > 0}
                         onPress={() => {}}

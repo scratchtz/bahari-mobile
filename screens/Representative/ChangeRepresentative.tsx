@@ -58,7 +58,7 @@ const ChangeRepresentative = ({navigation}: CommonStackScreenProps<'ChangeRepres
     const onPasteAddress = async () => {
         const text = await Clipboard.getStringAsync();
         if (!tools.validateAddress(text)) {
-            ToastController.show({kind: 'error', content: `${t('settings.general.representative.change.invalid_address')}`});
+            ToastController.show({kind: 'error', content: `${t('representative.change.invalid_address')}`});
             return;
         }
         setNewRepAccount(text);
@@ -71,7 +71,7 @@ const ChangeRepresentative = ({navigation}: CommonStackScreenProps<'ChangeRepres
                 estimatedItemSize={200}
                 ListHeaderComponent={
                     <>
-                        <Text>{t('settings.general.representative.change.representative_address')}</Text>
+                        <Text>{t('representative.change.representative_address')}</Text>
                         <TextInput
                             rightItem={
                                 newRepAccount ? (
@@ -86,7 +86,7 @@ const ChangeRepresentative = ({navigation}: CommonStackScreenProps<'ChangeRepres
                             }
                         />
                         <Separator space={spacing.l} />
-                        <Text>{t('settings.general.representative.change.pick')}</Text>
+                        <Text>{t('representative.change.pick')}</Text>
                         <Separator space={spacing.l} />
                     </>
                 }

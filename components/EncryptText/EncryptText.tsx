@@ -11,6 +11,7 @@ import aes256 from '@utils/helper/aes256';
 import CopyTag from '@components/Tag/CopyTag';
 import {ToastController} from '@components/Toast/Toast';
 import BottomSheetTextInput from '@components/TextInput/BottomSheetTextInput';
+import {useTranslation} from 'react-i18next';
 
 /*
 Using this one instead of modal inside modals because a modal inside a modal breaks text input
@@ -28,31 +29,33 @@ const EncryptText = (props: Props) => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [encryptedText, setEncryptedText] = useState('');
 
+    const {t} = useTranslation();
+
     const passwordStrength = useMemo(() => strengthChecker(password).id as 0 | 1 | 2 | 3, [password]);
     const passwordStrengthText = useMemo(() => {
         switch (passwordStrength) {
             case 0:
-                return 'too weak';
+                return `${t('encrypt_text.strength_too_weak')}`;
             case 1:
-                return 'weak';
+                return `${t('encrypt_text.strength_weak')}`;
             case 2:
-                return 'medium';
+                return `${t('encrypt_text.strength_medium')}`;
             case 3:
-                return 'strong';
+                return `${t('encrypt_text.strength_strong')}`;
         }
     }, [passwordStrength]);
 
     const onEncrypt = () => {
         if (password.length < MINIMUM_LENGTH) {
-            ToastController.show({kind: 'error', content: 'Password should be 8 characters or more'});
+            ToastController.show({kind: 'error', content: `${t('encrypt_text.error_short_password')}`});
             return;
         }
         if (password !== confirmPassword) {
-            ToastController.show({kind: 'error', content: "Passwords don't match"});
+            ToastController.show({kind: 'error', content: `${t('encrypt_text.error_password_not_match')}`});
             return;
         }
         if (!props.passphrase) {
-            ToastController.show({kind: 'error', title: 'Error', content: 'Passphrase not available'});
+            ToastController.show({kind: 'error', title: 'Error', content: `${t('encrypt_text.error_passphrase_not_available')}`});
             return;
         }
 
@@ -72,9 +75,9 @@ const EncryptText = (props: Props) => {
         <View style={styles.container}>
             {encryptedText ? (
                 <>
-                    <Text style={styles.info}>Store in a safe place.</Text>
+                    <Text style={styles.info}>{t('encrypt_text.store')}</Text>
                     <Text style={styles.warning} weight="500">
-                        If you forget your password we can't decrypt this text for you.
+                        {t('encrypt_text.disclaimer')}
                     </Text>
                     <View style={styles.encryptedTextContainer}>
                         <Text selectable style={styles.encryptedText}>
@@ -88,10 +91,10 @@ const EncryptText = (props: Props) => {
             ) : (
                 <>
                     <Separator space={spacing.m} />
-                    <Text style={styles.info}>Enter password to encrypt</Text>
+                    <Text style={styles.info}>{t('encrypt_text.enter_password')}</Text>
                     <Separator space={spacing.m} />
                     <View style={styles.labelContainer}>
-                        <Text style={styles.label}>Password</Text>
+                        <Text style={styles.label}>{t('encrypt_text.password_label')}</Text>
                         {password.length > 0 && (
                             <Text style={[styles.strength, {color: PASSWORD_STRENGTH_COLORS[passwordStrength]}]}>
                                 {passwordStrengthText}
@@ -105,7 +108,7 @@ const EncryptText = (props: Props) => {
                             passwordsCorrect && {borderColor: theme.colors.success},
                         ]}>
                         <BottomSheetTextInput
-                            placeholder="Password"
+                            placeholder={t('encrypt_text.password_placeholder')}
                             placeholderTextColor={theme.colors.textTertiary}
                             style={styles.textInput}
                             returnKeyType="next"
@@ -115,7 +118,7 @@ const EncryptText = (props: Props) => {
                         />
                     </View>
                     <Separator space={spacing.m} />
-                    <Text style={styles.label}>Confirm Password</Text>
+                    <Text style={styles.label}>{t('encrypt_text.confirm_password_label')}</Text>
                     <View
                         style={[
                             styles.textInputContainer,
@@ -123,7 +126,7 @@ const EncryptText = (props: Props) => {
                             passwordsCorrect && {borderColor: theme.colors.success},
                         ]}>
                         <BottomSheetTextInput
-                            placeholder="Password"
+                            placeholder={t('encrypt_text.confirm_password_placeholder')}
                             placeholderTextColor={theme.colors.textTertiary}
                             style={styles.textInput}
                             returnKeyType="done"
@@ -134,7 +137,7 @@ const EncryptText = (props: Props) => {
                     </View>
 
                     <Separator space={spacing.l} />
-                    <Button title="Encrypt" onPress={onEncrypt} disabled={!passwordsCorrect} />
+                    <Button title={t('encrypt_text.button_encrypt')} onPress={onEncrypt} disabled={!passwordsCorrect} />
                 </>
             )}
         </View>

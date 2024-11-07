@@ -79,20 +79,20 @@ const ImportPassphrase: React.FC<RootStackScreenProps<'ImportPassphrase'>> = ({n
     const onImport = async () => {
         try {
             if (!label) {
-                ToastController.show({kind: 'error', content: `${t('settings.wallet.import_wallet.passphrase.errors.no_name')}`});
+                ToastController.show({kind: 'error', content: `${t('import_wallet.passphrase.errors.no_name')}`});
                 labelInputRef.current?.focus();
                 return;
             }
             const mnemonicSplit = passphrase.trim().split(' ');
             if (mnemonicSplit.length < 12) {
-                ToastController.show({kind: 'error', content: `${t('settings.wallet.import_wallet.passphrase.errors.incorrect')}`})
+                ToastController.show({kind: 'error', content: `${t('import_wallet.passphrase.errors.incorrect')}`})
                 return;
             }
             setIsImporting(true);
             void importPassphrase();
         } catch (e: any) {
             setIsImporting(false);
-            ToastController.show({kind: 'error', content: `${t('settings.wallet.import_wallet.passphrase.errors.unknown')}\n${e.toString()}`, timeout: 6000});
+            ToastController.show({kind: 'error', content: `${t('import_wallet.passphrase.errors.unknown')}\n${e.toString()}`, timeout: 6000});
         } finally {
             setIsImporting(false);
         }
@@ -107,7 +107,7 @@ const ImportPassphrase: React.FC<RootStackScreenProps<'ImportPassphrase'>> = ({n
                 const [wallet, firstKeyPair] = generateWalletFromMnemonic(passphrase.trim(), kind, label);
                 const myKey = encryptedGetFromJson<KeyPair>(storageKeyKeyPair(firstKeyPair.address));
                 if (myKey && myKey.address) {
-                    ToastController.show({kind: 'error', content: `${t('settings.wallet.import_wallet.passphrase.errors.exists')}`});
+                    ToastController.show({kind: 'error', content: `${t('import_wallet.passphrase.errors.exists')}`});
                     return;
                 }
                 generatedWallets.push({wallet, firstKeyPair});
@@ -145,26 +145,26 @@ const ImportPassphrase: React.FC<RootStackScreenProps<'ImportPassphrase'>> = ({n
     return (
         <>
             <ScrollView keyboardDismissMode={'interactive'} contentContainerStyle={styles.container}>
-                <Text style={styles.label}>{t('settings.wallet.import_wallet.passphrase.label')}</Text>
+                <Text style={styles.label}>{t('import_wallet.passphrase.label')}</Text>
                 <Separator space={spacing.s} />
-                <TextInput ref={labelInputRef} placeholder={t('settings.wallet.import_wallet.passphrase.label_placeholder')} value={label} onChangeText={setLabel} />
+                <TextInput ref={labelInputRef} placeholder={t('import_wallet.passphrase.label_placeholder')} value={label} onChangeText={setLabel} />
 
                 <Separator space={spacing.xl} />
                 <View style={styles.hor}>
                     <View style={styles.labelInfo}>
-                        <Text style={styles.label}>{t('settings.wallet.import_wallet.passphrase.title')}</Text>
-                        <Text style={styles.info}>{t('settings.wallet.import_wallet.passphrase.description')}</Text>
+                        <Text style={styles.label}>{t('import_wallet.passphrase.title')}</Text>
+                        <Text style={styles.info}>{t('import_wallet.passphrase.description')}</Text>
                     </View>
                     <ButtonTiny
                         icon={<FontAwesome name="paste" style={styles.pasteIcon} />}
-                        title={t('settings.wallet.import_wallet.passphrase.paste')}
+                        title={t('import_wallet.passphrase.paste')}
                         onPress={onPaste}
                     />
                 </View>
                 <TextInput
                     ref={keyInputRef}
                     value={passphrase}
-                    placeholder={t('settings.wallet.import_wallet.passphrase.placeholder')}
+                    placeholder={t('import_wallet.passphrase.placeholder')}
                     placeholderTextColor={theme.colors.textTertiary}
                     multiline={true}
                     onChangeText={setPassphrase}
@@ -172,7 +172,7 @@ const ImportPassphrase: React.FC<RootStackScreenProps<'ImportPassphrase'>> = ({n
                     textStyle={styles.textInput}
                 />
                 <Button
-                    title={t('settings.wallet.import_wallet.passphrase.button')}
+                    title={t('import_wallet.passphrase.button')}
                     leftChild={
                         isImporting ? (
                             <View style={{position: 'absolute', left: spacing.th}}>
@@ -194,17 +194,17 @@ const ImportPassphrase: React.FC<RootStackScreenProps<'ImportPassphrase'>> = ({n
                 snapPoints={snapPoints}>
                 <View style={styles.sheetInnerContainer}>
                     {!isNotFound && generatedWallets.length === 0 && (
-                        <Text>{t('settings.wallet.import_wallet.passphrase.errors.not_found')}</Text>
+                        <Text>{t('import_wallet.passphrase.errors.not_found')}</Text>
                     )}
                     {isImporting && (
                         <View style={styles.importingWrap}>
                             <SendGlobe size={180} color={theme.colors.primary} />
-                            <Text variant="subheader">{t('settings.wallet.import_wallet.passphrase.importing')}</Text>
+                            <Text variant="subheader">{t('import_wallet.passphrase.importing')}</Text>
                         </View>
                     )}
                     {isNotFound && generatedWallets.length > 0 && (
                         <Text style={styles.pickText} weight={'600'}>
-                            {t('settings.wallet.import_wallet.passphrase.errors.not_identified')}
+                            {t('import_wallet.passphrase.errors.not_identified')}
                         </Text>
                     )}
                     {isNotFound &&

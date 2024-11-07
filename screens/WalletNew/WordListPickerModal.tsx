@@ -57,9 +57,9 @@ const WordListPickerModal = (props: Props, ref: any) => {
             backdropComponent={renderBackdrop}
             snapPoints={snapPoints}>
             <View style={styles.container}>
-                <Text variant="subheader">{t('settings.wallet.new_wallet.passphrase.word_picker.title')}</Text>
+                <Text variant="subheader">{t('new_wallet.passphrase.word_picker.title')}</Text>
                 <Text style={styles.warning}>
-                    {t('settings.wallet.new_wallet.passphrase.word_picker.warning')}
+                    {t('new_wallet.passphrase.word_picker.warning')}
                 </Text>
 
                 <BottomSheetScrollView>

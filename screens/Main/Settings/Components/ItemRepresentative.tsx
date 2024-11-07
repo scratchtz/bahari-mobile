@@ -14,7 +14,7 @@ const ItemRepresentative = () => {
             onPress={() => {
                 navigate('Representative');
             }}
-            title={t('settings.general.representative.title')}
+            title={t('settings.representative_label')}
             leftItem={
                 <View style={[styles.settingIconBack, {backgroundColor: '#54a0ff'}]}>
                     <MaterialCommunityIcons name="server-security" style={[styles.settingIcon]} />

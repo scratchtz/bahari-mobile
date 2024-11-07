@@ -43,14 +43,14 @@ const NativeCurrencyModal = (props: Props, ref: any) => {
             backdropComponent={renderBackdrop}
             snapPoints={snapPoints}>
             <ModalHeader
-                title={t('settings.general.native_currency.display_modal')}
+                title={t('native_currency_modal.label')}
                 onClose={() => {
                     ref.current.close();
                 }}
             />
 
             <View style={styles.flex}>
-                <Text style={styles.pick}>{t('settings.general.native_currency.pick')}</Text>
+                <Text style={styles.pick}>{t('native_currency_modal.pick')}</Text>
 
                 {/*TODO don't be lazy array and map*/}
                 <TouchableOpacity
@@ -63,7 +63,7 @@ const NativeCurrencyModal = (props: Props, ref: any) => {
                             XNO
                         </Text>
                         <Text style={styles.explainer}>
-                            {t('settings.general.native_currency.nano')}
+                            {t('native_currency_modal.nano')}
                         </Text>
                     </View>
                     {nativeCurrency === 'XNO' && <Feather name="check" style={styles.checkMark} />}
@@ -79,7 +79,7 @@ const NativeCurrencyModal = (props: Props, ref: any) => {
                             NYANO
                         </Text>
                         <Text style={styles.explainer}>
-                            {t('settings.general.native_currency.nyano')}
+                            {t('native_currency_modal.nyano')}
                         </Text>
                     </View>
                     {nativeCurrency === 'NYANO' && <Feather name="check" style={styles.checkMark} />}

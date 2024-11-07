@@ -1,4 +1,26 @@
 {
+    "constants": {
+        "themes": {
+            "system": "System",
+            "light": "Light",
+            "dark": "Dark",
+            "dark-zero": "Dark Zero"
+        }
+    },
+    "navigation": {
+        "send": "Send",
+        "receive": "Your Wallet",
+        "network": "Network",
+        "network_new": "Network New",
+        "representative": "Representative",
+        "representative_change": "Representative Change",
+        "buy_nano": "Buy Nano",
+        "transaction_history": "Transactions",
+        "contact": "Contact",
+        "contacts": "Contacts",
+        "new_contact": "New Contact",
+        "send_amount": "Send Amount"
+    },
     "buy_nano": {
         "title": "Buy Nano",
         "on_ramp": "On ramp coming soon"
@@ -21,49 +43,335 @@
         "cancel_button": "Cancel",
         "save_button": "Save"
     },
-    "current_account": {
-        "account_item": "{{balance}} {{currency}}",
+    "contacts": {
+        "title": "Contacts",
+        "search": "Search Contacts",
+        "no_contact": "You don't have anyone in your contact list.\nClick the button below to add someone",
+        "new_contact_button": "New Contact"
+    },
+    "contact_new": {
+        "title": "New Contact",
+        "error_no_name": "Name is required",
+        "error_no_address": "Address is required",
+        "error_invalid_address": "Address is invalid",
+        "name_label": "Name",
+        "name_placeholder": "Name",
+        "address_label": "Address",
+        "address_placeholder": "Address",
+        "paste": "Paste",
+        "button": "Add"
+    },
+    "lock_screen": {
+        "unlock": "Unlock your wallet",
+        "unlock_with_biometrics": "Unlock with your biometrics",
+        "enter_password": "Enter your password to continue",
+        "error_wrong_password": "*Wrong Password! Try again",
+        "input_password_warning": "*Input password",
+        "password_placeholder": "Password",
+        "unlock_button": "Unlock",
+        "failed": "Can't unlock?",
+        "reset": "Reset wallet"
+    },
+    "setup": {
+        "app_name": "Bahari",
+        "about": "Send and receive Nano at light speed\nZero Fees",
+        "create_new_wallet": "Create New Wallet",
+        "import_wallet": "Import Wallet"
+    },
+    "settings": {
+        "wallet_title": "Wallet",
+        "general_title": "General",
+        "security_title": "Security",
+        "language_label": "Language",
+        "theme_label": "Theme",
+        "theme_change_label":"Theme",
+        "display_currency_label": "Display Currency",
+        "native_currency_label": "Native Currency",
+        "notification_label": "Push Notifications",
+        "network_label": "Network",
+        "representative_label": "Representative",
+        "unlock_method":{
+            "label": "Unlock Method",
+            "method_password": "Password",
+            "method_biometrics": "Biometrics",
+            "biometrics": {
+                "label": "Biometrics",
+                "description": "Use Face-ID or Touch ID to unlock your wallet"
+            },
+            "password": {
+                "label": "Password",
+                "description": "Use password to unlock your wallet",
+                "setup": "Setup password to unlock your wallet",
+                "placeholder": "Password",
+                "confirm_placeholder": "Confirm Password",
+                "button_cancel": "Cancel",
+                "button_done": "Done",
+                "error_short_password":"Enter password more than 6 characters",
+                "error_not_match": "Passwords don't match",
+                "error_other": "Error occurred!",
+                "strength": {
+                    "too_weak": "too weak",
+                    "weak": "weak",
+                    "medium": "medium",
+                    "strong": "strong"
+                }
+            },
+            "on_set": {
+                "error_wrong_password": "Wrong password",
+                "error_other": "Error occurred!",
+                "label": "Enter your password to continue",
+                "placeholder": "Password",
+                "button_cancel": "Cancel",
+                "button_done": "Done"
+            },
+            "require_biometrics": "Require biometrics on Send"
+        },
+        "auto_lock": {
+            "title": "Autolock",
+            "interval": {
+                "5": "5s",
+                "30": "30s",
+                "60": "1min",
+                "300": "5min",
+                "1800": "30min",
+                "3600": "1hr",
+                "-1": "Never",
+                "1": "Immediately"
+            },
+            "modal": {
+                "label": "Autolock",
+                "description": "Automatically lock your phone when the app goes in the background after"
+            }
+        },
+        "reset_wallet":{
+            "label": "Reset Wallet",
+            "modal_label": "Reset Wallet",
+            "warning": "If you don't have your recovery keys we can't recover the wallet for you.",
+            "button_cancel": "Cancel",
+            "button_confirm": "Reset"
+        }
+    },
+    "representative": {
+        "account": "Representative for your account",
+        "voting_weight": "Voting weight: {{number}}%",
+        "last_uptime": "Last week uptime: {{number}}%",
+        "button": "Change",
+        "recommendation": "It's recommended to select a representative with high uptime and low voting weight to improve decentralisation",
+        "read_more": "Read More....",
+        "change": {
+            "title": "Change Representative",
+            "invalid_address": "Invalid address",
+            "representative_address": "Enter representative address",
+            "pick": "Or pick from the list",
+            "modal": {
+                "title": "Change Representative",
+                "new_representative": "Your new representative",
+                "change_for": "Change for",
+                "current_account": "Current Account",
+                "accounts": "accounts",
+                "this_wallet": "This wallet",
+                "button": "Change Representative"
+            },
+            "changing": {
+                "title": "Changing representative....",
+                "wait": "Please wait"
+            },
+            "done": {
+                "title": "Finished changing representative",
+                "success": "accounts success"
+            },
+            "failed": "accounts failed",
+            "button": "Done",
+            "list": {
+                "voting_weight": "Voting weight: {{number}}%",
+                "last_uptime": "Last week uptime: {{number}}%",
+                "node_version": "Node Version: {{version}}"
+            }
+        }
+    },
+    "currency_modal": {
+        "label": "Display Currency",
+        "search": "Search Currency"
+    },
+    "native_currency_modal": {
+        "label": "Native Currency",
+        "pick": "Pick a currency used to display native values",
+        "nano": "XNO is also known as Nano,is the default currency on Nano blockchain.",
+        "nyano": "1,0000,000 NYANO = 1 XNO\nNYANO isn't a separate token. It's just a conversion"
+    },
+    "network": {
+        "description": "We recommend you add your own node for better speed, reduced load to our nodes and increased the security of the network.",
+        "button": "Add Node",
+        "tor": {
+            "title": "Use Tor",
+            "modal_title": "Tor",
+            "hide_ip": "Tor protects your privacy by hiding your IP address, your requests are routed via the Tor network.",
+            "slow": "Most of the times it can be a bit slower than a direct connection to the node.",
+            "note": "Also note Bahari servers do not log user's IP addresses"
+        }
+    },
+    "network_new": {
+        "title": "Add Network",
+        "error_no_label": "Label is required",
+        "error_no_endpoint": "Endpoint is required",
+        "label": "Label",
+        "label_placeholder": "Label",
+        "url": "Endpoint URL",
+        "url_placeholder": "Address",
+        "button": "Add"
+    },
+    "new_wallet": {
+        "title": "New Wallet",
+        "onboard": {
+            "title": "Let's get started!",
+            "generate": "We'll generate a passphrase (12 words recovery phrase) for you.",
+            "remember": "Important to remember",
+            "funds_access": "Anyone who knows your passphrase can access your funds.",
+            "keep_safe": "Keep it safe where no one except you can find it.",
+            "never_ask": "We'll never ask for your passphrase, anyone who asks is probably trying to scam you.",
+            "passphrase_lost": "If you lose your passphrase and your device we can't recover your wallet for you.",
+            "learn_more": "Learn more about how passphrases work",
+            "button": "I understand"
+        },
+        "passphrase": {
+            "title": "Your passphrase",
+            "for_you": "For your eyes only",
+            "generating": "Generating passphrase",
+            "encrypt": "Encrypt",
+            "regenerate": "Regenerate",
+            "button": "Done",
+            "word_picker": {
+                "title": "Change Passphrase Language",
+                "warning": "Some other wallet applications might not support importing any passphrase that's not in English"
+            }
+        },
+        "encrypt_wallet": {
+            "errors": {
+                "short_password": "Password should be 8 characters or more",
+                "unmatched_password": "Passwords don't match",
+                "passphrase_unavailable": "Passphrase not available"
+            },
+            "encrypted": {
+                "title": "Your Encrypted Passphrase",
+                "store": "Store in a safe place.",
+                "reminder": "If you forget your password we can't decrypt this text for you.",
+                "button": "Done"
+            },
+            "unencrypted": {
+                "title": "Encrypt your Passphrase",
+                "reminder": "Use AES256 to encrypt your passphrase with a password before you copy it. Stronger passwords are more secure.",
+                "learn_more": "Learn More",
+                "password": "Password",
+                "password_placeholder": "Password",
+                "confirm_password": "Confirm Password",
+                "confirm_password_placeholder": "Password",
+                "button": "Encrypt",
+                "strength": {
+                    "too_weak": "too weak",
+                    "weak": "weak",
+                    "medium": "medium",
+                    "strong": "strong"
+                }
+            }
+        }
+    },
+    "import_wallet": {
+        "title": "Import Wallet",
+        "label": "Which method would you like to import your wallet?",
+        "label_passphrase": "Passphrase",
+        "passphrase_desc": "Import using 12, 15 or 24 word passphrase",
+        "encrypted_passphrase": "Encrypted Passphrase",
+        "encrypted_passphrase_desc": "Import using your encrypted passphrase. Usually a long string of characters which needs your password to decrypt first",
+        "label_private_key": "Private Key",
+        "private_key_desc": "Import by entering a single private key\nUsually in text format.",
+        "decrypt_passphrase": {
+            "errors": {
+                "no_password": "Enter password to decrypt text",
+                "no_encrypted_text": "Enter encrypted text",
+                "failed": "Failed to decrypt! Verify your password and encrypted text"
+            },
+            "import": "Import Encrypted Passphrase",
+            "your_passphrase": "Your Passphrase",
+            "password": "Password",
+            "password_placeholder": "Password",
+            "paste": "Paste",
+            "encrypted_text": "Encrypted Text",
+            "encrypted_text_placeholder": "Encrypted Text",
+            "button": "Decrypt"
+        },
+        "passphrase": {
+            "errors": {
+                "no_name": "Enter name for your new wallet",
+                "incorrect": "Please enter correct passphrase",
+                "unknown": "There was an error!",
+                "exists": "The wallet already exists",
+                "not_found": "We couldn't find your wallet. Double check your passphrase",
+                "not_identified": "We couldn't automatically identify your wallet. Pick from the matching addresses below"
+            },
+            "label": "Label",
+            "label_placeholder": "Label",
+            "title": "Passphrase",
+            "description": "12 or 24 words passphrase, separate by space.",
+            "paste": "Paste",
+            "placeholder": "Passphrase",
+            "button": "Import",
+            "importing": "Importing wallet..."
+        },
+        "private_key": {
+            "errors": {
+                "no_name": "Enter name for your new wallet",
+                "invalid": "Invalid private key",
+                "exists": "Account already exists in the wallet",
+                "unknown": "There was an error!",
+                "wrong_address": "We couldn't verify the public address, make sure it's the correct one before importing."
+            },
+            "address": "Address",
+            "imported": "Imported Private Keys",
+            "label": "Label",
+            "label_placeholder": "Label",
+            "title": "Private Key",
+            "placeholder": "Private key",
+            "paste": "Paste",
+            "button": {
+                "import": "Import",
+                "cancel": "Cancel",
+                "accept": "Import"
+            }
+        }
+    },
+    "pick_account_modal": {
+        "label": "Pick Account",
+        "error_pick": "There was an error! try again",
+        "created": "created",
+        "new_account": "New Account",
+        "import_key": "Import private Key",
+        "edit_wallet_label": "Edit Wallet",
+        "account_changed": "Account changed",
+        "edit_wallet": {
+            "label": "Edit Wallet",
+            "name": "Wallet Name",
+            "show_passphrase": "Show Passphrase",
+            "delete_wallet": "Delete Wallet",
+            "name_required": "Name is required",
+            "alert_delete": "Delete Wallet",
+            "alert_delete_desc": "Are you sure you want to delete? This action is irreversible. You will need your passphrase to recover your wallet in the future",
+            "alert_button_cancel": "Cancel",
+            "alert_button_delete": "Delete",
+            "button_cancel": "Cancel",
+            "button_done":"Done"
+        },
         "edit_account": {
-            "title": "Edit Account",
+            "label": "Edit Account",
             "wallet": "Wallet",
             "name": "Account Name",
             "public_address": "Public Address",
             "show_private_key": "Show Private Key",
-            "button": {
-                "cancel": "Cancel",
-                "done": "Done"
-            },
-            "toast": {
-                "error_name_required": "Name is required",
-                "copied": "Copied to clipboard"
-            }
+            "error_name_required": "Name is required",
+            "info_copied": "Copied to clipboard",
+            "button_cancel": "Cancel",
+            "button_done": "Done"
         },
-        "edit_wallet": {
-            "title": "Edit Wallet",
-            "wallet_name": "Wallet Name",
-            "show_passphrase": "Show Passphrase",
-            "delete_wallet": "Delete Wallet",
-            "name_required": "Name is required",
-            "alert": {
-                "delete": "Delete Wallet",
-                "delete_desc": "Are you sure you want to delete? This action is irreversible. You will need your passphrase to recover your wallet in the future",
-                "cancel": "Cancel",
-                "delete_confirm": "Delete"
-            },
-            "button": {
-                "cancel": "Cancel",
-                "done": "Done"
-            }
-        },
-        "pick_account": {
-            "title": "Pick Account",
-            "error_pick": "There was an error! try again",
-            "created": "created",
-            "new_account": "New Account",
-            "import_key": "Import private Key",
-            "edit_wallet": "Edit Wallet",
-            "account_changed": "Account changed"
-        },
+        "account_item": "{{balance}} {{currency}}",
         "show_passphrase": {
             "derivation": "Derivation path:",
             "title": "For your eyes only.",
@@ -76,77 +384,34 @@
             "balance": "{{balance}} {{currency}}"
         }
     },
+    "encrypt_text": {
+        "strength_too_weak": "too weak",
+        "strength_weak": "weak",
+        "strength_medium": "medium",
+        "strength_strong":"strong",
+        "error_short_password":"Password should be 8 characters or more",
+        "error_password_not_match": "Passwords don't match",
+        "error_passphrase_not_available": "Passphrase not available",
+        "store": "Store in a safe place.",
+        "disclaimer": "If you forget your password we can't decrypt this text for you.",
+        "enter_password": "Enter password to encrypt",
+        "password_label": "Password",
+        "password_placeholder": "Password",
+        "confirm_password_label": "Confirm Password",
+        "confirm_password_placeholder": "Password",
+        "button_encrypt": "Encrypt"
+    },
     "wallet": {
-        "send": {
-            "title": "Send",
-            "label": "Send nano to?",
-            "invalid_address": "Invalid address",
-            "address": {
-                "label": "Address",
-                "placeholder": "Address",
-                "my_wallets": "My Wallets",
-                "scan_code": "Scan Code",
-                "paste": "Paste",
-                "recents": {
-                    "label": "Recent Addresses",
-                    "not_available": "No Recent Addresses.\nAll sent recent addresses will appear here"
-                }
-            },
-            "contact": {
-                "label": "Contact",
-                "header": "Contacts",
-                "search": "Search Contact"
-            },
-            "button": "Next",
-            "amount": {
-                "title": "Enter Amount",
-                "error_no_amount": "Amount is required",
-                "your_balance": "Your Balance",
-                "balance_after": "Balance After",
-                "insufficient_balance": "Insufficient Balance",
-                "max": "MAX",
-                "button": "Preview",
-                "preview": {
-                    "label": "Send Confirm",
-                    "amount_label": "Amount",
-                    "balance": "{{amount}} {{currency}}",
-                    "from": "From",
-                    "to": "To",
-                    "button": "Send"
-                }
-            },
-            "sending": {
-                "error": "There was an error!",
-                "label": "Sending",
-                "wait": "Please wait...."
-            },
-            "success": {
-                "balance": "{{amount}} {{currency}}",
-                "sent_to": "Sent to",
-                "add_contact": "Add New Contact",
-                "button": "Done"
-            }
-        },
-        "receive": {
-            "title": "Your Wallet",
-            "your_address": "Your Nano Address",
-            "copy": "Copy",
-            "share": "Share",
-            "request": {
-                "label": "Request",
-                "how_much": "How much {{currency}}?",
-                "amount": "{{amount}} {{currency}}",
-                "estimate_amount": "{{amount}} {{currency}}",
-                "cancel": "Cancel",
-                "confirm": "Request"
-            },
-            "copied": "Copied to clipboard"
-        },
-        "actions": {
-            "buy": "Buy",
-            "send": "Send",
-            "receive": "Receive",
-            "scan_code": "Scan Code"
+        "action_buy": "Buy",
+        "action_send": "Send",
+        "action_receive": "Receive",
+        "action_scan_code": "Scan Code",
+        "balance_section": {
+            "balance": "{{balance}}",
+            "balance_base": "{{balance}} {{currency}}",
+            "price_change": "{{price}} {{currency}}",
+            "pending_amount": "Pending Amount",
+            "pending": "{{balance}} {{currency}}"
         },
         "history_list": {
             "title": "Transactions",
@@ -163,348 +428,89 @@
             "current_nano_price": "Current XNO price",
             "price": "{{price}} {{currency}}"
         },
-        "balance_section": {
-            "balance": "{{balance}}",
-            "balance_base": "{{balance}} {{currency}}",
-            "price_change": "{{price}} {{currency}}",
-            "pending_amount": "Pending Amount",
-            "pending": "{{balance}} {{currency}}"
+        "qr_code": {
+            "title": "Scan QR Code",
+            "enable": "Enable Camera to Scan QR code"
         },
         "transaction_item": {
             "not_confirmed": "Transaction is not confirmed yet!\nNetwork could be congested.",
             "not_confirmed_info": "Transaction is not confirmed yet",
-            "message": {
-                "sent": "Sent",
-                "received": "Received"
-            },
+            "message_sent": "Sent",
+            "message_received":"Received",
             "amount": "{{amount}} {{currency}}",
             "modal": {
+                "info_copied": "Copied to clipboard",
                 "title": {
                     "send": "Sent",
                     "receive": "Received",
                     "change": "Changed Representative"
                 },
                 "amount": "{{amount}} {{currency}}",
-                "type": {
-                    "from": "From",
-                    "to": "To",
-                    "account": "Account"
-                },
+                "type_from": "From",
+                "type_to": "To",
+                "type_account": "Account",
                 "add_contact": "Add Contact",
                 "date": "Date",
-                "status": {
-                    "label": "Status",
-                    "confirmed": "Confirmed",
-                    "pending": "Pending"
-                },
+                "status_label":"Status",
+                "status_confirmed": "Confirmed",
+                "status_pending": "Pending",
                 "block_explorer": "Open on block explorer"
             }
-        },
-        "qr_code": {
-            "title": "Scan QR Code",
-            "enable": "Enable Camera to Scan QR code"
         }
     },
-    "settings": {
-        "wallet": {
-            "title": "Wallet",
-            "new_wallet": {
-                "title": "New Wallet",
-                "onboard": {
-                    "title": "Let's get started!",
-                    "generate": "We'll generate a passphrase (12 words recovery phrase) for you.",
-                    "remember": "Important to remember",
-                    "funds_access": "Anyone who knows your passphrase can access your funds.",
-                    "keep_safe": "Keep it safe where no one except you can find it.",
-                    "never_ask": "We'll never ask for your passphrase, anyone who asks is probably trying to scam you.",
-                    "passphrase_lost": "If you lose your passphrase and your device we can't recover your wallet for you.",
-                    "learn_more": "Learn more about how passphrases work",
-                    "button": "I understand"
-                },
-                "passphrase": {
-                    "title": "Your passphrase",
-                    "for_you": "For your eyes only",
-                    "generating": "Generating passphrase",
-                    "encrypt": "Encrypt",
-                    "regenerate": "Regenerate",
-                    "button": "Done",
-                    "word_picker": {
-                        "title": "Change Passphrase Language",
-                        "warning": "Some other wallet applications might not support importing any passphrase that's not in English"
-                    }
-                },
-                "encrypt_wallet": {
-                    "errors": {
-                        "short_password": "Password should be 8 characters or more",
-                        "unmatched_password": "Passwords don't match",
-                        "passphrase_unavailable": "Passphrase not available"
-                    },
-                    "encrypted": {
-                        "title": "Your Encrypted Passphrase",
-                        "store": "Store in a safe place.",
-                        "reminder": "If you forget your password we can't decrypt this text for you."
-                    },
-                    "unencrypted": {
-                        "title": "Encrypt your Passphrase",
-                        "reminder": "Use AES256 to encrypt your passphrase with a password before you copy it. Stronger passwords are more secure.",
-                        "learn_more": "Learn More",
-                        "password": "Password",
-                        "password_placeholder": "Password",
-                        "confirm_password": "Confirm Password",
-                        "confirm_password_placeholder": "Password",
-                        "button": "Encrypt",
-                        "strength": {
-                            "too_weak": "too weak",
-                            "weak": "weak",
-                            "medium": "medium",
-                            "strong": "strong"
-                        }
-                    }
-                }
-            },
-            "import_wallet": {
-                "title": "Import Wallet",
-                "main": {
-                    "title": "Which method would you like to import your wallet?",
-                    "passphrase": "Passphrase",
-                    "passphrase_desc": "Import using 12, 15 or 24 word passphrase",
-                    "encrypted_passphrase": "Encrypted Passphrase",
-                    "encrypted_passphrase_desc": "Import using your encrypted passphrase. Usually a long string of characters which needs your password to decrypt first",
-                    "private_key": "Private Key",
-                    "private_key_desc": "Import by entering a single private key\nUsually in text format."
-                },
-                "decrypt_passphrase": {
-                    "errors": {
-                        "no_password": "Enter password to decrypt text",
-                        "no_encrypted_text": "Enter encrypted text",
-                        "failed": "Failed to decrypt! Verify your password and encrypted text"
-                    },
-                    "import": "Import Encrypted Passphrase",
-                    "your_passphrase": "Your Passphrase",
-                    "password": "Password",
-                    "password_placeholder": "Password",
-                    "paste": "Paste",
-                    "encrypted_text": "Encrypted Text",
-                    "encrypted_text_placeholder": "Encrypted Text",
-                    "button": "Decrypt"
-                },
-                "passphrase": {
-                    "errors": {
-                        "no_name": "Enter name for your new wallet",
-                        "incorrect": "Please enter correct passphrase",
-                        "unknown": "There was an error!",
-                        "exists": "The wallet already exists",
-                        "not_found": "We couldn't find your wallet. Double check your passphrase",
-                        "not_identified": "We couldn't automatically identify your wallet. Pick from the matching addresses below"
-                    },
-                    "label": "Label",
-                    "label_placeholder": "Label",
-                    "title": "Passphrase",
-                    "description": "12 or 24 words passphrase, separate by space.",
-                    "paste": "Paste",
-                    "placeholder": "Passphrase",
-                    "button": "Import",
-                    "importing": "Importing wallet..."
-                },
-                "private_key": {
-                    "errors": {
-                        "no_name": "Enter name for your new wallet",
-                        "invalid": "Invalid private key",
-                        "exists": "Account already exists in the wallet",
-                        "unknown": "There was an error!",
-                        "wrong_address": "We couldn't verify the public address, make sure it's the correct one before importing."
-                    },
-                    "address": "Address",
-                    "imported": "Imported Private Keys",
-                    "label": "Label",
-                    "label_placeholder": "Label",
-                    "title": "Private Key",
-                    "placeholder": "Private key",
-                    "paste": "Paste",
-                    "button": {
-                        "import": "Import",
-                        "cancel": "Cancel",
-                        "accept": "Import"
-                    }
-                }
-            },
-            "contacts": {
-                "title": "Contacts",
-                "search": "Search Contacts",
-                "no_contact": "You don't have anyone in your contact list.\nClick the button below to add someone",
-                "new": {
-                    "title": "New Contact",
-                    "error": {
-                        "no_name": "Name is required",
-                        "no_address": "Address is required",
-                        "invalid_address": "Address is invalid"
-                    },
-                    "name": "Name",
-                    "name_placeholder": "Name",
-                    "address": "Address",
-                    "address_placeholder": "Address",
-                    "paste": "Paste",
-                    "button": "Add"
-                }
+    "receive": {
+        "label": "Your Wallet",
+        "your_nano_address": "Your Nano Address",
+        "copy": "Copy",
+        "share": "Share",
+        "request": {
+            "label": "Request",
+            "how_much": "How much {{currency}}?",
+            "amount": "{{amount}} {{currency}}",
+            "estimate_amount": "{{amount}} {{currency}}",
+            "button_cancel": "Cancel",
+            "button_confirm": "Request"
+        },
+        "copied": "Copied to clipboard"
+    },
+    "send": {
+        "label": "Send nano to?",
+        "invalid_address": "Invalid address",
+        "address": {
+            "label": "Address",
+            "placeholder": "Address",
+            "my_wallets": "My Wallets",
+            "scan_code": "Scan Code",
+            "paste": "Paste",
+            "recents_label": "Recent Addresses",
+            "recents_not_available": "No Recent Addresses.\nAll sent recent addresses will appear here"
+        },
+        "contact_label": "Contact",
+        "contact_header": "Contacts",
+        "contact_search": "Search Contact",
+        "button_next": "Next",
+        "amount": {
+            "error_no_amount": "Amount is required",
+            "your_balance": "Your Balance",
+            "balance_after": "Balance After",
+            "insufficient": "Insufficient Balance",
+            "max": "MAX",
+            "button_preview": "Preview",
+            "preview": {
+                "label": "Send Confirm",
+                "amount_label": "Amount",
+                "balance": "{{amount}} {{currency}}",
+                "from": "From",
+                "to": "To",
+                "button_send": "Send"
             }
         },
-        "general": {
-            "language_title": "Language",
-            "title": "General",
-            "theme": {
-                "title": "Theme",
-                "modal_title": "Theme",
-                "system": "System",
-                "light": "Light",
-                "dark": "Dark",
-                "dark-zero": "Dark Zero"
-            },
-            "display_currency": {
-                "title": "Display Currency",
-                "display": "Display Currency",
-                "search": "Search Currency"
-            },
-            "native_currency": {
-                "title": "Native Currency",
-                "display_modal": "Native Currency",
-                "pick": "Pick a currency used to display native values",
-                "nano": "XNO is also known as Nano,is the default currency on Nano blockchain.",
-                "nyano": "1,0000,000 NYANO = 1 XNO\nNYANO isn't a separate token. It's just a conversion"
-            },
-            "notification": "Push Notifications",
-            "network": {
-                "nav_title": "Networks",
-                "title": "Network",
-                "description": "We recommend you add your own node for better speed, reduced load to our nodes and increased the security of the network.",
-                "button": "Add Node",
-                "new": {
-                    "title": "Add Network",
-                    "error": {
-                        "no_label": "Label is required",
-                        "no_endpoint": "Endpoint is required"
-                    },
-                    "label": "Label",
-                    "label_placeholder": "Label",
-                    "url": "Endpoint URL",
-                    "url_placeholder": "Address",
-                    "button": "Add"
-                },
-                "tor": {
-                    "title": "Use Tor",
-                    "modal_title": "Tor",
-                    "hide_ip": "Tor protects your privacy by hiding your IP address, your requests are routed via the Tor network.",
-                    "slow": "Most of the times it can be a bit slower than a direct connection to the node.",
-                    "note": "Also note Bahari servers do not log user's IP addresses"
-                }
-            },
-            "representative": {
-                "title": "Representative",
-                "account": "Representative for your account",
-                "voting_weight": "Voting weight: {{number}}%",
-                "last_uptime": "Last week uptime: {{number}}%",
-                "button": "Change",
-                "recommendation": "It's recommended to select a representative with high uptime and low voting weight to improve decentralisation",
-                "read_more": "Read More....",
-                "change": {
-                    "title": "Change Representative",
-                    "invalid_address": "Invalid address",
-                    "representative_address": "Enter representative address",
-                    "pick": "Or pick from the list",
-                    "modal": {
-                        "title": "Change Representative",
-                        "new_representative": "Your new representative",
-                        "change_for": "Change for",
-                        "current_account": "Current Account",
-                        "accounts": "accounts",
-                        "this_wallet": "This wallet",
-                        "button": "Change Representative"
-                    },
-                    "changing": {
-                        "title": "Changing representative....",
-                        "wait": "Please wait"
-                    },
-                    "done": {
-                        "title": "Finished changing representative",
-                        "success": "accounts success"
-                    },
-                    "failed": "accounts failed",
-                    "button": "Done",
-                    "list": {
-                        "voting_weight": "Voting weight: {{number}}%",
-                        "last_uptime": "Last week uptime: {{number}}%",
-                        "node_version": "Node Version: {{version}}"
-                    }
-                }
-            }
-        },
-        "security": {
-            "title": "Security",
-            "unlock_method": {
-                "password": "Password",
-                "biometrics": "Biometrics",
-                "modal": {
-                    "title": "Unlock Method",
-                    "biometrics": {
-                        "label": "Biometrics",
-                        "description": "Use Face-ID or Touch ID to unlock your wallet"
-                    },
-                    "password": {
-                        "label": "Password",
-                        "description": "Use password to unlock your wallet",
-                        "setup": "Setup password to unlock your wallet",
-                        "placeholder": "Password",
-                        "confirm_placeholder": "Confirm Password",
-                        "cancel": "Cancel",
-                        "done": "Done",
-                        "error": {
-                            "short": "Enter password more than 6 characters",
-                            "not_match": "Passwords don't match",
-                            "other": "Error occurred!"
-                        },
-                        "strength": {
-                            "too_weak": "too weak",
-                            "weak": "weak",
-                            "medium": "medium",
-                            "strong": "strong"
-                        }
-                    },
-                    "on_set": {
-                        "error": {
-                            "wrong_password": "Wrong password",
-                            "other": "Error occurred!"
-                        },
-                        "label": "Enter your password to continue",
-                        "placeholder": "Password",
-                        "cancel": "Cancel",
-                        "done": "Done"
-                    },
-                    "require": "Require biometrics on Send"
-                }
-            },
-            "auto_lock": {
-                "title": "Autolock",
-                "interval": {
-                    "5": "5s",
-                    "30": "30s",
-                    "60": "1min",
-                    "300": "5min",
-                    "1800": "30min",
-                    "3600": "1hr",
-                    "-1": "Never",
-                    "1": "Immediately"
-                },
-                "modal": {
-                    "label": "Autolock",
-                    "description": "Automatically lock your phone when the app goes in the background after"
-                }
-            },
-            "reset_wallet": {
-                "title": "Reset Wallet",
-                "modal_label": "Reset Wallet",
-                "warning": "If you don't have your recovery keys we can't recover the wallet for you.",
-                "cancel": "Cancel",
-                "confirm": "Reset"
-            }
-        }
+        "sending_error": "There was an error!",
+        "sending_label": "Sending",
+        "sending_wait": "Please wait.....",
+        "success_balance_sent": "{{amount}} {{currency}}",
+        "success_sent_to": "Sent to",
+        "add_contact": "Add New Contact",
+        "button_done": "Done"
     }
 }

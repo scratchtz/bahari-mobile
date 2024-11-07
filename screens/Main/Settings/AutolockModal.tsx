@@ -46,13 +46,13 @@ const AutolockModal = (props: Props, ref: any) => {
             snapPoints={snapPoints}>
             <>
                 <ModalHeader
-                    title={t('settings.security.auto_lock.modal.label')}
+                    title={t('settings.auto_lock.modal.label')}
                     onClose={() => {
                         ref.current.close();
                     }}
                 />
                 <View style={styles.innerContainer}>
-                    <Text>{t('settings.security.auto_lock.modal.description')}</Text>
+                    <Text>{t('settings.auto_lock.modal.description')}</Text>
                     {AUTOLOCK_OPTIONS.map(option => {
                         const isSelected = option === autolockTime;
                         return (
@@ -62,7 +62,7 @@ const AutolockModal = (props: Props, ref: any) => {
                                 onPress={() => {
                                     setAutolockTime(option);
                                 }}>
-                                <Text>{t(`settings.security.auto_lock.interval.${option}`)}</Text>
+                                <Text>{t(`settings.auto_lock.interval.${option}`)}</Text>
                                 {isSelected && <Feather name="check" style={styles.checkMark} />}
                             </TouchableOpacity>
                         );

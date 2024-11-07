@@ -102,7 +102,7 @@ const SendNanoModal = ({toName, toAddress, rawAmount}: Props, ref: any) => {
         } catch (e) {
             console.log(e);
             setScreenState('preview');
-            ToastController.show({kind: 'error', title: 'Error', content: `${t('wallet.send.sending.error')}`});
+            ToastController.show({kind: 'error', title: 'Error', content: `${t('send.sending_error')}`});
         } finally {
             isSending.current = false;
         }
@@ -144,22 +144,22 @@ const SendNanoModal = ({toName, toAddress, rawAmount}: Props, ref: any) => {
             onChange={handleSheetPositionChange}
             backdropComponent={renderBackdrop}
             snapPoints={snapPoints}>
-            <ModalHeader title={t('wallet.send.amount.preview.label')} onClose={onClose} />
+            <ModalHeader title={t('send.amount.preview.label')} onClose={onClose} />
             <View style={{flex: 1}}>
                 {screenState === 'preview' && (
                     <>
                         <View style={styles.innerContainer}>
                             <View style={styles.sectionItem}>
-                                <Text style={styles.horKey}>{t('wallet.send.amount.preview.amount_label')}</Text>
+                                <Text style={styles.horKey}>{t('send.amount.preview.amount_label')}</Text>
                                 <Text style={styles.amount} weight="500">
-                                    {t('wallet.send.amount.preview.balance', {
+                                    {t('send.amount.preview.balance', {
                                         amount: formattedAmount,
                                         currency: nativeCurrency,
                                     })}
                                 </Text>
                             </View>
                             <View style={styles.sectionItem}>
-                                <Text style={styles.horKey}>{t('wallet.send.amount.preview.from')}</Text>
+                                <Text style={styles.horKey}>{t('send.amount.preview.from')}</Text>
                                 <View style={styles.hor}>
                                     <AddressThumbnail
                                         address={defaultKeyPair.address}
@@ -175,7 +175,7 @@ const SendNanoModal = ({toName, toAddress, rawAmount}: Props, ref: any) => {
                                 </View>
                             </View>
                             <View style={styles.sectionItem}>
-                                <Text style={styles.horKey}>{t('wallet.send.amount.preview.to')}</Text>
+                                <Text style={styles.horKey}>{t('send.amount.preview.to')}</Text>
                                 <View style={styles.hor}>
                                     <AddressThumbnail address={toAddress} size={36} containerStyle={styles.thumbnail} />
                                     <View>
@@ -185,7 +185,7 @@ const SendNanoModal = ({toName, toAddress, rawAmount}: Props, ref: any) => {
                                 </View>
                             </View>
                             <Separator space={spacing.l} />
-                            <Button title={t('wallet.send.amount.preview.button')} onPress={onSend} />
+                            <Button title={t('send.amount.preview.button_send')} onPress={onSend} />
                         </View>
                     </>
                 )}
@@ -193,9 +193,9 @@ const SendNanoModal = ({toName, toAddress, rawAmount}: Props, ref: any) => {
                     <>
                         <View style={styles.sendingContainer}>
                             <Text weight="600" style={styles.sendingText}>
-                                {t('wallet.send.sending.label')}
+                                {t('send.sending_label')}
                             </Text>
-                            <Text style={styles.dontCloseInfo}>{t('wallet.send.sending.wait')}</Text>
+                            <Text style={styles.dontCloseInfo}>{t('send.sending_wait')}</Text>
                             <SendGlobe size={180} color={theme.colors.secondary} />
                         </View>
                     </>
@@ -205,10 +205,10 @@ const SendNanoModal = ({toName, toAddress, rawAmount}: Props, ref: any) => {
                         <View style={styles.sendingContainer}>
                             <Success size={120} />
                             <Text style={styles.amount} weight="500">
-                                {t('wallet.send.success.balance',{balance:formattedAmount,currency:nativeCurrency})}
+                                {t('send.success_balance_sent',{balance:formattedAmount,currency:nativeCurrency})}
                             </Text>
                             <Separator space={spacing.m} />
-                            <Text weight="500">{t('wallet.send.success.sent_to')}</Text>
+                            <Text weight="500">{t('send.success_sent_to')}</Text>
 
                             <Separator space={spacing.s} />
                             <View style={styles.hor}>
@@ -225,13 +225,13 @@ const SendNanoModal = ({toName, toAddress, rawAmount}: Props, ref: any) => {
                             {!toName && (
                                 <ButtonTiny
                                     icon={<Feather name="plus-circle" style={styles.addContactIcon} />}
-                                    title={t('wallet.send.success.add_contact')}
+                                    title={t('send.add_contact')}
                                     onPress={onAddContact}
                                     containerStyle={styles.addContactButton}
                                 />
                             )}
                         </View>
-                        <Button title={t('wallet.send.success.button')} onPress={onDone} containerStyle={styles.doneButton} />
+                        <Button title={t('send.button_done')} onPress={onDone} containerStyle={styles.doneButton} />
                     </>
                 )}
             </View>

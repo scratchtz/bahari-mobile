@@ -31,19 +31,19 @@ const ItemAutolock = () => {
     const autoLockLabel = useCallback((value: number) => {
         switch (value) {
             case 1:
-                return `${t('settings.security.auto_lock.interval.1')}`;
+                return `${t('settings.auto_lock.interval.1')}`;
             case 30:
-                return `${t('settings.security.auto_lock.interval.30')}`;
+                return `${t('settings.auto_lock.interval.30')}`;
             case 60:
-                return `${t('settings.security.auto_lock.interval.60')}`;
+                return `${t('settings.auto_lock.interval.60')}`;
             case 300:
-                return `${t('settings.security.auto_lock.interval.300')}`;
+                return `${t('settings.auto_lock.interval.300')}`;
             case 1800:
-                return `${t('settings.security.auto_lock.interval.1800')}`;
+                return `${t('settings.auto_lock.interval.1800')}`;
             case 3600:
-                return `${t('settings.security.auto_lock.interval.3600')}`;
+                return `${t('settings.auto_lock.interval.3600')}`;
             case -1:
-                return `${t('settings.security.auto_lock.interval.-1')}`;
+                return `${t('settings.auto_lock.interval.-1')}`;
         }
         return '';
     }, []);
@@ -52,7 +52,7 @@ const ItemAutolock = () => {
         <>
             <SettingsItem
                 onPress={openAutolockModal}
-                title={t('settings.security.auto_lock.title')}
+                title={t('settings.auto_lock.title')}
                 leftItem={
                     <View style={[styles.settingIconBack, {backgroundColor: palette.fuschia400}]}>
                         <MaterialIcons name="lock-clock" style={[styles.settingIcon]} />

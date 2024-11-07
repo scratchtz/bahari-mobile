@@ -62,7 +62,7 @@ const WalletImport = ({navigation}: RootStackScreenProps<'WalletImport'>) => {
             <ScrollView
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={[styles.container, isTablet() && styles.containerTablet]}>
-                <Text style={styles.methodPick}>{t('settings.wallet.import_wallet.main.title')}</Text>
+                <Text style={styles.methodPick}>{t('import_wallet.title')}</Text>
 
                 <TouchableOpacity
                     style={styles.card}
@@ -74,9 +74,9 @@ const WalletImport = ({navigation}: RootStackScreenProps<'WalletImport'>) => {
                     </View>
                     <View style={styles.cardInner}>
                         <Text style={styles.cardTitle} weight="700">
-                            {t('settings.wallet.import_wallet.main.passphrase')}
+                            {t('import_wallet.label_passphrase')}
                         </Text>
-                        <Text style={styles.cardInfo}>{t('settings.wallet.import_wallet.main.passphrase_desc')}</Text>
+                        <Text style={styles.cardInfo}>{t('import_wallet.passphrase_desc')}</Text>
 
                         <MaskedView
                             maskElement={
@@ -105,10 +105,10 @@ const WalletImport = ({navigation}: RootStackScreenProps<'WalletImport'>) => {
                     </View>
                     <View style={styles.cardInner}>
                         <Text style={styles.cardTitle} weight="700">
-                            {t('settings.wallet.import_wallet.main.encrypted_passphrase')}
+                            {t('import_wallet.encrypted_passphrase')}
                         </Text>
                         <Text style={styles.cardInfo}>
-                            {t('settings.wallet.import_wallet.main.encrypted_passphrase_desc')}
+                            {t('import_wallet.encrypted_passphrase_desc')}
                         </Text>
                     </View>
                 </TouchableOpacity>
@@ -123,10 +123,10 @@ const WalletImport = ({navigation}: RootStackScreenProps<'WalletImport'>) => {
                     </View>
                     <View style={styles.cardInner}>
                         <Text style={styles.cardTitle} weight="700">
-                            {t('settings.wallet.import_wallet.main.private_key')}
+                            {t('import_wallet.label_private_key')}
                         </Text>
                         <Text style={styles.cardInfo}>
-                            {t('settings.wallet.import_wallet.main.private_key_desc')}
+                            {t('import_wallet.private_key_desc')}
                         </Text>
                     </View>
                 </TouchableOpacity>

@@ -62,7 +62,7 @@ const PickAccountModal = (props: Props, ref: any) => {
     const onPressAccount = (keyPairAddress: string) => {
         if (props.mode === 'change') {
             setDefaultKeyPairAddress(keyPairAddress);
-            ToastController.show({kind: 'info', content: `${t('current_account.pick_account.account_changed')}`, timeout: 1000});
+            ToastController.show({kind: 'info', content: `${t('pick_account_modal.account_changed')}`, timeout: 1000});
         }
         if (props.mode === 'select') {
             props.onSelectKeyPair && props.onSelectKeyPair(keyPairAddress);

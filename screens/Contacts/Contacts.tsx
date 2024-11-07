@@ -44,7 +44,7 @@ const Contacts = ({navigation}: CommonStackScreenProps<'Contacts'>) => {
 
     return (
         <View style={styles.container}>
-            <SearchBar placeholder={t('settings.wallet.contacts.search')} value={searchText} onChangeText={setSearchText} />
+            <SearchBar placeholder={t('contacts.search')} value={searchText} onChangeText={setSearchText} />
             <FlatList
                 style={styles.flatList}
                 data={contacts}
@@ -60,7 +60,7 @@ const Contacts = ({navigation}: CommonStackScreenProps<'Contacts'>) => {
                             loop
                         />
                         <Text style={styles.noContactText}>
-                            {t('settings.wallet.contacts.no_contact')}
+                            {t('contacts.no_contact')}
                         </Text>
                     </View>
                 }
@@ -68,7 +68,7 @@ const Contacts = ({navigation}: CommonStackScreenProps<'Contacts'>) => {
                 ListFooterComponent={
                     <Button
                         containerStyle={styles.contactAddButton}
-                        title={t('settings.wallet.contacts.new.title')}
+                        title={t('contacts.new_contact_button')}
                         onPress={onNewContact}
                         leftChild={<Ionicons name="person-add" style={styles.contactAddIcon} />}
                     />

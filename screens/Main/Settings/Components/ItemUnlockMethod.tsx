@@ -38,9 +38,9 @@ const ItemUnlockMethod = () => {
     const methodLabel = useMemo(() => {
         switch (unlockMethod) {
             case 'password':
-                return `${t('settings.security.unlock_method.password')}`;
+                return `${t('settings.unlock_method.method_password')}`;
             case 'biometrics':
-                return `${t('settings.security.unlock_method.biometrics')}`;
+                return `${t('settings.unlock_method.method_biometrics')}`;
         }
         return '';
     }, [unlockMethod]);
@@ -49,7 +49,7 @@ const ItemUnlockMethod = () => {
         <>
             <SettingsItem
                 onPress={openModal}
-                title="Unlock Method"
+                title={t('settings.unlock_method.label')}
                 leftItem={
                     <View style={[styles.settingIconBack, {backgroundColor: '#8c7ae6'}]}>
                         <Entypo name="lock" style={[styles.settingIcon]} />
@@ -115,8 +115,8 @@ const UnlockMethodModal = React.forwardRef((props: any, ref: any) => {
 
     const unlockMethods: {value: UnlockMethod; label: string; description: string}[] = useMemo(() => {
         return [
-            {value: 'biometrics', label: `${t('settings.security.unlock_method.modal.biometrics.label')}`, description:  `${t('settings.security.unlock_method.modal.biometrics.description')}`},
-            {value: 'password', label: `${t('settings.security.unlock_method.modal.password.label')}`, description: `${t('settings.security.unlock_method.modal.password.description')}`},
+            {value: 'biometrics', label: `${t('settings.unlock_method.biometrics.label')}`, description:  `${t('settings.unlock_method.biometrics.description')}`},
+            {value: 'password', label: `${t('settings.unlock_method.password.label')}`, description: `${t('settings.unlock_method.password.description')}`},
         ];
     }, []);
 
@@ -154,23 +154,23 @@ const UnlockMethodModal = React.forwardRef((props: any, ref: any) => {
             const storedPassword = await security.getPassword();
             //TODO if many tries clean up
             if (biometricsPassword !== storedPassword) {
-                ToastController.show({kind: 'error', content: `${t('settings.security.unlock_method.modal.on_set.error.wrong_password')}`});
+                ToastController.show({kind: 'error', content: `${t('settings.unlock_method.on_set.error_wrong_password')}`});
                 return;
             }
             setUnlockMethod('biometrics');
             ref.current.close();
         } catch (e: any) {
-            ToastController.show({kind: 'error', content: `${t('settings.security.unlock_method.modal.on_set.error.other')}` + e.toString()});
+            ToastController.show({kind: 'error', content: `${t('settings.unlock_method.on_set.error_other')}` + e.toString()});
         }
     };
 
     const onChangeToPassword = async () => {
         if (!newPassword || newPassword.length < 6) {
-            ToastController.show({kind: 'error', content: `${t('settings.security.unlock_method.modal.password.error.short')}`});
+            ToastController.show({kind: 'error', content: `${t('settings.unlock_method.password.error_short_password')}`});
             return;
         }
         if (newPassword !== confirmNewPassword) {
-            ToastController.show({kind: 'error', content: `${t('settings.security.unlock_method.modal.password.error.not_match')}`});
+            ToastController.show({kind: 'error', content: `${t('settings.unlock_method.password.error_not_match')}`});
             return;
         }
 
@@ -179,7 +179,7 @@ const UnlockMethodModal = React.forwardRef((props: any, ref: any) => {
             setUnlockMethod('password');
             ref.current.close();
         } catch (e: any) {
-            ToastController.show({kind: 'error', content: `${t('settings.security.unlock_method.modal.password.error.other')}` + e.toString()});
+            ToastController.show({kind: 'error', content: `${t('settings.unlock_method.password.error_other')}` + e.toString()});
         }
         //Saving password to keychain
     };
@@ -190,13 +190,13 @@ const UnlockMethodModal = React.forwardRef((props: any, ref: any) => {
     const passwordStrengthText = useMemo(() => {
         switch (passwordStrength) {
             case 0:
-                return `${t('settings.security.unlock_method.modal.password.strength.too_weak')}`;
+                return `${t('settings.unlock_method.password.strength.too_weak')}`;
             case 1:
-                return `${t('settings.security.unlock_method.modal.password.strength.weak')}`;
+                return `${t('settings.unlock_method.password.strength.weak')}`;
             case 2:
-                return `${t('settings.security.unlock_method.modal.password.strength.medium')}`;
+                return `${t('settings.unlock_method.password.strength.medium')}`;
             case 3:
-                return `${t('settings.security.unlock_method.modal.password.strength.strong')}`;
+                return `${t('settings.unlock_method.password.strength.strong')}`;
         }
     }, [passwordStrength]);
 
@@ -213,7 +213,7 @@ const UnlockMethodModal = React.forwardRef((props: any, ref: any) => {
             snapPoints={snapPoints}>
             <View style={{flex: 1}}>
                 <ModalHeader
-                    title={t('settings.security.unlock_method.modal.title')}
+                    title={t('settings.unlock_method.label')}
                     onClose={() => {
                         ref.current.close();
                     }}
@@ -240,27 +240,27 @@ const UnlockMethodModal = React.forwardRef((props: any, ref: any) => {
                             );
                         })}
                         <View style={styles.requireContainer}>
-                            <Text>{t('settings.security.unlock_method.modal.require')}</Text>
+                            <Text>{t('settings.unlock_method.require_biometrics')}</Text>
                             <Switch value={requireBiometricsOnSend} onValueChange={toggleBiometricsOnSend} />
                         </View>
                     </BottomSheetScrollView>
                 )}
                 {modalMode === 'set-biometrics' && (
                     <BottomSheetScrollView contentContainerStyle={styles.innerContainer}>
-                        <Text>{t('settings.security.unlock_method.modal.on_set.label')}</Text>
+                        <Text>{t('settings.unlock_method.on_set.label')}</Text>
                         <Separator space={spacing.m} />
                         <BottomSheetTextInput
                             returnKeyType="done"
                             autoCapitalize="none"
                             secureTextEntry
-                            placeholder={t('settings.security.unlock_method.modal.on_set.placeholder')}
+                            placeholder={t('settings.unlock_method.on_set.placeholder')}
                             value={biometricsPassword}
                             onChangeText={setBiometricsPassword}
                         />
 
                         <View style={styles.actionButtons}>
                             <Button
-                                title={t('settings.security.unlock_method.modal.on_set.cancel')}
+                                title={t('settings.unlock_method.on_set.button_cancel')}
                                 variant="secondary"
                                 onPress={() => {
                                     setModalMode('normal');
@@ -268,7 +268,7 @@ const UnlockMethodModal = React.forwardRef((props: any, ref: any) => {
                                 containerStyle={[styles.actionButton, {marginRight: spacing.m}]}
                             />
                             <Button
-                                title={t('settings.security.unlock_method.modal.on_set.done')}
+                                title={t('settings.unlock_method.on_set.button_done')}
                                 onPress={onChangeToBiometrics}
                                 containerStyle={styles.actionButton}
                             />
@@ -278,7 +278,7 @@ const UnlockMethodModal = React.forwardRef((props: any, ref: any) => {
                 {modalMode === 'set-password' && (
                     <BottomSheetScrollView style={{flex: 1}} contentContainerStyle={styles.innerContainer}>
                         <View style={{flex: 1}}>
-                            <Text>{t('settings.security.unlock_method.modal.password.setup')}</Text>
+                            <Text>{t('settings.unlock_method.password.setup')}</Text>
                             <Text
                                 weight="500"
                                 style={[
@@ -292,7 +292,7 @@ const UnlockMethodModal = React.forwardRef((props: any, ref: any) => {
                                 returnKeyType="next"
                                 autoCapitalize="none"
                                 secureTextEntry
-                                placeholder={t('settings.security.unlock_method.modal.password.placeholder')}
+                                placeholder={t('settings.unlock_method.password.placeholder')}
                                 value={newPassword}
                                 onChangeText={setNewPassword}
                             />
@@ -301,14 +301,14 @@ const UnlockMethodModal = React.forwardRef((props: any, ref: any) => {
                                 returnKeyType="done"
                                 autoCapitalize="none"
                                 secureTextEntry
-                                placeholder={t('settings.security.unlock_method.modal.password.confirm_placeholder')}
+                                placeholder={t('settings.unlock_method.password.confirm_placeholder')}
                                 value={confirmNewPassword}
                                 onChangeText={setConfirmNewPassword}
                             />
 
                             <View style={styles.actionButtons}>
                                 <Button
-                                    title={t('settings.security.unlock_method.modal.password.cancel')}
+                                    title={t('settings.unlock_method.password.button_cancel')}
                                     variant="secondary"
                                     onPress={() => {
                                         setNewPassword('');
@@ -318,7 +318,7 @@ const UnlockMethodModal = React.forwardRef((props: any, ref: any) => {
                                     containerStyle={[styles.actionButton, {marginRight: spacing.m}]}
                                 />
                                 <Button
-                                    title={t('settings.security.unlock_method.modal.password.done')}
+                                    title={t('settings.unlock_method.password.button_done')}
                                     onPress={onChangeToPassword}
                                     containerStyle={styles.actionButton}
                                 />

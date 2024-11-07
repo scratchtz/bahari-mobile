@@ -26,12 +26,12 @@ const Network = ({navigation}: CommonStackScreenProps<'Network'>) => {
                 ListFooterComponent={
                     <>
                         <Text style={styles.recommend}>
-                            {t('settings.general.network.description')}
+                            {t('network.description')}
                         </Text>
                         <Button
                             containerStyle={styles.addButton}
                             variant="primary"
-                            title={t('settings.general.network.button')}
+                            title={t('network.button')}
                             onPress={() => {
                                 navigation.navigate('NetworkNew');
                             }}

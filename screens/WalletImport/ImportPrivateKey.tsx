@@ -70,12 +70,12 @@ const ImportPrivateKey: React.FC<RootStackScreenProps<'ImportPrivateKey'>> = ({n
     const onImport = async () => {
         try {
             if (!label) {
-                ToastController.show({kind: 'error', content: `${t('settings.wallet.import_wallet.private_key.errors.no_name')}`});
+                ToastController.show({kind: 'error', content: `${t('import_wallet.private_key.errors.no_name')}`});
                 labelInputRef.current?.focus();
                 return;
             }
             if (privateKey.length !== 64) {
-                ToastController.show({kind: 'error', content: `${t('settings.wallet.import_wallet.private_key.errors.invalid')}`});
+                ToastController.show({kind: 'error', content: `${t('import_wallet.private_key.errors.invalid')}`});
                 keyInputRef.current?.focus();
                 setIsImporting(false);
                 return;
@@ -86,7 +86,7 @@ const ImportPrivateKey: React.FC<RootStackScreenProps<'ImportPrivateKey'>> = ({n
             const myKey = getKeyPair(address);
             if (myKey && myKey.address) {
                 setIsImporting(false);
-                ToastController.show({kind: 'error', content: `${t('settings.wallet.import_wallet.private_key.errors.exists')}`});
+                ToastController.show({kind: 'error', content: `${t('import_wallet.private_key.errors.exists')}`});
                 return;
             }
 
@@ -112,7 +112,7 @@ const ImportPrivateKey: React.FC<RootStackScreenProps<'ImportPrivateKey'>> = ({n
             onPersist(kp);
         } catch (e: any) {
             setIsImporting(false);
-            ToastController.show({kind: 'error', content: `${t('settings.wallet.import_wallet.private_key.errors.unknown')}\n${e.toString()}`, timeout: 6000});
+            ToastController.show({kind: 'error', content: `${t('import_wallet.private_key.errors.unknown')}\n${e.toString()}`, timeout: 6000});
         }
     };
 
@@ -127,7 +127,7 @@ const ImportPrivateKey: React.FC<RootStackScreenProps<'ImportPrivateKey'>> = ({n
         if (!w) {
             w = {
                 id: importWalletID,
-                label: `${t('settings.wallet.import_wallet.private_key.imported')}`,
+                label: `${t('import_wallet.private_key.imported')}`,
                 kind: 'key-only',
                 keyPairsAddresses: [kp.address],
                 lastAccountIndex: 0,
@@ -153,23 +153,23 @@ const ImportPrivateKey: React.FC<RootStackScreenProps<'ImportPrivateKey'>> = ({n
     return (
         <>
             <ScrollView contentContainerStyle={styles.container}>
-                <Text style={styles.label}>{t('settings.wallet.import_wallet.private_key.label')}</Text>
+                <Text style={styles.label}>{t('import_wallet.private_key.label')}</Text>
                 <Separator space={spacing.s} />
-                <TextInput ref={labelInputRef} placeholder={t('settings.wallet.import_wallet.private_key.label_placeholder')} value={label} onChangeText={setLabel} />
+                <TextInput ref={labelInputRef} placeholder={t('import_wallet.private_key.label_placeholder')} value={label} onChangeText={setLabel} />
 
                 <Separator space={spacing.l} />
                 <View style={styles.hor}>
-                    <Text style={styles.label}>{t('settings.wallet.import_wallet.private_key.title')}</Text>
+                    <Text style={styles.label}>{t('import_wallet.private_key.title')}</Text>
                     <ButtonTiny
                         icon={<FontAwesome name="paste" style={styles.pasteIcon} />}
-                        title={t('settings.wallet.import_wallet.private_key.paste')}
+                        title={t('import_wallet.private_key.paste')}
                         onPress={onPaste}
                     />
                 </View>
                 <TextInput
                     ref={keyInputRef}
                     value={privateKey}
-                    placeholder={t('settings.wallet.import_wallet.private_key.placeholder')}
+                    placeholder={t('import_wallet.private_key.placeholder')}
                     placeholderTextColor={theme.colors.textTertiary}
                     multiline={true}
                     onChangeText={setPrivateKey}
@@ -177,7 +177,7 @@ const ImportPrivateKey: React.FC<RootStackScreenProps<'ImportPrivateKey'>> = ({n
                     textStyle={styles.textInput}
                 />
                 <Button
-                    title={t('settings.wallet.import_wallet.private_key.button.import')}
+                    title={t('import_wallet.private_key.button.import')}
                     leftChild={
                         isImporting ? (
                             <View style={{position: 'absolute', left: spacing.th}}>
@@ -198,18 +198,18 @@ const ImportPrivateKey: React.FC<RootStackScreenProps<'ImportPrivateKey'>> = ({n
                 backdropComponent={renderBackdrop}
                 snapPoints={snapPoints}>
                 <View style={styles.sheetInnerContainer}>
-                    <Text style={styles.sheetAddressTitle}>{t('settings.wallet.import_wallet.private_key.address')}</Text>
+                    <Text style={styles.sheetAddressTitle}>{t('import_wallet.private_key.address')}</Text>
                     <View style={styles.sheetAddressContainer}>
                         <Text style={styles.sheetAddress}>{keyPair?.address}</Text>
                     </View>
 
                     <Text style={styles.sheetWarning}>
-                        {t('settings.wallet.import_wallet.private_key.errors.wrong_address')}
+                        {t('import_wallet.private_key.errors.wrong_address')}
                     </Text>
 
                     <View style={styles.sheetButtonsContainer}>
                         <Button
-                            title={t('settings.wallet.import_wallet.private_key.button.cancel')}
+                            title={t('import_wallet.private_key.button.cancel')}
                             variant={'secondary'}
                             onPress={() => {
                                 bottomSheetRef.current?.close();
@@ -217,7 +217,7 @@ const ImportPrivateKey: React.FC<RootStackScreenProps<'ImportPrivateKey'>> = ({n
                             containerStyle={[styles.sheetButton, {marginRight: spacing.m}]}
                         />
                         <Button
-                            title={t('settings.wallet.import_wallet.private_key.button.accept')}
+                            title={t('import_wallet.private_key.button.accept')}
                             variant={'primary'}
                             onPress={onImportVerified}
                             containerStyle={styles.sheetButton}

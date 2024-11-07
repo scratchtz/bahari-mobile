@@ -43,7 +43,7 @@ const ContactList = ({onPress}: Props) => {
                 <TextInput
                     onFocus={() => setIsSearchFocused(true)}
                     onBlur={() => setIsSearchFocused(false)}
-                    placeholder={t('wallet.send.contact.search')}
+                    placeholder={t('send.contact_search')}
                     placeholderTextColor={theme.colors.textSecondary}
                     autoCapitalize={'none'}
                     onChangeText={setSearchText}
@@ -56,7 +56,7 @@ const ContactList = ({onPress}: Props) => {
                 data={contacts}
                 ListHeaderComponent={
                     <Text variant="subheader" style={styles.subHeader}>
-                        {t('wallet.send.contact.header')}
+                        {t('send.contact_header')}
                     </Text>
                 }
                 renderItem={({item}) => {

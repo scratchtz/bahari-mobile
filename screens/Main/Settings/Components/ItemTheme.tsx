@@ -25,7 +25,7 @@ const ItemTheme = () => {
         <>
             <SettingsItem
                 onPress={openThemeChangeModal}
-                title={t('settings.general.theme.title')}
+                title={t('settings.theme_label')}
                 leftItem={
                     <View style={[styles.settingIconBack, {backgroundColor: palette.sky500}]}>
                         <MaterialCommunityIcons name="theme-light-dark" style={[styles.settingIcon]} />
@@ -33,7 +33,7 @@ const ItemTheme = () => {
                 }
                 rightItem={
                     <Text style={styles.valueText} weight={'500'}>
-                        {t(`settings.general.theme.${currentScheme}`)}
+                        {t(`constants.themes.${currentScheme}`)}
                     </Text>
                 }
             />
