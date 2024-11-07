@@ -26,15 +26,15 @@ const Contact = ({navigation, route}: CommonStackScreenProps<'Contact'>) => {
 
     const onAdd = () => {
         if (!address) {
-            ToastController.show({kind: 'error', content: `${t('settings.wallet.contacts.contact.error.no_address')}`});
+            ToastController.show({kind: 'error', content: `${t('contact.error_no_address')}`});
             return;
         }
         if (!name) {
-            ToastController.show({kind: 'error', content: `${t('settings.wallet.contacts.contact.error.no_name')}`});
+            ToastController.show({kind: 'error', content: `${t('contact.error_no_name')}`});
             return;
         }
         if (!tools.validateAddress(address)) {
-            ToastController.show({kind: 'error', content: `${t('settings.wallet.contacts.contact.error.invalid_address')}`});
+            ToastController.show({kind: 'error', content: `${t('contact.error_invalid_address')}`});
             return;
         }
 
@@ -58,12 +58,16 @@ const Contact = ({navigation, route}: CommonStackScreenProps<'Contact'>) => {
     }, [navigation]);
 
     const onDelete = () => {
-        Alert.alert(`${t('settings.wallet.contacts.contact.alert.title')}`, `${t('settings.wallet.contacts.contact.alert.description')} ${contact.name}`, [
+        Alert.alert(`${t('contact.delete_alert_title')}`, `${t('contact.delete_alert_description')} ${contact.name}`, [
             {
-                text: `${t('settings.wallet.contacts.contact.alert.cancel')}`,
+                text: `${t('contact.delete_alert_cancel')}`,
                 style: 'cancel',
             },
-            {text: `${t('settings.wallet.contacts.contact.alert.delete')}`, style: 'destructive', onPress: () => handleDeleteConfirmed()},
+            {
+                text: `${t('contact.delete_alert_delete')}`,
+                style: 'destructive',
+                onPress: () => handleDeleteConfirmed(),
+            },
         ]);
     };
 
@@ -83,7 +87,7 @@ const Contact = ({navigation, route}: CommonStackScreenProps<'Contact'>) => {
             <TouchableOpacity style={styles.deleteButton} onPress={onDelete}>
                 <AntDesign name="deleteuser" style={styles.deleteIcon} />
                 <Text style={styles.deleteText} weight="500">
-                    {t('settings.wallet.contacts.contact.delete')}
+                    {t('contact.delete_title')}
                 </Text>
             </TouchableOpacity>
 
@@ -97,9 +101,9 @@ const Contact = ({navigation, route}: CommonStackScreenProps<'Contact'>) => {
             </ThumbnailSelector>
 
             <Separator space={spacing.xl} />
-            <Text style={styles.label}>{t('settings.wallet.contacts.contact.name')}</Text>
+            <Text style={styles.label}>{t('contact.name_label')}</Text>
             <TextInput
-                placeholder={t('settings.wallet.contacts.contact.name_placeholder')}
+                placeholder={t('contact.name_placeholder')}
                 value={name}
                 onChangeText={setName}
                 returnKeyType="done"
@@ -108,14 +112,14 @@ const Contact = ({navigation, route}: CommonStackScreenProps<'Contact'>) => {
 
             <Separator space={spacing.xl} />
             <View style={styles.labelContainer}>
-                <Text style={styles.label}>{t('settings.wallet.contacts.contact.address')}</Text>
+                <Text style={styles.label}>{t('screens.contact.address_label')}</Text>
                 <TouchableOpacity onPress={onPaste} style={styles.pasteContainer}>
                     <FontAwesome name="paste" style={styles.pasteIcon} />
-                    <Text style={styles.paste}>{t('settings.wallet.contacts.contact.paste')}</Text>
+                    <Text style={styles.paste}>{t('contact.paste_action')}</Text>
                 </TouchableOpacity>
             </View>
             <TextInput
-                placeholder={t('settings.wallet.contacts.contact.address_placeholder')}
+                placeholder={t('contact.address_placeholder')}
                 value={address}
                 onChangeText={setAddress}
                 returnKeyType="done"
@@ -125,13 +129,13 @@ const Contact = ({navigation, route}: CommonStackScreenProps<'Contact'>) => {
             <Separator space={spacing.xl} />
             <View style={styles.actionsContainer}>
                 <Button
-                    title={t('settings.wallet.contacts.contact.button.cancel')}
+                    title={t('contact.cancel_button')}
                     variant="secondary"
                     onPress={onCancel}
                     containerStyle={[styles.actionButton, {marginRight: spacing.m}]}
                 />
                 <Button
-                    title={t('settings.wallet.contacts.contact.button.save')}
+                    title={t('contact.save_button')}
                     onPress={onAdd}
                     disabled={!name || !address}
                     containerStyle={styles.actionButton}
