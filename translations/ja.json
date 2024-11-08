@@ -1,1 +1,481 @@
-{}
+{
+    "constants": {
+        "themes": {
+            "system": "システム",
+            "light": "ライト",
+            "dark": "ダーク",
+            "dark-zero": "ダークゼロ"
+        }
+    },
+    "navigation": {
+        "send": "送金",
+        "receive": "ウォレット",
+        "network": "ネットワーク",
+        "network_new": "新規ネットワーク",
+        "representative": "代表ノード",
+        "representative_change": "代表ノード変更",
+        "buy_nano": "Nano購入",
+        "transaction_history": "取引履歴",
+        "contact": "連絡先",
+        "contacts": "連絡先一覧",
+        "new_contact": "新規連絡先",
+        "send_amount": "送金額"
+    },
+    "buy_nano": {
+        "title": "Nano購入",
+        "on_ramp": "オンランプ 近日公開"
+    },
+    "contact": {
+        "title": "連絡先",
+        "error_no_name": "名前は必須です",
+        "error_no_address": "アドレスは必須です",
+        "error_invalid_address": "無効なアドレスです",
+        "delete_alert_title": "連絡先を削除",
+        "delete_alert_description": "本当に削除しますか",
+        "delete_alert_cancel": "キャンセル",
+        "delete_alert_delete": "削除",
+        "delete_title": "連絡先を削除",
+        "name_label": "名前",
+        "name_placeholder": "名前",
+        "address_label": "アドレス",
+        "address_placeholder": "アドレス",
+        "paste_action": "貼り付け",
+        "cancel_button": "キャンセル",
+        "save_button": "保存"
+    },
+    "contacts": {
+        "title": "連絡先一覧",
+        "search": "連絡先を検索",
+        "no_contact": "連絡先リストが空です。\n下のボタンをクリックして追加してください",
+        "new_contact_button": "新規連絡先"
+    },
+    "contact_new": {
+        "title": "新規連絡先",
+        "error_no_name": "名前は必須です",
+        "error_no_address": "アドレスは必須です",
+        "error_invalid_address": "無効なアドレスです",
+        "name_label": "名前",
+        "name_placeholder": "名前",
+        "address_label": "アドレス",
+        "address_placeholder": "アドレス",
+        "paste": "貼り付け",
+        "button": "追加"
+    },
+    "lock_screen": {
+        "unlock": "ウォレットのロックを解除",
+        "unlock_with_biometrics": "生体認証でロック解除",
+        "enter_password": "続行するにはパスワードを入力してください",
+        "error_wrong_password": "※パスワードが間違っています。もう一度お試しください",
+        "input_password_warning": "※パスワードを入力してください",
+        "password_placeholder": "パスワード",
+        "unlock_button": "ロック解除",
+        "failed": "ロック解除できませんか？",
+        "reset": "ウォレットをリセット"
+    },
+    "setup": {
+        "app_name": "Bahari",
+        "about": "光速でNanoの送受信\n手数料ゼロ",
+        "create_new_wallet": "新規ウォレット作成",
+        "import_wallet": "ウォレットをインポート"
+    },
+    "settings": {
+        "wallet_title": "ウォレット",
+        "general_title": "一般",
+        "security_title": "セキュリティ",
+        "language_label": "言語",
+        "theme_label": "テーマ",
+        "theme_change_label": "テーマ変更",
+        "display_currency_label": "表示通貨",
+        "native_currency_label": "基軸通貨",
+        "notification_label": "プッシュ通知",
+        "network_label": "ネットワーク",
+        "representative_label": "代表ノード",
+        "unlock_method": {
+            "label": "ロック解除方法",
+            "method_password": "パスワード",
+            "method_biometrics": "生体認証",
+            "biometrics": {
+                "label": "生体認証",
+                "description": "Face-IDまたはTouch IDでウォレットのロックを解除"
+            },
+            "password": {
+                "label": "パスワード",
+                "description": "パスワードでウォレットのロックを解除",
+                "setup": "ロック解除用のパスワードを設定",
+                "placeholder": "パスワード",
+                "confirm_placeholder": "パスワード確認",
+                "button_cancel": "キャンセル",
+                "button_done": "完了",
+                "error_short_password": "パスワードは6文字以上で入力してください",
+                "error_not_match": "パスワードが一致しません",
+                "error_other": "エラーが発生しました",
+                "strength": {
+                    "too_weak": "非常に弱い",
+                    "weak": "弱い",
+                    "medium": "普通",
+                    "strong": "強い"
+                }
+            },
+            "on_set": {
+                "error_wrong_password": "パスワードが間違っています",
+                "error_other": "エラーが発生しました",
+                "label": "続行するにはパスワードを入力してください",
+                "placeholder": "パスワード",
+                "button_cancel": "キャンセル",
+                "button_done": "完了"
+            },
+            "require_biometrics": "送金時に生体認証を要求"
+        },
+        "auto_lock": {
+            "title": "自動ロック",
+            "interval": {
+                "5": "5秒",
+                "30": "30秒",
+                "60": "1分",
+                "300": "5分",
+                "1800": "30分",
+                "3600": "1時間",
+                "-1": "なし",
+                "1": "即時"
+            },
+            "modal": {
+                "label": "自動ロック",
+                "description": "バックグラウンドに移行後、以下の時間で自動的にロック"
+            }
+        },
+        "reset_wallet": {
+            "label": "ウォレットをリセット",
+            "modal_label": "ウォレットをリセット",
+            "warning": "リカバリーキーをお持ちでない場合、ウォレットを復元することはできません。",
+            "button_cancel": "キャンセル",
+            "button_confirm": "リセット"
+        }
+    },
+    "representative": {
+        "account": "アカウントの代表ノード",
+        "voting_weight": "投票権重み: {{number}}%",
+        "last_uptime": "先週の稼働時間: {{number}}%",
+        "button": "変更",
+        "recommendation": "分散化を促進するため、高稼働率で低投票権重みの代表ノードを選択することを推奨します",
+        "read_more": "詳しく見る....",
+        "change": {
+            "title": "代表ノードを変更",
+            "invalid_address": "無効なアドレス",
+            "representative_address": "代表ノードのアドレスを入力",
+            "pick": "またはリストから選択",
+            "modal": {
+                "title": "代表ノードを変更",
+                "new_representative": "新しい代表ノード",
+                "change_for": "変更対象",
+                "current_account": "現在のアカウント",
+                "accounts": "アカウント",
+                "this_wallet": "このウォレット",
+                "button": "代表ノードを変更"
+            },
+            "changing": {
+                "title": "代表ノードを変更中....",
+                "wait": "お待ちください"
+            },
+            "done": {
+                "title": "代表ノードの変更が完了しました",
+                "success": "アカウントの変更成功"
+            },
+            "failed": "アカウントの変更失敗",
+            "button": "完了",
+            "list": {
+                "voting_weight": "投票権重み: {{number}}%",
+                "last_uptime": "先週の稼働時間: {{number}}%",
+                "node_version": "ノードバージョン: {{version}}"
+            }
+        }
+    },
+    "currency_modal": {
+        "label": "表示通貨",
+        "search": "通貨を検索"
+    },
+    "native_currency_modal": {
+        "label": "基軸通貨",
+        "pick": "取引額の表示に使用する通貨を選択",
+        "nano": "XNOはNanoとしても知られ、Nanoブロックチェーンのデフォルト通貨です。",
+        "nyano": "1,0000,000 NYANO = 1 XNO\nNYANOは別のトークンではありません。単なる換算単位です"
+    },
+    "network": {
+        "description": "より高速な処理、ノードの負荷分散、ネットワークのセキュリティ向上のため、独自のノードの追加を推奨します。",
+        "button": "ノードを追加",
+        "tor": {
+            "title": "Torを使用",
+            "modal_title": "Tor",
+            "hide_ip": "TorはIPアドレスを隠すことでプライバシーを保護し、リクエストはTorネットワークを経由して送信されます。",
+            "slow": "ほとんどの場合、ノードへの直接接続よりも遅くなる可能性があります。",
+            "note": "なお、BahariサーバーはユーザーのIPアドレスを記録しません"
+        }
+    },
+    "network_new": {
+        "title": "ネットワークを追加",
+        "error_no_label": "ラベルは必須です",
+        "error_no_endpoint": "エンドポイントは必須です",
+        "label": "ラベル",
+        "label_placeholder": "ラベル",
+        "url": "エンドポイントURL",
+        "url_placeholder": "アドレス",
+        "button": "追加"
+    },
+    "new_wallet": {
+        "title": "新規ウォレット",
+        "onboard": {
+            "title": "はじめましょう！",
+            "generate": "パスフレーズ（12単語のリカバリーフレーズ）を生成します。",
+            "remember": "重要な注意事項",
+            "funds_access": "パスフレーズを知っている人は誰でもあなたの資金にアクセスできます。",
+            "keep_safe": "あなた以外誰も見つけられない場所に安全に保管してください。",
+            "never_ask": "私たちが パスフレーズを尋ねることは決してありません。尋ねる人は詐欺の可能性があります。",
+            "passphrase_lost": "パスフレーズとデバイスを紛失した場合、ウォレットを復元することはできません。",
+            "learn_more": "パスフレーズの仕組みについて詳しく学ぶ",
+            "button": "理解しました"
+        },
+        "passphrase": {
+            "title": "あなたのパスフレーズ",
+            "for_you": "あなただけのものです",
+            "generating": "パスフレーズを生成中",
+            "encrypt": "暗号化",
+            "regenerate": "再生成",
+            "button": "完了",
+            "word_picker": {
+                "title": "パスフレーズの言語を変更",
+                "warning": "他のウォレットアプリケーションでは、英語以外のパスフレーズのインポートに対応していない場合があります"
+            }
+        },
+        "encrypt_wallet": {
+            "errors": {
+                "short_password": "パスワードは8文字以上である必要があります",
+                "unmatched_password": "パスワードが一致しません",
+                "passphrase_unavailable": "パスフレーズが利用できません"
+            },
+            "encrypted": {
+                "title": "暗号化されたパスフレーズ",
+                "store": "安全な場所に保管してください。",
+                "reminder": "パスワードを忘れた場合、このテキストを復号化することはできません。",
+                "button": "完了"
+            },
+            "unencrypted": {
+                "title": "パスフレーズを暗号化",
+                "reminder": "パスフレーズをコピーする前に、パスワードでAES256暗号化してください。強力なパスワードほど安全です。",
+                "learn_more": "詳しく見る",
+                "password": "パスワード",
+                "password_placeholder": "パスワード",
+                "confirm_password": "パスワード確認",
+                "confirm_password_placeholder": "パスワード",
+                "button": "暗号化",
+                "strength": {
+                    "too_weak": "非常に弱い",
+                    "weak": "弱い",
+                    "medium": "普通",
+                    "strong": "強い"
+                }
+            }
+        }
+    },
+    "import_wallet": {
+        "title": "ウォレットをインポート",
+        "label": "どの方法でウォレットをインポートしますか？",
+        "label_passphrase": "パスフレーズ",
+        "passphrase_desc": "12、15、または24単語のパスフレーズを使用してインポート",
+        "encrypted_passphrase": "暗号化されたパスフレーズ",
+        "encrypted_passphrase_desc": "暗号化されたパスフレーズを使用してインポート。通常は復号化のためのパスワードが必要な長い文字列です",
+        "label_private_key": "秘密鍵",
+        "private_key_desc": "単一の秘密鍵を入力してインポート\n通常はテキスト形式です。",
+        "decrypt_passphrase": {
+            "errors": {
+                "no_password": "テキストを復号化するためのパスワードを入力してください",
+                "no_encrypted_text": "暗号化されたテキストを入力してください",
+                "failed": "復号化に失敗しました！パスワードと暗号化テキストを確認してください"
+            },
+            "import": "暗号化されたパスフレーズをインポート",
+            "your_passphrase": "あなたのパスフレーズ",
+            "password": "パスワード",
+            "password_placeholder": "パスワード",
+            "paste": "貼り付け",
+            "encrypted_text": "暗号化テキスト",
+            "encrypted_text_placeholder": "暗号化テキスト",
+            "button": "復号化"
+        },
+        "passphrase": {
+            "errors": {
+                "no_name": "新しいウォレットの名前を入力してください",
+                "incorrect": "正しいパスフレーズを入力してください",
+                "unknown": "エラーが発生しました！",
+                "exists": "このウォレットは既に存在します",
+                "not_found": "ウォレットが見つかりませんでした。パスフレーズを確認してください",
+                "not_identified": "ウォレットを自動的に識別できませんでした。下の一致するアドレスから選択してください"
+            },
+            "label": "ラベル",
+            "label_placeholder": "ラベル",
+            "title": "パスフレーズ",
+            "description": "12または24単語のパスフレーズ、スペースで区切ってください。",
+            "paste": "貼り付け",
+            "placeholder": "パスフレーズ",
+            "button": "インポート",
+            "importing": "ウォレットをインポート中..."
+        },
+        "private_key": {
+            "errors": {
+                "no_name": "新しいウォレットの名前を入力してください",
+                "invalid": "無効な秘密鍵です",
+                "exists": "このアカウントは既にウォレットに存在します",
+                "unknown": "エラーが発生しました！",
+                "wrong_address": "公開アドレスを確認できませんでした。インポート前に正しいものか確認してください"
+            },
+            "address": "アドレス",
+            "imported": "インポートされた秘密鍵",
+            "label": "ラベル",
+            "label_placeholder": "ラベル",
+            "title": "秘密鍵",
+            "placeholder": "秘密鍵",
+            "paste": "貼り付け",
+            "button": {
+                "import": "インポート",
+                "cancel": "キャンセル",
+                "accept": "インポート"
+            }
+        }
+    },
+    "pick_account_modal": {
+        "label": "アカウントを選択",
+        "error_pick": "エラーが発生しました。もう一度お試しください",
+        "created": "作成済み",
+        "new_account": "新規アカウント",
+        "import_key": "秘密鍵をインポート",
+        "edit_wallet_label": "ウォレットを編集",
+        "account_changed": "アカウントが変更されました",
+        "edit_wallet": {
+            "label": "ウォレットを編集",
+            "name": "ウォレット名",
+            "show_passphrase": "パスフレーズを表示",
+            "delete_wallet": "ウォレットを削除",
+            "name_required": "名前は必須です",
+            "alert_delete": "ウォレットを削除",
+            "alert_delete_desc": "本当に削除しますか？この操作は取り消せません。将来ウォレットを復元するにはパスフレーズが必要です",
+            "alert_button_cancel": "キャンセル",
+            "alert_button_delete": "削除",
+            "button_cancel": "キャンセル",
+            "button_done": "完了"
+        },
+        "edit_account": {
+            "label": "アカウントを編集",
+            "wallet": "ウォレット",
+            "name": "アカウント名",
+            "public_address": "公開アドレス",
+            "show_private_key": "秘密鍵を表示",
+            "error_name_required": "名前は必須です",
+            "info_copied": "クリップボードにコピーしました",
+            "button_cancel": "キャンセル",
+            "button_done": "完了"
+        },
+        "account_item": "{{balance}} {{currency}}",
+        "show_passphrase": {
+            "derivation": "導出パス:",
+            "title": "あなただけのものです。",
+            "description": "このパスフレーズを知っている人は誰でもあなたの資金を送金できます。誰とも共有しないでください。",
+            "encrypt": "暗号化",
+            "copy": "コピー"
+        },
+        "wallet_switch": {
+            "accounts": "アカウント",
+            "balance": "{{balance}} {{currency}}"
+        }
+    },
+    "wallet": {
+        "action_buy": "購入",
+        "action_send": "送金",
+        "action_receive": "受取",
+        "action_scan_code": "QRコードをスキャン",
+        "balance_section": {
+            "balance": "{{balance}}",
+            "balance_base": "{{balance}} {{currency}}",
+            "price_change": "{{price}} {{currency}}",
+            "pending_amount": "保留中の金額",
+            "pending": "{{balance}} {{currency}}"
+        },
+        "history_list": {
+            "title": "取引履歴",
+            "label": "取引",
+            "no_transactions": "まだ取引履歴がありません",
+            "try_nano": "Nanoを試してみませんか？",
+            "get_free": "無料のNanoを入手",
+            "toast": {
+                "success": "Nanoがこのアドレスに送信されました"
+            },
+            "see_all": "すべて表示"
+        },
+        "price_graph": {
+            "current_nano_price": "現在のXNO価格",
+            "price": "{{price}} {{currency}}"
+        },
+        "qr_code": {
+            "title": "QRコードをスキャン",
+            "enable": "QRコードをスキャンするためにカメラを有効にしてください"
+        },
+        "transaction_item": {
+            "not_confirmed": "取引はまだ確認されていません！\nネットワークが混雑している可能性があります。",
+            "not_confirmed_info": "取引はまだ確認されていません",
+            "message_sent": "送金済み",
+            "message_received": "受取済み",
+            "amount": "{{amount}} {{currency}}"
+        }
+    },
+    "receive": {
+        "label": "あなたのウォレット",
+        "your_nano_address": "あなたのNanoアドレス",
+        "copy": "コピー",
+        "share": "共有",
+        "request": {
+            "label": "リクエスト",
+            "how_much": "いくらの{{currency}}をリクエストしますか？",
+            "amount": "{{amount}} {{currency}}",
+            "estimate_amount": "{{amount}} {{currency}}",
+            "button_cancel": "キャンセル",
+            "button_confirm": "リクエスト"
+        },
+        "copied": "クリップボードにコピーしました"
+    },
+    "send": {
+        "label": "Nanoの送金先は？",
+        "invalid_address": "無効なアドレス",
+        "address": {
+            "label": "アドレス",
+            "placeholder": "アドレス",
+            "my_wallets": "マイウォレット",
+            "scan_code": "QRコードをスキャン",
+            "paste": "貼り付け",
+            "recents_label": "最近のアドレス",
+            "recents_not_available": "最近のアドレスはありません。\n送金したアドレスがここに表示されます"
+        },
+        "contact_label": "連絡先",
+        "contact_header": "連絡先",
+        "contact_search": "連絡先を検索",
+        "button_next": "次へ",
+        "amount": {
+            "error_no_amount": "金額は必須です",
+            "your_balance": "残高",
+            "balance_after": "送金後の残高",
+            "insufficient": "残高不足",
+            "max": "最大",
+            "button_preview": "プレビュー",
+            "preview": {
+                "label": "送金確認",
+                "amount_label": "金額",
+                "balance": "{{amount}} {{currency}}",
+                "from": "送金元",
+                "to": "送金先",
+                "button_send": "送金"
+            }
+        },
+        "sending_error": "エラーが発生しました！",
+        "sending_label": "送金中",
+        "sending_wait": "お待ちください.....",
+        "success_balance_sent": "{{amount}} {{currency}}",
+        "success_sent_to": "送金先",
+        "add_contact": "新規連絡先を追加",
+        "button_done": "完了"
+    }
+}

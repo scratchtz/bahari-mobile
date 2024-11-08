@@ -12,8 +12,8 @@ const resources = {
     ko: {translation: ko},
     zh: {translation: zh},
     ru: {translation: ru},
-    js: {translation: ja},
-    es: {translation: es}
+    ja: {translation: ja},
+    es: {translation: es},
 };
 
 i18n.use(initReactI18next).init({
