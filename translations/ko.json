@@ -1,1 +1,516 @@
-{}
+{
+    "constants": {
+        "themes": {
+            "system": "시스템",
+            "light": "라이트",
+            "dark": "다크",
+            "dark-zero": "다크 제로"
+        }
+    },
+    "navigation": {
+        "send": "보내기",
+        "receive": "내 지갑",
+        "network": "네트워크",
+        "network_new": "새 네트워크",
+        "representative": "대표자",
+        "representative_change": "대표자 변경",
+        "buy_nano": "나노 구매",
+        "transaction_history": "거래 내역",
+        "contact": "연락처",
+        "contacts": "연락처 목록",
+        "new_contact": "새 연락처",
+        "send_amount": "송금액"
+    },
+    "buy_nano": {
+        "title": "나노 구매",
+        "on_ramp": "온램프 서비스 준비중"
+    },
+    "contact": {
+        "title": "연락처",
+        "error_no_name": "이름을 입력해주세요",
+        "error_no_address": "주소를 입력해주세요",
+        "error_invalid_address": "유효하지 않은 주소입니다",
+        "delete_alert_title": "연락처 삭제",
+        "delete_alert_description": "정말로 삭제하시겠습니까",
+        "delete_alert_cancel": "취소",
+        "delete_alert_delete": "삭제",
+        "delete_title": "연락처 삭제",
+        "name_label": "이름",
+        "name_placeholder": "이름",
+        "address_label": "주소",
+        "address_placeholder": "주소",
+        "paste_action": "붙여넣기",
+        "cancel_button": "취소",
+        "save_button": "저장"
+    },
+    "contacts": {
+        "title": "연락처",
+        "search": "연락처 검색",
+        "no_contact": "연락처가 없습니다.\n아래 버튼을 눌러 새 연락처를 추가하세요",
+        "new_contact_button": "새 연락처"
+    },
+    "contact_new": {
+        "title": "새 연락처",
+        "error_no_name": "이름을 입력해주세요",
+        "error_no_address": "주소를 입력해주세요",
+        "error_invalid_address": "유효하지 않은 주소입니다",
+        "name_label": "이름",
+        "name_placeholder": "이름",
+        "address_label": "주소",
+        "address_placeholder": "주소",
+        "paste": "붙여넣기",
+        "button": "추가"
+    },
+    "lock_screen": {
+        "unlock": "지갑 잠금 해제",
+        "unlock_with_biometrics": "생체 인식으로 잠금 해제",
+        "enter_password": "계속하려면 비밀번호를 입력하세요",
+        "error_wrong_password": "*잘못된 비밀번호입니다! 다시 시도하세요",
+        "input_password_warning": "*비밀번호를 입력하세요",
+        "password_placeholder": "비밀번호",
+        "unlock_button": "잠금 해제",
+        "failed": "잠금 해제가 안되시나요?",
+        "reset": "지갑 초기화"
+    },
+    "setup": {
+        "app_name": "바하리",
+        "about": "빛의 속도로 나노를 주고받으세요\n수수료 없음",
+        "create_new_wallet": "새 지갑 만들기",
+        "import_wallet": "지갑 가져오기"
+    },
+    "settings": {
+        "wallet_title": "지갑",
+        "general_title": "일반",
+        "security_title": "보안",
+        "language_label": "언어",
+        "theme_label": "테마",
+        "theme_change_label": "테마",
+        "display_currency_label": "표시 통화",
+        "native_currency_label": "기본 통화",
+        "notification_label": "푸시 알림",
+        "network_label": "네트워크",
+        "representative_label": "대표자",
+        "unlock_method": {
+            "label": "잠금 해제 방식",
+            "method_password": "비밀번호",
+            "method_biometrics": "생체 인식",
+            "biometrics": {
+                "label": "생체 인식",
+                "description": "Face-ID 또는 Touch ID로 지갑 잠금 해제"
+            },
+            "password": {
+                "label": "비밀번호",
+                "description": "비밀번호로 지갑 잠금 해제",
+                "setup": "지갑 잠금 해제를 위한 비밀번호 설정",
+                "placeholder": "비밀번호",
+                "confirm_placeholder": "비밀번호 확인",
+                "button_cancel": "취소",
+                "button_done": "완료",
+                "error_short_password": "6자 이상의 비밀번호를 입력하세요",
+                "error_not_match": "비밀번호가 일치하지 않습니다",
+                "error_other": "오류가 발생했습니다!",
+                "strength": {
+                    "too_weak": "매우 약함",
+                    "weak": "약함",
+                    "medium": "보통",
+                    "strong": "강함"
+                }
+            },
+            "on_set": {
+                "error_wrong_password": "잘못된 비밀번호",
+                "error_other": "오류가 발생했습니다!",
+                "label": "계속하려면 비밀번호를 입력하세요",
+                "placeholder": "비밀번호",
+                "button_cancel": "취소",
+                "button_done": "완료"
+            },
+            "require_biometrics": "송금 시 생체 인식 요구"
+        },
+        "auto_lock": {
+            "title": "자동 잠금",
+            "interval": {
+                "5": "5초",
+                "30": "30초",
+                "60": "1분",
+                "300": "5분",
+                "1800": "30분",
+                "3600": "1시간",
+                "-1": "사용 안함",
+                "1": "즉시"
+            },
+            "modal": {
+                "label": "자동 잠금",
+                "description": "앱이 백그라운드로 전환된 후 자동으로 잠금"
+            }
+        },
+        "reset_wallet": {
+            "label": "지갑 초기화",
+            "modal_label": "지갑 초기화",
+            "warning": "복구 키가 없다면 지갑을 복구할 수 없습니다.",
+            "button_cancel": "취소",
+            "button_confirm": "초기화"
+        }
+    },
+    "representative": {
+        "account": "계정의 대표자",
+        "voting_weight": "투표 가중치: {{number}}%",
+        "last_uptime": "지난주 가동률: {{number}}%",
+        "button": "변경",
+        "recommendation": "탈중앙화를 개선하기 위해 높은 가동률과 낮은 투표 가중치를 가진 대표자를 선택하는 것이 좋습니다",
+        "read_more": "더 보기....",
+        "change": {
+            "title": "대표자 변경",
+            "invalid_address": "유효하지 않은 주소",
+            "representative_address": "대표자 주소 입력",
+            "pick": "또는 목록에서 선택",
+            "modal": {
+                "title": "대표자 변경",
+                "new_representative": "새로운 대표자",
+                "change_for": "변경 대상",
+                "current_account": "현재 계정",
+                "accounts": "계정",
+                "this_wallet": "이 지갑",
+                "button": "대표자 변경"
+            },
+            "changing": {
+                "title": "대표자 변경 중....",
+                "wait": "잠시만 기다려주세요"
+            },
+            "done": {
+                "title": "대표자 변경 완료",
+                "success": "계정 성공"
+            },
+            "failed": "계정 실패",
+            "button": "완료",
+            "list": {
+                "voting_weight": "투표 가중치: {{number}}%",
+                "last_uptime": "지난주 가동률: {{number}}%",
+                "node_version": "노드 버전: {{version}}"
+            }
+        }
+    },
+    "currency_modal": {
+        "label": "표시 통화",
+        "search": "통화 검색"
+    },
+    "native_currency_modal": {
+        "label": "기본 통화",
+        "pick": "기본값으로 표시할 통화를 선택하세요",
+        "nano": "XNO는 Nano로도 알려져 있으며, Nano 블록체인의 기본 통화입니다.",
+        "nyano": "1,0000,000 NYANO = 1 XNO\nNYANO는 별도의 토큰이 아닙니다. 단순한 변환일 뿐입니다"
+    },
+    "network": {
+        "description": "더 나은 속도, 우리 노드의 부하 감소, 네트워크 보안 강화를 위해 자체 노드 추가를 권장합니다.",
+        "button": "노드 추가",
+        "tor": {
+            "title": "Tor 사용",
+            "modal_title": "Tor",
+            "hide_ip": "Tor는 IP 주소를 숨겨 개인정보를 보호하며, 요청은 Tor 네트워크를 통해 라우팅됩니다.",
+            "slow": "대부분의 경우 노드에 직접 연결하는 것보다 약간 느릴 수 있습니다.",
+            "note": "또한 바하리 서버는 사용자의 IP 주소를 기록하지 않습니다"
+        }
+    },
+    "network_new": {
+        "title": "네트워크 추가",
+        "error_no_label": "라벨을 입력해주세요",
+        "error_no_endpoint": "엔드포인트를 입력해주세요",
+        "label": "라벨",
+        "label_placeholder": "라벨",
+        "url": "엔드포인트 URL",
+        "url_placeholder": "주소",
+        "button": "추가"
+    },
+    "new_wallet": {
+        "title": "새 지갑",
+        "onboard": {
+            "title": "시작하기!",
+            "generate": "복구 문구(12단어)를 생성해드립니다.",
+            "remember": "기억해야 할 중요사항",
+            "funds_access": "복구 문구를 아는 사람은 누구나 당신의 자금에 접근할 수 있습니다.",
+            "keep_safe": "당신 외에는 아무도 찾을 수 없는 안전한 곳에 보관하세요.",
+            "never_ask": "우리는 절대 복구 문구를 요청하지 않습니다. 요청하는 사람은 아마도 사기를 치려는 것입니다.",
+            "passphrase_lost": "복구 문구와 기기를 모두 잃어버린 경우 지갑을 복구할 수 없습니다.",
+            "learn_more": "복구 문구 작동 방식에 대해 자세히 알아보기",
+            "button": "이해했습니다"
+        },
+        "passphrase": {
+            "title": "복구 문구",
+            "for_you": "당신만 볼 수 있습니다",
+            "generating": "복구 문구 생성 중",
+            "encrypt": "암호화",
+            "regenerate": "재생성",
+            "button": "완료",
+            "word_picker": {
+                "title": "복구 문구 언어 변경",
+                "warning": "일부 다른 지갑 애플리케이션은 영어가 아닌 복구 문구 가져오기를 지원하지 않을 수 있습니다"
+            }
+        },
+        "encrypt_wallet": {
+            "errors": {
+                "short_password": "비밀번호는 8자 이상이어야 합니다",
+                "unmatched_password": "비밀번호가 일치하지 않습니다",
+                "passphrase_unavailable": "복구 문구를 사용할 수 없습니다"
+            },
+            "encrypted": {
+                "title": "암호화된 복구 문구",
+                "store": "안전한 곳에 보관하세요.",
+                "reminder": "비밀번호를 잊어버린 경우 이 텍스트를 복호화할 수 없습니다.",
+                "button": "완료"
+            },
+            "unencrypted": {
+                "title": "복구 문구 암호화",
+                "reminder": "복사하기 전에 비밀번호로 AES256을 사용하여 복구 문구를 암호화하세요. 강력한 비밀번호가 더 안전합니다.",
+                "learn_more": "자세히 알아보기",
+                "password": "비밀번호",
+                "password_placeholder": "비밀번호",
+                "confirm_password": "비밀번호 확인",
+                "confirm_password_placeholder": "비밀번호",
+                "button": "암호화",
+                "strength": {
+                    "too_weak": "매우 약함",
+                    "weak": "약함",
+                    "medium": "보통",
+                    "strong": "강함"
+                }
+            }
+        }
+    },
+    "import_wallet": {
+        "title": "지갑 가져오기",
+        "label": "어떤 방식으로 지갑을 가져오시겠습니까?",
+        "label_passphrase": "복구 문구",
+        "passphrase_desc": "12, 15 또는 24단어 복구 문구로 가져오기",
+        "encrypted_passphrase": "암호화된 복구 문구",
+        "encrypted_passphrase_desc": "암호화된 복구 문구로 가져오기. 일반적으로 복호화가 필요한 긴 문자열입니다",
+        "label_private_key": "개인 키",
+        "private_key_desc": "단일 개인 키를 입력하여 가져오기\n일반적으로 텍스트 형식입니다.",
+        "decrypt_passphrase": {
+            "errors": {
+                "no_password": "텍스트 복호화를 위한 비밀번호를 입력하세요",
+                "no_encrypted_text": "암호화된 텍스트를 입력하세요",
+                "failed": "복호화 실패! 비밀번호와 암호화된 텍스트를 확인하세요"
+            },
+            "import": "암호화된 복구 문구 가져오기",
+            "your_passphrase": "복구 문구",
+            "password": "비밀번호",
+            "password_placeholder": "비밀번호",
+            "paste": "붙여넣기",
+            "encrypted_text": "암호화된 텍스트",
+            "encrypted_text_placeholder": "암호화된 텍스트",
+            "button": "복호화"
+        },
+        "passphrase": {
+            "errors": {
+                "no_name": "새 지갑의 이름을 입력하세요",
+                "incorrect": "올바른 복구 문구를 입력해주세요",
+                "unknown": "오류가 발생했습니다!",
+                "exists": "이미 존재하는 지갑입니다",
+                "not_found": "지갑을 찾을 수 없습니다. 복구 문구를 다시 확인하세요",
+                "not_identified": "지갑을 자동으로 식별할 수 없습니다. 아래의 일치하는 주소 중에서 선택하세요"
+            },
+            "label": "라벨",
+            "label_placeholder": "라벨",
+            "title": "복구 문구",
+            "description": "12 또는 24단어 복구 문구, 공백으로 구분.",
+            "paste": "붙여넣기",
+            "placeholder": "복구 문구",
+            "button": "가져오기",
+            "importing": "지갑 가져오는 중..."
+        },
+        "private_key": {
+            "errors": {
+                "no_name": "새 지갑의 이름을 입력하세요",
+                "invalid": "유효하지 않은 개인 키",
+                "exists": "계정이 이미 지갑에 존재합니다",
+                "unknown": "오류가 발생했습니다!",
+                "wrong_address": "공개 주소를 확인할 수 없습니다. 가져오기 전에 올바른 주소인지 확인하세요."
+            },
+            "address": "주소",
+            "imported": "가져온 개인 키",
+            "label": "라벨",
+            "label_placeholder": "라벨",
+            "title": "개인 키",
+            "placeholder": "개인 키",
+            "paste": "붙여넣기",
+            "button": {
+                "import": "가져오기",
+                "cancel": "취소",
+                "accept": "가져오기"
+            }
+        }
+    },
+    "pick_account_modal": {
+        "label": "계정 선택",
+        "error_pick": "오류가 발생했습니다! 다시 시도해 주세요",
+        "created": "생성됨",
+        "new_account": "새 계정",
+        "import_key": "개인 키 가져오기",
+        "edit_wallet_label": "지갑 편집",
+        "account_changed": "계정이 변경되었습니다",
+        "edit_wallet": {
+            "label": "지갑 편집",
+            "name": "지갑 이름",
+            "show_passphrase": "패스프레이즈 표시",
+            "delete_wallet": "지갑 삭제",
+            "name_required": "이름이 필요합니다",
+            "alert_delete": "지갑 삭제",
+            "alert_delete_desc": "정말 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다. 미래에 지갑을 복구하려면 패스프레이즈가 필요합니다",
+            "alert_button_cancel": "취소",
+            "alert_button_delete": "삭제",
+            "button_cancel": "취소",
+            "button_done": "완료"
+        },
+        "edit_account": {
+            "label": "계정 편집",
+            "wallet": "지갑",
+            "name": "계정 이름",
+            "public_address": "공개 주소",
+            "show_private_key": "개인 키 표시",
+            "error_name_required": "이름이 필요합니다",
+            "info_copied": "클립보드에 복사되었습니다",
+            "button_cancel": "취소",
+            "button_done": "완료"
+        },
+        "account_item": "{{balance}} {{currency}}",
+        "show_passphrase": {
+            "derivation": "파생 경로:",
+            "title": "오직 당신의 눈으로만",
+            "description": "이 패스프레이즈를 가진 누구나 귀하의 모든 자금을 전송할 수 있습니다. 누구에게도 공유하지 마세요.",
+            "encrypt": "암호화",
+            "copy": "복사"
+        },
+        "wallet_switch": {
+            "accounts": "계정",
+            "balance": "{{balance}} {{currency}}"
+        }
+    },
+    "encrypt_text": {
+        "strength_too_weak": "너무 약함",
+        "strength_weak": "약함",
+        "strength_medium": "보통",
+        "strength_strong": "강함",
+        "error_short_password": "비밀번호는 8자 이상이어야 합니다",
+        "error_password_not_match": "비밀번호가 일치하지 않습니다",
+        "error_passphrase_not_available": "패스프레이즈를 사용할 수 없습니다",
+        "store": "안전한 장소에 보관하세요.",
+        "disclaimer": "비밀번호를 잃어버리면 이 텍스트를 복호화할 수 없습니다.",
+        "enter_password": "암호화할 비밀번호 입력",
+        "password_label": "비밀번호",
+        "password_placeholder": "비밀번호",
+        "confirm_password_label": "비밀번호 확인",
+        "confirm_password_placeholder": "비밀번호",
+        "button_encrypt": "암호화"
+    },
+    "wallet": {
+        "action_buy": "구매",
+        "action_send": "보내기",
+        "action_receive": "받기",
+        "action_scan_code": "QR코드 스캔",
+        "balance_section": {
+            "balance": "{{balance}}",
+            "balance_base": "{{balance}} {{currency}}",
+            "price_change": "{{price}} {{currency}}",
+            "pending_amount": "대기 중인 금액",
+            "pending": "{{balance}} {{currency}}"
+        },
+        "history_list": {
+            "title": "거래 내역",
+            "label": "거래 내역",
+            "no_transactions": "아직 거래 내역이 없습니다",
+            "try_nano": "나노 사용해보시겠습니까?",
+            "get_free": "무료 나노 받기",
+            "toast": {
+                "success": "나노가 이 주소로 전송되었습니다"
+            },
+            "see_all": "모두 보기"
+        },
+        "price_graph": {
+            "current_nano_price": "현재 XNO 가격",
+            "price": "{{price}} {{currency}}"
+        },
+        "qr_code": {
+            "title": "QR코드 스캔",
+            "enable": "카메라를 활성화하여 QR코드 스캔"
+        },
+        "transaction_item": {
+            "not_confirmed": "거래가 아직 확인되지 않았습니다!\n네트워크가 혼잡할 수 있습니다.",
+            "not_confirmed_info": "거래가 아직 확인되지 않았습니다",
+            "message_sent": "보냄",
+            "message_received": "받음",
+            "amount": "{{amount}} {{currency}}",
+            "modal": {
+                "info_copied": "클립보드에 복사되었습니다",
+                "title": {
+                    "send": "보냄",
+                    "receive": "받음",
+                    "change": "대표자 변경"
+                },
+                "amount": "{{amount}} {{currency}}",
+                "type_from": "보낸 곳",
+                "type_to": "받은 곳",
+                "type_account": "계정",
+                "add_contact": "연락처 추가",
+                "date": "날짜",
+                "status_label": "상태",
+                "status_confirmed": "확인됨",
+                "status_pending": "대기 중",
+                "block_explorer": "블록 탐색기에서 열기"
+            }
+        }
+    },
+    "receive": {
+        "label": "귀하의 지갑",
+        "your_nano_address": "귀하의 나노 주소",
+        "copy": "복사",
+        "share": "공유",
+        "request": {
+            "label": "요청",
+            "how_much": "얼마의 {{currency}}를 요청하시겠습니까?",
+            "amount": "{{amount}} {{currency}}",
+            "estimate_amount": "{{amount}} {{currency}}",
+            "button_cancel": "취소",
+            "button_confirm": "요청"
+        },
+        "copied": "클립보드에 복사되었습니다"
+    },
+    "send": {
+        "label": "누구에게 나노를 보내시겠습니까?",
+        "invalid_address": "잘못된 주소",
+        "address": {
+            "label": "주소",
+            "placeholder": "주소",
+            "my_wallets": "내 지갑",
+            "scan_code": "QR코드 스캔",
+            "paste": "붙여넣기",
+            "recents_label": "최근 주소",
+            "recents_not_available": "최근 주소가 없습니다.\n보낸 최근 주소가 여기에 나타납니다"
+        },
+        "contact_label": "연락처",
+        "contact_header": "연락처",
+        "contact_search": "연락처 검색",
+        "button_next": "다음",
+        "amount": {
+            "error_no_amount": "금액이 필요합니다",
+            "your_balance": "내 잔액",
+            "balance_after": "잔액 후",
+            "insufficient": "잔액 부족",
+            "max": "최대값",
+            "button_preview": "미리보기",
+            "preview": {
+                "label": "보내기 확인",
+                "amount_label": "금액",
+                "balance": "{{amount}} {{currency}}",
+                "from": "발신자",
+                "to": "수신자",
+                "button_send": "보내기"
+            }
+        },
+        "sending_error": "오류가 발생했습니다!",
+        "sending_label": "보내는 중",
+        "sending_wait": "잠시만 기다려 주세요...",
+        "success_balance_sent": "{{amount}} {{currency}}",
+        "success_sent_to": "보낸 주소",
+        "add_contact": "새 연락처 추가",
+        "button_done": "완료"
+    }
+}
