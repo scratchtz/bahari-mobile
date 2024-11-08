@@ -84,13 +84,13 @@
         "security_title": "Security",
         "language_label": "Language",
         "theme_label": "Theme",
-        "theme_change_label":"Theme",
+        "theme_change_label": "Theme",
         "display_currency_label": "Display Currency",
         "native_currency_label": "Native Currency",
         "notification_label": "Push Notifications",
         "network_label": "Network",
         "representative_label": "Representative",
-        "unlock_method":{
+        "unlock_method": {
             "label": "Unlock Method",
             "method_password": "Password",
             "method_biometrics": "Biometrics",
@@ -106,7 +106,7 @@
                 "confirm_placeholder": "Confirm Password",
                 "button_cancel": "Cancel",
                 "button_done": "Done",
-                "error_short_password":"Enter password more than 6 characters",
+                "error_short_password": "Enter password more than 6 characters",
                 "error_not_match": "Passwords don't match",
                 "error_other": "Error occurred!",
                 "strength": {
@@ -143,7 +143,7 @@
                 "description": "Automatically lock your phone when the app goes in the background after"
             }
         },
-        "reset_wallet":{
+        "reset_wallet": {
             "label": "Reset Wallet",
             "modal_label": "Reset Wallet",
             "warning": "If you don't have your recovery keys we can't recover the wallet for you.",
@@ -358,7 +358,7 @@
             "alert_button_cancel": "Cancel",
             "alert_button_delete": "Delete",
             "button_cancel": "Cancel",
-            "button_done":"Done"
+            "button_done": "Done"
         },
         "edit_account": {
             "label": "Edit Account",
@@ -388,8 +388,8 @@
         "strength_too_weak": "too weak",
         "strength_weak": "weak",
         "strength_medium": "medium",
-        "strength_strong":"strong",
-        "error_short_password":"Password should be 8 characters or more",
+        "strength_strong": "strong",
+        "error_short_password": "Password should be 8 characters or more",
         "error_password_not_match": "Passwords don't match",
         "error_passphrase_not_available": "Passphrase not available",
         "store": "Store in a safe place.",
@@ -436,7 +436,7 @@
             "not_confirmed": "Transaction is not confirmed yet!\nNetwork could be congested.",
             "not_confirmed_info": "Transaction is not confirmed yet",
             "message_sent": "Sent",
-            "message_received":"Received",
+            "message_received": "Received",
             "amount": "{{amount}} {{currency}}",
             "modal": {
                 "info_copied": "Copied to clipboard",
@@ -451,7 +451,7 @@
                 "type_account": "Account",
                 "add_contact": "Add Contact",
                 "date": "Date",
-                "status_label":"Status",
+                "status_label": "Status",
                 "status_confirmed": "Confirmed",
                 "status_pending": "Pending",
                 "block_explorer": "Open on block explorer"

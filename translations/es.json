@@ -1,3 +1,516 @@
 {
-
+    "constants": {
+        "themes": {
+            "system": "Sistema",
+            "light": "Claro",
+            "dark": "Oscuro",
+            "dark-zero": "Oscuro Zero"
+        }
+    },
+    "navigation": {
+        "send": "Enviar",
+        "receive": "Tu Cartera",
+        "network": "Red",
+        "network_new": "Nueva Red",
+        "representative": "Representante",
+        "representative_change": "Cambiar Representante",
+        "buy_nano": "Comprar Nano",
+        "transaction_history": "Transacciones",
+        "contact": "Contacto",
+        "contacts": "Contactos",
+        "new_contact": "Nuevo Contacto",
+        "send_amount": "Cantidad a Enviar"
+    },
+    "buy_nano": {
+        "title": "Comprar Nano",
+        "on_ramp": "Compra directa próximamente"
+    },
+    "contact": {
+        "title": "Contactos",
+        "error_no_name": "El nombre es obligatorio",
+        "error_no_address": "La dirección es obligatoria",
+        "error_invalid_address": "La dirección no es válida",
+        "delete_alert_title": "Eliminar Contacto",
+        "delete_alert_description": "¿Estás seguro que deseas eliminar",
+        "delete_alert_cancel": "Cancelar",
+        "delete_alert_delete": "Eliminar",
+        "delete_title": "Eliminar Contacto",
+        "name_label": "Nombre",
+        "name_placeholder": "Nombre",
+        "address_label": "Dirección",
+        "address_placeholder": "Dirección",
+        "paste_action": "Pegar",
+        "cancel_button": "Cancelar",
+        "save_button": "Guardar"
+    },
+    "contacts": {
+        "title": "Contactos",
+        "search": "Buscar Contactos",
+        "no_contact": "No tienes ningún contacto en tu lista.\nHaz clic en el botón de abajo para añadir uno",
+        "new_contact_button": "Nuevo Contacto"
+    },
+    "contact_new": {
+        "title": "Nuevo Contacto",
+        "error_no_name": "El nombre es obligatorio",
+        "error_no_address": "La dirección es obligatoria",
+        "error_invalid_address": "La dirección no es válida",
+        "name_label": "Nombre",
+        "name_placeholder": "Nombre",
+        "address_label": "Dirección",
+        "address_placeholder": "Dirección",
+        "paste": "Pegar",
+        "button": "Añadir"
+    },
+    "lock_screen": {
+        "unlock": "Desbloquea tu cartera",
+        "unlock_with_biometrics": "Desbloquear con biometría",
+        "enter_password": "Ingresa tu contraseña para continuar",
+        "error_wrong_password": "*¡Contraseña incorrecta! Inténtalo de nuevo",
+        "input_password_warning": "*Ingresa la contraseña",
+        "password_placeholder": "Contraseña",
+        "unlock_button": "Desbloquear",
+        "failed": "¿No puedes desbloquear?",
+        "reset": "Restablecer cartera"
+    },
+    "setup": {
+        "app_name": "Bahari",
+        "about": "Envía y recibe Nano a la velocidad de la luz\nSin comisiones",
+        "create_new_wallet": "Crear Nueva Cartera",
+        "import_wallet": "Importar Cartera"
+    },
+    "settings": {
+        "wallet_title": "Cartera",
+        "general_title": "General",
+        "security_title": "Seguridad",
+        "language_label": "Idioma",
+        "theme_label": "Tema",
+        "theme_change_label": "Tema",
+        "display_currency_label": "Mostrar Moneda",
+        "native_currency_label": "Moneda Nativa",
+        "notification_label": "Notificaciones Push",
+        "network_label": "Red",
+        "representative_label": "Representante",
+        "unlock_method": {
+            "label": "Método de Desbloqueo",
+            "method_password": "Contraseña",
+            "method_biometrics": "Biometría",
+            "biometrics": {
+                "label": "Biometría",
+                "description": "Usa Face-ID o Touch ID para desbloquear tu cartera"
+            },
+            "password": {
+                "label": "Contraseña",
+                "description": "Usa contraseña para desbloquear tu cartera",
+                "setup": "Configura una contraseña para desbloquear tu cartera",
+                "placeholder": "Contraseña",
+                "confirm_placeholder": "Confirmar Contraseña",
+                "button_cancel": "Cancelar",
+                "button_done": "Listo",
+                "error_short_password": "Ingresa una contraseña de más de 6 caracteres",
+                "error_not_match": "Las contraseñas no coinciden",
+                "error_other": "¡Ocurrió un error!",
+                "strength": {
+                    "too_weak": "muy débil",
+                    "weak": "débil",
+                    "medium": "media",
+                    "strong": "fuerte"
+                }
+            },
+            "on_set": {
+                "error_wrong_password": "Contraseña incorrecta",
+                "error_other": "¡Ocurrió un error!",
+                "label": "Ingresa tu contraseña para continuar",
+                "placeholder": "Contraseña",
+                "button_cancel": "Cancelar",
+                "button_done": "Listo"
+            },
+            "require_biometrics": "Requerir biometría al Enviar"
+        },
+        "auto_lock": {
+            "title": "Bloqueo automático",
+            "interval": {
+                "5": "5s",
+                "30": "30s",
+                "60": "1min",
+                "300": "5min",
+                "1800": "30min",
+                "3600": "1h",
+                "-1": "Nunca",
+                "1": "Inmediatamente"
+            },
+            "modal": {
+                "label": "Bloqueo automático",
+                "description": "Bloquear automáticamente cuando la aplicación pase a segundo plano después de"
+            }
+        },
+        "reset_wallet": {
+            "label": "Restablecer Cartera",
+            "modal_label": "Restablecer Cartera",
+            "warning": "Si no tienes tus claves de recuperación, no podremos recuperar la cartera.",
+            "button_cancel": "Cancelar",
+            "button_confirm": "Restablecer"
+        }
+    },
+    "representative": {
+        "account": "Representante para tu cuenta",
+        "voting_weight": "Peso de votación: {{number}}%",
+        "last_uptime": "Tiempo activo última semana: {{number}}%",
+        "button": "Cambiar",
+        "recommendation": "Se recomienda seleccionar un representante con alto tiempo activo y bajo peso de votación para mejorar la descentralización",
+        "read_more": "Leer más....",
+        "change": {
+            "title": "Cambiar Representante",
+            "invalid_address": "Dirección inválida",
+            "representative_address": "Ingresa la dirección del representante",
+            "pick": "O elige de la lista",
+            "modal": {
+                "title": "Cambiar Representante",
+                "new_representative": "Tu nuevo representante",
+                "change_for": "Cambiar para",
+                "current_account": "Cuenta Actual",
+                "accounts": "cuentas",
+                "this_wallet": "Esta cartera",
+                "button": "Cambiar Representante"
+            },
+            "changing": {
+                "title": "Cambiando representante....",
+                "wait": "Por favor espera"
+            },
+            "done": {
+                "title": "Cambio de representante finalizado",
+                "success": "cuentas exitosas"
+            },
+            "failed": "cuentas fallidas",
+            "button": "Listo",
+            "list": {
+                "voting_weight": "Peso de votación: {{number}}%",
+                "last_uptime": "Tiempo activo última semana: {{number}}%",
+                "node_version": "Versión del Nodo: {{version}}"
+            }
+        }
+    },
+    "currency_modal": {
+        "label": "Mostrar Moneda",
+        "search": "Buscar Moneda"
+    },
+    "native_currency_modal": {
+        "label": "Moneda Nativa",
+        "pick": "Elige una moneda para mostrar los valores nativos",
+        "nano": "XNO también conocido como Nano, es la moneda predeterminada en la blockchain de Nano.",
+        "nyano": "1,0000,000 NYANO = 1 XNO\nNYANO no es un token separado. Es solo una conversión"
+    },
+    "network": {
+        "description": "Recomendamos que agregues tu propio nodo para mejor velocidad, reducir la carga en nuestros nodos y aumentar la seguridad de la red.",
+        "button": "Agregar Nodo",
+        "tor": {
+            "title": "Usar Tor",
+            "modal_title": "Tor",
+            "hide_ip": "Tor protege tu privacidad ocultando tu dirección IP, tus solicitudes se enrutan a través de la red Tor.",
+            "slow": "La mayoría de las veces puede ser un poco más lento que una conexión directa al nodo.",
+            "note": "Ten en cuenta que los servidores de Bahari no registran las direcciones IP de los usuarios"
+        }
+    },
+    "network_new": {
+        "title": "Agregar Red",
+        "error_no_label": "La etiqueta es obligatoria",
+        "error_no_endpoint": "El endpoint es obligatorio",
+        "label": "Etiqueta",
+        "label_placeholder": "Etiqueta",
+        "url": "URL del Endpoint",
+        "url_placeholder": "Dirección",
+        "button": "Agregar"
+    },
+    "new_wallet": {
+        "title": "Nueva Cartera",
+        "onboard": {
+            "title": "¡Empecemos!",
+            "generate": "Generaremos una frase de contraseña (frase de recuperación de 12 palabras) para ti.",
+            "remember": "Importante recordar",
+            "funds_access": "Cualquiera que conozca tu frase de contraseña puede acceder a tus fondos.",
+            "keep_safe": "Mantenla segura donde nadie excepto tú pueda encontrarla.",
+            "never_ask": "Nunca te pediremos tu frase de contraseña, cualquiera que la pida probablemente está intentando estafarte.",
+            "passphrase_lost": "Si pierdes tu frase de contraseña y tu dispositivo, no podremos recuperar tu cartera.",
+            "learn_more": "Aprende más sobre cómo funcionan las frases de contraseña",
+            "button": "Entiendo"
+        },
+        "passphrase": {
+            "title": "Tu frase de contraseña",
+            "for_you": "Solo para tus ojos",
+            "generating": "Generando frase de contraseña",
+            "encrypt": "Encriptar",
+            "regenerate": "Regenerar",
+            "button": "Listo",
+            "word_picker": {
+                "title": "Cambiar Idioma de la Frase de Contraseña",
+                "warning": "Algunas otras aplicaciones de cartera podrían no admitir la importación de frases de contraseña que no estén en inglés"
+            }
+        },
+        "encrypt_wallet": {
+            "errors": {
+                "short_password": "La contraseña debe tener 8 caracteres o más",
+                "unmatched_password": "Las contraseñas no coinciden",
+                "passphrase_unavailable": "Frase de contraseña no disponible"
+            },
+            "encrypted": {
+                "title": "Tu Frase de Contraseña Encriptada",
+                "store": "Guárdala en un lugar seguro.",
+                "reminder": "Si olvidas tu contraseña, no podremos descifrar este texto por ti.",
+                "button": "Listo"
+            },
+            "unencrypted": {
+                "title": "Encriptar tu Frase de Contraseña",
+                "reminder": "Usa AES256 para encriptar tu frase de contraseña con una contraseña antes de copiarla. Las contraseñas más fuertes son más seguras.",
+                "learn_more": "Aprende Más",
+                "password": "Contraseña",
+                "password_placeholder": "Contraseña",
+                "confirm_password": "Confirmar Contraseña",
+                "confirm_password_placeholder": "Contraseña",
+                "button": "Encriptar",
+                "strength": {
+                    "too_weak": "muy débil",
+                    "weak": "débil",
+                    "medium": "media",
+                    "strong": "fuerte"
+                }
+            }
+        }
+    },
+    "import_wallet": {
+        "title": "Importar Cartera",
+        "label": "¿Qué método te gustaría usar para importar tu cartera?",
+        "label_passphrase": "Frase de Contraseña",
+        "passphrase_desc": "Importar usando frase de 12, 15 o 24 palabras",
+        "encrypted_passphrase": "Frase de Contraseña Encriptada",
+        "encrypted_passphrase_desc": "Importar usando tu frase de contraseña encriptada. Usualmente una larga cadena de caracteres que necesita tu contraseña para desencriptar primero",
+        "label_private_key": "Clave Privada",
+        "private_key_desc": "Importar ingresando una única clave privada\nUsualmente en formato de texto.",
+        "decrypt_passphrase": {
+            "errors": {
+                "no_password": "Ingresa la contraseña para desencriptar el texto",
+                "no_encrypted_text": "Ingresa el texto encriptado",
+                "failed": "¡Falló la desencriptación! Verifica tu contraseña y texto encriptado"
+            },
+            "import": "Importar Frase de Contraseña Encriptada",
+            "your_passphrase": "Tu Frase de Contraseña",
+            "password": "Contraseña",
+            "password_placeholder": "Contraseña",
+            "paste": "Pegar",
+            "encrypted_text": "Texto Encriptado",
+            "encrypted_text_placeholder": "Texto Encriptado",
+            "button": "Desencriptar"
+        },
+        "passphrase": {
+            "errors": {
+                "no_name": "Ingresa un nombre para tu nueva cartera",
+                "incorrect": "Por favor ingresa la frase de contraseña correcta",
+                "unknown": "¡Hubo un error!",
+                "exists": "La cartera ya existe",
+                "not_found": "No pudimos encontrar tu cartera. Verifica tu frase de contraseña",
+                "not_identified": "No pudimos identificar automáticamente tu cartera. Elige entre las direcciones coincidentes abajo"
+            },
+            "label": "Etiqueta",
+            "label_placeholder": "Etiqueta",
+            "title": "Frase de Contraseña",
+            "description": "Frase de contraseña de 12 o 24 palabras, separadas por espacio.",
+            "paste": "Pegar",
+            "placeholder": "Frase de contraseña",
+            "button": "Importar",
+            "importing": "Importando cartera..."
+        },
+        "private_key": {
+            "errors": {
+                "no_name": "Ingresa un nombre para tu nueva cartera",
+                "invalid": "Clave privada inválida",
+                "exists": "La cuenta ya existe en la cartera",
+                "unknown": "¡Hubo un error!",
+                "wrong_address": "No pudimos verificar la dirección pública, asegúrate de que sea la correcta antes de importar."
+            },
+            "address": "Dirección",
+            "imported": "Claves Privadas Importadas",
+            "label": "Etiqueta",
+            "label_placeholder": "Etiqueta",
+            "title": "Clave Privada",
+            "placeholder": "Clave privada",
+            "paste": "Pegar",
+            "button": {
+                "import": "Importar",
+                "cancel": "Cancelar",
+                "accept": "Importar"
+            }
+        }
+    },
+    "pick_account_modal": {
+        "label": "Seleccionar Cuenta",
+        "error_pick": "¡Hubo un error! Intenta de nuevo",
+        "created": "creada",
+        "new_account": "Nueva Cuenta",
+        "import_key": "Importar Clave Privada",
+        "edit_wallet_label": "Editar Cartera",
+        "account_changed": "Cuenta cambiada",
+        "edit_wallet": {
+            "label": "Editar Cartera",
+            "name": "Nombre de la Cartera",
+            "show_passphrase": "Mostrar Frase de Contraseña",
+            "delete_wallet": "Eliminar Cartera",
+            "name_required": "El nombre es obligatorio",
+            "alert_delete": "Eliminar Cartera",
+            "alert_delete_desc": "¿Estás seguro de que quieres eliminar? Esta acción es irreversible. Necesitarás tu frase de contraseña para recuperar tu cartera en el futuro",
+            "alert_button_cancel": "Cancelar",
+            "alert_button_delete": "Eliminar",
+            "button_cancel": "Cancelar",
+            "button_done": "Listo"
+        },
+        "edit_account": {
+            "label": "Editar Cuenta",
+            "wallet": "Cartera",
+            "name": "Nombre de la Cuenta",
+            "public_address": "Dirección Pública",
+            "show_private_key": "Mostrar Clave Privada",
+            "error_name_required": "El nombre es obligatorio",
+            "info_copied": "Copiado al portapapeles",
+            "button_cancel": "Cancelar",
+            "button_done": "Listo"
+        },
+        "account_item": "{{balance}} {{currency}}",
+        "show_passphrase": {
+            "derivation": "Ruta de derivación:",
+            "title": "Solo para tus ojos.",
+            "description": "Cualquiera con esta frase de contraseña puede transferir todos tus fondos. No la compartas con nadie.",
+            "encrypt": "Encriptar",
+            "copy": "Copiar"
+        },
+        "wallet_switch": {
+            "accounts": "cuentas",
+            "balance": "{{balance}} {{currency}}"
+        }
+    },
+    "encrypt_text": {
+        "strength_too_weak": "muy débil",
+        "strength_weak": "débil",
+        "strength_medium": "media",
+        "strength_strong": "fuerte",
+        "error_short_password": "La contraseña debe tener 8 caracteres o más",
+        "error_password_not_match": "Las contraseñas no coinciden",
+        "error_passphrase_not_available": "Frase de contraseña no disponible",
+        "store": "Guárdala en un lugar seguro.",
+        "disclaimer": "Si olvidas tu contraseña, no podremos descifrar este texto por ti.",
+        "enter_password": "Ingresa la contraseña para encriptar",
+        "password_label": "Contraseña",
+        "password_placeholder": "Contraseña",
+        "confirm_password_label": "Confirmar Contraseña",
+        "confirm_password_placeholder": "Contraseña",
+        "button_encrypt": "Encriptar"
+    },
+    "wallet": {
+        "action_buy": "Comprar",
+        "action_send": "Enviar",
+        "action_receive": "Recibir",
+        "action_scan_code": "Escanear Código",
+        "balance_section": {
+            "balance": "{{balance}}",
+            "balance_base": "{{balance}} {{currency}}",
+            "price_change": "{{price}} {{currency}}",
+            "pending_amount": "Cantidad Pendiente",
+            "pending": "{{balance}} {{currency}}"
+        },
+        "history_list": {
+            "title": "Transacciones",
+            "label": "Transacciones",
+            "no_transactions": "Aún no hay historial de transacciones",
+            "try_nano": "¿Curioso por probar nano?",
+            "get_free": "Obtener Nano Gratis",
+            "toast": {
+                "success": "Se ha enviado Nano a esta dirección"
+            },
+            "see_all": "Ver todo"
+        },
+        "price_graph": {
+            "current_nano_price": "Precio actual de XNO",
+            "price": "{{price}} {{currency}}"
+        },
+        "qr_code": {
+            "title": "Escanear Código QR",
+            "enable": "Habilitar Cámara para Escanear código QR"
+        },
+        "transaction_item": {
+            "not_confirmed": "¡La transacción aún no está confirmada!\nLa red podría estar congestionada.",
+            "not_confirmed_info": "La transacción aún no está confirmada",
+            "message_sent": "Enviado",
+            "message_received": "Recibido",
+            "amount": "{{amount}} {{currency}}",
+            "modal": {
+                "info_copied": "Copiado al portapapeles",
+                "title": {
+                    "send": "Enviado",
+                    "receive": "Recibido",
+                    "change": "Cambió Representante"
+                },
+                "amount": "{{amount}} {{currency}}",
+                "type_from": "De",
+                "type_to": "Para",
+                "type_account": "Cuenta",
+                "add_contact": "Agregar Contacto",
+                "date": "Fecha",
+                "status_label": "Estado",
+                "status_confirmed": "Confirmado",
+                "status_pending": "Pendiente",
+                "block_explorer": "Abrir en el explorador de bloques"
+            }
+        }
+    },
+    "receive": {
+        "label": "Tu Cartera",
+        "your_nano_address": "Tu Dirección Nano",
+        "copy": "Copiar",
+        "share": "Compartir",
+        "request": {
+            "label": "Solicitar",
+            "how_much": "¿Cuánto {{currency}}?",
+            "amount": "{{amount}} {{currency}}",
+            "estimate_amount": "{{amount}} {{currency}}",
+            "button_cancel": "Cancelar",
+            "button_confirm": "Solicitar"
+        },
+        "copied": "Copiado al portapapeles"
+    },
+    "send": {
+        "label": "¿Enviar nano a?",
+        "invalid_address": "Dirección inválida",
+        "address": {
+            "label": "Dirección",
+            "placeholder": "Dirección",
+            "my_wallets": "Mis Carteras",
+            "scan_code": "Escanear Código",
+            "paste": "Pegar",
+            "recents_label": "Direcciones Recientes",
+            "recents_not_available": "No hay Direcciones Recientes.\nTodas las direcciones enviadas recientemente aparecerán aquí"
+        },
+        "contact_label": "Contacto",
+        "contact_header": "Contactos",
+        "contact_search": "Buscar Contacto",
+        "button_next": "Siguiente",
+        "amount": {
+            "error_no_amount": "La cantidad es obligatoria",
+            "your_balance": "Tu Saldo",
+            "balance_after": "Saldo Después",
+            "insufficient": "Saldo Insuficiente",
+            "max": "MAX",
+            "button_preview": "Vista Previa",
+            "preview": {
+                "label": "Confirmar Envío",
+                "amount_label": "Cantidad",
+                "balance": "{{amount}} {{currency}}",
+                "from": "De",
+                "to": "Para",
+                "button_send": "Enviar"
+            }
+        },
+        "sending_error": "¡Hubo un error!",
+        "sending_label": "Enviando",
+        "sending_wait": "Por favor espera.....",
+        "success_balance_sent": "{{amount}} {{currency}}",
+        "success_sent_to": "Enviado a",
+        "add_contact": "Agregar Nuevo Contacto",
+        "button_done": "Listo"
+    }
 }
