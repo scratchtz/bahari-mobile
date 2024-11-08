@@ -384,6 +384,23 @@
             "balance": "{{balance}} {{currency}}"
         }
     },
+    "encrypt_text": {
+        "strength_too_weak": "非常に弱い",
+        "strength_weak": "弱い",
+        "strength_medium": "普通",
+        "strength_strong": "強い",
+        "error_short_password": "パスワードは8文字以上である必要があります",
+        "error_password_not_match": "パスワードが一致しません",
+        "error_passphrase_not_available": "パスフレーズが利用できません",
+        "store": "安全な場所に保管してください",
+        "disclaimer": "パスワードを忘れた場合、このテキストを復号化することはできません",
+        "enter_password": "暗号化するパスワードを入力",
+        "password_label": "パスワード",
+        "password_placeholder": "パスワード",
+        "confirm_password_label": "パスワード確認",
+        "confirm_password_placeholder": "パスワード",
+        "button_encrypt": "暗号化"
+    },
     "wallet": {
         "action_buy": "購入",
         "action_send": "送金",
@@ -420,7 +437,25 @@
             "not_confirmed_info": "取引はまだ確認されていません",
             "message_sent": "送金済み",
             "message_received": "受取済み",
-            "amount": "{{amount}} {{currency}}"
+            "amount": "{{amount}} {{currency}}",
+            "modal": {
+                "info_copied": "Copied to clipboard",
+                "title": {
+                    "send": "Sent",
+                    "receive": "Received",
+                    "change": "Changed Representative"
+                },
+                "amount": "{{amount}} {{currency}}",
+                "type_from": "From",
+                "type_to": "To",
+                "type_account": "Account",
+                "add_contact": "Add Contact",
+                "date": "Date",
+                "status_label": "Status",
+                "status_confirmed": "Confirmed",
+                "status_pending": "Pending",
+                "block_explorer": "Open on block explorer"
+            }
         }
     },
     "receive": {
