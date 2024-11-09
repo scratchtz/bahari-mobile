@@ -1,1 +1,516 @@
-{}
+{
+    "constants": {
+        "themes": {
+            "system": "Система",
+            "light": "Светлая",
+            "dark": "Тёмная",
+            "dark-zero": "Тёмная Zero"
+        }
+    },
+    "navigation": {
+        "send": "Отправить",
+        "receive": "Ваш Кошелёк",
+        "network": "Сеть",
+        "network_new": "Новая Сеть",
+        "representative": "Представитель",
+        "representative_change": "Смена Представителя",
+        "buy_nano": "Купить Nano",
+        "transaction_history": "Транзакции",
+        "contact": "Контакт",
+        "contacts": "Контакты",
+        "new_contact": "Новый Контакт",
+        "send_amount": "Сумма Отправки"
+    },
+    "buy_nano": {
+        "title": "Купить Nano",
+        "on_ramp": "Возможность покупки скоро появится"
+    },
+    "contact": {
+        "title": "Контакты",
+        "error_no_name": "Требуется указать имя",
+        "error_no_address": "Требуется указать адрес",
+        "error_invalid_address": "Недействительный адрес",
+        "delete_alert_title": "Удалить Контакт",
+        "delete_alert_description": "Вы уверены, что хотите удалить",
+        "delete_alert_cancel": "Отмена",
+        "delete_alert_delete": "Удалить",
+        "delete_title": "Удалить Контакт",
+        "name_label": "Имя",
+        "name_placeholder": "Имя",
+        "address_label": "Адрес",
+        "address_placeholder": "Адрес",
+        "paste_action": "Вставить",
+        "cancel_button": "Отмена",
+        "save_button": "Сохранить"
+    },
+    "contacts": {
+        "title": "Контакты",
+        "search": "Поиск Контактов",
+        "no_contact": "У вас нет никого в списке контактов.\nНажмите кнопку ниже, чтобы добавить",
+        "new_contact_button": "Новый Контакт"
+    },
+    "contact_new": {
+        "title": "Новый Контакт",
+        "error_no_name": "Требуется указать имя",
+        "error_no_address": "Требуется указать адрес",
+        "error_invalid_address": "Недействительный адрес",
+        "name_label": "Имя",
+        "name_placeholder": "Имя",
+        "address_label": "Адрес",
+        "address_placeholder": "Адрес",
+        "paste": "Вставить",
+        "button": "Добавить"
+    },
+    "lock_screen": {
+        "unlock": "Разблокируйте ваш кошелёк",
+        "unlock_with_biometrics": "Разблокировать с помощью биометрии",
+        "enter_password": "Введите ваш пароль для продолжения",
+        "error_wrong_password": "*Неверный пароль! Попробуйте снова",
+        "input_password_warning": "*Введите пароль",
+        "password_placeholder": "Пароль",
+        "unlock_button": "Разблокировать",
+        "failed": "Не получается разблокировать?",
+        "reset": "Сбросить кошелёк"
+    },
+    "setup": {
+        "app_name": "Bahari",
+        "about": "Отправляйте и получайте Nano со скоростью света\nБез комиссий",
+        "create_new_wallet": "Создать Новый Кошелёк",
+        "import_wallet": "Импортировать Кошелёк"
+    },
+    "settings": {
+        "wallet_title": "Кошелёк",
+        "general_title": "Общие",
+        "security_title": "Безопасность",
+        "language_label": "Язык",
+        "theme_label": "Тема",
+        "theme_change_label": "Тема",
+        "display_currency_label": "Отображаемая Валюта",
+        "native_currency_label": "Основная Валюта",
+        "notification_label": "Push-уведомления",
+        "network_label": "Сеть",
+        "representative_label": "Представитель",
+        "unlock_method": {
+            "label": "Метод Разблокировки",
+            "method_password": "Пароль",
+            "method_biometrics": "Биометрия",
+            "biometrics": {
+                "label": "Биометрия",
+                "description": "Используйте Face-ID или Touch ID для разблокировки кошелька"
+            },
+            "password": {
+                "label": "Пароль",
+                "description": "Используйте пароль для разблокировки кошелька",
+                "setup": "Установите пароль для разблокировки кошелька",
+                "placeholder": "Пароль",
+                "confirm_placeholder": "Подтвердите Пароль",
+                "button_cancel": "Отмена",
+                "button_done": "Готово",
+                "error_short_password": "Введите пароль длиннее 6 символов",
+                "error_not_match": "Пароли не совпадают",
+                "error_other": "Произошла ошибка!",
+                "strength": {
+                    "too_weak": "очень слабый",
+                    "weak": "слабый",
+                    "medium": "средний",
+                    "strong": "сильный"
+                }
+            },
+            "on_set": {
+                "error_wrong_password": "Неверный пароль",
+                "error_other": "Произошла ошибка!",
+                "label": "Введите ваш пароль для продолжения",
+                "placeholder": "Пароль",
+                "button_cancel": "Отмена",
+                "button_done": "Готово"
+            },
+            "require_biometrics": "Требовать биометрию при отправке"
+        },
+        "auto_lock": {
+            "title": "Автоблокировка",
+            "interval": {
+                "5": "5 сек",
+                "30": "30 сек",
+                "60": "1 мин",
+                "300": "5 мин",
+                "1800": "30 мин",
+                "3600": "1 час",
+                "-1": "Никогда",
+                "1": "Сразу"
+            },
+            "modal": {
+                "label": "Автоблокировка",
+                "description": "Автоматически блокировать приложение при переходе в фоновый режим через"
+            }
+        },
+        "reset_wallet": {
+            "label": "Сбросить Кошелёк",
+            "modal_label": "Сбросить Кошелёк",
+            "warning": "Если у вас нет ключей восстановления, мы не сможем восстановить кошелёк.",
+            "button_cancel": "Отмена",
+            "button_confirm": "Сбросить"
+        }
+    },
+    "representative": {
+        "account": "Представитель для вашего аккаунта",
+        "voting_weight": "Вес голосования: {{number}}%",
+        "last_uptime": "Аптайм за последнюю неделю: {{number}}%",
+        "button": "Изменить",
+        "recommendation": "Рекомендуется выбрать представителя с высоким аптаймом и низким весом голосования для улучшения децентрализации",
+        "read_more": "Узнать больше....",
+        "change": {
+            "title": "Сменить Представителя",
+            "invalid_address": "Неверный адрес",
+            "representative_address": "Введите адрес представителя",
+            "pick": "Или выберите из списка",
+            "modal": {
+                "title": "Сменить Представителя",
+                "new_representative": "Ваш новый представитель",
+                "change_for": "Изменить для",
+                "current_account": "Текущий Аккаунт",
+                "accounts": "аккаунтов",
+                "this_wallet": "Этот кошелёк",
+                "button": "Сменить Представителя"
+            },
+            "changing": {
+                "title": "Смена представителя....",
+                "wait": "Пожалуйста, подождите"
+            },
+            "done": {
+                "title": "Смена представителя завершена",
+                "success": "аккаунтов успешно"
+            },
+            "failed": "аккаунтов не удалось",
+            "button": "Готово",
+            "list": {
+                "voting_weight": "Вес голосования: {{number}}%",
+                "last_uptime": "Аптайм за последнюю неделю: {{number}}%",
+                "node_version": "Версия ноды: {{version}}"
+            }
+        }
+    },
+    "network": {
+        "description": "Мы рекомендуем добавить свою собственную ноду для лучшей скорости, снижения нагрузки на наши ноды и повышения безопасности сети.",
+        "button": "Добавить Ноду",
+        "tor": {
+            "title": "Использовать Tor",
+            "modal_title": "Tor",
+            "hide_ip": "Tor защищает вашу конфиденциальность, скрывая ваш IP-адрес, ваши запросы направляются через сеть Tor.",
+            "slow": "В большинстве случаев это может быть немного медленнее, чем прямое подключение к ноде.",
+            "note": "Также обратите внимание, что серверы Bahari не записывают IP-адреса пользователей"
+        }
+    },
+    "network_new": {
+        "title": "Добавить Сеть",
+        "error_no_label": "Требуется указать метку",
+        "error_no_endpoint": "Требуется указать конечную точку",
+        "label": "Метка",
+        "label_placeholder": "Метка",
+        "url": "URL конечной точки",
+        "url_placeholder": "Адрес",
+        "button": "Добавить"
+    },
+    "currency_modal": {
+        "label": "Отображаемая Валюта",
+        "search": "Поиск Валюты"
+    },
+    "native_currency_modal": {
+        "label": "Основная Валюта",
+        "pick": "Выберите валюту для отображения базовых значений",
+        "nano": "XNO, также известный как Nano, является основной валютой в блокчейне Nano.",
+        "nyano": "1,0000,000 NYANO = 1 XNO\nNYANO не является отдельным токеном. Это просто конвертация"
+    },
+    "new_wallet": {
+        "title": "Новый Кошелёк",
+        "onboard": {
+            "title": "Давайте начнём!",
+            "generate": "Мы сгенерируем для вас парольную фразу (фраза восстановления из 12 слов).",
+            "remember": "Важно помнить",
+            "funds_access": "Любой, кто знает вашу парольную фразу, может получить доступ к вашим средствам.",
+            "keep_safe": "Храните её в безопасном месте, где никто, кроме вас, не сможет её найти.",
+            "never_ask": "Мы никогда не спросим вашу парольную фразу, любой, кто спрашивает, вероятно, пытается вас обмануть.",
+            "passphrase_lost": "Если вы потеряете парольную фразу и устройство, мы не сможем восстановить ваш кошелёк.",
+            "learn_more": "Узнать больше о том, как работают парольные фразы",
+            "button": "Я понимаю"
+        },
+        "passphrase": {
+            "title": "Ваша парольная фраза",
+            "for_you": "Только для ваших глаз",
+            "generating": "Генерация парольной фразы",
+            "encrypt": "Зашифровать",
+            "regenerate": "Сгенерировать заново",
+            "button": "Готово",
+            "word_picker": {
+                "title": "Изменить Язык Парольной Фразы",
+                "warning": "Некоторые другие приложения-кошельки могут не поддерживать импорт парольных фраз не на английском языке"
+            }
+        },
+        "encrypt_wallet": {
+            "errors": {
+                "short_password": "Пароль должен быть не менее 8 символов",
+                "unmatched_password": "Пароли не совпадают",
+                "passphrase_unavailable": "Парольная фраза недоступна"
+            },
+            "encrypted": {
+                "title": "Ваша Зашифрованная Парольная Фраза",
+                "store": "Храните в безопасном месте.",
+                "reminder": "Если вы забудете пароль, мы не сможем расшифровать этот текст для вас.",
+                "button": "Готово"
+            },
+            "unencrypted": {
+                "title": "Зашифровать вашу Парольную Фразу",
+                "reminder": "Используйте AES256 для шифрования вашей парольной фразы паролем перед копированием. Более сложные пароли более безопасны.",
+                "learn_more": "Узнать Больше",
+                "password": "Пароль",
+                "password_placeholder": "Пароль",
+                "confirm_password": "Подтвердите Пароль",
+                "confirm_password_placeholder": "Пароль",
+                "button": "Зашифровать",
+                "strength": {
+                    "too_weak": "очень слабый",
+                    "weak": "слабый",
+                    "medium": "средний",
+                    "strong": "сильный"
+                }
+            }
+        }
+    },
+    "import_wallet": {
+        "title": "Импорт Кошелька",
+        "label": "Каким способом вы хотите импортировать кошелёк?",
+        "label_passphrase": "Парольная фраза",
+        "passphrase_desc": "Импорт с помощью парольной фразы из 12, 15 или 24 слов",
+        "encrypted_passphrase": "Зашифрованная Парольная фраза",
+        "encrypted_passphrase_desc": "Импорт с помощью зашифрованной парольной фразы. Обычно длинная строка символов, которую нужно сначала расшифровать вашим паролем",
+        "label_private_key": "Приватный Ключ",
+        "private_key_desc": "Импорт путём ввода одного приватного ключа\nОбычно в текстовом формате.",
+        "decrypt_passphrase": {
+            "errors": {
+                "no_password": "Введите пароль для расшифровки текста",
+                "no_encrypted_text": "Введите зашифрованный текст",
+                "failed": "Не удалось расшифровать! Проверьте ваш пароль и зашифрованный текст"
+            },
+            "import": "Импорт Зашифрованной Парольной Фразы",
+            "your_passphrase": "Ваша Парольная Фраза",
+            "password": "Пароль",
+            "password_placeholder": "Пароль",
+            "paste": "Вставить",
+            "encrypted_text": "Зашифрованный Текст",
+            "encrypted_text_placeholder": "Зашифрованный Текст",
+            "button": "Расшифровать"
+        },
+        "passphrase": {
+            "errors": {
+                "no_name": "Введите имя для вашего нового кошелька",
+                "incorrect": "Пожалуйста, введите правильную парольную фразу",
+                "unknown": "Произошла ошибка!",
+                "exists": "Такой кошелёк уже существует",
+                "not_found": "Мы не смогли найти ваш кошелёк. Проверьте вашу парольную фразу",
+                "not_identified": "Мы не смогли автоматически определить ваш кошелёк. Выберите из подходящих адресов ниже"
+            },
+            "label": "Метка",
+            "label_placeholder": "Метка",
+            "title": "Парольная фраза",
+            "description": "Парольная фраза из 12 или 24 слов, разделённых пробелом.",
+            "paste": "Вставить",
+            "placeholder": "Парольная фраза",
+            "button": "Импортировать",
+            "importing": "Импорт кошелька..."
+        },
+        "private_key": {
+            "errors": {
+                "no_name": "Введите имя для вашего нового кошелька",
+                "invalid": "Недействительный приватный ключ",
+                "exists": "Аккаунт уже существует в кошельке",
+                "unknown": "Произошла ошибка!",
+                "wrong_address": "Мы не смогли проверить публичный адрес, убедитесь, что он правильный перед импортом."
+            },
+            "address": "Адрес",
+            "imported": "Импортированные Приватные Ключи",
+            "label": "Метка",
+            "label_placeholder": "Метка",
+            "title": "Приватный Ключ",
+            "placeholder": "Приватный ключ",
+            "paste": "Вставить",
+            "button": {
+                "import": "Импортировать",
+                "cancel": "Отмена",
+                "accept": "Импортировать"
+            }
+        }
+    },
+    "pick_account_modal": {
+        "label": "Выбрать Аккаунт",
+        "error_pick": "Произошла ошибка! Попробуйте снова",
+        "created": "создан",
+        "new_account": "Новый Аккаунт",
+        "import_key": "Импорт приватного ключа",
+        "edit_wallet_label": "Редактировать Кошелёк",
+        "account_changed": "Аккаунт изменён",
+        "edit_wallet": {
+            "label": "Редактировать Кошелёк",
+            "name": "Имя Кошелька",
+            "show_passphrase": "Показать Парольную Фразу",
+            "delete_wallet": "Удалить Кошелёк",
+            "name_required": "Требуется указать имя",
+            "alert_delete": "Удалить Кошелёк",
+            "alert_delete_desc": "Вы уверены, что хотите удалить? Это действие необратимо. Вам потребуется ваша парольная фраза для восстановления кошелька в будущем",
+            "alert_button_cancel": "Отмена",
+            "alert_button_delete": "Удалить",
+            "button_cancel": "Отмена",
+            "button_done": "Готово"
+        },
+        "edit_account": {
+            "label": "Редактировать Аккаунт",
+            "wallet": "Кошелёк",
+            "name": "Имя Аккаунта",
+            "public_address": "Публичный Адрес",
+            "show_private_key": "Показать Приватный Ключ",
+            "error_name_required": "Требуется указать имя",
+            "info_copied": "Скопировано в буфер обмена",
+            "button_cancel": "Отмена",
+            "button_done": "Готово"
+        },
+        "account_item": "{{balance}} {{currency}}",
+        "show_passphrase": {
+            "derivation": "Путь деривации:",
+            "title": "Только для ваших глаз.",
+            "description": "Любой, кто имеет эту парольную фразу, может перевести все ваши средства. Не делитесь ею ни с кем.",
+            "encrypt": "Зашифровать",
+            "copy": "Копировать"
+        },
+        "wallet_switch": {
+            "accounts": "аккаунтов",
+            "balance": "{{balance}} {{currency}}"
+        }
+    },
+    "encrypt_text": {
+        "strength_too_weak": "очень слабый",
+        "strength_weak": "слабый",
+        "strength_medium": "средний",
+        "strength_strong": "сильный",
+        "error_short_password": "Пароль должен быть не менее 8 символов",
+        "error_password_not_match": "Пароли не совпадают",
+        "error_passphrase_not_available": "Парольная фраза недоступна",
+        "store": "Храните в безопасном месте.",
+        "disclaimer": "Если вы забудете пароль, мы не сможем расшифровать этот текст для вас.",
+        "enter_password": "Введите пароль для шифрования",
+        "password_label": "Пароль",
+        "password_placeholder": "Пароль",
+        "confirm_password_label": "Подтвердить Пароль",
+        "confirm_password_placeholder": "Пароль",
+        "button_encrypt": "Зашифровать"
+    },
+    "wallet": {
+        "action_buy": "Купить",
+        "action_send": "Отправить",
+        "action_receive": "Получить",
+        "action_scan_code": "Сканировать Код",
+        "balance_section": {
+            "balance": "{{balance}}",
+            "balance_base": "{{balance}} {{currency}}",
+            "price_change": "{{price}} {{currency}}",
+            "pending_amount": "Ожидающая Сумма",
+            "pending": "{{balance}} {{currency}}"
+        },
+        "history_list": {
+            "title": "Транзакции",
+            "label": "Транзакции",
+            "no_transactions": "История транзакций пока пуста",
+            "try_nano": "Хотите попробовать nano?",
+            "get_free": "Получить Бесплатные Nano",
+            "toast": {
+                "success": "Nano были отправлены на этот адрес"
+            },
+            "see_all": "Показать все"
+        },
+        "price_graph": {
+            "current_nano_price": "Текущая цена XNO",
+            "price": "{{price}} {{currency}}"
+        },
+        "qr_code": {
+            "title": "Сканировать QR-код",
+            "enable": "Включите Камеру для сканирования QR-кода"
+        }
+    },
+    "transaction_item": {
+        "not_confirmed": "Транзакция ещё не подтверждена!\nВозможно, сеть перегружена.",
+        "not_confirmed_info": "Транзакция ещё не подтверждена",
+        "message_sent": "Отправлено",
+        "message_received": "Получено",
+        "amount": "{{amount}} {{currency}}",
+        "modal": {
+            "info_copied": "Скопировано в буфер обмена",
+            "title": {
+                "send": "Отправлено",
+                "receive": "Получено",
+                "change": "Сменён Представитель"
+            },
+            "amount": "{{amount}} {{currency}}",
+            "type_from": "От",
+            "type_to": "Кому",
+            "type_account": "Аккаунт",
+            "add_contact": "Добавить Контакт",
+            "date": "Дата",
+            "status_label": "Статус",
+            "status_confirmed": "Подтверждено",
+            "status_pending": "В ожидании",
+            "block_explorer": "Открыть в обозревателе блоков"
+        }
+    },
+    "receive": {
+        "label": "Ваш Кошелёк",
+        "your_nano_address": "Ваш Адрес Nano",
+        "copy": "Копировать",
+        "share": "Поделиться",
+        "request": {
+            "label": "Запрос",
+            "how_much": "Сколько {{currency}}?",
+            "amount": "{{amount}} {{currency}}",
+            "estimate_amount": "{{amount}} {{currency}}",
+            "button_cancel": "Отмена",
+            "button_confirm": "Запросить"
+        },
+        "copied": "Скопировано в буфер обмена"
+    },
+    "send": {
+        "label": "Кому отправить nano?",
+        "invalid_address": "Недействительный адрес",
+        "address": {
+            "label": "Адрес",
+            "placeholder": "Адрес",
+            "my_wallets": "Мои Кошельки",
+            "scan_code": "Сканировать Код",
+            "paste": "Вставить",
+            "recents_label": "Недавние Адреса",
+            "recents_not_available": "Нет Недавних Адресов.\nЗдесь будут отображаться все недавно использованные адреса"
+        },
+        "contact_label": "Контакт",
+        "contact_header": "Контакты",
+        "contact_search": "Поиск Контакта",
+        "button_next": "Далее",
+        "amount": {
+            "error_no_amount": "Требуется указать сумму",
+            "your_balance": "Ваш Баланс",
+            "balance_after": "Баланс После",
+            "insufficient": "Недостаточно Средств",
+            "max": "МАКС",
+            "button_preview": "Предпросмотр",
+            "preview": {
+                "label": "Подтверждение Отправки",
+                "amount_label": "Сумма",
+                "balance": "{{amount}} {{currency}}",
+                "from": "От",
+                "to": "Кому",
+                "button_send": "Отправить"
+            }
+        },
+        "sending_error": "Произошла ошибка!",
+        "sending_label": "Отправка",
+        "sending_wait": "Пожалуйста, подождите.....",
+        "success_balance_sent": "{{amount}} {{currency}}",
+        "success_sent_to": "Отправлено",
+        "add_contact": "Добавить Новый Контакт",
+        "button_done": "Готово"
+    }
+}
