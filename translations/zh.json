@@ -1,1 +1,516 @@
-{}
+{
+    "constants": {
+        "themes": {
+            "system": "系统",
+            "light": "浅色",
+            "dark": "深色",
+            "dark-zero": "深色零点"
+        }
+    },
+    "navigation": {
+        "send": "发送",
+        "receive": "您的钱包",
+        "network": "网络",
+        "network_new": "新网络",
+        "representative": "代表",
+        "representative_change": "更换代表",
+        "buy_nano": "购买 Nano",
+        "transaction_history": "交易记录",
+        "contact": "联系人",
+        "contacts": "联系人",
+        "new_contact": "新联系人",
+        "send_amount": "发送金额"
+    },
+    "buy_nano": {
+        "title": "购买 Nano",
+        "on_ramp": "入金功能即将上线"
+    },
+    "contact": {
+        "title": "联系人",
+        "error_no_name": "名称为必填项",
+        "error_no_address": "地址为必填项",
+        "error_invalid_address": "地址无效",
+        "delete_alert_title": "删除联系人",
+        "delete_alert_description": "您确定要删除吗",
+        "delete_alert_cancel": "取消",
+        "delete_alert_delete": "删除",
+        "delete_title": "删除联系人",
+        "name_label": "名称",
+        "name_placeholder": "名称",
+        "address_label": "地址",
+        "address_placeholder": "地址",
+        "paste_action": "粘贴",
+        "cancel_button": "取消",
+        "save_button": "保存"
+    },
+    "contacts": {
+        "title": "联系人",
+        "search": "搜索联系人",
+        "no_contact": "您的联系人列表中没有任何人。\n点击下方按钮添加联系人",
+        "new_contact_button": "新联系人"
+    },
+    "contact_new": {
+        "title": "新联系人",
+        "error_no_name": "名称为必填项",
+        "error_no_address": "地址为必填项",
+        "error_invalid_address": "地址无效",
+        "name_label": "名称",
+        "name_placeholder": "名称",
+        "address_label": "地址",
+        "address_placeholder": "地址",
+        "paste": "粘贴",
+        "button": "添加"
+    },
+    "lock_screen": {
+        "unlock": "解锁您的钱包",
+        "unlock_with_biometrics": "使用生物识别解锁",
+        "enter_password": "输入密码以继续",
+        "error_wrong_password": "*密码错误！请重试",
+        "input_password_warning": "*请输入密码",
+        "password_placeholder": "密码",
+        "unlock_button": "解锁",
+        "failed": "无法解锁？",
+        "reset": "重置钱包"
+    },
+    "setup": {
+        "app_name": "Bahari",
+        "about": "以光速发送和接收 Nano\n零费用",
+        "create_new_wallet": "创建新钱包",
+        "import_wallet": "导入钱包"
+    },
+    "settings": {
+        "wallet_title": "钱包",
+        "general_title": "通用",
+        "security_title": "安全",
+        "language_label": "语言",
+        "theme_label": "主题",
+        "theme_change_label": "更改主题",
+        "display_currency_label": "显示货币",
+        "native_currency_label": "本地货币",
+        "notification_label": "推送通知",
+        "network_label": "网络",
+        "representative_label": "代表",
+        "unlock_method": {
+            "label": "解锁方式",
+            "method_password": "密码",
+            "method_biometrics": "生物识别",
+            "biometrics": {
+                "label": "生物识别",
+                "description": "使用面容 ID 或指纹 ID 解锁您的钱包"
+            },
+            "password": {
+                "label": "密码",
+                "description": "使用密码解锁您的钱包",
+                "setup": "设置密码以解锁您的钱包",
+                "placeholder": "密码",
+                "confirm_placeholder": "确认密码",
+                "button_cancel": "取消",
+                "button_done": "完成",
+                "error_short_password": "请输入超过 6 个字符的密码",
+                "error_not_match": "密码不匹配",
+                "error_other": "发生错误！",
+                "strength": {
+                    "too_weak": "太弱",
+                    "weak": "弱",
+                    "medium": "中等",
+                    "strong": "强"
+                }
+            },
+            "on_set": {
+                "error_wrong_password": "密码错误",
+                "error_other": "发生错误！",
+                "label": "输入您的密码以继续",
+                "placeholder": "密码",
+                "button_cancel": "取消",
+                "button_done": "完成"
+            },
+            "require_biometrics": "发送时需要生物识别"
+        },
+        "auto_lock": {
+            "title": "自动锁定",
+            "interval": {
+                "5": "5秒",
+                "30": "30秒",
+                "60": "1分钟",
+                "300": "5分钟",
+                "1800": "30分钟",
+                "3600": "1小时",
+                "-1": "从不",
+                "1": "立即"
+            },
+            "modal": {
+                "label": "自动锁定",
+                "description": "当应用进入后台后，自动锁定您的钱包"
+            }
+        },
+        "reset_wallet": {
+            "label": "重置钱包",
+            "modal_label": "重置钱包",
+            "warning": "如果您没有恢复密钥，我们将无法为您恢复钱包。",
+            "button_cancel": "取消",
+            "button_confirm": "重置"
+        }
+    },
+    "representative": {
+        "account": "您的账户的代表",
+        "voting_weight": "投票权重：{{number}}%",
+        "last_uptime": "上周在线率：{{number}}%",
+        "button": "更改",
+        "recommendation": "建议选择具有高在线率和低投票权重的代表，以提高去中心化",
+        "read_more": "阅读更多....",
+        "change": {
+            "title": "更改代表",
+            "invalid_address": "地址无效",
+            "representative_address": "输入代表地址",
+            "pick": "或从列表中选择",
+            "modal": {
+                "title": "更改代表",
+                "new_representative": "您的新代表",
+                "change_for": "更改账户",
+                "current_account": "当前账户",
+                "accounts": "账户",
+                "this_wallet": "此钱包",
+                "button": "更改代表"
+            },
+            "changing": {
+                "title": "正在更改代表....",
+                "wait": "请稍候"
+            },
+            "done": {
+                "title": "代表更改完成",
+                "success": "账户更改成功"
+            },
+            "failed": "账户更改失败",
+            "button": "完成",
+            "list": {
+                "voting_weight": "投票权重：{{number}}%",
+                "last_uptime": "上周在线率：{{number}}%",
+                "node_version": "节点版本：{{version}}"
+            }
+        }
+    },
+    "currency_modal": {
+        "label": "显示货币",
+        "search": "搜索货币"
+    },
+    "native_currency_modal": {
+        "label": "本地货币",
+        "pick": "选择用于显示本地价值的货币",
+        "nano": "XNO 也被称为 Nano，是 Nano 区块链的默认货币。",
+        "nyano": "1,000,000 NYANO = 1 XNO\nNYANO 不是独立的代币，仅是一个换算单位"
+    },
+    "network": {
+        "description": "我们建议您添加自己的节点，以获得更快的速度、减少我们的节点负载并提高网络安全性。",
+        "button": "添加节点",
+        "tor": {
+            "title": "使用 Tor",
+            "modal_title": "Tor",
+            "hide_ip": "Tor 通过隐藏您的 IP 地址保护您的隐私，您的请求将通过 Tor 网络路由。",
+            "slow": "大多数情况下，这比直接连接到节点稍慢一些。",
+            "note": "另请注意，Bahari 服务器不会记录用户的 IP 地址"
+        }
+    },
+    "network_new": {
+        "title": "添加网络",
+        "error_no_label": "标签是必填项",
+        "error_no_endpoint": "端点是必填项",
+        "label": "标签",
+        "label_placeholder": "标签",
+        "url": "端点 URL",
+        "url_placeholder": "地址",
+        "button": "添加"
+    },
+    "new_wallet": {
+        "title": "新钱包",
+        "onboard": {
+            "title": "让我们开始吧！",
+            "generate": "我们将为您生成一个助记词（12 个单词的恢复短语）。",
+            "remember": "重要提示",
+            "funds_access": "任何知道您助记词的人都可以访问您的资金。",
+            "keep_safe": "将其保存在只有您能找到的安全位置。",
+            "never_ask": "我们绝不会索要您的助记词，任何索要助记词的人很可能是在试图诈骗您。",
+            "passphrase_lost": "如果您丢失了助记词和设备，我们无法为您恢复钱包。",
+            "learn_more": "了解更多关于助记词的工作原理",
+            "button": "我明白了"
+        },
+        "passphrase": {
+            "title": "您的助记词",
+            "for_you": "仅供您查看",
+            "generating": "正在生成助记词",
+            "encrypt": "加密",
+            "regenerate": "重新生成",
+            "button": "完成",
+            "word_picker": {
+                "title": "更改助记词语言",
+                "warning": "某些其他钱包应用可能不支持导入非英文的助记词"
+            }
+        },
+        "encrypt_wallet": {
+            "errors": {
+                "short_password": "密码应为 8 个字符或更多",
+                "unmatched_password": "密码不匹配",
+                "passphrase_unavailable": "助记词不可用"
+            },
+            "encrypted": {
+                "title": "您的加密助记词",
+                "store": "将其存储在安全的地方。",
+                "reminder": "如果您忘记了密码，我们无法为您解密此文本。",
+                "button": "完成"
+            },
+            "unencrypted": {
+                "title": "加密您的助记词",
+                "reminder": "使用 AES256 加密您的助记词，强密码更加安全。",
+                "learn_more": "了解更多",
+                "password": "密码",
+                "password_placeholder": "密码",
+                "confirm_password": "确认密码",
+                "confirm_password_placeholder": "密码",
+                "button": "加密",
+                "strength": {
+                    "too_weak": "太弱",
+                    "weak": "弱",
+                    "medium": "中等",
+                    "strong": "强"
+                }
+            }
+        }
+    },
+    "import_wallet": {
+        "title": "导入钱包",
+        "label": "您想通过哪种方法导入钱包？",
+        "label_passphrase": "助记词",
+        "passphrase_desc": "使用 12、15 或 24 个助记词导入钱包",
+        "encrypted_passphrase": "加密助记词",
+        "encrypted_passphrase_desc": "使用加密助记词导入。通常是一串需要先用密码解密的长字符",
+        "label_private_key": "私钥",
+        "private_key_desc": "通过输入单个私钥导入\n通常是文本格式。",
+        "decrypt_passphrase": {
+            "errors": {
+                "no_password": "请输入密码以解密文本",
+                "no_encrypted_text": "请输入加密文本",
+                "failed": "解密失败！请验证您的密码和加密文本"
+            },
+            "import": "导入加密助记词",
+            "your_passphrase": "您的助记词",
+            "password": "密码",
+            "password_placeholder": "密码",
+            "paste": "粘贴",
+            "encrypted_text": "加密文本",
+            "encrypted_text_placeholder": "加密文本",
+            "button": "解密"
+        },
+        "passphrase": {
+            "errors": {
+                "no_name": "请输入新钱包的名称",
+                "incorrect": "请输入正确的助记词",
+                "unknown": "发生错误！",
+                "exists": "钱包已存在",
+                "not_found": "未找到您的钱包，请仔细检查您的助记词",
+                "not_identified": "我们无法自动识别您的钱包，请从以下匹配地址中选择"
+            },
+            "label": "标签",
+            "label_placeholder": "标签",
+            "title": "助记词",
+            "description": "12 或 24 个助记词，以空格分隔。",
+            "paste": "粘贴",
+            "placeholder": "助记词",
+            "button": "导入",
+            "importing": "正在导入钱包..."
+        },
+        "private_key": {
+            "errors": {
+                "no_name": "请输入新钱包的名称",
+                "invalid": "无效的私钥",
+                "exists": "账户已存在于钱包中",
+                "unknown": "发生错误！",
+                "wrong_address": "我们无法验证公钥地址，请确保在导入前地址正确。"
+            },
+            "address": "地址",
+            "imported": "已导入私钥",
+            "label": "标签",
+            "label_placeholder": "标签",
+            "title": "私钥",
+            "placeholder": "私钥",
+            "paste": "粘贴",
+            "button": {
+                "import": "导入",
+                "cancel": "取消",
+                "accept": "导入"
+            }
+        }
+    },
+    "pick_account_modal": {
+        "label": "选择账户",
+        "error_pick": "发生错误！请重试",
+        "created": "已创建",
+        "new_account": "新账户",
+        "import_key": "导入私钥",
+        "edit_wallet_label": "编辑钱包",
+        "account_changed": "账户已更改",
+        "edit_wallet": {
+            "label": "编辑钱包",
+            "name": "钱包名称",
+            "show_passphrase": "显示助记词",
+            "delete_wallet": "删除钱包",
+            "name_required": "名称为必填项",
+            "alert_delete": "删除钱包",
+            "alert_delete_desc": "您确定要删除吗？此操作不可逆。未来您需要助记词来恢复钱包",
+            "alert_button_cancel": "取消",
+            "alert_button_delete": "删除",
+            "button_cancel": "取消",
+            "button_done": "完成"
+        },
+        "edit_account": {
+            "label": "编辑账户",
+            "wallet": "钱包",
+            "name": "账户名称",
+            "public_address": "公钥地址",
+            "show_private_key": "显示私钥",
+            "error_name_required": "名称为必填项",
+            "info_copied": "已复制到剪贴板",
+            "button_cancel": "取消",
+            "button_done": "完成"
+        },
+        "account_item": "{{balance}} {{currency}}",
+        "show_passphrase": {
+            "derivation": "派生路径：",
+            "title": "仅供个人查看。",
+            "description": "任何拥有此助记词的人都可以转移您的所有资金。请勿与他人分享。",
+            "encrypt": "加密",
+            "copy": "复制"
+        },
+        "wallet_switch": {
+            "accounts": "账户",
+            "balance": "{{balance}} {{currency}}"
+        }
+    },
+    "encrypt_text": {
+        "strength_too_weak": "太弱",
+        "strength_weak": "弱",
+        "strength_medium": "中等",
+        "strength_strong": "强",
+        "error_short_password": "密码应至少为 8 个字符",
+        "error_password_not_match": "密码不匹配",
+        "error_passphrase_not_available": "助记词不可用",
+        "store": "请妥善保管。",
+        "disclaimer": "如果您忘记密码，我们无法为您解密该文本。",
+        "enter_password": "输入密码以加密",
+        "password_label": "密码",
+        "password_placeholder": "密码",
+        "confirm_password_label": "确认密码",
+        "confirm_password_placeholder": "确认密码",
+        "button_encrypt": "加密"
+    },
+    "wallet": {
+        "action_buy": "购买",
+        "action_send": "发送",
+        "action_receive": "接收",
+        "action_scan_code": "扫描二维码",
+        "balance_section": {
+            "balance": "{{balance}}",
+            "balance_base": "{{balance}} {{currency}}",
+            "price_change": "{{price}} {{currency}}",
+            "pending_amount": "待处理金额",
+            "pending": "{{balance}} {{currency}}"
+        },
+        "history_list": {
+            "title": "交易记录",
+            "label": "交易记录",
+            "no_transactions": "暂无交易记录",
+            "try_nano": "想尝试 Nano 吗？",
+            "get_free": "免费获取 Nano",
+            "toast": {
+                "success": "Nano 已发送到该地址"
+            },
+            "see_all": "查看全部"
+        },
+        "price_graph": {
+            "current_nano_price": "当前 XNO 价格",
+            "price": "{{price}} {{currency}}"
+        },
+        "qr_code": {
+            "title": "扫描二维码",
+            "enable": "启用相机以扫描二维码"
+        },
+        "transaction_item": {
+            "not_confirmed": "交易尚未确认！\n网络可能拥堵。",
+            "not_confirmed_info": "交易尚未确认",
+            "message_sent": "已发送",
+            "message_received": "已接收",
+            "amount": "{{amount}} {{currency}}",
+            "modal": {
+                "info_copied": "已复制到剪贴板",
+                "title": {
+                    "send": "已发送",
+                    "receive": "已接收",
+                    "change": "已更改代表"
+                },
+                "amount": "{{amount}} {{currency}}",
+                "type_from": "来自",
+                "type_to": "发送至",
+                "type_account": "账户",
+                "add_contact": "添加联系人",
+                "date": "日期",
+                "status_label": "状态",
+                "status_confirmed": "已确认",
+                "status_pending": "待处理",
+                "block_explorer": "在区块浏览器中打开"
+            }
+        }
+    },
+    "receive": {
+        "label": "您的钱包",
+        "your_nano_address": "您的 Nano 地址",
+        "copy": "复制",
+        "share": "分享",
+        "request": {
+            "label": "请求",
+            "how_much": "需要多少 {{currency}}？",
+            "amount": "{{amount}} {{currency}}",
+            "estimate_amount": "{{amount}} {{currency}}",
+            "button_cancel": "取消",
+            "button_confirm": "请求"
+        },
+        "copied": "已复制到剪贴板"
+    },
+    "send": {
+        "label": "发送 Nano 到？",
+        "invalid_address": "无效的地址",
+        "address": {
+            "label": "地址",
+            "placeholder": "地址",
+            "my_wallets": "我的钱包",
+            "scan_code": "扫描二维码",
+            "paste": "粘贴",
+            "recents_label": "最近地址",
+            "recents_not_available": "没有最近地址。\n所有发送的地址将显示在此处"
+        },
+        "contact_label": "联系人",
+        "contact_header": "联系人",
+        "contact_search": "搜索联系人",
+        "button_next": "下一步",
+        "amount": {
+            "error_no_amount": "金额为必填项",
+            "your_balance": "您的余额",
+            "balance_after": "发送后余额",
+            "insufficient": "余额不足",
+            "max": "最大",
+            "button_preview": "预览",
+            "preview": {
+                "label": "确认发送",
+                "amount_label": "金额",
+                "balance": "{{amount}} {{currency}}",
+                "from": "从",
+                "to": "到",
+                "button_send": "发送"
+            }
+        },
+        "sending_error": "发生错误！",
+        "sending_label": "正在发送",
+        "sending_wait": "请稍候.....",
+        "success_balance_sent": "{{amount}} {{currency}}",
+        "success_sent_to": "发送到",
+        "add_contact": "添加新联系人",
+        "button_done": "完成"
+    }
+}

@@ -2,14 +2,14 @@
   "expo": {
     "name": "Bahari",
     "slug": "bahari",
-    "version": "0.0.16",
+    "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#0F172A"
+      "backgroundColor": "#B37DE8"
     },
     "plugins": [
       [
@@ -84,12 +84,12 @@
       }
     },
     "android": {
-      "versionCode": 16,
+      "versionCode": 17,
       "jsEngine": "hermes",
       "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "backgroundColor": "#B37DE8"
       },
       "package": "co.tz.scratch.bahari",
       "permissions": [
