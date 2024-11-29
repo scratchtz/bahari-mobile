@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useRef, useState} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {AppTheme} from '@utils/styles';
@@ -24,7 +24,7 @@ import Contact from '@screens/Contact/Contact';
 import Network from '@screens/Network/Network';
 import NetworkNew from '@screens/NetworkNew/NetworkNew';
 import TransactionHistory from '@screens/TransactionHistory/TransactionHistory';
-import {MaterialIcons, FontAwesome, Ionicons, Octicons} from '@expo/vector-icons';
+import {MaterialIcons, FontAwesome, Ionicons} from '@expo/vector-icons';
 import * as NavigationBar from 'expo-navigation-bar';
 import {navigationRef} from '@navigation/shared';
 import ImportLedger from '@screens/WalletImport/ImportLedger';
@@ -32,13 +32,11 @@ import BuyNano from '@screens/BuyNano/BuyNano';
 import Receive from '@screens/Receive/Receive';
 import Representative from '@screens/Representative/Representative';
 import ChangeRepresentative from '@screens/Representative/ChangeRepresentative';
-import useTranslationInit from '@hooks/useTranslationInit';
 import {TFunction} from 'i18next';
 import {useTranslation} from 'react-i18next';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const Navigation = () => {
-    useTranslationInit()
     const theme = useAppTheme();
 
     const navigationTheme = useMemo(() => {
@@ -289,7 +287,7 @@ const WalletStackNavigation: React.FC = () => {
                     component={Wallet}
                     options={({route}) => navigatorScreenOptions({route, theme, headerShown: false})}
                 />
-                {CommonStackScreens(WalletStack, theme,t)}
+                {CommonStackScreens(WalletStack, theme, t)}
             </WalletStack.Group>
         </WalletStack.Navigator>
     );
@@ -307,7 +305,7 @@ const SettingsStackNavigation: React.FC = () => {
                     component={Settings}
                     options={({route}) => navigatorScreenOptions({route, theme, headerShown: false})}
                 />
-                {CommonStackScreens(SettingsStack, theme,t)}
+                {CommonStackScreens(SettingsStack, theme, t)}
             </SettingsStack.Group>
         </SettingsStack.Navigator>
     );
@@ -325,7 +323,7 @@ const DiscoverStackStackNavigation: React.FC = () => {
                     component={Discover}
                     options={({route}) => navigatorScreenOptions({route, theme, headerShown: false})}
                 />
-                {CommonStackScreens(DiscoverStack, theme,t)}
+                {CommonStackScreens(DiscoverStack, theme, t)}
             </DiscoverStack.Group>
         </DiscoverStack.Navigator>
     );

@@ -62,8 +62,6 @@ const WalletImport = ({navigation}: RootStackScreenProps<'WalletImport'>) => {
             <ScrollView
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={[styles.container, isTablet() && styles.containerTablet]}>
-                <Text style={styles.methodPick}>{t('import_wallet.title')}</Text>
-
                 <TouchableOpacity
                     style={styles.card}
                     onPress={() => {
@@ -107,9 +105,7 @@ const WalletImport = ({navigation}: RootStackScreenProps<'WalletImport'>) => {
                         <Text style={styles.cardTitle} weight="700">
                             {t('import_wallet.encrypted_passphrase')}
                         </Text>
-                        <Text style={styles.cardInfo}>
-                            {t('import_wallet.encrypted_passphrase_desc')}
-                        </Text>
+                        <Text style={styles.cardInfo}>{t('import_wallet.encrypted_passphrase_desc')}</Text>
                     </View>
                 </TouchableOpacity>
 
@@ -125,9 +121,7 @@ const WalletImport = ({navigation}: RootStackScreenProps<'WalletImport'>) => {
                         <Text style={styles.cardTitle} weight="700">
                             {t('import_wallet.label_private_key')}
                         </Text>
-                        <Text style={styles.cardInfo}>
-                            {t('import_wallet.private_key_desc')}
-                        </Text>
+                        <Text style={styles.cardInfo}>{t('import_wallet.private_key_desc')}</Text>
                     </View>
                 </TouchableOpacity>
 

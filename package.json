@@ -48,7 +48,6 @@
     "expo-media-library": "~15.9.1",
     "expo-navigation-bar": "~2.8.1",
     "expo-notifications": "~0.27.6",
-    "expo-splash-screen": "~0.26.4",
     "expo-status-bar": "~1.11.1",
     "expo-system-ui": "~2.9.3",
     "expo-web-browser": "~12.8.2",
@@ -87,7 +86,8 @@
     "react-native-wagmi-charts": "^2.3.0",
     "react-native-web": "~0.19.6",
     "text-encoding-polyfill": "^0.6.7",
-    "unique-names-generator": "^4.7.1"
+    "unique-names-generator": "^4.7.1",
+    "expo-splash-screen": "~0.26.5"
   },
   "overrides": {
     "react-native-qrcode-svg": {
