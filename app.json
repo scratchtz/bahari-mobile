@@ -74,7 +74,7 @@
     ],
     "jsEngine": "hermes",
     "ios": {
-      "buildNumber": "1",
+      "buildNumber": "2",
       "supportsTablet": true,
       "bundleIdentifier": "co.tz.scratch.bahari",
       "infoPlist": {
@@ -84,7 +84,7 @@
       }
     },
     "android": {
-      "versionCode": 17,
+      "versionCode": 18,
       "jsEngine": "hermes",
       "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
