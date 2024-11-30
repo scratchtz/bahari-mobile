@@ -92,13 +92,13 @@ const ResetWalletModal = React.forwardRef(({}, ref: any) => {
     };
 
     const confirmReset = () => {
-        encryptedStorage.clearAll();
         navigateDispatch(
             CommonActions.reset({
                 index: 1,
                 routes: [{name: 'Setup'}],
             }),
         );
+        encryptedStorage.clearAll();
     };
 
     const snapPoints = useMemo(() => [400, '80%'], []);

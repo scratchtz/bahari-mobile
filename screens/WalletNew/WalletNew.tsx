@@ -111,6 +111,7 @@ const WalletNew: React.FC<RootStackScreenProps<'WalletNew'>> = ({navigation, rou
                 {mode === 'onboard' && (
                     <>
                         <Text variant="header">{t('new_wallet.onboard.title')}</Text>
+                        <Separator space={spacing.l} />
                         <Text>{t('new_wallet.onboard.generate')}</Text>
                         <Separator space={spacing.l} />
 
@@ -129,26 +130,17 @@ const WalletNew: React.FC<RootStackScreenProps<'WalletNew'>> = ({navigation, rou
                             </View>
                         </View>
                         <View style={styles.noteContainer}>
-                            <Text style={styles.note}>
-                                {t('new_wallet.onboard.never_ask')}
-                            </Text>
+                            <Text style={styles.note}>{t('new_wallet.onboard.never_ask')}</Text>
                             <View style={[styles.noteIconContainer]}>
                                 <MaterialCommunityIcons name="message-lock" style={styles.noteIcon} />
                             </View>
                         </View>
                         <View style={styles.noteContainer}>
-                            <Text style={styles.note}>
-                                {t('new_wallet.onboard.passphrase_lost')}
-                            </Text>
+                            <Text style={styles.note}>{t('new_wallet.onboard.passphrase_lost')}</Text>
                             <View style={[styles.noteIconContainer]}>
                                 <MaterialCommunityIcons name="briefcase-search" style={styles.noteIcon} />
                             </View>
                         </View>
-                        <TouchableOpacity style={styles.learnMoreButton}>
-                            <Text weight="500" style={styles.learnMore}>
-                                {t('new_wallet.onboard.learn_more')}
-                            </Text>
-                        </TouchableOpacity>
                         <Separator space={spacing.xl} />
                         <Button variant="secondary" title={t('new_wallet.onboard.button')} onPress={onUnderstand} />
                     </>
