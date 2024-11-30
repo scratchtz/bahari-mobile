@@ -94,9 +94,13 @@
             "label": "解锁方式",
             "method_password": "密码",
             "method_biometrics": "生物识别",
+            "method_none": "无",
+            "none": {
+                "description": "无解锁方式"
+            },
             "biometrics": {
                 "label": "生物识别",
-                "description": "使用面容 ID 或指纹 ID 解锁您的钱包"
+                "description": "使用 Face-ID 或 Touch ID 解锁您的钱包"
             },
             "password": {
                 "label": "密码",
@@ -106,20 +110,21 @@
                 "confirm_placeholder": "确认密码",
                 "button_cancel": "取消",
                 "button_done": "完成",
-                "error_short_password": "请输入超过 6 个字符的密码",
+                "error_short_password": "请输入至少 6 个字符的密码",
                 "error_not_match": "密码不匹配",
                 "error_other": "发生错误！",
                 "strength": {
-                    "too_weak": "太弱",
-                    "weak": "弱",
-                    "medium": "中等",
-                    "strong": "强"
+                    "0": "非常弱",
+                    "1": "弱",
+                    "2": "中等",
+                    "3": "强"
                 }
             },
             "on_set": {
+                "error_no_hardware": "未找到生物识别硬件",
                 "error_wrong_password": "密码错误",
                 "error_other": "发生错误！",
-                "label": "输入您的密码以继续",
+                "label": "请输入密码以继续",
                 "placeholder": "密码",
                 "button_cancel": "取消",
                 "button_done": "完成"

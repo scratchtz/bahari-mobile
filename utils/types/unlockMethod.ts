@@ -1,1 +1,1 @@
-export type UnlockMethod = 'password' | 'biometrics';
+export type UnlockMethod = 'password' | 'biometrics' | 'none';

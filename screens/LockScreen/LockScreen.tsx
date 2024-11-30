@@ -42,6 +42,10 @@ const LockScreen = () => {
     );
 
     useEffect(() => {
+        if (unlockMethod === 'none') {
+            unlock();
+            return;
+        }
         if (isLocked && unlockMethod === 'biometrics') {
             void tryBiometrics();
         }
@@ -60,13 +64,18 @@ const LockScreen = () => {
         }
     };
     const onAppBackground = () => {
-        if (!autolockSeconds) {
+        if (!autolockSeconds || unlockMethod === 'none') {
             return;
         }
         setIsLocked(autolockSeconds > 0);
         setLastAppToBackground(new Date().getTime());
     };
+
     const onAppForeground = () => {
+        if (unlockMethod === 'none') {
+            unlock();
+            return;
+        }
         if (!lastAppToBackground) {
             return;
         }
@@ -142,7 +151,11 @@ const LockScreen = () => {
                                 {showWrongPassword && (
                                     <Text style={styles.wrongPassword}>{t('lock_screen.error_wrong_password')}</Text>
                                 )}
-                                {showInputPassword && <Text style={styles.inputPasswordWarning}>{t('lock_screen.input_password_warning')}</Text>}
+                                {showInputPassword && (
+                                    <Text style={styles.inputPasswordWarning}>
+                                        {t('lock_screen.input_password_warning')}
+                                    </Text>
+                                )}
                                 <TextInput
                                     ref={passwordInputRef}
                                     placeholder={t('lock_screen.password_placeholder')}
@@ -155,7 +168,11 @@ const LockScreen = () => {
                                     value={password}
                                     onChangeText={setPassword}
                                 />
-                                <Button title={t('lock_screen.unlock_button')} onPress={onUnlock} containerStyle={styles.unlockButton} />
+                                <Button
+                                    title={t('lock_screen.unlock_button')}
+                                    onPress={onUnlock}
+                                    containerStyle={styles.unlockButton}
+                                />
                             </>
                         )}
 

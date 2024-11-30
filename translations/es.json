@@ -94,37 +94,42 @@
             "label": "Método de Desbloqueo",
             "method_password": "Contraseña",
             "method_biometrics": "Biometría",
+            "method_none": "Ninguno",
+            "none": {
+                "description": "Sin método de desbloqueo"
+            },
             "biometrics": {
                 "label": "Biometría",
-                "description": "Usa Face-ID o Touch ID para desbloquear tu cartera"
+                "description": "Usa Face-ID o Touch ID para desbloquear tu billetera"
             },
             "password": {
                 "label": "Contraseña",
-                "description": "Usa contraseña para desbloquear tu cartera",
-                "setup": "Configura una contraseña para desbloquear tu cartera",
+                "description": "Usa una contraseña para desbloquear tu billetera",
+                "setup": "Configura una contraseña para desbloquear tu billetera",
                 "placeholder": "Contraseña",
                 "confirm_placeholder": "Confirmar Contraseña",
                 "button_cancel": "Cancelar",
-                "button_done": "Listo",
-                "error_short_password": "Ingresa una contraseña de más de 6 caracteres",
+                "button_done": "Hecho",
+                "error_short_password": "Introduce una contraseña de más de 6 caracteres",
                 "error_not_match": "Las contraseñas no coinciden",
                 "error_other": "¡Ocurrió un error!",
                 "strength": {
-                    "too_weak": "muy débil",
-                    "weak": "débil",
-                    "medium": "media",
-                    "strong": "fuerte"
+                    "0": "muy débil",
+                    "1": "débil",
+                    "2": "media",
+                    "3": "fuerte"
                 }
             },
             "on_set": {
+                "error_no_hardware": "No se encontró hardware de biometría",
                 "error_wrong_password": "Contraseña incorrecta",
                 "error_other": "¡Ocurrió un error!",
-                "label": "Ingresa tu contraseña para continuar",
+                "label": "Introduce tu contraseña para continuar",
                 "placeholder": "Contraseña",
                 "button_cancel": "Cancelar",
-                "button_done": "Listo"
+                "button_done": "Hecho"
             },
-            "require_biometrics": "Requerir biometría al Enviar"
+            "require_biometrics": "Requerir biometría para Enviar"
         },
         "auto_lock": {
             "title": "Bloqueo automático",

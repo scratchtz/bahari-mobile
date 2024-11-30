@@ -94,6 +94,10 @@
             "label": "Unlock Method",
             "method_password": "Password",
             "method_biometrics": "Biometrics",
+            "method_none":"None",
+            "none":{
+                "description":"No unlock method"
+            },
             "biometrics": {
                 "label": "Biometrics",
                 "description": "Use Face-ID or Touch ID to unlock your wallet"
@@ -110,13 +114,14 @@
                 "error_not_match": "Passwords don't match",
                 "error_other": "Error occurred!",
                 "strength": {
-                    "too_weak": "too weak",
-                    "weak": "weak",
-                    "medium": "medium",
-                    "strong": "strong"
+                    "0": "too weak",
+                    "1": "weak",
+                    "2": "medium",
+                    "3": "strong"
                 }
             },
             "on_set": {
+                "error_no_hardware": "No biometrics hardware found",
                 "error_wrong_password": "Wrong password",
                 "error_other": "Error occurred!",
                 "label": "Enter your password to continue",

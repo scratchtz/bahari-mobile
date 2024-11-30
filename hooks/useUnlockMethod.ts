@@ -3,29 +3,18 @@ import {StorageKeys} from '@constants/storage';
 import {useEffect} from 'react';
 import {encryptedStorage} from '@storage/mmkv';
 import {UnlockMethod} from '@utils/types/unlockMethod';
-import {hasHardwareAsync} from 'expo-local-authentication';
 
 export default function useUnlockMethod() {
-    const [unlockMethod, setUnlockMethod] = useMMKVString(StorageKeys.unlockMethod, encryptedStorage) as [
-        UnlockMethod | undefined,
-        (value: UnlockMethod) => void,
-    ];
+    const [unlockMethod, setUnlockMethod] = useMMKVString(StorageKeys.unlockMethod, encryptedStorage);
 
-    //Initial setup
     useEffect(() => {
         if (!unlockMethod) {
-            void initializeUnlockMethod();
+            setUnlockMethod('none');
         }
     }, [unlockMethod]);
 
-    const initializeUnlockMethod = async () => {
-        try {
-            const hasHardware = await hasHardwareAsync();
-            if (hasHardware) {
-                setUnlockMethod('biometrics');
-            }
-        } catch (e) {}
+    return {
+        unlockMethod: unlockMethod as UnlockMethod,
+        setUnlockMethod: setUnlockMethod as (method: UnlockMethod) => void,
     };
-
-    return {unlockMethod, setUnlockMethod};
 }

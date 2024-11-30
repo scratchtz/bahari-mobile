@@ -91,9 +91,13 @@
         "network_label": "Сеть",
         "representative_label": "Представитель",
         "unlock_method": {
-            "label": "Метод Разблокировки",
+            "label": "Метод разблокировки",
             "method_password": "Пароль",
             "method_biometrics": "Биометрия",
+            "method_none": "Нет",
+            "none": {
+                "description": "Нет метода разблокировки"
+            },
             "biometrics": {
                 "label": "Биометрия",
                 "description": "Используйте Face-ID или Touch ID для разблокировки кошелька"
@@ -103,28 +107,29 @@
                 "description": "Используйте пароль для разблокировки кошелька",
                 "setup": "Установите пароль для разблокировки кошелька",
                 "placeholder": "Пароль",
-                "confirm_placeholder": "Подтвердите Пароль",
+                "confirm_placeholder": "Подтвердите пароль",
                 "button_cancel": "Отмена",
                 "button_done": "Готово",
                 "error_short_password": "Введите пароль длиннее 6 символов",
                 "error_not_match": "Пароли не совпадают",
                 "error_other": "Произошла ошибка!",
                 "strength": {
-                    "too_weak": "очень слабый",
-                    "weak": "слабый",
-                    "medium": "средний",
-                    "strong": "сильный"
+                    "0": "очень слабый",
+                    "1": "слабый",
+                    "2": "средний",
+                    "3": "сильный"
                 }
             },
             "on_set": {
-                "error_wrong_password": "Неверный пароль",
+                "error_no_hardware": "Аппаратное обеспечение для биометрии не найдено",
+                "error_wrong_password": "Неправильный пароль",
                 "error_other": "Произошла ошибка!",
-                "label": "Введите ваш пароль для продолжения",
+                "label": "Введите пароль для продолжения",
                 "placeholder": "Пароль",
                 "button_cancel": "Отмена",
                 "button_done": "Готово"
             },
-            "require_biometrics": "Требовать биометрию при отправке"
+            "require_biometrics": "Требовать биометрию для отправки"
         },
         "auto_lock": {
             "title": "Автоблокировка",

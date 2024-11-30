@@ -13,7 +13,7 @@ import {UnlockMethod} from '@utils/types/unlockMethod';
 import Button from '@components/Button/Button';
 import Separator from '@components/Separator/Separator';
 import * as LocalAuthentication from 'expo-local-authentication';
-import Toast, {ToastController} from '@components/Toast/Toast';
+import {ToastController} from '@components/Toast/Toast';
 import BottomSheetTextInput from '@components/TextInput/BottomSheetTextInput';
 import {passwordStrength as strengthChecker} from 'check-password-strength';
 import security from '@storage/security';
@@ -29,21 +29,10 @@ const ItemUnlockMethod = () => {
     const {unlockMethod} = useUnlockMethod();
 
     const {t} = useTranslation();
-
     const unlockMethodModal = useRef<BottomSheetModal>();
     const openModal = useCallback(() => {
         unlockMethodModal.current?.present();
     }, []);
-
-    const methodLabel = useMemo(() => {
-        switch (unlockMethod) {
-            case 'password':
-                return `${t('settings.unlock_method.method_password')}`;
-            case 'biometrics':
-                return `${t('settings.unlock_method.method_biometrics')}`;
-        }
-        return '';
-    }, [unlockMethod]);
 
     return (
         <>
@@ -57,7 +46,7 @@ const ItemUnlockMethod = () => {
                 }
                 rightItem={
                     <Text style={styles.valueText} weight={'500'}>
-                        {methodLabel}
+                        {t(`settings.unlock_method.method_${unlockMethod}`)}
                     </Text>
                 }
             />
@@ -66,18 +55,16 @@ const ItemUnlockMethod = () => {
     );
 };
 
-type unlockModalMode = 'normal' | 'set-biometrics' | 'set-password';
+type unlockModalMode = 'pick' | 'verify-password' | 'set-password';
 const UnlockMethodModal = React.forwardRef((props: any, ref: any) => {
-    const [modalMode, setModalMode] = useState<unlockModalMode>('normal');
+    const [modalMode, setModalMode] = useState<unlockModalMode>('pick');
     const {handleSheetPositionChange} = useBottomSheetBackHandler(ref);
     const {unlockMethod, setUnlockMethod} = useUnlockMethod();
-
-    const {t} = useTranslation();
-
+    const [pendingUnlockMethod, setPendingUnlockMethod] = useState<UnlockMethod | null>(null);
     const [biometricsPassword, setBiometricsPassword] = useState('');
-
     const [newPassword, setNewPassword] = useState('');
     const [confirmNewPassword, setConfirmNewPassword] = useState('');
+    const {t} = useTranslation();
 
     const snapPoints = useMemo(() => ['64%', '85%'], []);
     const renderBackdrop = useCallback(
@@ -106,8 +93,12 @@ const UnlockMethodModal = React.forwardRef((props: any, ref: any) => {
             setNewPassword('');
             setConfirmNewPassword('');
             setBiometricsPassword('');
-            setModalMode('normal');
+            setModalMode('pick');
         }
+    };
+
+    const onClose = () => {
+        ref.current.close();
     };
 
     const theme = useAppTheme();
@@ -115,8 +106,21 @@ const UnlockMethodModal = React.forwardRef((props: any, ref: any) => {
 
     const unlockMethods: {value: UnlockMethod; label: string; description: string}[] = useMemo(() => {
         return [
-            {value: 'biometrics', label: `${t('settings.unlock_method.biometrics.label')}`, description:  `${t('settings.unlock_method.biometrics.description')}`},
-            {value: 'password', label: `${t('settings.unlock_method.password.label')}`, description: `${t('settings.unlock_method.password.description')}`},
+            {
+                value: 'none',
+                label: `${t('settings.unlock_method.method_none')}`,
+                description: `${t('settings.unlock_method.none.description')}`,
+            },
+            {
+                value: 'biometrics',
+                label: `${t('settings.unlock_method.biometrics.label')}`,
+                description: `${t('settings.unlock_method.biometrics.description')}`,
+            },
+            {
+                value: 'password',
+                label: `${t('settings.unlock_method.password.label')}`,
+                description: `${t('settings.unlock_method.password.description')}`,
+            },
         ];
     }, []);
 
@@ -124,82 +128,108 @@ const UnlockMethodModal = React.forwardRef((props: any, ref: any) => {
         if (method === unlockMethod) {
             return;
         }
-        if (method === 'biometrics') {
-            //if u set password even once to change u must enter the password
-            if (unlockMethod === 'password') {
-                setModalMode('set-biometrics');
+
+        //previous was none, just allow the new method
+        if (unlockMethod === 'none') {
+            if (method === 'password') {
+                setModalMode('set-password');
                 return;
             }
-            setUnlockMethod('biometrics');
-            return;
+            if (method === 'biometrics') {
+                const hasHardware = await LocalAuthentication.hasHardwareAsync();
+                if (hasHardware) {
+                    setUnlockMethod('biometrics');
+                    return;
+                }
+                ToastController.show({
+                    kind: 'error',
+                    content: `${t('settings.unlock_method.on_set.error_no_hardware')}`,
+                });
+                return;
+            }
+            throw new Error('Unknown method');
         }
-        if (method === 'password') {
-            //verify first before setting up password
-            if (unlockMethod === 'biometrics') {
-                try {
-                    const res = await LocalAuthentication.authenticateAsync({requireConfirmation: true});
-                    if (res.success) {
-                        setModalMode('set-password');
-                    }
-                } catch (e) {}
+
+        //previous was biometrics, verify first before proceeding
+        if (unlockMethod === 'biometrics') {
+            try {
+                const res = await LocalAuthentication.authenticateAsync({requireConfirmation: true});
+                if (!res.success) {
+                    return;
+                }
+                if (method === 'password') {
+                    setModalMode('set-password');
+                    return;
+                }
+                if (method === 'none') {
+                    setUnlockMethod('none');
+                    onClose();
+                    return;
+                }
+                return;
+            } catch (e) {
                 return;
             }
-            setUnlockMethod('password');
+        }
+
+        if (unlockMethod === 'password') {
+            setPendingUnlockMethod(method);
+            setModalMode('verify-password');
             return;
         }
     };
 
-    const onChangeToBiometrics = async () => {
+    const onConfirmCurrentPassword = async () => {
+        console.log('onConfirmCurrentPassword', pendingUnlockMethod);
+        if (!pendingUnlockMethod) {
+            setModalMode('pick');
+            return;
+        }
         try {
             const storedPassword = await security.getPassword();
-            //TODO if many tries clean up
             if (biometricsPassword !== storedPassword) {
-                ToastController.show({kind: 'error', content: `${t('settings.unlock_method.on_set.error_wrong_password')}`});
+                ToastController.show({
+                    kind: 'error',
+                    content: `${t('settings.unlock_method.on_set.error_wrong_password')}`,
+                });
                 return;
             }
-            setUnlockMethod('biometrics');
-            ref.current.close();
+            setUnlockMethod(pendingUnlockMethod);
+            setModalMode('pick');
+            onClose();
         } catch (e: any) {
-            ToastController.show({kind: 'error', content: `${t('settings.unlock_method.on_set.error_other')}` + e.toString()});
+            ToastController.show({
+                kind: 'error',
+                content: `${t('settings.unlock_method.on_set.error_other')}` + e.toString(),
+            });
         }
     };
 
     const onChangeToPassword = async () => {
         if (!newPassword || newPassword.length < 6) {
-            ToastController.show({kind: 'error', content: `${t('settings.unlock_method.password.error_short_password')}`});
+            ToastController.show({
+                kind: 'error',
+                content: `${t('settings.unlock_method.password.error_short_password')}`,
+            });
             return;
         }
         if (newPassword !== confirmNewPassword) {
             ToastController.show({kind: 'error', content: `${t('settings.unlock_method.password.error_not_match')}`});
             return;
         }
-
         try {
             await security.storePassword(newPassword);
             setUnlockMethod('password');
-            ref.current.close();
+            onClose();
         } catch (e: any) {
-            ToastController.show({kind: 'error', content: `${t('settings.unlock_method.password.error_other')}` + e.toString()});
+            ToastController.show({
+                kind: 'error',
+                content: `${t('settings.unlock_method.password.error_other')}` + e.toString(),
+            });
         }
-        //Saving password to keychain
     };
 
-    const passwordStrength = useMemo(() => {
-        return strengthChecker(newPassword).id as 0 | 1 | 2 | 3;
-    }, [newPassword]);
-    const passwordStrengthText = useMemo(() => {
-        switch (passwordStrength) {
-            case 0:
-                return `${t('settings.unlock_method.password.strength.too_weak')}`;
-            case 1:
-                return `${t('settings.unlock_method.password.strength.weak')}`;
-            case 2:
-                return `${t('settings.unlock_method.password.strength.medium')}`;
-            case 3:
-                return `${t('settings.unlock_method.password.strength.strong')}`;
-        }
-    }, [passwordStrength]);
-
+    const passwordStrength = useMemo(() => strengthChecker(newPassword).id as 0 | 1 | 2 | 3, [newPassword]);
     return (
         <BottomSheetModal
             enablePanDownToClose
@@ -218,7 +248,7 @@ const UnlockMethodModal = React.forwardRef((props: any, ref: any) => {
                         ref.current.close();
                     }}
                 />
-                {modalMode === 'normal' && (
+                {modalMode === 'pick' && (
                     <BottomSheetScrollView contentContainerStyle={styles.innerContainer}>
                         {unlockMethods.map(item => {
                             const isSelected = unlockMethod === item.value;
@@ -245,7 +275,7 @@ const UnlockMethodModal = React.forwardRef((props: any, ref: any) => {
                         </View>
                     </BottomSheetScrollView>
                 )}
-                {modalMode === 'set-biometrics' && (
+                {modalMode === 'verify-password' && (
                     <BottomSheetScrollView contentContainerStyle={styles.innerContainer}>
                         <Text>{t('settings.unlock_method.on_set.label')}</Text>
                         <Separator space={spacing.m} />
@@ -263,13 +293,13 @@ const UnlockMethodModal = React.forwardRef((props: any, ref: any) => {
                                 title={t('settings.unlock_method.on_set.button_cancel')}
                                 variant="secondary"
                                 onPress={() => {
-                                    setModalMode('normal');
+                                    setModalMode('pick');
                                 }}
                                 containerStyle={[styles.actionButton, {marginRight: spacing.m}]}
                             />
                             <Button
                                 title={t('settings.unlock_method.on_set.button_done')}
-                                onPress={onChangeToBiometrics}
+                                onPress={onConfirmCurrentPassword}
                                 containerStyle={styles.actionButton}
                             />
                         </View>
@@ -286,7 +316,7 @@ const UnlockMethodModal = React.forwardRef((props: any, ref: any) => {
                                     !newPassword && {opacity: 0},
                                     {color: PASSWORD_STRENGTH_COLORS[passwordStrength]},
                                 ]}>
-                                {passwordStrengthText}
+                                {t(`settings.unlock_method.password.strength.${passwordStrength}`)}
                             </Text>
                             <BottomSheetTextInput
                                 returnKeyType="next"
@@ -313,7 +343,7 @@ const UnlockMethodModal = React.forwardRef((props: any, ref: any) => {
                                     onPress={() => {
                                         setNewPassword('');
                                         setConfirmNewPassword('');
-                                        setModalMode('normal');
+                                        setModalMode('pick');
                                     }}
                                     containerStyle={[styles.actionButton, {marginRight: spacing.m}]}
                                 />

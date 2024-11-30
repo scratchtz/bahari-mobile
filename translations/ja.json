@@ -94,37 +94,42 @@
             "label": "ロック解除方法",
             "method_password": "パスワード",
             "method_biometrics": "生体認証",
+            "method_none": "なし",
+            "none": {
+                "description": "ロック解除方法なし"
+            },
             "biometrics": {
                 "label": "生体認証",
-                "description": "Face-IDまたはTouch IDでウォレットのロックを解除"
+                "description": "Face-IDまたはTouch IDを使用してウォレットのロックを解除します"
             },
             "password": {
                 "label": "パスワード",
-                "description": "パスワードでウォレットのロックを解除",
-                "setup": "ロック解除用のパスワードを設定",
+                "description": "パスワードを使用してウォレットのロックを解除します",
+                "setup": "ウォレットのロックを解除するためのパスワードを設定します",
                 "placeholder": "パスワード",
-                "confirm_placeholder": "パスワード確認",
+                "confirm_placeholder": "パスワードを確認",
                 "button_cancel": "キャンセル",
                 "button_done": "完了",
-                "error_short_password": "パスワードは6文字以上で入力してください",
+                "error_short_password": "6文字以上のパスワードを入力してください",
                 "error_not_match": "パスワードが一致しません",
-                "error_other": "エラーが発生しました",
+                "error_other": "エラーが発生しました！",
                 "strength": {
-                    "too_weak": "非常に弱い",
-                    "weak": "弱い",
-                    "medium": "普通",
-                    "strong": "強い"
+                    "0": "非常に弱い",
+                    "1": "弱い",
+                    "2": "中程度",
+                    "3": "強い"
                 }
             },
             "on_set": {
+                "error_no_hardware": "生体認証ハードウェアが見つかりません",
                 "error_wrong_password": "パスワードが間違っています",
-                "error_other": "エラーが発生しました",
+                "error_other": "エラーが発生しました！",
                 "label": "続行するにはパスワードを入力してください",
                 "placeholder": "パスワード",
                 "button_cancel": "キャンセル",
                 "button_done": "完了"
             },
-            "require_biometrics": "送金時に生体認証を要求"
+            "require_biometrics": "送信時に生体認証を要求する"
         },
         "auto_lock": {
             "title": "自動ロック",
