@@ -70,7 +70,7 @@
         "password_placeholder": "密码",
         "unlock_button": "解锁",
         "failed": "无法解锁？",
-        "reset": "重置钱包"
+        "reset": "重置应用"
     },
     "setup": {
         "app_name": "Bahari",
@@ -149,9 +149,9 @@
             }
         },
         "reset_wallet": {
-            "label": "重置钱包",
-            "modal_label": "重置钱包",
-            "warning": "如果您没有恢复密钥，我们将无法为您恢复钱包。",
+            "label": "重置应用",
+            "modal_label": "重置应用",
+            "warning": "所有钱包将被删除，请确保您已备份恢复密钥。如果没有密钥，将无法恢复钱包。",
             "button_cancel": "取消",
             "button_confirm": "重置"
         }

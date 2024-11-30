@@ -1,10 +1,10 @@
 import {useThemeStyleSheet, useThemeStyleSheetProvided} from '@hooks/useThemeStyleSheet';
 import SettingsItem, {sharedStyles} from '@screens/Main/Settings/Components/SettingsItem';
-import {StyleSheet, View} from 'react-native';
+import {Alert, StyleSheet, View} from 'react-native';
 import {AntDesign, Feather} from '@expo/vector-icons';
 import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import {BottomSheetBackdrop, BottomSheetModal} from '@gorhom/bottom-sheet';
-import {AppTheme, palette, spacing} from '@utils/styles';
+import {AppTheme, palette, rounded, spacing} from '@utils/styles';
 import Text from '@components/Text/Text';
 import {useBottomSheetBackHandler} from '@hooks/hooksbottomsheet/useBottomSheetBackHandler';
 import {useAppTheme} from '@hooks/useAppTheme';
@@ -12,9 +12,12 @@ import {ModalHeader} from '@components/ModalHeader/ModalHeader';
 import Button from '@components/Button/Button';
 import {modalOpacity} from '@constants/variables';
 import {useTranslation} from 'react-i18next';
+import {encryptedStorage} from '@storage/mmkv';
+import {navigateDispatch} from '@navigation/shared';
+import {CommonActions} from '@react-navigation/native';
 
 const ItemResetWallet = () => {
-    const styles = useThemeStyleSheet(sharedStyles)
+    const styles = useThemeStyleSheet(sharedStyles);
 
     const {t} = useTranslation();
 
@@ -39,7 +42,7 @@ const ItemResetWallet = () => {
     );
 };
 
-const LOCK_TIMEOUT = 4;
+const LOCK_TIMEOUT = 5;
 const ResetWalletModal = React.forwardRef(({}, ref: any) => {
     const {handleSheetPositionChange} = useBottomSheetBackHandler(ref);
 
@@ -57,6 +60,7 @@ const ResetWalletModal = React.forwardRef(({}, ref: any) => {
         }, 1000);
         return () => clearInterval(interval);
     }, [timeout]);
+
     const handlePositionChange = (index: number) => {
         handleSheetPositionChange(index);
         if (index === -1) {
@@ -71,7 +75,33 @@ const ResetWalletModal = React.forwardRef(({}, ref: any) => {
         }
     };
 
-    const snapPoints = useMemo(() => [280, 320], []);
+    const onReset = () => {
+        Alert.alert(t('settings.reset_wallet.modal_label'), t('settings.reset_wallet.warning'), [
+            {
+                text: t('settings.reset_wallet.button_cancel'),
+                style: 'cancel',
+            },
+            {
+                text: t('settings.reset_wallet.button_confirm'),
+                onPress: () => {
+                    confirmReset();
+                },
+                style: 'destructive',
+            },
+        ]);
+    };
+
+    const confirmReset = () => {
+        encryptedStorage.clearAll();
+        navigateDispatch(
+            CommonActions.reset({
+                index: 1,
+                routes: [{name: 'Setup'}],
+            }),
+        );
+    };
+
+    const snapPoints = useMemo(() => [400, '80%'], []);
     const renderBackdrop = useCallback(
         (props: any) => (
             <BottomSheetBackdrop {...props} opacity={modalOpacity} disappearsOnIndex={-1} appearsOnIndex={0} />
@@ -91,14 +121,15 @@ const ResetWalletModal = React.forwardRef(({}, ref: any) => {
             onChange={handlePositionChange}
             backdropComponent={renderBackdrop}
             snapPoints={snapPoints}>
-            <ModalHeader title={t('settings.reset_wallet.modal_label')} onClose={() => ref.current.close()} />
+            <ModalHeader title={''} onClose={() => ref.current.close()} />
             <View style={styles.innerContainer}>
                 <View style={styles.warningWrap}>
-                    <AntDesign name="warning" size={24} color={theme.colors.warning} />
-                    <Text style={styles.warning}>
-                        {t('settings.reset_wallet.warning')}
-                    </Text>
+                    <AntDesign name="warning" size={46} color={'white'} style={styles.warningIcon} />
                 </View>
+                <Text style={styles.header} weight="600">
+                    {t('settings.reset_wallet.modal_label')}
+                </Text>
+                <Text style={styles.warning}>{t('settings.reset_wallet.warning')}</Text>
                 <View style={styles.buttonsContainer}>
                     <Button
                         title={t('settings.reset_wallet.button_cancel')}
@@ -109,14 +140,18 @@ const ResetWalletModal = React.forwardRef(({}, ref: any) => {
                         containerStyle={styles.button}
                     />
                     <Button
-                        title={timeout > 0 ? `${t('settings.reset_wallet.button_confirm')} (${timeout})` : `${t('settings.reset_wallet.button_confirm')}`}
+                        title={
+                            timeout > 0
+                                ? `${t('settings.reset_wallet.button_confirm')} (${timeout})`
+                                : `${t('settings.reset_wallet.button_confirm')}`
+                        }
                         variant="primary"
                         disabled={timeout > 0}
-                        onPress={() => {}}
+                        onPress={onReset}
                         containerStyle={[
                             styles.button,
-                            {marginLeft: spacing.s},
-                            timeout === 0 && {backgroundColor: theme.colors.warning},
+                            {marginLeft: spacing.s, backgroundColor: theme.colors.warning},
+                            timeout > 0 && {opacity: 0.75},
                         ]}
                     />
                 </View>
@@ -139,9 +174,15 @@ const deleteStyles = (theme: AppTheme) =>
         info: {
             textAlign: 'center',
         },
+        header: {
+            marginTop: spacing.l,
+            fontSize: 18,
+            textAlign: 'center',
+        },
         warning: {
             marginLeft: spacing.m,
-            flex: 1,
+            marginTop: spacing.m,
+            textAlign: 'center',
         },
         buttonsContainer: {
             flexDirection: 'row',
@@ -151,9 +192,14 @@ const deleteStyles = (theme: AppTheme) =>
             flex: 1,
         },
         warningWrap: {
-            flexDirection: 'row',
             alignItems: 'center',
-            marginTop: spacing.l,
+            justifyContent: 'center',
+            backgroundColor: theme.colors.warning,
+            alignSelf: 'center',
+            borderRadius: rounded.xl,
+        },
+        warningIcon: {
+            padding: spacing.l,
         },
     });
 

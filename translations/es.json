@@ -70,7 +70,7 @@
         "password_placeholder": "Contraseña",
         "unlock_button": "Desbloquear",
         "failed": "¿No puedes desbloquear?",
-        "reset": "Restablecer cartera"
+        "reset": "Restablecer App"
     },
     "setup": {
         "app_name": "Bahari",
@@ -149,9 +149,9 @@
             }
         },
         "reset_wallet": {
-            "label": "Restablecer Cartera",
-            "modal_label": "Restablecer Cartera",
-            "warning": "Si no tienes tus claves de recuperación, no podremos recuperar la cartera.",
+            "label": "Restablecer App",
+            "modal_label": "Restablecer App",
+            "warning": "Todas las billeteras serán ELIMINADAS, asegúrate de tener tus claves de recuperación, si no las tienes, es imposible recuperar tus billeteras.",
             "button_cancel": "Cancelar",
             "button_confirm": "Restablecer"
         }

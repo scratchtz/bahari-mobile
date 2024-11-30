@@ -70,7 +70,7 @@
         "password_placeholder": "비밀번호",
         "unlock_button": "잠금 해제",
         "failed": "잠금 해제가 안되시나요?",
-        "reset": "지갑 초기화"
+        "reset": "앱 초기화"
     },
     "setup": {
         "app_name": "바하리",
@@ -149,9 +149,9 @@
             }
         },
         "reset_wallet": {
-            "label": "지갑 초기화",
-            "modal_label": "지갑 초기화",
-            "warning": "복구 키가 없다면 지갑을 복구할 수 없습니다.",
+            "label": "앱 초기화",
+            "modal_label": "앱 초기화",
+            "warning": "모든 지갑이 삭제됩니다. 복구 키를 반드시 보관하세요. 복구 키가 없으면 지갑을 복구할 수 없습니다.",
             "button_cancel": "취소",
             "button_confirm": "초기화"
         }

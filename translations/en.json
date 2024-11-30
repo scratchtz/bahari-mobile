@@ -70,7 +70,7 @@
         "password_placeholder": "Password",
         "unlock_button": "Unlock",
         "failed": "Can't unlock?",
-        "reset": "Reset wallet"
+        "reset": "Reset App"
     },
     "setup": {
         "app_name": "Bahari",
@@ -149,9 +149,9 @@
             }
         },
         "reset_wallet": {
-            "label": "Reset Wallet",
-            "modal_label": "Reset Wallet",
-            "warning": "If you don't have your recovery keys we can't recover the wallet for you.",
+            "label": "Reset App",
+            "modal_label": "Reset App",
+            "warning": "All the wallets will be DELETED, make sure you have your recovery keys, if you don't have them it's impossible to recover your wallets.",
             "button_cancel": "Cancel",
             "button_confirm": "Reset"
         }

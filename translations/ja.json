@@ -70,7 +70,7 @@
         "password_placeholder": "パスワード",
         "unlock_button": "ロック解除",
         "failed": "ロック解除できませんか？",
-        "reset": "ウォレットをリセット"
+        "reset": "アプリをリセット"
     },
     "setup": {
         "app_name": "Bahari",
@@ -149,9 +149,9 @@
             }
         },
         "reset_wallet": {
-            "label": "ウォレットをリセット",
-            "modal_label": "ウォレットをリセット",
-            "warning": "リカバリーキーをお持ちでない場合、ウォレットを復元することはできません。",
+            "label": "アプリをリセット",
+            "modal_label": "アプリをリセット",
+            "warning": "すべてのウォレットが削除されます。リカバリーキーを必ず保存してください。リカバリーキーがない場合、ウォレットを復元することは不可能です。",
             "button_cancel": "キャンセル",
             "button_confirm": "リセット"
         }
