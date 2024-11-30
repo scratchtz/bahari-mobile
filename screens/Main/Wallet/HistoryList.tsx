@@ -10,7 +10,6 @@ import {useDefaultKeyPair} from '@hooks/useKeyPair';
 import {useTransactionHistory} from '@hooks/useTransactionHistory';
 import {Entypo} from '@expo/vector-icons';
 import {useNavigation} from '@react-navigation/native';
-import intl from 'react-intl-universal';
 import Separator from '@components/Separator/Separator';
 import {ToastController} from '@components/Toast/Toast';
 import {apiFaucet} from '@utils/api/faucet';
@@ -27,7 +26,7 @@ const HistoryList = () => {
 
     const {refetch} = useAccountBalance(defaultKeyPair?.address || '', true);
 
-    const {t} = useTranslation()
+    const {t} = useTranslation();
 
     const [isGettingFreeNano, setIsGettingFreeNano] = useState(false);
 
@@ -38,7 +37,7 @@ const HistoryList = () => {
             await apiFaucet(defaultKeyPair.address);
             setTimeout(() => {
                 void refetch({cancelRefetch: true});
-                ToastController.show({kind: 'success', content:  `${t('wallet.history_list.toast.success')}`});
+                ToastController.show({kind: 'success', content: `${t('wallet.history_list.toast.success')}`});
                 setIsGettingFreeNano(false);
             }, 2000);
         } catch (e: any) {

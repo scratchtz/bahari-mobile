@@ -517,5 +517,18 @@
         "success_sent_to": "Sent to",
         "add_contact": "Add New Contact",
         "button_done": "Done"
+    },
+    "others": {
+        "title": "Others",
+        "privacy": "Privacy Policy",
+        "terms": "Terms & Conditions",
+        "contact_us": "Contact Us",
+        "support" : {
+            "title": "Support Us",
+            "modal_title": "Support Us",
+            "offer":"We offer all features in this app for free,Below is the Github link",
+            "github": "Github",
+            "nano": "For support below is our Nano wallet address"
+        }
     }
 }

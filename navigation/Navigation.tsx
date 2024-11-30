@@ -34,6 +34,8 @@ import Representative from '@screens/Representative/Representative';
 import ChangeRepresentative from '@screens/Representative/ChangeRepresentative';
 import {TFunction} from 'i18next';
 import {useTranslation} from 'react-i18next';
+import PrivacyModal from '@screens/Main/Settings/PrivacyModal';
+import TermsModal from '@screens/Main/Settings/TermsModal';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const Navigation = () => {
@@ -105,6 +107,27 @@ const Navigation = () => {
                             name={'ImportLedger'}
                             component={ImportLedger}
                             options={({route}) => navigatorScreenOptions({route, theme, headerShown: true})}
+                        />
+                        <Stack.Screen
+                            name="PrivacyPolicy"
+                            component={PrivacyModal}
+                            options={({route}) => ({
+                                ...navigatorScreenOptions({route, theme, title: 'Privacy Policy', headerShown: true}),
+                                presentation: 'modal',
+                            })}
+                        />
+                        <Stack.Screen
+                            name="Terms"
+                            component={TermsModal}
+                            options={({route}) => ({
+                                ...navigatorScreenOptions({
+                                    route,
+                                    theme,
+                                    title: 'Terms & Conditions',
+                                    headerShown: true,
+                                }),
+                                presentation: 'modal',
+                            })}
                         />
                     </Stack.Group>
                 </Stack.Navigator>

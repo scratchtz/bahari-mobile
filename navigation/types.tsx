@@ -37,6 +37,9 @@ export type RootStackParamList = {
     ImportPrivateKey: {walletID?: string} | undefined;
     ImportPassphrase: {passphrase: string} | undefined;
 
+    PrivacyPolicy: undefined;
+    Terms: undefined;
+
     ImportLedger: undefined;
     WalletNew: {walletMode: WalletNewMode};
 };

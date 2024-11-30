@@ -23,6 +23,10 @@ import ItemAutolock from '@screens/Main/Settings/Components/ItemAutolock';
 import ItemResetWallet from '@screens/Main/Settings/Components/ItemResetWallet';
 import ItemRepresentative from '@screens/Main/Settings/Components/ItemRepresentative';
 import {useTranslation} from 'react-i18next';
+import ItemPrivacyPolicy from './Components/ItemPrivacyPolicy';
+import ItemTerms from './Components/ItemTerms';
+import ItemSupportUs from './Components/ItemSupportUs';
+import ItemContactUs from './Components/ItemContactUs';
 
 const Settings: React.FC<AllScreenProps<'Settings'>> = ({navigation}) => {
     const theme = useAppTheme();
@@ -106,6 +110,17 @@ const Settings: React.FC<AllScreenProps<'Settings'>> = ({navigation}) => {
                     <ItemPassword />
                     <ItemAutolock />
                     <ItemResetWallet />
+                </View>
+
+                <Separator space={spacing.l} />
+                <Text variant="subheader" style={styles.subheader}>
+                    {t('others.title')}
+                </Text>
+                <View style={styles.section}>
+                    <ItemPrivacyPolicy />
+                    <ItemTerms />
+                    <ItemContactUs />
+                    <ItemSupportUs />
                 </View>
             </ScrollView>
         </SafeAreaView>
