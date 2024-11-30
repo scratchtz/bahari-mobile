@@ -112,7 +112,11 @@ const ImportPrivateKey: React.FC<RootStackScreenProps<'ImportPrivateKey'>> = ({n
             onPersist(kp);
         } catch (e: any) {
             setIsImporting(false);
-            ToastController.show({kind: 'error', content: `${t('import_wallet.private_key.errors.unknown')}\n${e.toString()}`, timeout: 6000});
+            ToastController.show({
+                kind: 'error',
+                content: `${t('import_wallet.private_key.errors.unknown')}\n${e.toString()}`,
+                timeout: 6000,
+            });
         }
     };
 
@@ -155,7 +159,12 @@ const ImportPrivateKey: React.FC<RootStackScreenProps<'ImportPrivateKey'>> = ({n
             <ScrollView contentContainerStyle={styles.container}>
                 <Text style={styles.label}>{t('import_wallet.private_key.label')}</Text>
                 <Separator space={spacing.s} />
-                <TextInput ref={labelInputRef} placeholder={t('import_wallet.private_key.label_placeholder')} value={label} onChangeText={setLabel} />
+                <TextInput
+                    ref={labelInputRef}
+                    placeholder={t('import_wallet.private_key.label_placeholder')}
+                    value={label}
+                    onChangeText={setLabel}
+                />
 
                 <Separator space={spacing.l} />
                 <View style={styles.hor}>
@@ -203,9 +212,7 @@ const ImportPrivateKey: React.FC<RootStackScreenProps<'ImportPrivateKey'>> = ({n
                         <Text style={styles.sheetAddress}>{keyPair?.address}</Text>
                     </View>
 
-                    <Text style={styles.sheetWarning}>
-                        {t('import_wallet.private_key.errors.wrong_address')}
-                    </Text>
+                    <Text style={styles.sheetWarning}>{t('import_wallet.private_key.errors.wrong_address')}</Text>
 
                     <View style={styles.sheetButtonsContainer}>
                         <Button

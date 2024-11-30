@@ -85,20 +85,22 @@ const ImportPassphrase: React.FC<RootStackScreenProps<'ImportPassphrase'>> = ({n
             }
             const mnemonicSplit = passphrase.trim().split(' ');
             if (mnemonicSplit.length < 12) {
-                ToastController.show({kind: 'error', content: `${t('import_wallet.passphrase.errors.incorrect')}`})
+                ToastController.show({kind: 'error', content: `${t('import_wallet.passphrase.errors.incorrect')}`});
                 return;
             }
-            setIsImporting(true);
             void importPassphrase();
         } catch (e: any) {
             setIsImporting(false);
-            ToastController.show({kind: 'error', content: `${t('import_wallet.passphrase.errors.unknown')}\n${e.toString()}`, timeout: 6000});
-        } finally {
-            setIsImporting(false);
+            ToastController.show({
+                kind: 'error',
+                content: `${t('import_wallet.passphrase.errors.unknown')}\n${e.toString()}`,
+                timeout: 6000,
+            });
         }
     };
 
     const importPassphrase = async () => {
+        setIsImporting(true);
         openSheet();
         let generatedWallets: GenWallet[] = [];
         let found = false;
@@ -118,9 +120,10 @@ const ImportPassphrase: React.FC<RootStackScreenProps<'ImportPassphrase'>> = ({n
                     return;
                 }
             } catch (error) {
-                console.warn(error);
+                console.log(error);
             }
         }
+        setIsImporting(false);
         setIsNotFound(!found);
         setGeneratedWallets(generatedWallets);
     };
@@ -131,6 +134,15 @@ const ImportPassphrase: React.FC<RootStackScreenProps<'ImportPassphrase'>> = ({n
         persistWallet(wallet, firstKeyPair);
         setDefaultKeyPairAddress(firstKeyPair.address);
         resetToMain();
+    };
+
+    const onSheetChange = (index: number) => {
+        handleSheetPositionChange(index);
+        if (index === -1) {
+            setIsImporting(false);
+            setIsNotFound(false);
+            setGeneratedWallets([]);
+        }
     };
 
     const resetToMain = () => {
@@ -147,7 +159,12 @@ const ImportPassphrase: React.FC<RootStackScreenProps<'ImportPassphrase'>> = ({n
             <ScrollView keyboardDismissMode={'interactive'} contentContainerStyle={styles.container}>
                 <Text style={styles.label}>{t('import_wallet.passphrase.label')}</Text>
                 <Separator space={spacing.s} />
-                <TextInput ref={labelInputRef} placeholder={t('import_wallet.passphrase.label_placeholder')} value={label} onChangeText={setLabel} />
+                <TextInput
+                    ref={labelInputRef}
+                    placeholder={t('import_wallet.passphrase.label_placeholder')}
+                    value={label}
+                    onChangeText={setLabel}
+                />
 
                 <Separator space={spacing.xl} />
                 <View style={styles.hor}>
@@ -189,17 +206,21 @@ const ImportPassphrase: React.FC<RootStackScreenProps<'ImportPassphrase'>> = ({n
                 backgroundStyle={styles.bottomSheetContainer}
                 handleIndicatorStyle={styles.bottomSheetIndicator}
                 ref={bottomSheetRef}
-                onChange={handleSheetPositionChange}
+                onChange={onSheetChange}
                 backdropComponent={renderBackdrop}
                 snapPoints={snapPoints}>
                 <View style={styles.sheetInnerContainer}>
-                    {!isNotFound && generatedWallets.length === 0 && (
-                        <Text>{t('import_wallet.passphrase.errors.not_found')}</Text>
-                    )}
                     {isImporting && (
                         <View style={styles.importingWrap}>
-                            <SendGlobe size={180} color={theme.colors.primary} />
-                            <Text variant="subheader">{t('import_wallet.passphrase.importing')}</Text>
+                            <Text>{t('import_wallet.passphrase.importing')}</Text>
+                            <SendGlobe
+                                size={150}
+                                color={theme.colors.secondary}
+                                containerStyle={{
+                                    width: 150,
+                                    height: 150,
+                                }}
+                            />
                         </View>
                     )}
                     {isNotFound && generatedWallets.length > 0 && (
@@ -279,6 +300,7 @@ const dynamicStyles = (theme: AppTheme) =>
         },
         sheetInnerContainer: {
             marginHorizontal: spacing.th,
+            padding: spacing.l,
         },
         sheetAddressTitle: {
             color: theme.colors.textSecondary,
@@ -305,6 +327,7 @@ const dynamicStyles = (theme: AppTheme) =>
         },
         importingWrap: {
             alignItems: 'center',
+            marginTop: spacing.l,
         },
         sheetButton: {
             flex: 1,
