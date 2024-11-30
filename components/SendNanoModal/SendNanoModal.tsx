@@ -1,5 +1,5 @@
-import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
-import {View, StyleSheet, TouchableOpacity} from 'react-native';
+import React, {useCallback, useMemo, useRef, useState} from 'react';
+import {View, StyleSheet} from 'react-native';
 import {BottomSheetBackdrop, BottomSheetModal} from '@gorhom/bottom-sheet';
 import {useBottomSheetBackHandler} from '@hooks/hooksbottomsheet/useBottomSheetBackHandler';
 import {useThemeStyleSheetProvided} from '@hooks/useThemeStyleSheet';
@@ -13,7 +13,7 @@ import SendGlobe from '@components/SendGlobe/SendGlobe';
 import {useDefaultWallet} from '@hooks/useWallet';
 import {useDefaultKeyPair} from '@hooks/useKeyPair';
 import BigNumber from 'bignumber.js';
-import {Feather, Ionicons} from '@expo/vector-icons';
+import {Feather} from '@expo/vector-icons';
 import {useDebounce} from '@hooks/useDebounce';
 import {sendNano} from '@components/SendNanoModal/sendNano';
 import {useNativeCurrency} from '@hooks/useNativeCurrency';
@@ -36,21 +36,20 @@ import {ModalHeader} from '@components/ModalHeader/ModalHeader';
 import {modalOpacity} from '@constants/variables';
 import {useTranslation} from 'react-i18next';
 
-interface Props {
+type Props = {
     toName?: string;
     toAddress: string;
     rawAmount: string;
-}
+};
 
 type ScreenState = 'preview' | 'sending' | 'success';
-const LOCK_TIMEOUT = 0;
 const SendNanoModal = ({toName, toAddress, rawAmount}: Props, ref: any) => {
     const defaultWallet = useDefaultWallet();
     const {defaultKeyPair} = useDefaultKeyPair();
     const {nativeCurrency} = useNativeCurrency();
     const {debounce} = useDebounce();
 
-    const {t} = useTranslation()
+    const {t} = useTranslation();
 
     const {decimalSeparator} = RNLocalize.getNumberFormatSettings();
     const [requireBiometricsOnSend] = useMMKVBoolean(StorageKeys.biometricsOnSend, encryptedStorage);
@@ -196,7 +195,11 @@ const SendNanoModal = ({toName, toAddress, rawAmount}: Props, ref: any) => {
                                 {t('send.sending_label')}
                             </Text>
                             <Text style={styles.dontCloseInfo}>{t('send.sending_wait')}</Text>
-                            <SendGlobe size={180} color={theme.colors.secondary} />
+                            <SendGlobe
+                                size={180}
+                                containerStyle={{width: 180, height: 180}}
+                                color={theme.colors.secondary}
+                            />
                         </View>
                     </>
                 )}
@@ -205,7 +208,7 @@ const SendNanoModal = ({toName, toAddress, rawAmount}: Props, ref: any) => {
                         <View style={styles.sendingContainer}>
                             <Success size={120} />
                             <Text style={styles.amount} weight="500">
-                                {t('send.success_balance_sent',{balance:formattedAmount,currency:nativeCurrency})}
+                                {t('send.success_balance_sent', {amount: formattedAmount, currency: nativeCurrency})}
                             </Text>
                             <Separator space={spacing.m} />
                             <Text weight="500">{t('send.success_sent_to')}</Text>
