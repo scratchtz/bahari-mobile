@@ -23,6 +23,7 @@ import {useTranslation} from 'react-i18next';
 type Props = {
     showFullDate?: boolean;
 } & History;
+
 const TransactionItem = (item: Props) => {
     const theme = useAppTheme();
     const styles = useThemeStyleSheetProvided(theme, dynamicStyles);
@@ -36,7 +37,13 @@ const TransactionItem = (item: Props) => {
         txDetailedModal.current?.present();
     };
 
-    const message = useMemo(() => (item.type === 'send' ? `${t('wallet.transaction_item.message_sent')}` : `${t('wallet.transaction_item.message_received')}`), [item.type]);
+    const message = useMemo(
+        () =>
+            item.type === 'send'
+                ? `${t('wallet.transaction_item.message_sent')}`
+                : `${t('wallet.transaction_item.message_received')}`,
+        [item.type],
+    );
     const time = useMemo(() => {
         const txTime = fromUnixTime(parseInt(item.local_timestamp));
         if (item.showFullDate) {
@@ -78,7 +85,7 @@ const TransactionItem = (item: Props) => {
                     <View style={styles.rightContainer}>
                         <Text weight="600" style={[styles.amount, {color: actionColor}]}>
                             {item.type === 'send' ? '-' : '+'}
-                            {t('wallet.transaction_item.amount',{amount:displayAmount,currency:nativeCurrency})}
+                            {t('wallet.transaction_item.amount', {amount: displayAmount, currency: nativeCurrency})}
                         </Text>
                         <Text style={styles.time}>{time}</Text>
                     </View>

@@ -48,8 +48,8 @@ const HistoryList = () => {
 
     const {data, isLoading} = useTransactionHistory(true, defaultKeyPair?.address || '', 5);
 
-    if (defaultKeyPair == null) return null;
-    if (data === undefined || isLoading) return null;
+    if (!defaultKeyPair) return null;
+    if (!data || isLoading) return null;
     return (
         <>
             <View style={styles.headerContainer}>

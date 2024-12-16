@@ -74,7 +74,7 @@ const TxDetailedModal = ({type, account, confirmed, amount, hash, local_timestam
 
     const openOnBrowser = async () => {
         ref.current.close();
-        void WebBrowser.openBrowserAsync(`https://nanolooker.com/block/${hash}`);
+        void WebBrowser.openBrowserAsync(`https://nanexplorer.com/nano/block/${hash}`);
     };
 
     const amountColor = type === 'receive' ? theme.colors.priceUp : theme.colors.textPrimary;
@@ -111,12 +111,19 @@ const TxDetailedModal = ({type, account, confirmed, amount, hash, local_timestam
                         <Text style={styles.key}>{t(`wallet.transaction_item.modal.title.${type}`)}</Text>
                         <Text style={[styles.amount, {color: amountColor}]}>
                             {type === 'receive' ? '+' : type === 'send' ? '-' : ''}
-                            {t('wallet.transaction_item.modal.amount',{amount:formatValue(nativeValue),currency:nativeCurrency})}
+                            {t('wallet.transaction_item.modal.amount', {
+                                amount: formatValue(nativeValue),
+                                currency: nativeCurrency,
+                            })}
                         </Text>
                     </View>
                     <View style={styles.section}>
                         <Text style={styles.key}>
-                            {type === 'receive' ? `${t('wallet.transaction_item.modal.type_from')}` : type === 'send' ? `${t('wallet.transaction_item.modal.type_to')}` : `${t('wallet.transaction_item.modal.type_account')}`}
+                            {type === 'receive'
+                                ? `${t('wallet.transaction_item.modal.type_from')}`
+                                : type === 'send'
+                                ? `${t('wallet.transaction_item.modal.type_to')}`
+                                : `${t('wallet.transaction_item.modal.type_account')}`}
                         </Text>
                         <View style={styles.hor}>
                             <AddressThumbnail address={account} size={30} containerStyle={styles.thumbnail} />
@@ -132,7 +139,9 @@ const TxDetailedModal = ({type, account, confirmed, amount, hash, local_timestam
                                 </TouchableOpacity>
                                 {!addressName && (
                                     <TouchableOpacity onPress={onAddContact}>
-                                        <Text style={styles.addContact}>{t('wallet.transaction_item.modal.add_contact')}</Text>
+                                        <Text style={styles.addContact}>
+                                            {t('wallet.transaction_item.modal.add_contact')}
+                                        </Text>
                                     </TouchableOpacity>
                                 )}
                             </View>
@@ -147,7 +156,11 @@ const TxDetailedModal = ({type, account, confirmed, amount, hash, local_timestam
                     <View style={styles.section}>
                         <Text style={styles.key}>{t('wallet.transaction_item.modal.status_label')}</Text>
                         <Text style={[styles.amount, {color: amountColor}]}>
-                            <Text style={styles.date}>{confirmed === 'true' ? `${t('wallet.transaction_item.modal.status_confirmed')}` : `${t('wallet.transaction_item.modal.status_pending')}`}</Text>
+                            <Text style={styles.date}>
+                                {confirmed === 'true'
+                                    ? `${t('wallet.transaction_item.modal.status_confirmed')}`
+                                    : `${t('wallet.transaction_item.modal.status_pending')}`}
+                            </Text>
                         </Text>
                     </View>
                     <TouchableOpacity style={styles.openExplorerButton} onPress={openOnBrowser}>
