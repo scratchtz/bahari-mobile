@@ -5,7 +5,7 @@ import {AppTheme} from '@utils/styles/theme';
 import {AllScreenProps} from '@navigation/types';
 import {useThemeStyleSheetProvided} from '@hooks/useThemeStyleSheet';
 import {useAppTheme} from '@hooks/useAppTheme';
-import {FontAwesome, MaterialCommunityIcons, MaterialIcons, FontAwesome5} from '@expo/vector-icons';
+import {FontAwesome, MaterialCommunityIcons, FontAwesome5} from '@expo/vector-icons';
 import {ScanQRCodeModal} from './ScanQRCodeModal';
 import {BottomSheetModal} from '@gorhom/bottom-sheet';
 import Text from '@components/Text/Text';
