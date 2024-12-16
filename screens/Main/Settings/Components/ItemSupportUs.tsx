@@ -8,10 +8,14 @@ import Text from '@components/Text/Text';
 import Separator from '@components/Separator/Separator';
 import {useAppTheme} from '@hooks/useAppTheme';
 import {BottomSheetBackdrop, BottomSheetModal} from '@gorhom/bottom-sheet';
-import {modalOpacity} from '@constants/variables';
 import {useBottomSheetBackHandler} from '@hooks/hooksbottomsheet/useBottomSheetBackHandler';
 import {ModalHeader} from '@components/ModalHeader/ModalHeader';
 import {useTranslation} from 'react-i18next';
+import {Feather} from '@expo/vector-icons';
+import * as Clipboard from 'expo-clipboard';
+import {ToastController} from '@components/Toast/Toast';
+import {navigate, navigationRef} from '@navigation/shared';
+import {SUPPORT_NANO_ADDRESS} from '@constants/others';
 
 const SupportUs = () => {
     const styles = useThemeStyleSheet(sharedStyles);
@@ -38,27 +42,39 @@ const SupportUs = () => {
     );
 };
 
-const SupportModal = React.forwardRef((props: any, ref: any) => {
+const SupportModal = React.forwardRef(({}, ref: any) => {
     const theme = useAppTheme();
     const styles = useThemeStyleSheetProvided(theme, dynamicStyles);
     const {handleSheetPositionChange} = useBottomSheetBackHandler(ref);
     const {t} = useTranslation();
-    const snapPoints = useMemo(() => [300, '80%'], []);
+    const snapPoints = useMemo(() => [300, '50%', '80%'], []);
+
     const renderBackdrop = useCallback(
-        (props: any) => (
-            <BottomSheetBackdrop {...props} opacity={modalOpacity} disappearsOnIndex={-1} appearsOnIndex={0} />
-        ),
+        (props: any) => <BottomSheetBackdrop {...props} opacity={0.5} disappearsOnIndex={-1} appearsOnIndex={0} />,
         [],
     );
 
-    const openGithub = async () => {
+    const openGithub = useCallback(async () => {
         const url = 'https://github.com/scratchtz/bahari-mobile';
         try {
             await Linking.openURL(url);
         } catch (error) {
-            console.error('Error opening the link', error);
+            console.error('Failed to open GitHub link:', error);
         }
-    };
+    }, []);
+
+    const copyToClipboard = useCallback(() => {
+        Clipboard.setStringAsync(SUPPORT_NANO_ADDRESS);
+        ToastController.show({
+            kind: 'success',
+            content: t('others.support.copy_success'),
+        });
+    }, [t]);
+
+    const sendToNanoAddress = useCallback(() => {
+        navigate('SendAmount', {address: SUPPORT_NANO_ADDRESS});
+        ref.current?.close();
+    }, []);
 
     return (
         <BottomSheetModal
@@ -69,19 +85,29 @@ const SupportModal = React.forwardRef((props: any, ref: any) => {
             onChange={handleSheetPositionChange}
             backdropComponent={renderBackdrop}
             snapPoints={snapPoints}>
-            <ModalHeader title={t('others.support.modal_title')} onClose={() => ref.current.close()} />
+            <ModalHeader title={t('others.support.modal_title')} onClose={() => ref.current?.close()} />
             <View style={styles.innerContainer}>
                 <Text>{t('others.support.offer')}</Text>
                 <Separator space={spacing.s} />
                 <TouchableOpacity onPress={openGithub}>
-                    <Text style={styles.link} variant={'subheader'}>
+                    <Text style={styles.link} variant="subheader">
                         {t('others.support.github')}
                     </Text>
                 </TouchableOpacity>
                 <Separator space={spacing.s} />
                 <Text>{t('others.support.nano')}</Text>
                 <Separator space={spacing.s} />
-                <Text variant={'subheader'}>Nano address....</Text>
+                <View style={styles.nanoAddressContainer}>
+                    <Text variant="subheader" style={styles.nanoAddress}>
+                        {SUPPORT_NANO_ADDRESS}
+                    </Text>
+                    <TouchableOpacity onPress={copyToClipboard}>
+                        <Feather name="copy" style={styles.actionIcon} />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={sendToNanoAddress}>
+                        <MaterialIcons name="send" style={styles.actionIcon} />
+                    </TouchableOpacity>
+                </View>
             </View>
         </BottomSheetModal>
     );
@@ -100,6 +126,19 @@ const dynamicStyles = (theme: AppTheme) =>
         },
         innerContainer: {
             paddingHorizontal: spacing.th,
+        },
+        nanoAddressContainer: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            gap: spacing.s,
+        },
+        nanoAddress: {
+            flex: 1,
+        },
+        actionIcon: {
+            fontSize: 18,
+            color: theme.colors.textPrimary,
+            padding: spacing.s,
         },
     });
 

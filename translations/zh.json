@@ -516,6 +516,21 @@
         "success_balance_sent": "{{amount}} {{currency}}",
         "success_sent_to": "发送到",
         "add_contact": "添加新联系人",
-        "button_done": "完成"
+        "button_done": "完成",
+        "thank_you_support": "感谢您对我们的项目支持和捐助！"
+    },
+    "others": {
+        "title": "其他",
+        "privacy": "隐私政策",
+        "terms": "条款和条件",
+        "contact_us": "联系我们",
+        "support": {
+            "title": "支持我们",
+            "modal_title": "支持我们",
+            "offer": "这个应用程序是完全免费和开源的。您可以通过以下链接查看我们的 GitHub 仓库：",
+            "github": "访问 GitHub",
+            "nano": "如果您愿意支持我们，这里是我们的 Nano 钱包地址：",
+            "copy_success": "已复制到剪贴板"
+        }
     }
 }

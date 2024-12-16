@@ -1,4 +1,3 @@
-import {getRPC} from '@utils/rpc/rpc';
 import {BAHARI_API_URL} from '@constants/endpoints';
 import {encryptedStorage} from '@storage/mmkv';
 import {Platform} from 'react-native';

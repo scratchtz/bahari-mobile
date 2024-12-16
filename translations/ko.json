@@ -516,6 +516,21 @@
         "success_balance_sent": "{{amount}} {{currency}}",
         "success_sent_to": "보낸 주소",
         "add_contact": "새 연락처 추가",
-        "button_done": "완료"
+        "button_done": "완료",
+        "thank_you_support": "저희 프로젝트에 후원해 주셔서 진심으로 감사합니다!"
+    },
+    "others": {
+        "title": "기타",
+        "privacy": "개인정보 보호정책",
+        "terms": "이용 약관",
+        "contact_us": "문의하기",
+        "support": {
+            "title": "후원하기",
+            "modal_title": "후원하기",
+            "offer": "이 앱은 완전히 무료이며 오픈 소스입니다. 아래에서 우리의 GitHub 저장소를 확인해 보세요:",
+            "github": "GitHub 방문하기",
+            "nano": "저희를 후원해 주시려면 아래에 Nano 지갑 주소가 있습니다:",
+            "copy_success": "클립보드에 복사되었습니다"
+        }
     }
 }

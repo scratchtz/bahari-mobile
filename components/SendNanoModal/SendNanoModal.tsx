@@ -14,7 +14,6 @@ import {useDefaultWallet} from '@hooks/useWallet';
 import {useDefaultKeyPair} from '@hooks/useKeyPair';
 import BigNumber from 'bignumber.js';
 import {Feather} from '@expo/vector-icons';
-import {useDebounce} from '@hooks/useDebounce';
 import {sendNano} from '@components/SendNanoModal/sendNano';
 import {useNativeCurrency} from '@hooks/useNativeCurrency';
 import {convertNativeCurrencies} from '@utils/helper/nativeCurrency';
@@ -35,6 +34,7 @@ import {ToastController} from '@components/Toast/Toast';
 import {ModalHeader} from '@components/ModalHeader/ModalHeader';
 import {modalOpacity} from '@constants/variables';
 import {useTranslation} from 'react-i18next';
+import {SUPPORT_NANO_ADDRESS} from '@constants/others';
 
 type Props = {
     toName?: string;
@@ -47,7 +47,6 @@ const SendNanoModal = ({toName, toAddress, rawAmount}: Props, ref: any) => {
     const defaultWallet = useDefaultWallet();
     const {defaultKeyPair} = useDefaultKeyPair();
     const {nativeCurrency} = useNativeCurrency();
-    const {debounce} = useDebounce();
 
     const {t} = useTranslation();
 
@@ -206,7 +205,7 @@ const SendNanoModal = ({toName, toAddress, rawAmount}: Props, ref: any) => {
                 {screenState === 'success' && (
                     <>
                         <View style={styles.sendingContainer}>
-                            <Success size={120} />
+                            <Success size={100} />
                             <Text style={styles.amount} weight="500">
                                 {t('send.success_balance_sent', {amount: formattedAmount, currency: nativeCurrency})}
                             </Text>
@@ -214,24 +213,38 @@ const SendNanoModal = ({toName, toAddress, rawAmount}: Props, ref: any) => {
                             <Text weight="500">{t('send.success_sent_to')}</Text>
 
                             <Separator space={spacing.s} />
-                            <View style={styles.hor}>
-                                <AddressThumbnail address={toAddress} size={36} containerStyle={styles.thumbnail} />
-                                <View>
-                                    {toName && (
-                                        <Text style={styles.toWallet} weight="500">
-                                            {toName}
-                                        </Text>
-                                    )}
-                                    <Text style={styles.toAddress}>{shortenAddress(toAddress, 10)}</Text>
+
+                            {toAddress === SUPPORT_NANO_ADDRESS ? (
+                                <View style={{alignItems: 'center', marginTop: spacing.s}}>
+                                    <Text style={styles.toWallet}>Bahari</Text>
+                                    <Text>{t('send.thank_you_support')}</Text>
                                 </View>
-                            </View>
-                            {!toName && (
-                                <ButtonTiny
-                                    icon={<Feather name="plus-circle" style={styles.addContactIcon} />}
-                                    title={t('send.add_contact')}
-                                    onPress={onAddContact}
-                                    containerStyle={styles.addContactButton}
-                                />
+                            ) : (
+                                <>
+                                    <View style={styles.hor}>
+                                        <AddressThumbnail
+                                            address={toAddress}
+                                            size={36}
+                                            containerStyle={styles.thumbnail}
+                                        />
+                                        <View>
+                                            {toName && (
+                                                <Text style={styles.toWallet} weight="500">
+                                                    {toName}
+                                                </Text>
+                                            )}
+                                            <Text style={styles.toAddress}>{shortenAddress(toAddress, 10)}</Text>
+                                        </View>
+                                    </View>
+                                    {!toName && (
+                                        <ButtonTiny
+                                            icon={<Feather name="plus-circle" style={styles.addContactIcon} />}
+                                            title={t('send.add_contact')}
+                                            onPress={onAddContact}
+                                            containerStyle={styles.addContactButton}
+                                        />
+                                    )}
+                                </>
                             )}
                         </View>
                         <Button title={t('send.button_done')} onPress={onDone} containerStyle={styles.doneButton} />

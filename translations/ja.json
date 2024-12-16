@@ -516,6 +516,21 @@
         "success_balance_sent": "{{amount}} {{currency}}",
         "success_sent_to": "送金先",
         "add_contact": "新規連絡先を追加",
-        "button_done": "完了"
+        "button_done": "完了",
+        "thank_you_support": "ご支援いただき、誠にありがとうございます！"
+    },
+    "others": {
+        "title": "その他",
+        "privacy": "プライバシーポリシー",
+        "terms": "利用規約",
+        "contact_us": "お問い合わせ",
+        "support": {
+            "title": "寄付する",
+            "modal_title": "寄付する",
+            "offer": "このアプリは完全に無料でオープンソースです。以下のリンクから私たちのGitHubリポジトリをチェックしてください:",
+            "github": "GitHubを訪問",
+            "nano": "ご支援いただける場合、こちらが私たちのNanoウォレットアドレスです:",
+            "copy_success": "クリップボードにコピーしました"
+        }
     }
 }

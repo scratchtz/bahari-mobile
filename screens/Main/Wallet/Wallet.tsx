@@ -49,13 +49,13 @@ const WalletScreen: React.FC<AllScreenProps<'Wallet'>> = ({navigation}) => {
                 <PriceGraph />
                 <Separator space={spacing.xl} />
                 <View style={styles.actionButtons}>
-                    <ActionButton
+                    {/* <ActionButton
                         title={t('wallet.action_buy')}
                         icon={<MaterialIcons name="payments" style={styles.actionButtonIcon} />}
                         onPress={() => {
                             navigation.navigate('BuyNano');
                         }}
-                    />
+                    /> */}
                     <ActionButton
                         title={t('wallet.action_send')}
                         icon={<FontAwesome name="send" style={styles.actionButtonIcon} />}
@@ -123,7 +123,7 @@ const dynamicStyles = (theme: AppTheme) =>
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'space-between',
-            maxWidth: 1000,
+            maxWidth: 600,
         },
         actionButtonIcon: {
             fontSize: 22,
@@ -147,7 +147,6 @@ const ActionButton = React.memo(({icon, title, onPress}: {icon: JSX.Element; tit
 const actionButtonStyles = (theme: AppTheme) =>
     StyleSheet.create({
         container: {
-            marginRight: spacing.xl,
             alignItems: 'center',
         },
         roundContainer: {

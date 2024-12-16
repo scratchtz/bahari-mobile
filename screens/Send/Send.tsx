@@ -112,7 +112,9 @@ const Send: React.FC<CommonStackScreenProps<'Send'>> = ({navigation}) => {
                         onPress={() => {
                             scrollViewRef.current?.scrollTo({x: width, animated: true});
                         }}>
-                        <Animated.Text style={[styles.tabText, {color: colorInterpolation}]}>{t('send.contact_label')}</Animated.Text>
+                        <Animated.Text style={[styles.tabText, {color: colorInterpolation}]}>
+                            {t('send.contact_label')}
+                        </Animated.Text>
                     </TouchableOpacity>
                 </View>
             </View>

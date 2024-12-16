@@ -6,45 +6,68 @@ import {useAppTheme} from '@hooks/useAppTheme';
 import {markdownStyles} from '@screens/Main/Settings/Components/markdownStyles';
 
 const policy = `
-# Privacy Policy for Zero Point
+# Privacy Policy for Bahari
 
 ## 1. Introduction
 
-At Scratch Limited, we value your privacy. This Privacy Policy outlines how Zero Point ("the App") handles your data. By using the App, you agree to the terms described in this Privacy Policy.
+At Scratch Limited, we value your privacy. This Privacy Policy outlines how Bahari ("the App") handles your data. By using the App, you agree to the terms described in this Privacy Policy.
 
-## 2. Data We Do Not Collect
+## 2. Data We Collect
 
-Zero Point does **not** collect, store, or transmit any personal data, server details, or torrent usage information. All data related to your usage of the App is stored **locally** on your device. We do not use external servers to store or manage your data.
+Bahari collects minimal data to provide essential functionality:
 
-## 3. Local Data Storage
+- **Wallet Public Address**: We store your wallet public address solely for the purpose of sending push notifications for new transactions. If you opt out of push notifications, this data is deleted. It's stored in form of | wallet_address | push_notification_token |. Whenever a transaction occurs for that particular address we send a notification to the corresponding token.
 
-All information related to torrent management, server credentials, and usage is saved directly on your device. The App does not send any data to Scratch Limited or any third parties.
+## 3. Data We Do Not Collect
 
-### 3.1 User Responsibility
-You are responsible for the security of your device and the data stored within the App. We recommend taking necessary measures such as using secure passwords and keeping your device updated to safeguard your data.
+Bahari does **not** collect, store, or log:
 
-## 4. Security
+- Personal data such as names, email addresses, or phone numbers
+- IP addresses or other identifiable information
+- Mnemonic phrases or private keys
 
-While we do not collect any data, we encourage you to secure your device. Ensure that you take appropriate steps to protect your data from unauthorized access, loss, or disclosure. Scratch Limited is not responsible for any security issues related to your device.
+All sensitive wallet data is encrypted and stored locally on your device. You are solely responsible for managing and securing your data.
 
-## 5. Third-Party Services
+## 4. Local Data Storage
 
-Zero Point does not integrate with any third-party services or analytics tools that could collect data about your activity. You can use the App without the need to connect to external platforms.
+### 4.1 User Responsibility
+All wallet-related information, including your mnemonic phrase and private keys, is stored on your device in encrypted form. It is your responsibility to safeguard this data. We recommend using strong passwords and keeping your device secure and up-to-date.
 
-## 6. Children’s Privacy
+## 5. Push Notifications
 
-Zero Point is not intended for use by individuals under the age of 13. We do not knowingly collect any information from children.
+Bahari uses third-party services to send push notifications for new transactions:
 
-## 7. Changes to this Privacy Policy
+- **Apple Push Notification Service (APNs)** for iOS
+- **Google Firebase Cloud Messaging (FCM)** for Android
+
+Push notifications are optional. If you disable them, no data is transmitted to these services, and your wallet address is deleted from our system.
+
+## 6. Security
+
+We are committed to ensuring your data remains secure. Bahari employs robust encryption to protect locally stored wallet data. However, the security of your data ultimately depends on how you manage your device and access credentials.
+
+## 7. Third-Party Services
+
+The App integrates only with the following third-party services:
+
+- Apple Push Notification Service (APNs)
+- Google Firebase Cloud Messaging (FCM)
+
+These services are used exclusively for delivering push notifications. No additional data is shared or collected.
+
+## 8. Changes to this Privacy Policy
 
 We reserve the right to update this Privacy Policy from time to time. Any changes will be posted within the App or on our website. Your continued use of the App after any changes indicates your acceptance of the updated policy.
 
-## 8. Contact Us
+## 9. Contact Us
 
 If you have any questions or concerns about this Privacy Policy, please contact us at:
 
 dev@scratch.co.tz
-Last updated: 2024 Oct 13
+
+Last updated: 2024 Dec 16
+
+
 
 `;
 

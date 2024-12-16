@@ -1,51 +1,91 @@
 import {ScrollView, StyleSheet} from 'react-native';
 import Markdown from 'react-native-markdown-display';
 import {AppTheme, spacing} from '@utils/styles';
-import {useThemeStyleSheet, useThemeStyleSheetProvided} from '@hooks/useThemeStyleSheet';
+import {useThemeStyleSheetProvided} from '@hooks/useThemeStyleSheet';
 import {useAppTheme} from '@hooks/useAppTheme';
 import {markdownStyles} from '@screens/Main/Settings/Components/markdownStyles';
 
 const terms = `
-# Terms and Conditions for Zero Point
+# Terms & Conditions for Bahari
 
 ## 1. Acceptance of Terms
 
-By downloading, installing, or using Zero Point ("the App"), you agree to be bound by these Terms and Conditions. If you disagree with any part of these terms, you may not use our App.
+By downloading or using Bahari ("the App"), you agree to be bound by these Terms & Conditions ("Terms"). If you do not agree, you may not use the App.
 
-## 2. Use of the App
+## 2. Eligibility
 
-### 2.1 License
-Scratch Limited grants you a limited, non-exclusive, non-transferable license to use Zero Point for your personal, non-commercial purposes.
+The App is available to individuals who can legally own and manage a cryptocurrency wallet. It is your responsibility to ensure compliance with local laws and regulations.
 
-### 2.2 Restrictions
+## 3. Use of the App
+
+You are solely responsible for:
+- Securing your device and wallet credentials.
+- Keeping your mnemonic phrase, private keys, and passwords safe.
+- Ensuring that your use of the App complies with applicable laws.
+
+## 4. Disclaimer of Liability
+
+Bahari is provided "as is," and Scratch Limited disclaims all liability for:
+- Loss of funds due to user errors, such as forgotten mnemonic phrases or passwords.
+- Unauthorized access to your wallet caused by negligence.
+- Errors or delays in blockchain transactions.
+- Bugs, glitches, or other technical issues within the App.
+
+Cryptocurrency transactions are irreversible. Use caution and verify all details before sending or receiving funds.
+
+## 5. No Financial Advice
+
+Bahari does not provide financial, tax, or investment advice. Use the App at your own risk and consult a professional for any financial decisions.
+
+## 6. Third-Party Services
+
+The App integrates with the following third-party services solely to enable push notifications:
+- Apple Push Notification Service (APNs)
+- Google Firebase Cloud Messaging (FCM)
+
+If you opt out of push notifications, no data is transmitted to these services.
+
+## 7. Prohibited Activities
+
 You agree not to:
-- Modify, distribute, or create derivative works based on the App
-- Use the App for any illegal purpose
-- Attempt to gain unauthorized access to any portion of the App
+- Use the App for illegal activities, fraud, or money laundering.
+- Exploit or reverse-engineer the App’s functionality.
+- Interfere with or disrupt the operation of the App.
+- Create derivative apps using Bahari’s source code while pretending to be Bahari.
+- Use Bahari’s nodes for derivative apps without prior permission.
 
-## 3. User Data and Privacy
+Violation of these terms may result in suspension or termination of your access to the App.
 
-### 3.1 Local Storage
-All data entered into the App is stored locally on your device. We do not collect, store, or transmit any information about your server or personal data.
+## 8. Intellectual Property
 
-### 3.2 User Responsibility
-You are responsible for securing your device and the data stored within the App.
+Bahari is an open-source application. While you are free to review, modify, and use the source code under the terms of its open-source license, you may not:
+- Use Bahari’s branding, trademarks, or logos without written consent.
+- Represent derivative apps as being affiliated with or endorsed by Bahari.
+- Use Bahari’s nodes or infrastructure for derivative apps without explicit permission.
 
-## 4. Disclaimer of Warranties
+## 9. Termination of Use
 
-The App is provided "as is" without any warranties, expressed or implied. Scratch Limited does not warrant that the App will be error-free or uninterrupted.
+Scratch Limited reserves the right to suspend or terminate your access to the App if you violate these Terms or engage in prohibited activities.
 
-## 5. Limitation of Liability
+## 10. Updates to Terms
 
-Scratch Limited shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of the App.
+We may update these Terms from time to time. Changes will be posted within the App or on our website. Your continued use of the App after changes indicates your acceptance of the updated Terms.
 
-## 6. Data Collection
+## 11. Governing Law
 
-Zero Point does not collect any data regarding your servers, torrents, or usage. All information is stored locally on your device, and no external servers are used.
+These Terms are governed by the laws of The United Republic of Tanzania. Any disputes will be resolved in accordance with local laws.
 
-## 7. Changes to the App and Terms
+## 12. Limitation of Liability
 
-We reserve the right to modify or discontinue the App at any time. We may also revise these Terms and Conditions at any time. By continuing to use the App after such changes, you agree to be bound by the revised terms.
+To the fullest extent permitted by law, Scratch Limited shall not be liable for any indirect, incidental, or consequential damages arising from your use of the App, including but not limited to bugs, glitches, or technical issues.
+
+## 13. Contact Us
+
+For questions or concerns about these Terms, contact us at:
+
+dev@scratch.co.tz
+
+Last updated: 2024 Dec 16
 `;
 
 const TermsModal = () => {

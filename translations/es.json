@@ -516,6 +516,21 @@
         "success_balance_sent": "{{amount}} {{currency}}",
         "success_sent_to": "Enviado a",
         "add_contact": "Agregar Nuevo Contacto",
-        "button_done": "Listo"
+        "button_done": "Listo",
+        "thank_you_support": "¡Gracias por apoyarnos con tu contribución!"
+    },
+    "others": {
+        "title": "Otros",
+        "privacy": "Política de Privacidad",
+        "terms": "Términos y Condiciones",
+        "contact_us": "Contáctanos",
+        "support": {
+            "title": "Apóyanos",
+            "modal_title": "Apóyanos",
+            "offer": "Esta aplicación es completamente gratuita y de código abierto. Puedes explorar nuestro repositorio de GitHub a continuación:",
+            "github": "Visitar GitHub",
+            "nano": "Si deseas contribuir, aquí tienes nuestra dirección de billetera Nano:",
+            "copy_success": "Copiado al portapapeles"
+        }
     }
 }

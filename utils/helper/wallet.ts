@@ -2,15 +2,11 @@ import {generateMnemonic, mnemonicToSeedHex} from '@dreson4/react-native-quick-b
 import {KeyPair, MnemonicPathKind, Wallet} from '@utils/types';
 import {derivePath} from 'ed25519-hd-key';
 import crypto from 'react-native-quick-crypto';
-import * as ed25519 from '@noble/ed25519';
 import NanoAddress from 'nanocurrency-web/dist/lib/nano-address';
 import {uniqueNamesGenerator, colors, animals} from 'unique-names-generator';
 import Ed25519 from 'nanocurrency-web/dist/lib/ed25519';
 import * as bip39 from 'bip39';
 import * as nanocurrency from 'nanocurrency';
-
-// @ts-ignore
-ed25519.utils.sha512Sync = m => crypto.createHash('sha512').update(m).digest();
 
 const shortName: string = uniqueNamesGenerator({
     dictionaries: [colors, animals],

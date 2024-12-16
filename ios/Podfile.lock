@@ -20,9 +20,9 @@ PODS:
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
-  - EXNotifications (0.27.6):
+  - EXNotifications (0.27.8):
     - ExpoModulesCore
-  - Expo (50.0.7):
+  - Expo (50.0.21):
     - ExpoModulesCore
   - ExpoCamera (14.0.5):
     - ExpoModulesCore
@@ -32,7 +32,7 @@ PODS:
     - ExpoModulesCore
   - ExpoDevice (5.9.3):
     - ExpoModulesCore
-  - ExpoFileSystem (16.0.6):
+  - ExpoFileSystem (16.0.9):
     - ExpoModulesCore
   - ExpoHaptics (12.8.1):
     - ExpoModulesCore
@@ -51,7 +51,7 @@ PODS:
     - ExpoModulesCore
   - ExpoLocalAuthentication (13.8.0):
     - ExpoModulesCore
-  - ExpoModulesCore (1.11.9):
+  - ExpoModulesCore (1.11.14):
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
@@ -993,8 +993,10 @@ PODS:
     - React-Core
   - react-native-menu (0.9.1):
     - React
-  - react-native-mmkv (2.11.0):
-    - MMKV (>= 1.2.13)
+  - react-native-mmkv (2.12.2):
+    - glog
+    - MMKV (>= 1.3.3)
+    - RCT-Folly (= 2022.05.16.00)
     - React-Core
   - react-native-quick-base64 (2.0.8):
     - React-Core
@@ -1191,7 +1193,7 @@ PODS:
     - React-Core
   - RNLocalize (3.0.6):
     - React-Core
-  - RNReanimated (3.6.2):
+  - RNReanimated (3.6.3):
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
@@ -1526,19 +1528,19 @@ SPEC CHECKSUMS:
   EXFont: f20669cb266ef48b004f1eb1f2b20db96cd1df9f
   EXImageLoader: 55080616b2fe9da19ef8c7f706afd9814e279b6b
   EXMediaLibrary: 5a74f7d9cce776ca07cb3090b948cedd7d4841a1
-  EXNotifications: e11f0e9a5b657c064a481a5d522f3bc5a07bf7cd
-  Expo: 1cf3922a9b26262b2556544d4defcecccd37d033
+  EXNotifications: e254c0fa11337e15b30c200e91437b521f682bad
+  Expo: 7b9976a9b2be116a701b233d6655b229a3c9316e
   ExpoCamera: 9eb966748a7897e84986567e3eef71836c219823
   ExpoClipboard: b597982124f067ff9f5b89093eb3d97898d5d877
   ExpoDevice: d204395e17fffdcefa7470bdef33b07719ac41b1
-  ExpoFileSystem: a9273932e69a9a1e1a8d01b6ba895bb8294bbea2
+  ExpoFileSystem: 74cc0fae916f9f044248433971dcfc8c3befd057
   ExpoHaptics: 28a771b630353cd6e8dcf1b1e3e693e38ad7c3c3
   ExpoImage: 8cf2d51de3d03b7e984e9b0ba8f19c0c22057001
   ExpoImageManipulator: c1d7cb865eacd620a35659f3da34c70531f10b59
   ExpoImagePicker: 66970181d1c838f444e5e1f81b804ab2d5ff49bd
   ExpoKeepAwake: 0f5cad99603a3268e50af9a6eb8b76d0d9ac956c
   ExpoLocalAuthentication: c55ffb179683efed04cb144fc80ccf26891f0cb4
-  ExpoModulesCore: 1391529545de72f7f64ecabc7adb912306ab4d34
+  ExpoModulesCore: 421e9c6bcb63baf153a5ec22b2b4319addfe331c
   ExpoSystemUI: 40e222dd9d52222fe1bce389724ac52e662158dc
   ExpoWebBrowser: e31c97230ea93b51a2a74c6c2381b0d4fca5698c
   EXSplashScreen: 5425c781a5fa3630cb51c12fef18ec05bfca869f
@@ -1582,7 +1584,7 @@ SPEC CHECKSUMS:
   react-native-ble-plx: ebbd8d2ae6344b9ea619e232ebfa5482cc366181
   react-native-encrypted-storage: db300a3f2f0aba1e818417c1c0a6be549038deb7
   react-native-menu: 9728f90160c36b9a75481fc76e05354b99d54c59
-  react-native-mmkv: e97c0c79403fb94577e5d902ab1ebd42b0715b43
+  react-native-mmkv: 61c0e00963aee12f65c2c34ee83a3dc890026a0d
   react-native-quick-base64: 777057ea4286f806b00259ede65dc79c7c706320
   react-native-quick-crypto: de1929481351812f6b79f99e298fdcba51d085b4
   react-native-safe-area-context: 0ee144a6170530ccc37a0fd9388e28d06f516a89
@@ -1612,7 +1614,7 @@ SPEC CHECKSUMS:
   RNFlashList: 4b4b6b093afc0df60ae08f9cbf6ccd4c836c667a
   RNGestureHandler: 25b969a1ffc806b9f9ad2e170d4a3b049c6af85e
   RNLocalize: 4222a3756cdbe2dc9a5bdf445765a4d2572107cb
-  RNReanimated: 5589be82dc26b3f94738eb7c6b1f942787532b25
+  RNReanimated: 6259d9f32f4a54b2f5660bc2c1829215e38ca20f
   RNScreens: b582cb834dc4133307562e930e8fa914b8c04ef2
   RNSVG: ba3e7232f45e34b7b47e74472386cf4e1a676d0a
   SDWebImage: 750adf017a315a280c60fde706ab1e552a3ae4e9
@@ -1621,9 +1623,9 @@ SPEC CHECKSUMS:
   SDWebImageWebPCoder: af09429398d99d524cae2fe00f6f0f6e491ed102
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   VisionCamera: 4b98b273902ac18491bb68481b6601f1f0da0f2d
-  Yoga: 1b901a6d6eeba4e8a2e8f308f708691cdb5db312
+  Yoga: 64cd2a583ead952b0315d5135bf39e053ae9be70
   ZXingObjC: 8898711ab495761b2dbbdec76d90164a6d7e14c5
 
 PODFILE CHECKSUM: a76693f24cda1a9e2a3bd4a218948a2928bb5008
 
-COCOAPODS: 1.16.2
+COCOAPODS: 1.14.3
