@@ -5,12 +5,12 @@ import {FontAwesome5} from '@expo/vector-icons';
 import Text from '@components/Text/Text';
 import React from 'react';
 import {navigate} from '@navigation/shared';
-import {useNetworks} from '@hooks/useNetworks';
 import {useTranslation} from 'react-i18next';
+import {useWorkServer} from '@hooks/useWorkServer';
 
 const ItemWork = () => {
     const styles = useThemeStyleSheet(sharedStyles);
-    const {currentNetworkLabel} = useNetworks();
+    const {currentNetworkLabel} = useWorkServer();
     const {t} = useTranslation();
 
     return (
