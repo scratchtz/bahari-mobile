@@ -19,7 +19,9 @@
         "contact": "Contact",
         "contacts": "Contacts",
         "new_contact": "New Contact",
-        "send_amount": "Send Amount"
+        "send_amount": "Send Amount",
+        "work_server": "PoW Server",
+        "work_server_new":"New PoW Server"
     },
     "buy_nano": {
         "title": "Buy Nano",
@@ -90,6 +92,7 @@
         "notification_label": "Push Notifications",
         "network_label": "Network",
         "representative_label": "Representative",
+        "work_label":"PoW Server",
         "unlock_method": {
             "label": "Unlock Method",
             "method_password": "Password",

@@ -4,14 +4,14 @@ import {CommonStackScreenProps} from '@navigation/types';
 import {AppTheme, spacing} from '@utils/styles';
 import {useThemeStyleSheet} from '@hooks/useThemeStyleSheet';
 import Separator from '@components/Separator/Separator';
-import {useNetworks} from '@hooks/useNetworks';
-import NetworkItem from '@screens/Network/NetworkItem';
 import Button from '@components/Button/Button';
 import Text from '@components/Text/Text';
 import {useTranslation} from 'react-i18next';
+import {useWorkServer} from '@hooks/useWorkServer';
+import ServerItem from './ServerItem';
 
-const Network = ({navigation}: CommonStackScreenProps<'Network'>) => {
-    const {allNetworks, currentNetwork} = useNetworks();
+const WorkServer = ({navigation}: CommonStackScreenProps<'WorkServer'>) => {
+    const {allNetworks, currentNetwork} = useWorkServer();
 
     const {t} = useTranslation();
     const styles = useThemeStyleSheet(dynamicStyles);
@@ -30,13 +30,13 @@ const Network = ({navigation}: CommonStackScreenProps<'Network'>) => {
                             variant="primary"
                             title={t('network.button')}
                             onPress={() => {
-                                navigation.navigate('NetworkNew');
+                                navigation.navigate('WorkServerNew');
                             }}
                         />
                     </>
                 }
                 contentContainerStyle={styles.contentContainer}
-                renderItem={({item}) => <NetworkItem {...item} isSelected={currentNetwork === item.endpoint} />}
+                renderItem={({item}) => <ServerItem {...item} isSelected={currentNetwork === item.endpoint} />}
             />
         </View>
     );
@@ -61,4 +61,4 @@ const dynamicStyles = (theme: AppTheme) =>
         },
     });
 
-export default Network;
+export default WorkServer;

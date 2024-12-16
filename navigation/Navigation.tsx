@@ -36,6 +36,8 @@ import {TFunction} from 'i18next';
 import {useTranslation} from 'react-i18next';
 import PrivacyModal from '@screens/Main/Settings/PrivacyModal';
 import TermsModal from '@screens/Main/Settings/TermsModal';
+import WorkServerNew from '@screens/WorkServer/WorkServerNew';
+import WorkServer from '@screens/WorkServer/WorkServer';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const Navigation = () => {
@@ -231,6 +233,30 @@ export const CommonStackScreens = (
                     route,
                     theme,
                     title: `${t('navigation.network_new')}`,
+                    headerShown: true,
+                })
+            }
+        />
+        <Stack.Screen
+            name="WorkServer"
+            component={WorkServer}
+            options={({route}) =>
+                navigatorScreenOptions({
+                    route,
+                    theme,
+                    title: `${t('navigation.work_server')}`,
+                    headerShown: true,
+                })
+            }
+        />
+        <Stack.Screen
+            name="WorkServerNew"
+            component={WorkServerNew}
+            options={({route}) =>
+                navigatorScreenOptions({
+                    route,
+                    theme,
+                    title: `${t('navigation.work_server_new')}`,
                     headerShown: true,
                 })
             }

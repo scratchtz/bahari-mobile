@@ -69,10 +69,9 @@ export function generateKeyPairFromMnemonic(
     const hexSeed = mnemonicToSeedHex(mnemonic);
     const path = getPath(pathKind, index);
     const secretKey = derivePath(path, hexSeed).key;
-    const secretKeyHex = Buffer.from(secretKey).toString('hex');
+    const secretKeyHex = secretKey.toString('hex');
 
     const {privateKey, publicKey, address} = newKeyPairFromHexSecretKey(secretKeyHex);
-
     return {
         walletID,
         address,

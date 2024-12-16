@@ -27,6 +27,7 @@ import ItemPrivacyPolicy from './Components/ItemPrivacyPolicy';
 import ItemTerms from './Components/ItemTerms';
 import ItemSupportUs from './Components/ItemSupportUs';
 import ItemContactUs from './Components/ItemContactUs';
+import ItemWork from './Components/ItemWork';
 
 const Settings: React.FC<AllScreenProps<'Settings'>> = ({navigation}) => {
     const theme = useAppTheme();
@@ -99,6 +100,7 @@ const Settings: React.FC<AllScreenProps<'Settings'>> = ({navigation}) => {
                     <ItemNativeCurrency />
                     <ItemPushNotifications />
                     <ItemNetwork />
+                    <ItemWork />
                     <ItemRepresentative />
                 </View>
 

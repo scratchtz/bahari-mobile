@@ -4,19 +4,20 @@ import {encryptedStorage} from '@storage/mmkv';
 import {Network} from '@utils/types/network';
 import {isValidUrl} from '@utils/helper/url';
 import {ToastController} from '@components/Toast/Toast';
-import {BAHARI_RPC_URL} from '@constants/endpoints';
+import {BAHARI_RPC_URL, BAHARI_WORK_URL} from '@constants/endpoints';
 import {useCallback, useMemo} from 'react';
 
-export const BahariDefaultNode: Network = {
-    label: 'Bahari Node',
-    endpoint: BAHARI_RPC_URL,
+export const DefaultServer: Network = {
+    label: 'Bahari',
+    endpoint: BAHARI_WORK_URL,
 };
-export const useNetworks = () => {
-    const [currentNetwork, setCurrentNetwork] = useMMKVString(StorageKeys.currentNetwork, encryptedStorage);
-    const [networks, setNetworks] = useMMKVObject<Network[]>(StorageKeys.allNetworks, encryptedStorage);
 
-    if (!currentNetwork) {
-        setCurrentNetwork(BahariDefaultNode.endpoint);
+export const useWorkServer = () => {
+    const [currServer, setCurrentServer] = useMMKVString(StorageKeys.currentWorkServer, encryptedStorage);
+    const [servers, setServers] = useMMKVObject<Network[]>(StorageKeys.allWorkServers, encryptedStorage);
+
+    if (!currServer) {
+        setCurrentServer(DefaultServer.endpoint);
     }
     const appendNetwork = (n: Network): boolean => {
         if (!isValidUrl(n.endpoint, ['http', 'https'])) {
@@ -47,11 +48,11 @@ export const useNetworks = () => {
                 return false;
             }
         }
-        if (!networks) {
-            setNetworks([n]);
+        if (!servers) {
+            setServers([n]);
             return true;
         }
-        setNetworks([...networks, n]);
+        setServers([...servers, n]);
         return true;
     };
     const deleteNetwork = (endpoint: string) => {
@@ -59,16 +60,16 @@ export const useNetworks = () => {
             ToastController.show({kind: 'error', title: 'Error', content: "Can't delete the default network"});
             return;
         }
-        if (!networks) {
+        if (!servers) {
             return;
         }
-        setNetworks(networks.filter(n => n.endpoint !== endpoint));
+        setServers(servers.filter(n => n.endpoint !== endpoint));
     };
 
     const allNetworks: Network[] = useMemo(() => {
-        if (!networks) return [BahariDefaultNode];
-        return [BahariDefaultNode, ...networks];
-    }, [networks]);
+        if (!servers) return [DefaultServer];
+        return [DefaultServer, ...servers];
+    }, [servers]);
 
     const getLabel = useCallback(
         (endpoint: string) => {
@@ -84,15 +85,15 @@ export const useNetworks = () => {
     );
 
     const currentNetworkLabel = useMemo(() => {
-        return getLabel(currentNetwork || BAHARI_RPC_URL);
-    }, [currentNetwork]);
+        return getLabel(currServer || BAHARI_RPC_URL);
+    }, [currServer]);
     const changeCurrentNetwork = (endpoint: string) => {
-        setCurrentNetwork(endpoint);
+        setCurrentServer(endpoint);
     };
 
     return {
         allNetworks,
-        currentNetwork: currentNetwork || BahariDefaultNode.endpoint,
+        currentNetwork: currServer,
         currentNetworkLabel,
         changeCurrentNetwork,
         getLabel,

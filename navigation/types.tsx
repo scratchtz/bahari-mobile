@@ -28,6 +28,8 @@ export type CommonStackList = {
     Representative: undefined;
     ChangeRepresentative: undefined;
     BuyNano: undefined;
+    WorkServer: undefined;
+    WorkServerNew: undefined;
 };
 
 export type RootStackParamList = {

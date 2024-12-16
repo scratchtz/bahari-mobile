@@ -19,7 +19,9 @@
         "contact": "Contacto",
         "contacts": "Contactos",
         "new_contact": "Nuevo Contacto",
-        "send_amount": "Cantidad a Enviar"
+        "send_amount": "Cantidad a Enviar",
+        "work_server": "Servidor de Prueba de Trabajo",
+        "work_server_new": "Nuevo Servidor de Prueba de Trabajo"
     },
     "buy_nano": {
         "title": "Comprar Nano",
@@ -90,6 +92,7 @@
         "notification_label": "Notificaciones Push",
         "network_label": "Red",
         "representative_label": "Representante",
+        "work_label": "Servidor PoW",
         "unlock_method": {
             "label": "Método de Desbloqueo",
             "method_password": "Contraseña",

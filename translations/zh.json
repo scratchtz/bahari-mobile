@@ -19,7 +19,9 @@
         "contact": "联系人",
         "contacts": "联系人",
         "new_contact": "新联系人",
-        "send_amount": "发送金额"
+        "send_amount": "发送金额",
+        "work_server": "工作量证明服务器",
+        "work_server_new": "新的工作量证明服务器"
     },
     "buy_nano": {
         "title": "购买 Nano",
@@ -90,6 +92,7 @@
         "notification_label": "推送通知",
         "network_label": "网络",
         "representative_label": "代表",
+        "work_label": "PoW服务器",
         "unlock_method": {
             "label": "解锁方式",
             "method_password": "密码",

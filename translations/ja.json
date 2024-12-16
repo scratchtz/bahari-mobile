@@ -19,7 +19,9 @@
         "contact": "連絡先",
         "contacts": "連絡先一覧",
         "new_contact": "新規連絡先",
-        "send_amount": "送金額"
+        "send_amount": "送金額",
+        "work_server": "プルーフ・オブ・ワーク サーバー",
+        "work_server_new": "新しいプルーフ・オブ・ワーク サーバー"
     },
     "buy_nano": {
         "title": "Nano購入",
@@ -90,6 +92,7 @@
         "notification_label": "プッシュ通知",
         "network_label": "ネットワーク",
         "representative_label": "代表ノード",
+        "work_label": "PoWサーバー",
         "unlock_method": {
             "label": "ロック解除方法",
             "method_password": "パスワード",

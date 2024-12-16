@@ -19,7 +19,9 @@
         "contact": "연락처",
         "contacts": "연락처 목록",
         "new_contact": "새 연락처",
-        "send_amount": "송금액"
+        "send_amount": "송금액",
+        "work_server": "작업 증명 서버",
+        "work_server_new": "새 작업 증명 서버"
     },
     "buy_nano": {
         "title": "나노 구매",
@@ -90,6 +92,7 @@
         "notification_label": "푸시 알림",
         "network_label": "네트워크",
         "representative_label": "대표자",
+        "work_label": "PoW 서버",
         "unlock_method": {
             "label": "잠금 해제 방법",
             "method_password": "비밀번호",

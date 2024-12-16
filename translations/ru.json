@@ -19,7 +19,9 @@
         "contact": "Контакт",
         "contacts": "Контакты",
         "new_contact": "Новый Контакт",
-        "send_amount": "Сумма Отправки"
+        "send_amount": "Сумма Отправки",
+        "work_server": "Сервер Доказательства Работы",
+        "work_server_new": "Новый Сервер Доказательства Работы"
     },
     "buy_nano": {
         "title": "Купить Nano",
@@ -90,6 +92,7 @@
         "notification_label": "Push-уведомления",
         "network_label": "Сеть",
         "representative_label": "Представитель",
+        "work_label": "Сервер PoW",
         "unlock_method": {
             "label": "Метод разблокировки",
             "method_password": "Пароль",
