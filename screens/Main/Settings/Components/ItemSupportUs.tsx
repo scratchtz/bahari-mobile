@@ -11,10 +11,10 @@ import {BottomSheetBackdrop, BottomSheetModal} from '@gorhom/bottom-sheet';
 import {useBottomSheetBackHandler} from '@hooks/hooksbottomsheet/useBottomSheetBackHandler';
 import {ModalHeader} from '@components/ModalHeader/ModalHeader';
 import {useTranslation} from 'react-i18next';
-import {Feather} from '@expo/vector-icons';
+import {Feather, FontAwesome5} from '@expo/vector-icons';
 import * as Clipboard from 'expo-clipboard';
 import {ToastController} from '@components/Toast/Toast';
-import {navigate, navigationRef} from '@navigation/shared';
+import {navigate} from '@navigation/shared';
 import {SUPPORT_NANO_ADDRESS} from '@constants/others';
 
 const SupportUs = () => {
@@ -32,7 +32,7 @@ const SupportUs = () => {
                 onPress={openRef}
                 leftItem={
                     <View style={[styles.settingIconBack, {backgroundColor: palette.teal400}]}>
-                        <MaterialIcons name="support-agent" style={[styles.settingIcon]} />
+                        <FontAwesome5 name="handshake" style={[styles.settingIcon]} />
                     </View>
                 }
                 title={t('others.support.title')}
